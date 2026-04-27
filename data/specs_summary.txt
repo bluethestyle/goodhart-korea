@@ -1,0 +1,23 @@
+총 데이터셋: 167
+API URL 보유: 167
+요청 파라미터 보유: 166
+응답 필드 보유: 167
+
+응답 필드 개수 통계: min=3, max=34, avg=9.7
+요청 파라미터 개수 통계: min=0, max=14, avg=3.7
+
+=== 샘플: 재정수입구조(본예산총수입기준) ===
+분류: 중앙정부>주요재정통계>재정수입>총수입
+API URL: https://openapi.openfiscaldata.go.kr/OPFI156
+라이선스: 출처표시+변경금지
+출처: 「각 연도 주요 재정통계」
+요청 파라미터:
+  - ACNT_YR                        (회계연도           ) [String(필수)]
+응답 필드 (5개):
+    1. ACNT_YR                        회계연도
+    4. BDG_FND_DIV_NM                 예산기금구분명
+    6. ACNT_DIV_NM                    회계구분명
+    8. SMOK_DIV_NM                    세목분류명
+    9. SUM_NASS_TREV_BDG_AMT          총수입
+
+CSV 저장 완료: data/api_specs.csv

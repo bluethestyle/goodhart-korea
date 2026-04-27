@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local working directories
+tmp/
+logs/
+
+# Big binary / regeneratable
+data/warehouse.duckdb
+data/budget/raw/
+data/budget/2026_b0.json
+
+# Probe HTML caches (regeneratable)
+raw/list_pages/page_*.json
+raw/list_pages/page.html
+raw/list_pages/api_list.html
+raw/list_pages/rendered_p1.html
+raw/detail_probe/detail_after_tabs.html
+raw/detail_probe/detail_rendered.html
+
+# Secrets
+.env
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
