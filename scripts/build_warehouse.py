@@ -67,6 +67,7 @@ def fetch_combo(api, label, **params):
 
 # Plan ----------------------------------------------------------------------
 EXPENDITURE_API = 'ExpenditureBudgetAdd7'
+EXPENDITURE_ITEM_API = 'ExpenditureBudgetAdd8'   # 통계목/세목까지 (CITM_NM, EITM_NM)
 REVENUE_API = 'BudgetRevenuesAdd2'
 
 YEARS = [str(y) for y in range(2020, 2027)]   # 2020~2026
@@ -119,12 +120,14 @@ def collect_debt_yearly():
 # Main ----------------------------------------------------------------------
 def main():
     exp = collect_panel(EXPENDITURE_API)
+    exp_i = collect_panel(EXPENDITURE_ITEM_API)
     rev = collect_panel(REVENUE_API)
     debt_m = collect_debt_monthly()
     debt_y = collect_debt_yearly()
 
     # Flatten panels
     exp_rows = [r for v in exp.values() for r in v]
+    exp_item_rows = [r for v in exp_i.values() for r in v]
     rev_rows = [r for v in rev.values() for r in v]
 
     # Build DuckDB
@@ -146,6 +149,7 @@ def main():
         print(f'[load] {name}: {n:,} rows, {len(cols)} cols')
 
     load('expenditure_budget', exp_rows)
+    load('expenditure_item',   exp_item_rows)
     load('revenue_budget',     rev_rows)
     load('debt_monthly',       debt_m)
     load('debt_yearly',        debt_y)
@@ -163,7 +167,7 @@ def main():
         print(f'[load] kodas_catalog: {n:,} rows  (KODAS 데이터 카탈로그 메타)')
 
     # 정수형 변환 (FSCL_YY / SBUDG_DGR)
-    for tbl in ['expenditure_budget', 'revenue_budget']:
+    for tbl in ['expenditure_budget', 'expenditure_item', 'revenue_budget']:
         if con.execute(f"SELECT count(*) FROM information_schema.tables WHERE table_name='{tbl}'").fetchone()[0]:
             con.execute(f"ALTER TABLE {tbl} ALTER FSCL_YY TYPE INTEGER USING TRY_CAST(FSCL_YY AS INTEGER)")
             con.execute(f"ALTER TABLE {tbl} ALTER SBUDG_DGR TYPE INTEGER USING TRY_CAST(SBUDG_DGR AS INTEGER)")
