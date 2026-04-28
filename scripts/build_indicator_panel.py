@@ -79,7 +79,7 @@ df = con.execute(f"""
     SELECT FSCL_YY AS year, EXE_M AS month, FLD_NM AS fld_nm, sum(EP_AMT) AS amt
     FROM monthly_exec
     WHERE EXE_M BETWEEN 1 AND 12 AND NOT {PURE_ACCT}
-      AND FSCL_YY BETWEEN 2020 AND 2025
+      AND FSCL_YY BETWEEN 2015 AND 2025
     GROUP BY FSCL_YY, EXE_M, FLD_NM
 """).fetchdf()
 
