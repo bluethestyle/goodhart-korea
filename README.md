@@ -184,7 +184,7 @@ python scripts/h24_stl_decomp.py               # STL trend 자기 비판
             A Multi-Method Robustness Analysis with Heterogeneous Effects},
   author = {(저자명)},
   year   = {2026},
-  url    = {https://github.com/{user}/{repo}},
+  url    = {https://github.com/bluethestyle/goodhart-korea},
   doi    = {10.5281/zenodo.{TBD}}
 }
 ```

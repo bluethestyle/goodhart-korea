@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회계연도 12월 점프 — 한국판 Liebman-Mahoney (2017) RDD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-card: #f8f9fa;
+      --bg-card2: #f0f2f5;
+      --text: #1a1a2e;
+      --text-muted: #6c757d;
+      --text-sub: #495057;
+      --border: #dee2e6;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --highlight: #fff3cd;
+      --highlight-border: #ffc107;
+      --infobg: #eef2ff;
+      --infoborder: #4f46e5;
+      --grid: #e9ecef;
+      --footer-bg: #f1f3f5;
+      --tag-bg: #fee2e2;
+      --tag-text: #991b1b;
+      --tag2-bg: #dcfce7;
+      --tag2-text: #166534;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117;
+        --bg-card: #1a1d27;
+        --bg-card2: #22263a;
+        --text: #e8eaf0;
+        --text-muted: #8b92a8;
+        --text-sub: #adb5bd;
+        --border: #2d3250;
+        --accent: #ef4444;
+        --accent2: #f87171;
+        --highlight: #2d2700;
+        --highlight-border: #ca8a04;
+        --infobg: #1e1b4b;
+        --infoborder: #818cf8;
+        --grid: #1e2235;
+        --footer-bg: #161923;
+        --tag-bg: #450a0a;
+        --tag-text: #fca5a5;
+        --tag2-bg: #052e16;
+        --tag2-text: #86efac;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 52px 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-sub);
+      max-width: 680px;
+      font-weight: 300;
+    }
+
+    /* ── INFOGRAPHIC SUMMARY ── */
+    .summary-strip {
+      max-width: 960px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--accent);
+      border-radius: 10px 0 0 10px;
+    }
+    .stat-card.green::before { background: #16a34a; }
+    .stat-card.blue::before { background: #2563eb; }
+    .stat-card.orange::before { background: #ea580c; }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    .stat-num span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .stat-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+      margin-top: 6px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+    .stat-tag.green { background: var(--tag2-bg); color: var(--tag2-text); }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    .chart-section {
+      margin-bottom: 56px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .section-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .chart-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
+    .chart-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    /* tooltip */
+    #tooltip {
+      position: fixed;
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s;
+      z-index: 9999;
+      max-width: 220px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    }
+    #tooltip .tt-name { font-weight: 600; margin-bottom: 4px; }
+    #tooltip .tt-row { color: var(--text-muted); font-size: 12px; }
+    #tooltip .tt-jump { color: var(--accent); font-weight: 700; }
+
+    /* callout */
+    .callout {
+      background: var(--infobg);
+      border-left: 3px solid var(--infoborder);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    footer a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="tooltip">
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-row">Nov 일평균: <span id="tt-nov"></span></div>
+  <div class="tt-row">Dec 일평균: <span id="tt-dec"></span></div>
+  <div class="tt-row">점프 배수: <span class="tt-jump" id="tt-jump"></span></div>
+</div>
+
+<header>
+  <div class="label">재정 분석 · RDD 시각화</div>
+  <h1>회계연도 12월 점프<br>— 한국판 Liebman-Mahoney (2017) RDD</h1>
+  <p class="subtitle">
+    12월 일평균 집행이 11월의 <strong>평균 1.6배</strong> (중앙값 1.4배) —
+    Liebman &amp; Mahoney(2017) 미국 연방 예산 5배 점프의 한국판 검증.
+    분야별 이질성이 뚜렷하며, 출연금형 분야가 가장 큰 연말 집중을 보인다.
+  </p>
+</header>
+
+<div class="summary-strip">
+  <div class="summary-grid">
+    <div class="stat-card">
+      <div class="stat-num">1.6<span>×</span></div>
+      <div class="stat-label">전 분야 산술평균 12월 점프</div>
+      <div class="stat-tag">vs 미국 5× (Liebman-Mahoney)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3.42<span>×</span></div>
+      <div class="stat-label">출연금형 최고 점프 (일반·지방행정)</div>
+      <div class="stat-tag">최대 연말 집중</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-num">1.10<span>×</span></div>
+      <div class="stat-label">직접투자형 최저 점프 (농림수산)</div>
+      <div class="stat-tag green">상대적 안정</div>
+    </div>
+    <div class="stat-card blue" style="--accent:#2563eb">
+      <div class="stat-num">17</div>
+      <div class="stat-label">분석 분야 수</div>
+      <div class="stat-tag" style="background:var(--infobg);color:var(--infoborder)">세출 전 분야</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- CHART 1 -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-num">CHART 01</span>
+      <h2>분야별 12월 점프 배수</h2>
+    </div>
+    <p class="chart-desc">
+      12월 일평균 집행 ÷ 11월 일평균 집행. jump &gt; 1.0 이면 12월 연말 집중 발생.
+      빨강이 진할수록 더 큰 점프.
+    </p>
+    <div class="chart-wrap" id="chart1"></div>
+    <div class="callout">
+      <strong>평균선(회색 점선)</strong>: 전 분야 산술평균 ≈ 1.9× &nbsp;|&nbsp;
+      <strong>미국 참조선(적색 점선)</strong>: Liebman-Mahoney 5×. 한국은 구조적으로 낮으나 분야별 편차가 크다.
+    </div>
+  </section>
+
+  <!-- CHART 2 -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-num">CHART 02</span>
+      <h2>분야별 월별 일평균 집행 추이 (10–12월)</h2>
+    </div>
+    <p class="chart-desc">
+      회계연도 말 3개월간 일평균 집행액 변화. Y축은 로그스케일 (단위: 억원).
+      12월 꺾임이 클수록 연말 집중도 높음.
+    </p>
+    <div class="chart-wrap" id="chart2"></div>
+  </section>
+
+  <!-- CHART 3 -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-num">CHART 03</span>
+      <h2>11월 vs 12월 산점도 — RDD 점프 분포</h2>
+    </div>
+    <p class="chart-desc">
+      대각선(identity line) 위 = 12월 집행 &gt; 11월 집행. 점 색깔이 짙을수록 점프 배수 큼.
+      점 위에 마우스를 올리면 상세 정보가 표시된다.
+    </p>
+    <div class="chart-wrap" id="chart3"></div>
+    <div class="callout">
+      사회복지·교육 등 대형 의무지출 분야는 오히려 12월이 11월보다 낮아
+      identity line <em>아래</em>에 위치한다 (jump &lt; 1.0).
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    데이터 출처: 디지털예산회계시스템(dBrain) · KOSIS 국가통계포털 · 기획재정부 재정정보공개<br>
+    분석 참조: Liebman &amp; Mahoney (2017). "Do Expiring Budgets Lead to Wasteful Year-End Spending?"
+    <em>American Economic Review</em>, 107(11).<br>
+    소스 코드 &amp; 데이터:
+    <a href="https://github.com/jsk320098/재정자료분석" target="_blank" rel="noopener">
+      github.com/jsk320098/재정자료분석
+    </a>
+    &nbsp;·&nbsp; 분석일: 2026-04-28
+  </div>
+</footer>
+
+<script>
+/* ── 데이터 로드 ── */
+fetch('data/rdd_scatter.json')
+  .then(r => r.json())
+  .then(raw => {
+    const data = raw.slice().sort((a, b) => b.jump - a.jump);
+    buildChart1(data);
+    buildChart2(data);
+    buildChart3(data);
+  })
+  .catch(err => {
+    document.querySelectorAll('.chart-wrap').forEach(el => {
+      el.innerHTML = `<p style="color:var(--text-muted);padding:20px">데이터 로드 실패: ${err.message}</p>`;
+    });
+  });
+
+/* ── 유틸 ── */
+const fmt = v => (v / 1e8).toFixed(1) + '억';
+const fmtJump = v => v.toFixed(2) + '×';
+
+function jumpColor(jump, alpha) {
+  // white → deep red gradient by jump
+  const t = Math.min(Math.max((jump - 0.3) / (3.6 - 0.3), 0), 1);
+  const r = Math.round(255 - t * (255 - 150));
+  const g = Math.round(255 - t * (255 - 20));
+  const b = Math.round(255 - t * (255 - 20));
+  return `rgba(${r},${g},${b},${alpha ?? 1})`;
+}
+
+/* ── CHART 1: Bar chart ── */
+function buildChart1(data) {
+  const avg = data.reduce((s, d) => s + d.jump, 0) / data.length;
+
+  const width = Math.min(document.getElementById('chart1').clientWidth - 48, 880);
+
+  const plot = Plot.plot({
+    width,
+    height: 420,
+    marginLeft: 160,
+    marginRight: 20,
+    marginBottom: 50,
+    marginTop: 20,
+    style: {
+      fontFamily: "'Noto Sans KR', sans-serif",
+      fontSize: '12px',
+      background: 'transparent',
+      color: 'var(--text)',
+    },
+    x: {
+      label: 'jump 배수 (12월 / 11월 일평균)',
+      labelOffset: 38,
+      grid: true,
+      tickFormat: d => d.toFixed(1) + '×',
+    },
+    y: {
+      label: null,
+      domain: data.map(d => d.fld),
+    },
+    marks: [
+      // grid lines subtle
+      Plot.gridX({ stroke: 'var(--grid)', strokeWidth: 1 }),
+
+      // bars
+      Plot.barX(data, {
+        x: 'jump',
+        y: 'fld',
+        fill: d => jumpColor(d.jump),
+        sort: { y: '-x' },
+        rx: 4,
+        title: d => `${d.fld}\njump: ${fmtJump(d.jump)}`,
+      }),
+
+      // value label on bar
+      Plot.text(data, {
+        x: d => d.jump + 0.04,
+        y: 'fld',
+        text: d => fmtJump(d.jump),
+        textAnchor: 'start',
+        fontSize: 11,
+        fill: 'var(--text-muted)',
+        sort: { y: '-x' },
+      }),
+
+      // avg rule
+      Plot.ruleX([avg], {
+        stroke: '#888',
+        strokeWidth: 1.5,
+        strokeDasharray: '5,4',
+      }),
+      Plot.text([{ x: avg, label: `평균 ${avg.toFixed(2)}×` }], {
+        x: 'x',
+        y: data[data.length - 1].fld,
+        text: 'label',
+        dy: 22,
+        dx: 2,
+        fontSize: 11,
+        fill: '#888',
+        textAnchor: 'start',
+      }),
+
+      // US 5x rule
+      Plot.ruleX([5], {
+        stroke: '#e74c3c',
+        strokeWidth: 1.5,
+        strokeDasharray: '8,4',
+        opacity: 0.7,
+      }),
+      Plot.text([{ x: 5, label: '미국 5× (LM2017)' }], {
+        x: 'x',
+        y: data[data.length - 1].fld,
+        text: 'label',
+        dy: 36,
+        dx: -2,
+        fontSize: 11,
+        fill: '#e74c3c',
+        textAnchor: 'end',
+      }),
+    ],
+  });
+
+  document.getElementById('chart1').appendChild(plot);
+}
+
+/* ── CHART 2: Facet line chart ── */
+function buildChart2(rawData) {
+  // reshape to long
+  const months = [
+    { key: 'oct', label: '10월' },
+    { key: 'nov', label: '11월' },
+    { key: 'dec', label: '12월' },
+  ];
+  const long = [];
+  rawData.forEach(d => {
+    months.forEach(m => {
+      long.push({
+        fld: d.fld,
+        month: m.label,
+        val: d[m.key] / 1e8, // 억원
+        jump: d.jump,
+        isDec: m.key === 'dec',
+      });
+    });
+  });
+
+  // sort flds by jump desc
+  const flds = rawData.map(d => d.fld);
+
+  const containerWidth = Math.min(document.getElementById('chart2').clientWidth - 48, 880);
+  const cols = containerWidth >= 700 ? 4 : 3;
+  const cellW = Math.floor((containerWidth - cols * 12) / cols);
+  const cellH = 90;
+
+  const plot = Plot.plot({
+    width: containerWidth,
+    height: Math.ceil(flds.length / cols) * (cellH + 28) + 40,
+    marginTop: 24,
+    marginBottom: 30,
+    marginLeft: 48,
+    marginRight: 12,
+    style: {
+      fontFamily: "'Noto Sans KR', sans-serif",
+      fontSize: '11px',
+      background: 'transparent',
+      color: 'var(--text)',
+    },
+    facet: {
+      data: long,
+      x: d => flds.indexOf(d.fld) % cols,
+      y: d => Math.floor(flds.indexOf(d.fld) / cols),
+    },
+    fx: {
+      axis: null,
+    },
+    fy: {
+      axis: null,
+    },
+    x: {
+      domain: ['10월', '11월', '12월'],
+      padding: 0.3,
+      axis: 'bottom',
+      label: null,
+    },
+    y: {
+      type: 'log',
+      label: '억원(log)',
+      tickFormat: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v.toFixed(0),
+      grid: true,
+    },
+    marks: [
+      Plot.frame({ stroke: 'var(--border)', rx: 6 }),
+
+      // line
+      Plot.lineY(long, {
+        x: 'month',
+        y: 'val',
+        stroke: d => jumpColor(d.jump),
+        strokeWidth: 2.5,
+        curve: 'monotone-x',
+      }),
+
+      // dots
+      Plot.dot(long, {
+        x: 'month',
+        y: 'val',
+        fill: d => d.isDec ? jumpColor(d.jump) : 'var(--bg)',
+        stroke: d => jumpColor(d.jump),
+        strokeWidth: 1.5,
+        r: d => d.isDec ? 4 : 3,
+      }),
+
+      // facet label (분야명) — frameAnchor로 좌상단 고정
+      Plot.text(
+        long.filter(d => d.month === '11월'),
+        {
+          x: 'month',
+          y: 'val',
+          text: d => d.fld.length > 9 ? d.fld.slice(0, 8) + '…' : d.fld,
+          frameAnchor: 'top-left',
+          dx: 4,
+          dy: 4,
+          fontSize: 9.5,
+          fontWeight: 700,
+          fill: 'var(--text)',
+          textAnchor: 'start',
+        }
+      ),
+    ],
+  });
+
+  document.getElementById('chart2').appendChild(plot);
+}
+
+/* ── CHART 3: Scatter ── */
+function buildChart3(data) {
+  const tt = document.getElementById('tooltip');
+  const ttName = document.getElementById('tt-name');
+  const ttNov = document.getElementById('tt-nov');
+  const ttDec = document.getElementById('tt-dec');
+  const ttJump = document.getElementById('tt-jump');
+
+  const w = Math.min(document.getElementById('chart3').clientWidth - 48, 560);
+  const h = Math.round(w * 0.82);
+
+  const allVals = data.flatMap(d => [d.nov, d.dec]).map(v => v / 1e8);
+  const domMin = Math.min(...allVals) * 0.7;
+  const domMax = Math.max(...allVals) * 1.25;
+
+  const identityLine = [
+    { x: domMin, y: domMin },
+    { x: domMax, y: domMax },
+  ];
+
+  const plot = Plot.plot({
+    width: w,
+    height: h,
+    marginLeft: 60,
+    marginRight: 20,
+    marginTop: 20,
+    marginBottom: 50,
+    style: {
+      fontFamily: "'Noto Sans KR', sans-serif",
+      fontSize: '12px',
+      background: 'transparent',
+      color: 'var(--text)',
+    },
+    x: {
+      type: 'log',
+      label: '11월 일평균 집행 (억원, log)',
+      labelOffset: 38,
+      tickFormat: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v.toFixed(0),
+      domain: [domMin, domMax],
+      grid: true,
+    },
+    y: {
+      type: 'log',
+      label: '12월 일평균 집행 (억원, log)',
+      tickFormat: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v.toFixed(0),
+      domain: [domMin, domMax],
+      grid: true,
+    },
+    marks: [
+      // identity line
+      Plot.line(identityLine, {
+        x: 'x',
+        y: 'y',
+        stroke: 'var(--text-muted)',
+        strokeWidth: 1,
+        strokeDasharray: '6,4',
+        opacity: 0.6,
+      }),
+
+      // "12월 > 11월" annotation
+      Plot.text([{ x: domMin * 1.8, y: domMax * 0.88 }], {
+        x: 'x', y: 'y',
+        text: () => '▲ 12월 > 11월',
+        fontSize: 11,
+        fill: '#c0392b',
+        fontStyle: 'italic',
+      }),
+      Plot.text([{ x: domMax * 0.72, y: domMin * 1.6 }], {
+        x: 'x', y: 'y',
+        text: () => '▼ 11월 > 12월',
+        fontSize: 11,
+        fill: 'var(--text-muted)',
+        fontStyle: 'italic',
+      }),
+
+      // dots
+      Plot.dot(data, {
+        x: d => d.nov / 1e8,
+        y: d => d.dec / 1e8,
+        r: 8,
+        fill: d => jumpColor(d.jump),
+        stroke: 'var(--bg)',
+        strokeWidth: 1.5,
+        opacity: 0.9,
+      }),
+
+      // labels for large/notable points
+      Plot.text(data.filter(d => d.jump > 2.4 || d.jump < 0.65), {
+        x: d => d.nov / 1e8,
+        y: d => d.dec / 1e8,
+        text: 'fld',
+        dy: -13,
+        fontSize: 10,
+        fontWeight: 600,
+        fill: 'var(--text)',
+        textAnchor: 'middle',
+      }),
+    ],
+  });
+
+  document.getElementById('chart3').appendChild(plot);
+
+  /* ── Tooltip via SVG pointer events ── */
+  const svg = plot.querySelector('svg') || plot;
+  const dots = plot.querySelectorAll('circle');
+  if (dots.length) {
+    dots.forEach((circle, i) => {
+      const d = data[i];
+      if (!d) return;
+      circle.style.cursor = 'pointer';
+      circle.addEventListener('mouseenter', (e) => {
+        ttName.textContent = d.fld;
+        ttNov.textContent = fmt(d.nov);
+        ttDec.textContent = fmt(d.dec);
+        ttJump.textContent = fmtJump(d.jump);
+        tt.style.opacity = '1';
+        moveTooltip(e);
+      });
+      circle.addEventListener('mousemove', moveTooltip);
+      circle.addEventListener('mouseleave', () => { tt.style.opacity = '0'; });
+    });
+  } else {
+    // fallback: pointer on plot area
+    plot.addEventListener('pointermove', (e) => {
+      const rect = plot.getBoundingClientRect();
+      const px = e.clientX - rect.left;
+      const py = e.clientY - rect.top;
+      // find nearest dot by position
+      let best = null, bestDist = Infinity;
+      const svgDots = plot.querySelectorAll('circle');
+      svgDots.forEach((c, i) => {
+        const cx = parseFloat(c.getAttribute('cx'));
+        const cy = parseFloat(c.getAttribute('cy'));
+        const dist = Math.hypot(px - cx, py - cy);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      });
+      if (best !== null && bestDist < 30 && data[best]) {
+        const d = data[best];
+        ttName.textContent = d.fld;
+        ttNov.textContent = fmt(d.nov);
+        ttDec.textContent = fmt(d.dec);
+        ttJump.textContent = fmtJump(d.jump);
+        tt.style.opacity = '1';
+        moveTooltip(e);
+      } else {
+        tt.style.opacity = '0';
+      }
+    });
+    plot.addEventListener('pointerleave', () => { tt.style.opacity = '0'; });
+  }
+
+  function moveTooltip(e) {
+    const mx = e.clientX, my = e.clientY;
+    const tw = 220, th = 90;
+    let left = mx + 14, top = my - 20;
+    if (left + tw > window.innerWidth) left = mx - tw - 14;
+    if (top + th > window.innerHeight) top = my - th - 10;
+    tt.style.left = left + 'px';
+    tt.style.top = top + 'px';
+  }
+}
+</script>
+</body>
+</html>

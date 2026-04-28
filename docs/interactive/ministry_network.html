@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>부처별 사업원형 시그니처 네트워크 — 5 co-cluster</title>
+
+  <!-- Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ECharts 5.5 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+
+  <style>
+    /* ───────────── CSS Reset & Base ───────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Tableau-10 palette */
+      --c0: #4e79a7;
+      --c1: #f28e2b;
+      --c2: #e15759;
+      --c3: #76b7b2;
+      --c4: #59a14f;
+
+      --bg:      #fafafa;
+      --surface: #ffffff;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+      --shadow:  rgba(0,0,0,.07);
+
+      --font: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      --radius: 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:      #0f1117;
+        --surface: #1c1f2e;
+        --text:    #e8eaf6;
+        --muted:   #9ca3af;
+        --border:  #2d3148;
+        --shadow:  rgba(0,0,0,.35);
+      }
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.55;
+      transition: background .25s, color .25s;
+    }
+
+    /* ───────────── Layout ───────────── */
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 32px 24px 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ───────────── Header ───────────── */
+    header { margin-bottom: 8px; }
+
+    .chart-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 600;
+      letter-spacing: -.3px;
+      color: var(--text);
+    }
+
+    .chart-caption {
+      margin-top: 6px;
+      font-size: .82rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: .01em;
+    }
+
+    /* ───────────── Chart container ───────────── */
+    .chart-card {
+      flex: 1 1 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px var(--shadow);
+      overflow: hidden;
+      margin-top: 14px;
+      min-height: 560px;
+    }
+
+    #network-chart {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+    }
+
+    /* ───────────── Footer ───────────── */
+    footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .source-note {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .footer-link {
+      font-size: .72rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 300;
+    }
+
+    .footer-link:hover { text-decoration: underline; }
+
+    /* ───────────── Responsive ───────────── */
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 20px 12px 12px; }
+      .chart-card   { min-height: 420px; }
+      #network-chart { min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <header>
+    <h1 class="chart-title">부처별 사업원형 시그니처 네트워크 — 5 co-cluster</h1>
+    <p class="chart-caption">
+      노드 = 부처 (n=51)&nbsp;&nbsp;·&nbsp;&nbsp;
+      엣지 = 12 피처 cosine 유사도 &gt; 0.55&nbsp;&nbsp;·&nbsp;&nbsp;
+      색 = co-cluster&nbsp;&nbsp;·&nbsp;&nbsp;
+      크기 = 활동 수
+    </p>
+  </header>
+
+  <div class="chart-card">
+    <div id="network-chart"></div>
+  </div>
+
+  <footer>
+    <span class="source-note">
+      출처: H5 분석 결과 (cocluster_assignment_11y.csv) &nbsp;·&nbsp;
+      데이터: 열린재정정보 · KOSIS · 한은 ECOS
+    </span>
+    <a class="footer-link"
+       href="https://github.com/user/repo"
+       target="_blank" rel="noopener">
+      분석: github.com/user/repo
+    </a>
+  </footer>
+
+</div><!-- .page-wrapper -->
+
+<script>
+/* ═══════════════════════════════════════════════
+   Embedded network data (ministry_network.json)
+   ═══════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* ── Fetch data from sibling JSON file ── */
+  const DATA_URL = './data/ministry_network.json';
+
+  /* ── Tableau-10 / D3 schemeTableau10 palette ── */
+  const PALETTE = [
+    '#4e79a7',   // CC0 행정형   – steel blue
+    '#f28e2b',   // CC1 사업형   – warm orange
+    '#e15759',   // CC2 분기말집중 – coral red
+    '#76b7b2',   // CC3 직접투자  – teal
+    '#59a14f',   // CC4 출연금전담 – muted green
+  ];
+
+  /* ── Detect dark mode ── */
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const THEME = {
+    bg:        isDark ? '#1c1f2e' : '#ffffff',
+    text:      isDark ? '#e8eaf6' : '#1a1a2e',
+    subtext:   isDark ? '#9ca3af' : '#6b7280',
+    edgeColor: isDark ? 'rgba(160,170,210,.25)' : 'rgba(100,110,150,.18)',
+    tooltipBg: isDark ? '#252840' : '#ffffff',
+    tooltipBorder: isDark ? '#3d4163' : '#e5e7eb',
+  };
+
+  /* ── Format helpers ── */
+  const pct  = v => (v * 100).toFixed(1) + '%';
+  const fmt2 = v => (+v).toFixed(3);
+
+  /* ── Build ECharts option ── */
+  function buildOption(data) {
+    const { nodes, links, categories } = data;
+
+    /* Normalise edge opacity by value (cosine sim) */
+    const minV = Math.min(...links.map(l => l.value));
+    const maxV = Math.max(...links.map(l => l.value));
+
+    const styledLinks = links.map(l => {
+      const t = (l.value - minV) / (maxV - minV);   // 0..1
+      const alpha = (0.12 + t * 0.55).toFixed(2);
+      const width  = +(0.6 + t * 2.2).toFixed(1);
+      return {
+        ...l,
+        lineStyle: {
+          color: PALETTE[
+            nodes.find(n => n.id === l.source)?.category ?? 0
+          ],
+          opacity: +alpha,
+          width,
+          curveness: 0.08,
+        },
+      };
+    });
+
+    /* Tooltip formatter */
+    const tooltipFormatter = p => {
+      if (p.dataType !== 'node') return '';
+      const d = p.data;
+      const clusterName = categories[d.category]?.name ?? `CC${d.category}`;
+      const dot = `<span style="display:inline-block;width:10px;height:10px;
+                   border-radius:50%;background:${PALETTE[d.category]};
+                   margin-right:5px;vertical-align:middle;"></span>`;
+      return `
+        <div style="font-family:'Noto Sans KR',sans-serif;
+                    min-width:200px;line-height:1.7;font-size:13px;">
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px">
+            ${dot}${d.name}
+          </div>
+          <div style="color:${THEME.subtext};font-size:11px;margin-bottom:6px">
+            ${clusterName}
+          </div>
+          <table style="width:100%;border-collapse:collapse">
+            <tr>
+              <td style="color:${THEME.subtext};padding-right:12px">노출 점수</td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums">
+                ${fmt2(d.value)}
+              </td>
+            </tr>
+            <tr>
+              <td style="color:${THEME.subtext};padding-right:12px">활동 수</td>
+              <td style="text-align:right">${d.n_activities}</td>
+            </tr>
+            <tr>
+              <td style="color:${THEME.subtext};padding-right:12px">출연금 비중</td>
+              <td style="text-align:right">${pct(d.chooyeon_pct)}</td>
+            </tr>
+          </table>
+        </div>`;
+    };
+
+    return {
+      backgroundColor: THEME.bg,
+
+      /* ── Toolbox (우상단) ── */
+      toolbox: {
+        right: 16,
+        top: 16,
+        iconStyle: {
+          borderColor: THEME.subtext,
+          color: 'transparent',
+        },
+        emphasis: { iconStyle: { borderColor: THEME.text } },
+        feature: {
+          saveAsImage: {
+            title: '이미지 저장',
+            name: 'ministry_network',
+            backgroundColor: THEME.bg,
+          },
+          dataZoom: { title: { zoom: '줌', back: '되돌리기' } },
+          dataView: {
+            title: '데이터 보기',
+            lang: ['데이터 보기', '닫기', '새로 고침'],
+            readOnly: true,
+            backgroundColor: THEME.bg,
+            textColor: THEME.text,
+            buttonColor: PALETTE[0],
+          },
+          restore: { title: '초기화' },
+        },
+      },
+
+      /* ── Tooltip ── */
+      tooltip: {
+        trigger: 'item',
+        formatter: tooltipFormatter,
+        backgroundColor: THEME.tooltipBg,
+        borderColor: THEME.tooltipBorder,
+        borderWidth: 1,
+        padding: [10, 14],
+        textStyle: { color: THEME.text, fontSize: 13 },
+        extraCssText: 'box-shadow:0 4px 20px rgba(0,0,0,.12);border-radius:8px;',
+      },
+
+      /* ── Legend (좌상단) ── */
+      legend: {
+        data: categories.map((c, i) => ({
+          name: c.name,
+          itemStyle: { color: PALETTE[i] },
+          lineStyle: { color: PALETTE[i] },
+        })),
+        orient: 'vertical',
+        left: 16,
+        top: 16,
+        icon: 'circle',
+        itemWidth: 11,
+        itemHeight: 11,
+        itemGap: 8,
+        textStyle: {
+          fontSize: 12,
+          color: THEME.text,
+          fontFamily: "'Noto Sans KR', sans-serif",
+          fontWeight: '400',
+        },
+        selectedMode: true,
+        backgroundColor: isDark
+          ? 'rgba(28,31,46,.75)'
+          : 'rgba(255,255,255,.82)',
+        borderRadius: 6,
+        padding: [10, 14],
+        borderColor: THEME.tooltipBorder,
+        borderWidth: 1,
+      },
+
+      /* ── Graph series ── */
+      series: [
+        {
+          name: '부처 네트워크',
+          type: 'graph',
+          layout: 'force',
+          data: nodes.map(n => ({
+            ...n,
+            label: {
+              show: true,
+              position: 'right',
+              formatter: '{b}',
+              fontSize: 10,
+              color: THEME.subtext,
+              fontFamily: "'Noto Sans KR', sans-serif",
+              fontWeight: '300',
+            },
+            itemStyle: {
+              color: PALETTE[n.category],
+              borderColor: isDark
+                ? 'rgba(255,255,255,.15)'
+                : 'rgba(0,0,0,.10)',
+              borderWidth: 1.5,
+              shadowColor: PALETTE[n.category],
+              shadowBlur: 6,
+            },
+            emphasis: {
+              scale: true,
+              scaleSize: 1.25,
+              label: {
+                show: true,
+                fontSize: 12,
+                fontWeight: '600',
+                color: THEME.text,
+              },
+              itemStyle: {
+                shadowBlur: 16,
+                shadowColor: PALETTE[n.category],
+                borderWidth: 2.5,
+              },
+            },
+          })),
+          links: styledLinks,
+          categories: categories.map((c, i) => ({
+            name: c.name,
+            itemStyle: { color: PALETTE[i] },
+          })),
+
+          /* Force layout params */
+          force: {
+            repulsion: 80,
+            gravity: 0.05,
+            edgeLength: 80,
+            layoutAnimation: true,
+            friction: 0.6,
+          },
+
+          roam: true,
+          draggable: true,
+          scaleLimit: { min: 0.4, max: 4 },
+
+          lineStyle: {
+            opacity: 0.25,
+            width: 1,
+            curveness: 0.08,
+          },
+
+          edgeSymbol: ['none', 'none'],
+
+          focusNodeAdjacency: true,   /* hover 시 이웃 강조 */
+
+          animation: true,
+          animationDuration: 1200,
+          animationEasingUpdate: 'quinticInOut',
+        },
+      ],
+    };
+  }
+
+  /* ── Init chart ── */
+  const container = document.getElementById('network-chart');
+  const chart = echarts.init(container, null, { renderer: 'canvas' });
+
+  /* Loading spinner */
+  chart.showLoading({
+    text: '네트워크 로딩 중…',
+    color: PALETTE[0],
+    textColor: THEME.text,
+    maskColor: THEME.bg,
+    fontSize: 14,
+    fontFamily: "'Noto Sans KR', sans-serif",
+  });
+
+  /* Fetch → render */
+  fetch(DATA_URL)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(data => {
+      chart.hideLoading();
+      chart.setOption(buildOption(data));
+    })
+    .catch(err => {
+      chart.hideLoading();
+      console.error('데이터 로드 실패:', err);
+      container.innerHTML =
+        `<div style="display:flex;align-items:center;justify-content:center;
+                     height:100%;font-family:'Noto Sans KR',sans-serif;
+                     color:#e15759;font-size:14px;">
+           데이터 로드 실패: ${err.message}
+         </div>`;
+    });
+
+  /* ── Responsive resize ── */
+  const ro = new ResizeObserver(() => chart.resize());
+  ro.observe(container);
+
+  window.addEventListener('resize', () => chart.resize());
+
+  /* ── Dark-mode live switch ── */
+  window.matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', () => location.reload());
+
+})();
+</script>
+
+</body>
+</html>

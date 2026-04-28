@@ -67,9 +67,9 @@
   ]
   #v(0.5em)
   #text(size: 9pt, fill: rgb("#666"))[
-    GitHub: #link("https://github.com/{user}/{repo}")[github.com/\{user\}/\{repo\}] · #h(0.5em)
+    GitHub: #link("https://github.com/bluethestyle/goodhart-korea")[github.com/bluethestyle/goodhart-korea] · #h(0.5em)
     Zenodo: #link("https://doi.org/10.5281/zenodo.{TBD}")[10.5281/zenodo.\{TBD\}] · #h(0.5em)
-    인터랙티브 시각화: #link("https://{user}.github.io/{repo}/interactive/")[Pages 사이트]
+    인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")[Pages 사이트]
   ]
 ]
 
@@ -289,10 +289,10 @@
 
   연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다.
 
-  - GitHub: #link("https://github.com/{user}/{repo}")
+  - GitHub: #link("https://github.com/bluethestyle/goodhart-korea")
   - Zenodo DOI: #link("https://doi.org/10.5281/zenodo.{TBD}")
-  - 인터랙티브 시각화: #link("https://{user}.github.io/{repo}/interactive/")
-  - 분석 여정 (전체 H1\~H24): #link("https://{user}.github.io/{repo}/analysis/JOURNEY/")
+  - 인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")
+  - 분석 여정 (전체 H1\~H24): #link("https://bluethestyle.github.io/goodhart-korea/analysis/JOURNEY/")
 ]
 
 #v(1em)

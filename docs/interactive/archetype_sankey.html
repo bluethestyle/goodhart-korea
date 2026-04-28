@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>분야 → 사업원형 → outcome 부호 흐름</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #fafaf8;
+      --surface:    #ffffff;
+      --border:     #e8e4de;
+      --text-primary:   #1a1a1a;
+      --text-secondary: #6b6560;
+      --text-tertiary:  #9d9590;
+      --accent:     #c0392b;
+      --accent-pos: #d64045;
+      --accent-neg: #2563eb;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:  0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+      --radius:     6px;
+      --font:       'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:         #0f0f0d;
+        --surface:    #1a1a17;
+        --border:     #2e2e28;
+        --text-primary:   #f0ede8;
+        --text-secondary: #9d9a94;
+        --text-tertiary:  #6b6760;
+        --shadow-sm:  0 1px 3px rgba(0,0,0,.3);
+        --shadow-md:  0 4px 12px rgba(0,0,0,.4);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Layout ── */
+    .page-wrapper {
+      max-width: 1320px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 3.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: clamp(0.85rem, 1.5vw, 0.98rem);
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 72ch;
+      line-height: 1.55;
+    }
+
+    /* ── Main content ── */
+    main { flex: 1; padding: 2rem 0; }
+
+    /* ── Chart container ── */
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .chart-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ── Legend ── */
+    .legend-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      align-items: center;
+    }
+
+    .legend-section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      width: 100%;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: 3px;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid transparent;
+      transition: all .15s ease;
+      white-space: nowrap;
+    }
+
+    .legend-item:hover {
+      background: var(--bg);
+      border-color: var(--border);
+      color: var(--text-primary);
+    }
+
+    .legend-item.active {
+      border-color: currentColor;
+      color: var(--text-primary);
+    }
+
+    .legend-item.dimmed {
+      opacity: 0.35;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Toolbar right: save ── */
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      font-family: var(--font);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg);
+      color: var(--text-primary);
+      border-color: var(--text-tertiary);
+    }
+
+    .btn-icon svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ── Chart area ── */
+    #sankey {
+      width: 100%;
+      height: 620px;
+    }
+
+    @media (max-width: 768px) {
+      #sankey { height: 480px; }
+    }
+
+    @media (max-width: 480px) {
+      #sankey { height: 380px; }
+    }
+
+    /* ── Caption ── */
+    .caption {
+      padding: 1.1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .caption-icon {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      width: 18px;
+      height: 18px;
+      color: var(--text-tertiary);
+    }
+
+    .caption-text {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .caption-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── Outcome legend pills ── */
+    .outcome-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    .pill-pos {
+      background: rgba(214, 64, 69, 0.1);
+      color: var(--accent-pos);
+      border: 1px solid rgba(214, 64, 69, 0.25);
+    }
+
+    .pill-neg {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent-neg);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    /* ── Filter controls ── */
+    .filter-bar {
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-right: 0.25rem;
+    }
+
+    .filter-btn {
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.28rem 0.7rem;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .filter-sep {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+      margin: 0 0.25rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 0;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .footer-link {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color .15s;
+    }
+
+    .footer-link:hover { color: var(--text-primary); }
+
+    .footer-link svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* ── Responsive padding ── */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 0 1rem; }
+      header { padding: 2rem 0 1.25rem; }
+      .chart-toolbar { padding: 0.75rem 1rem; }
+      .filter-bar { padding: 0.6rem 1rem; }
+      .caption { padding: 0.9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="page-wrapper">
+      <p class="header-eyebrow">Holmstrom–Milgrom Multitasking · 재정자료분석</p>
+      <h1>분야 → 사업원형 → outcome 부호 흐름</h1>
+      <p class="subtitle">
+        Holmstrom-Milgrom Multitasking 가설 시각화 — 사업 형태에 따라 outcome 부호 정반대
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-wrapper">
+      <div class="chart-card">
+
+        <!-- Toolbar -->
+        <div class="chart-toolbar">
+
+          <!-- Left: legend -->
+          <div class="legend-group" id="archetypeLegend">
+            <span class="legend-section-label">사업원형 필터</span>
+            <!-- Items injected by JS -->
+          </div>
+
+          <!-- Right: toolbox -->
+          <div class="toolbar-actions">
+            <button class="btn-icon" id="btnSavePNG" title="PNG로 저장">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2"/>
+                <path d="M8 2v8m0 0l-3-3m3 3l3-3"/>
+              </svg>
+              PNG 저장
+            </button>
+          </div>
+        </div>
+
+        <!-- Field filter -->
+        <div class="filter-bar" id="fieldFilterBar">
+          <span class="filter-label">분야 필터</span>
+          <button class="filter-btn active" data-field="all">전체</button>
+          <div class="filter-sep"></div>
+          <!-- Field buttons injected by JS -->
+        </div>
+
+        <!-- Chart -->
+        <div id="sankey"></div>
+
+        <!-- Caption -->
+        <div class="caption">
+          <svg class="caption-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"/>
+          </svg>
+          <div class="caption-text">
+            <strong>해석:</strong> 같은 분야 안에서도 사업 형태별로 outcome 부호가 정반대로 갈린다. 이는 예산 규모 자체가 성과를 결정하는 "회계 cycle 가설"을 기각하는 직접 증거다.
+            각 링크의 두께는 corr_diff 절댓값(상관계수 차이 크기)에 비례한다.
+            <div class="outcome-pills">
+              <span class="pill pill-pos">↑ 양상관: 지출 증가 → 성과 향상</span>
+              <span class="pill pill-neg">↓ 음상관: 지출 증가 → 성과 저하</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="page-wrapper">
+      <div class="footer-inner">
+        <span class="footer-text">데이터 출처: 한국 재정자료분석 프로젝트 · 2024</span>
+        <a class="footer-link" href="https://github.com/jsk320098/재정자료분석" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          GitHub 리포지토리
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (async () => {
+    /* ── 1. 테마 감지 ── */
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const theme = {
+      bg:            isDark ? '#0f0f0d' : '#ffffff',
+      text:          isDark ? '#f0ede8' : '#1a1a1a',
+      subtext:       isDark ? '#9d9a94' : '#6b6560',
+      border:        isDark ? '#2e2e28' : '#e8e4de',
+      tooltipBg:     isDark ? '#1a1a17' : '#ffffff',
+      tooltipBorder: isDark ? '#2e2e28' : '#e8e4de',
+    };
+
+    /* ── 2. 색상 팔레트 ── */
+    const FIELD_COLORS = {
+      '과학기술':           '#4e79a7',
+      '교육':               '#f28e2b',
+      '교통및물류':          '#e15759',
+      '국토및지역개발':      '#76b7b2',
+      '농림수산':            '#59a14f',
+      '문화및관광':          '#edc948',
+      '보건':                '#b07aa1',
+      '사회복지':            '#ff9da7',
+      '산업·중소기업및에너지': '#9c755f',
+      '일반·지방행정':       '#bab0ac',
+      '통신':                '#d37295',
+      '환경':                '#76b7b2', // reuse teal variant
+      /* extra fields (will use fallback) */
+    };
+    const FIELD_FALLBACK = [
+      '#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f',
+      '#edc948','#b07aa1','#ff9da7','#9c755f','#bab0ac',
+      '#d37295','#54a24b','#8be04e','#ebcb2e','#e4952a',
+    ];
+
+    const ARCHETYPE_COLORS = {
+      'A_chooyeon':      '#6366f1',  // indigo
+      'A_chooyeon_sub0': '#6366f1',
+      'A_chooyeon_sub1': '#818cf8',
+      'A_direct_invest': '#0ea5e9',  // sky
+      'A_extreme_gaming':'#f59e0b',  // amber
+      'A_normal':        '#10b981',  // emerald
+      'A_personnel':     '#8b5cf6',  // violet
+    };
+
+    const OUTCOME_COLORS = {
+      'outcome ↑ (양상관)': '#d64045',  // red
+      'outcome ↓ (음상관)': '#2563eb',  // blue
+    };
+
+    /* ── 3. 데이터 로드 ── */
+    let raw;
+    try {
+      const resp = await fetch('./data/archetype_sankey.json');
+      raw = await resp.json();
+    } catch(e) {
+      console.error('데이터 로드 실패:', e);
+      return;
+    }
+
+    /* ── 4. 노드/링크 정규화 ── */
+    // JSON의 links는 sub-node(A_chooyeon_sub0 등)를 참조하는데,
+    // JSON의 nodes에는 "A_chooyeon"만 있음.
+    // → 실제 링크에서 등장하는 모든 노드를 동적으로 수집한다.
+
+    // 링크에 등장하는 모든 노드 이름 수집
+    const nodeNameSet = new Set();
+    raw.links.forEach(l => {
+      nodeNameSet.add(l.source);
+      nodeNameSet.add(l.target);
+    });
+
+    // 노드 분류 함수
+    const isField = name =>
+      !name.startsWith('A_') && !name.startsWith('outcome');
+    const isArchetype = name =>
+      name.startsWith('A_');
+    const isOutcome = name =>
+      name.startsWith('outcome');
+
+    // 분야 목록 (원래 JSON nodes + 링크에서 발견된 것 합집합)
+    const fieldNames = [];
+    const archetypeNames = [];
+    const outcomeNames = [];
+
+    // JSON nodes 먼저 순서 보존
+    raw.nodes.forEach(n => {
+      const nm = n.name;
+      if (!nodeNameSet.has(nm)) return; // 링크에 없으면 건너뜀
+      if (isField(nm) && !fieldNames.includes(nm)) fieldNames.push(nm);
+      else if (isArchetype(nm) && !archetypeNames.includes(nm)) archetypeNames.push(nm);
+      else if (isOutcome(nm) && !outcomeNames.includes(nm)) outcomeNames.push(nm);
+    });
+
+    // 링크에서 발견된 서브 노드 추가
+    nodeNameSet.forEach(nm => {
+      if (isField(nm) && !fieldNames.includes(nm)) fieldNames.push(nm);
+      else if (isArchetype(nm) && !archetypeNames.includes(nm)) archetypeNames.push(nm);
+      else if (isOutcome(nm) && !outcomeNames.includes(nm)) outcomeNames.push(nm);
+    });
+
+    // 분야에 색상 할당
+    fieldNames.forEach((nm, i) => {
+      if (!FIELD_COLORS[nm]) FIELD_COLORS[nm] = FIELD_FALLBACK[i % FIELD_FALLBACK.length];
+    });
+
+    // 노드 색상 결정
+    function nodeColor(name) {
+      if (isOutcome(name)) return OUTCOME_COLORS[name] || '#888';
+      if (isArchetype(name)) {
+        // sub 노드는 부모 원형 색상
+        const base = name.replace(/_sub\d+$/, '');
+        return ARCHETYPE_COLORS[base] || ARCHETYPE_COLORS[name] || '#aaa';
+      }
+      return FIELD_COLORS[name] || '#888';
+    }
+
+    // 전체 노드 배열 구성 (분야 → 원형 → outcome 순)
+    const allNodeNames = [...fieldNames, ...archetypeNames, ...outcomeNames];
+    const ecNodes = allNodeNames.map(name => ({
+      name,
+      itemStyle: { color: nodeColor(name) },
+    }));
+
+    /* ── 5. ECharts 옵션 생성 ── */
+    function makeOption(links, highlightFields = null, highlightArchetypes = null) {
+      // 링크 필터
+      let filteredLinks = links;
+      if (highlightFields && highlightFields.size > 0) {
+        filteredLinks = filteredLinks.filter(l =>
+          isField(l.source) ? highlightFields.has(l.source) : true
+        );
+        // 분야 필터 시 해당 분야와 연결된 원형만 남김
+        const reachableArchetypes = new Set(
+          filteredLinks.filter(l => isField(l.source)).map(l => l.target)
+        );
+        filteredLinks = filteredLinks.filter(l =>
+          isArchetype(l.source) ? reachableArchetypes.has(l.source) : true
+        );
+      }
+      if (highlightArchetypes && highlightArchetypes.size > 0) {
+        // 원형 필터: 해당 원형을 거치는 링크만
+        const reachableArchetypes = highlightArchetypes;
+        filteredLinks = filteredLinks.filter(l => {
+          if (isField(l.source)) return reachableArchetypes.has(l.target);
+          if (isArchetype(l.source)) return reachableArchetypes.has(l.source);
+          return true;
+        });
+      }
+
+      // 링크에서 실제로 사용하는 노드만 추출
+      const usedNames = new Set();
+      filteredLinks.forEach(l => { usedNames.add(l.source); usedNames.add(l.target); });
+      const filteredNodes = ecNodes.filter(n => usedNames.has(n.name));
+
+      return {
+        backgroundColor: theme.bg,
+        textStyle: { fontFamily: "'Noto Sans KR', sans-serif" },
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove',
+          backgroundColor: theme.tooltipBg,
+          borderColor: theme.tooltipBorder,
+          borderWidth: 1,
+          padding: [10, 14],
+          textStyle: {
+            color: theme.text,
+            fontFamily: "'Noto Sans KR', sans-serif",
+            fontSize: 13,
+          },
+          formatter(params) {
+            if (params.dataType === 'edge') {
+              const src = params.data.source;
+              const tgt = params.data.target;
+              const val = params.data.value;
+              const srcColor = nodeColor(src);
+              const tgtColor = nodeColor(tgt);
+              const dot = c => `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c};margin-right:4px;"></span>`;
+              return `
+                <div style="font-weight:600;margin-bottom:6px;font-size:12px;letter-spacing:.04em;color:${theme.subtext};">
+                  흐름 연결
+                </div>
+                <div style="line-height:1.8;">
+                  ${dot(srcColor)}<b style="color:${theme.text}">${src}</b>
+                  <span style="color:${theme.subtext}"> → </span>
+                  ${dot(tgtColor)}<b style="color:${theme.text}">${tgt}</b>
+                </div>
+                <div style="margin-top:6px;padding-top:6px;border-top:1px solid ${theme.tooltipBorder};">
+                  <span style="color:${theme.subtext};font-size:11px;">corr_diff 절댓값</span>
+                  <span style="font-weight:700;font-size:15px;margin-left:8px;color:${theme.text};">${val.toFixed(4)}</span>
+                </div>
+              `;
+            }
+            if (params.dataType === 'node') {
+              const n = params.data.name;
+              const col = nodeColor(n);
+              const dot = `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${col};margin-right:6px;"></span>`;
+              return `<div>${dot}<b style="color:${theme.text}">${n}</b></div>
+                <div style="color:${theme.subtext};font-size:11px;margin-top:4px;">노드 클릭으로 연결 강조</div>`;
+            }
+          }
+        },
+        series: [{
+          type: 'sankey',
+          orient: 'horizontal',
+          nodeAlign: 'justify',
+          layoutIterations: 32,
+          nodeWidth: 14,
+          nodeGap: 10,
+          left: '1%',
+          right: '1%',
+          top: 28,
+          bottom: 16,
+          data: filteredNodes,
+          links: filteredLinks,
+          emphasis: {
+            focus: 'adjacency',
+            lineStyle: { opacity: 0.9 },
+          },
+          lineStyle: {
+            color: 'gradient',
+            opacity: 0.55,
+            curveness: 0.52,
+          },
+          label: {
+            color: theme.text,
+            fontFamily: "'Noto Sans KR', sans-serif",
+            fontSize: 11.5,
+            fontWeight: 500,
+          },
+          itemStyle: {
+            borderWidth: 0,
+            borderRadius: 2,
+          },
+        }],
+      };
+    }
+
+    /* ── 6. 차트 초기화 ── */
+    const chartDom = document.getElementById('sankey');
+    const chart = echarts.init(chartDom, null, { renderer: 'canvas' });
+
+    const rawLinks = raw.links; // 원본 링크
+
+    let activeFields = new Set();       // 빈 set = 전체 표시
+    let activeArchetypes = new Set();   // 빈 set = 전체 표시
+
+    function render() {
+      chart.setOption(
+        makeOption(
+          rawLinks,
+          activeFields.size > 0 ? activeFields : null,
+          activeArchetypes.size > 0 ? activeArchetypes : null,
+        ),
+        true
+      );
+    }
+
+    render();
+
+    /* ── 7. 반응형 ── */
+    const ro = new ResizeObserver(() => chart.resize());
+    ro.observe(chartDom);
+
+    /* ── 8. 분야 필터 버튼 ── */
+    const fieldFilterBar = document.getElementById('fieldFilterBar');
+    fieldNames.forEach(nm => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.dataset.field = nm;
+      btn.textContent = nm;
+      btn.style.borderLeftColor = FIELD_COLORS[nm];
+      fieldFilterBar.appendChild(btn);
+    });
+
+    fieldFilterBar.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      const f = btn.dataset.field;
+
+      // 전체 버튼
+      if (f === 'all') {
+        activeFields.clear();
+        fieldFilterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        render();
+        return;
+      }
+
+      // 개별 분야 toggle
+      fieldFilterBar.querySelector('[data-field="all"]').classList.remove('active');
+      if (activeFields.has(f)) {
+        activeFields.delete(f);
+        btn.classList.remove('active');
+      } else {
+        activeFields.add(f);
+        btn.classList.add('active');
+      }
+      if (activeFields.size === 0) {
+        fieldFilterBar.querySelector('[data-field="all"]').classList.add('active');
+      }
+      render();
+    });
+
+    /* ── 9. 원형 Legend ── */
+    const archetypeMeta = [
+      { key: 'A_chooyeon_sub0', label: 'chooyeon-α' },
+      { key: 'A_chooyeon_sub1', label: 'chooyeon-β' },
+      { key: 'A_direct_invest', label: 'direct_invest' },
+      { key: 'A_extreme_gaming', label: 'extreme_gaming' },
+      { key: 'A_normal',        label: 'normal' },
+      { key: 'A_personnel',     label: 'personnel' },
+    ].filter(m => archetypeNames.includes(m.key)); // 실제 데이터에 있는 것만
+
+    const legendGroup = document.getElementById('archetypeLegend');
+    archetypeMeta.forEach(m => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.dataset.arch = m.key;
+      item.innerHTML = `
+        <span class="legend-dot" style="background:${nodeColor(m.key)};"></span>
+        ${m.label}
+      `;
+      legendGroup.appendChild(item);
+    });
+
+    // outcome 범례 추가
+    const outcomeGroup = document.createElement('div');
+    outcomeGroup.style.cssText = 'display:flex;gap:.4rem 1.2rem;align-items:center;flex-wrap:wrap;';
+    outcomeGroup.innerHTML = `
+      <span class="legend-section-label" style="width:100%;">outcome</span>
+      <div class="legend-item" style="cursor:default;">
+        <span class="legend-dot" style="background:${OUTCOME_COLORS['outcome ↑ (양상관)']}"></span>↑ 양상관
+      </div>
+      <div class="legend-item" style="cursor:default;">
+        <span class="legend-dot" style="background:${OUTCOME_COLORS['outcome ↓ (음상관)']}"></span>↓ 음상관
+      </div>
+    `;
+    legendGroup.parentElement.appendChild(outcomeGroup);
+
+    // 원형 legend 클릭 필터
+    legendGroup.addEventListener('click', e => {
+      const item = e.target.closest('.legend-item');
+      if (!item || !item.dataset.arch) return;
+      const arch = item.dataset.arch;
+
+      if (activeArchetypes.has(arch)) {
+        activeArchetypes.delete(arch);
+        item.classList.remove('active');
+      } else {
+        activeArchetypes.add(arch);
+        item.classList.add('active');
+      }
+
+      // 비활성 아이템 dimming
+      legendGroup.querySelectorAll('.legend-item[data-arch]').forEach(el => {
+        if (activeArchetypes.size === 0) {
+          el.classList.remove('dimmed');
+        } else {
+          el.classList.toggle('dimmed', !activeArchetypes.has(el.dataset.arch));
+        }
+      });
+
+      render();
+    });
+
+    /* ── 10. PNG 저장 ── */
+    document.getElementById('btnSavePNG').addEventListener('click', () => {
+      const url = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: theme.bg });
+      const a = document.createElement('a');
+      a.download = 'archetype_sankey.png';
+      a.href = url;
+      a.click();
+    });
+
+    /* ── 11. 다크모드 변경 감지 ── */
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      location.reload();
+    });
+
+  })();
+  </script>
+</body>
+</html>

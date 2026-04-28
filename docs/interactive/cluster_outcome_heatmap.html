@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사업원형 × 결과변수 차분 상관 매트릭스</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --surface:  #f8f8f6;
+      --border:   #e8e6e0;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-caption: #888888;
+      --accent:   #c0392b;
+      --chip-bg:  #f2f0eb;
+      --shadow:   0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #111111;
+        --surface:  #1c1c1e;
+        --border:   #2e2e30;
+        --text-primary: #f0efea;
+        --text-secondary: #a0a09a;
+        --text-caption: #686860;
+        --accent:   #e05a4a;
+        --chip-bg:  #252520;
+        --shadow:   0 1px 6px rgba(0,0,0,0.4);
+      }
+    }
+
+    html, body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .kicker {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-caption);
+      margin-bottom: 10px;
+    }
+
+    h1.title {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .subtitle strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ── Tab control ─────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .tab-btn {
+      padding: 8px 18px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color .15s, border-color .15s;
+    }
+
+    .tab-btn:hover { color: var(--text-primary); }
+
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--text-primary);
+    }
+
+    /* ── Chart panel ─────────────────────────────────── */
+    .chart-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 16px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .chart-panel.active { display: block; }
+
+    .panel-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-caption);
+      margin-bottom: 6px;
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 380px;
+    }
+
+    /* ── Side-by-side panel ───────────────────────────── */
+    .compare-panel {
+      display: none;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .compare-panel.active { display: grid; grid-template-columns: 1fr 1fr; }
+
+    @media (max-width: 768px) {
+      .compare-panel.active { grid-template-columns: 1fr; }
+    }
+
+    .compare-panel .chart-panel {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    .compare-panel .chart-container { height: 320px; }
+
+    /* ── Legend chips ─────────────────────────────────── */
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--chip-bg);
+      border-radius: 20px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Annotation callout ───────────────────────────── */
+    .callout {
+      background: var(--chip-bg);
+      border-left: 3px solid var(--accent);
+      border-radius: 3px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .callout strong { color: var(--text-primary); }
+
+    /* ── Info table ───────────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+      margin-bottom: 32px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 12px 14px;
+    }
+
+    .info-card .label {
+      font-size: 10.5px;
+      color: var(--text-caption);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .info-card .value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .info-card .sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 11.5px;
+      color: var(--text-caption);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--text-caption);
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color .15s;
+    }
+
+    footer a:hover { text-decoration-color: currentColor; }
+
+    /* ── Selected cell info bar ───────────────────────── */
+    #cell-info {
+      min-height: 38px;
+      padding: 8px 14px;
+      background: var(--chip-bg);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s;
+    }
+
+    #cell-info .ci-highlight {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    #cell-info .ci-sep {
+      color: var(--border);
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ── Header ─────────────────────────────────────── -->
+  <p class="kicker">재정 클러스터 분석 · 2026</p>
+  <h1 class="title">사업원형 × 결과변수 차분 상관 매트릭스<br/>
+    <span style="font-weight:300; font-size:.75em;">4 archetypes × 15 outcomes</span>
+  </h1>
+  <p class="subtitle">
+    지방재정 사업 클러스터별로 15개 거시결과 변수와의 차분(Δ) 상관계수 및 수준(level) 상관계수를 시각화.
+    <strong>직관 반대 신호: 사회복지 출연금형 +0.53 vs 정상 −0.55 (회계 cycle 가설 기각)</strong>
+  </p>
+
+  <!-- ── Cluster legend ───────────────────────────────── -->
+  <div class="legend-row">
+    <span class="chip"><span class="chip-dot" style="background:#4e79a7"></span>0 · 인건비형</span>
+    <span class="chip"><span class="chip-dot" style="background:#f28e2b"></span>1 · 자산취득형</span>
+    <span class="chip"><span class="chip-dot" style="background:#59a14f"></span>2 · 출연금형</span>
+    <span class="chip"><span class="chip-dot" style="background:#e15759"></span>3 · 정상사업</span>
+  </div>
+
+  <!-- ── Callout ─────────────────────────────────────── -->
+  <div class="callout">
+    <strong>해석 주의.</strong>
+    차분 상관(corr_diff)은 공통 추세를 제거한 순환적 동조 여부를 측정.
+    수준 상관(corr_levels)은 장기 공적 지출 추세와의 동행 여부를 반영하므로 두 지표가 부호 역전될 수 있음.
+    셀을 클릭하면 수치 상세를 확인할 수 있음.
+  </div>
+
+  <!-- ── Tab bar ─────────────────────────────────────── -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="diff">차분 상관 (corr_diff)</button>
+    <button class="tab-btn" data-tab="levels">수준 상관 (corr_levels)</button>
+    <button class="tab-btn" data-tab="compare">양면 비교</button>
+  </div>
+
+  <!-- ── Selected cell info bar ─────────────────────── -->
+  <div id="cell-info">셀을 클릭하면 상세 정보가 표시됩니다.</div>
+
+  <!-- ── Panel: diff ─────────────────────────────────── -->
+  <div class="chart-panel active" id="panel-diff">
+    <p class="panel-label">차분 상관 · corr_diff (−1 → 0 → +1)</p>
+    <div class="chart-container" id="chart-diff"></div>
+  </div>
+
+  <!-- ── Panel: levels ───────────────────────────────── -->
+  <div class="chart-panel" id="panel-levels">
+    <p class="panel-label">수준 상관 · corr_levels (−1 → 0 → +1)</p>
+    <div class="chart-container" id="chart-levels"></div>
+  </div>
+
+  <!-- ── Panel: compare ──────────────────────────────── -->
+  <div class="compare-panel" id="panel-compare">
+    <div class="chart-panel">
+      <p class="panel-label">차분 상관 · corr_diff</p>
+      <div class="chart-container" id="chart-diff-c"></div>
+    </div>
+    <div class="chart-panel">
+      <p class="panel-label">수준 상관 · corr_levels</p>
+      <div class="chart-container" id="chart-levels-c"></div>
+    </div>
+  </div>
+
+  <!-- ── Summary stats ───────────────────────────────── -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="label">총 셀</div>
+      <div class="value">60</div>
+      <div class="sub">4 clusters × 15 outcomes</div>
+    </div>
+    <div class="info-card">
+      <div class="label">최대 차분 상관</div>
+      <div class="value" id="stat-max">—</div>
+      <div class="sub" id="stat-max-label"></div>
+    </div>
+    <div class="info-card">
+      <div class="label">최소 차분 상관</div>
+      <div class="value" id="stat-min">—</div>
+      <div class="sub" id="stat-min-label"></div>
+    </div>
+    <div class="info-card">
+      <div class="label">결측 셀</div>
+      <div class="value" id="stat-nan">—</div>
+      <div class="sub">NaN / null</div>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer>
+    <span>데이터: 지방재정365 · KOSIS · 한국은행 (2011–2023)</span>
+    <span>
+      <a href="https://github.com/jsk320098/재정자료분석" target="_blank" rel="noopener">
+        github.com/jsk320098/재정자료분석
+      </a>
+      &nbsp;·&nbsp; 생성: 2026-04-28
+    </span>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<script>
+/* ════════════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════════════ */
+const RAW = [{"cluster":0,"outcome":"wealth_gini","corr_diff":-0.4972880842476394,"corr_levels":0.8783709064666688,"n":9},{"cluster":0,"outcome":"life_expectancy","corr_diff":-0.2118544395005955,"corr_levels":0.7734099017086392,"n":10},{"cluster":0,"outcome":"patent_apps_total","corr_diff":0.0228464589342102,"corr_levels":0.8230703995488908,"n":10},{"cluster":0,"outcome":"industry_production_index","corr_diff":0.4499396363945961,"corr_levels":0.9648585263619008,"n":11},{"cluster":0,"outcome":"foreign_tourists_total","corr_diff":0.2876848527933814,"corr_levels":-0.2847784664803511,"n":10},{"cluster":0,"outcome":"private_edu_hours","corr_diff":0.5796024526377619,"corr_levels":0.936220753946281,"n":11},{"cluster":0,"outcome":"housing_supply","corr_diff":0.0471085927458553,"corr_levels":0.9704634525731314,"n":10},{"cluster":0,"outcome":"fiscal_indep_natl","corr_diff":-0.1955187651959166,"corr_levels":-0.7396289997605351,"n":11},{"cluster":0,"outcome":"farm_income","corr_diff":0.3497596078659333,"corr_levels":0.9549008484300128,"n":10},{"cluster":0,"outcome":"traffic_deaths","corr_diff":0.0773538761035208,"corr_levels":-0.9540253408822724,"n":10},{"cluster":0,"outcome":"ghg_total","corr_diff":0.6328049722666286,"corr_levels":-0.2794900485754643,"n":9},{"cluster":0,"outcome":"broadband_per_100","corr_diff":-0.0359036363269937,"corr_levels":0.9564714721677818,"n":11},{"cluster":0,"outcome":"oda_total","corr_diff":0.2391036634134418,"corr_levels":0.8833914683987009,"n":10},{"cluster":0,"outcome":"crime_occurrence","corr_diff":-0.3960804803421034,"corr_levels":-0.8050017764570112,"n":10},{"cluster":0,"outcome":"defense_op_margin","corr_diff":0.3720040663576598,"corr_levels":0.6679068591714931,"n":9},{"cluster":1,"outcome":"wealth_gini","corr_diff":-0.3882251924539028,"corr_levels":0.7384751798592839,"n":9},{"cluster":1,"outcome":"life_expectancy","corr_diff":-0.1228309904829412,"corr_levels":0.6046289021977459,"n":10},{"cluster":1,"outcome":"patent_apps_total","corr_diff":-0.584651941751796,"corr_levels":0.5059028654188765,"n":10},{"cluster":1,"outcome":"industry_production_index","corr_diff":0.5493658426003616,"corr_levels":0.918636383656042,"n":11},{"cluster":1,"outcome":"foreign_tourists_total","corr_diff":0.9180209607360228,"corr_levels":0.1666843228404184,"n":10},{"cluster":1,"outcome":"private_edu_hours","corr_diff":0.594607899502969,"corr_levels":0.9131677891551132,"n":11},{"cluster":1,"outcome":"housing_supply","corr_diff":-0.5944101654539502,"corr_levels":0.8182498439318737,"n":10},{"cluster":1,"outcome":"fiscal_indep_natl","corr_diff":0.2312763692325748,"corr_levels":-0.5477524029159717,"n":11},{"cluster":1,"outcome":"farm_income","corr_diff":-0.254797070769598,"corr_levels":0.7609541801078896,"n":10},{"cluster":1,"outcome":"traffic_deaths","corr_diff":-0.1231145659307789,"corr_levels":-0.7832228913385423,"n":10},{"cluster":1,"outcome":"ghg_total","corr_diff":0.2780913374149389,"corr_levels":-0.2157080938712963,"n":9},{"cluster":1,"outcome":"broadband_per_100","corr_diff":0.1890309329742787,"corr_levels":0.8990185467263979,"n":11},{"cluster":1,"outcome":"oda_total","corr_diff":null,"corr_levels":null,"n":10},{"cluster":1,"outcome":"crime_occurrence","corr_diff":0.4010678795678447,"corr_levels":-0.4884940210324641,"n":10},{"cluster":1,"outcome":"defense_op_margin","corr_diff":0.3834264587562732,"corr_levels":0.6637423128175545,"n":9},{"cluster":2,"outcome":"wealth_gini","corr_diff":0.1669522326358969,"corr_levels":0.7725262866922785,"n":9},{"cluster":2,"outcome":"life_expectancy","corr_diff":-0.6298456795970403,"corr_levels":0.5940826808909548,"n":10},{"cluster":2,"outcome":"patent_apps_total","corr_diff":-0.1181264362962087,"corr_levels":0.776171627712759,"n":10},{"cluster":2,"outcome":"industry_production_index","corr_diff":0.5584941968387688,"corr_levels":0.8779048172809601,"n":11},{"cluster":2,"outcome":"foreign_tourists_total","corr_diff":0.0775812551637716,"corr_levels":-0.3969299168518005,"n":10},{"cluster":2,"outcome":"private_edu_hours","corr_diff":0.443824106133609,"corr_levels":0.8639767404348297,"n":11},{"cluster":2,"outcome":"housing_supply","corr_diff":0.0550587941574207,"corr_levels":0.8659254987834724,"n":10},{"cluster":2,"outcome":"fiscal_indep_natl","corr_diff":-0.1120755741798735,"corr_levels":-0.684347781987577,"n":11},{"cluster":2,"outcome":"farm_income","corr_diff":-0.2330392165498568,"corr_levels":0.8170181530095184,"n":10},{"cluster":2,"outcome":"traffic_deaths","corr_diff":-0.0460917517681947,"corr_levels":-0.8743965291106973,"n":10},{"cluster":2,"outcome":"ghg_total","corr_diff":0.465233267946762,"corr_levels":-0.1819392596965016,"n":9},{"cluster":2,"outcome":"broadband_per_100","corr_diff":-0.0011225212032134,"corr_levels":0.8416759398335114,"n":11},{"cluster":2,"outcome":"oda_total","corr_diff":-0.0272802245752831,"corr_levels":0.6906497910932045,"n":10},{"cluster":2,"outcome":"crime_occurrence","corr_diff":-0.30235882948766,"corr_levels":-0.8269522359782522,"n":10},{"cluster":2,"outcome":"defense_op_margin","corr_diff":0.0917148222997179,"corr_levels":0.571539386925477,"n":9},{"cluster":3,"outcome":"wealth_gini","corr_diff":-0.5519911764932749,"corr_levels":0.856682410316545,"n":9},{"cluster":3,"outcome":"life_expectancy","corr_diff":-0.2930004867991306,"corr_levels":0.7486686619689567,"n":10},{"cluster":3,"outcome":"patent_apps_total","corr_diff":-0.0393041787256732,"corr_levels":0.8066224693173474,"n":10},{"cluster":3,"outcome":"industry_production_index","corr_diff":0.5926639981325919,"corr_levels":0.9758561199505016,"n":11},{"cluster":3,"outcome":"foreign_tourists_total","corr_diff":0.3633734242871178,"corr_levels":-0.2575480308837601,"n":10},{"cluster":3,"outcome":"private_edu_hours","corr_diff":0.7557159608245237,"corr_levels":0.9574482974339796,"n":11},{"cluster":3,"outcome":"housing_supply","corr_diff":-0.137313318991267,"corr_levels":0.9684246602949256,"n":10},{"cluster":3,"outcome":"fiscal_indep_natl","corr_diff":-0.2178585405220596,"corr_levels":-0.7429005627582641,"n":11},{"cluster":3,"outcome":"farm_income","corr_diff":0.1742709013841036,"corr_levels":0.941927577086494,"n":10},{"cluster":3,"outcome":"traffic_deaths","corr_diff":0.1961817550246842,"corr_levels":-0.9433674330036363,"n":10},{"cluster":3,"outcome":"ghg_total","corr_diff":0.7014578215906591,"corr_levels":-0.2918102634814752,"n":9},{"cluster":3,"outcome":"broadband_per_100","corr_diff":0.103468903636331,"corr_levels":0.9637343708698256,"n":11},{"cluster":3,"outcome":"oda_total","corr_diff":0.4286709206400622,"corr_levels":0.9139639276025768,"n":10},{"cluster":3,"outcome":"crime_occurrence","corr_diff":-0.3460020065941159,"corr_levels":-0.7773742302906367,"n":10},{"cluster":3,"outcome":"defense_op_margin","corr_diff":0.3394829368472939,"corr_levels":0.6872068936849178,"n":9}];
+
+/* ════════════════════════════════════════════════════
+   CONSTANTS
+════════════════════════════════════════════════════ */
+const CLUSTER_LABELS = ['0 · 인건비형', '1 · 자산취득형', '2 · 출연금형', '3 · 정상사업'];
+const CLUSTER_SHORT  = ['인건비형', '자산취득형', '출연금형', '정상사업'];
+
+const OUTCOME_KEYS = [
+  'wealth_gini','life_expectancy','patent_apps_total','industry_production_index',
+  'foreign_tourists_total','private_edu_hours','housing_supply','fiscal_indep_natl',
+  'farm_income','traffic_deaths','ghg_total','broadband_per_100',
+  'oda_total','crime_occurrence','defense_op_margin'
+];
+
+const OUTCOME_LABELS = {
+  wealth_gini:               '자산 지니계수',
+  life_expectancy:           '기대수명',
+  patent_apps_total:         '특허 출원',
+  industry_production_index: '산업생산지수',
+  foreign_tourists_total:    '외국인 관광객',
+  private_edu_hours:         '사교육 시간',
+  housing_supply:            '주택 공급',
+  fiscal_indep_natl:         '재정 자립도',
+  farm_income:               '농가 소득',
+  traffic_deaths:            '교통사고 사망',
+  ghg_total:                 '온실가스 배출',
+  broadband_per_100:         '초고속인터넷',
+  oda_total:                 'ODA 총액',
+  crime_occurrence:          '범죄 발생',
+  defense_op_margin:         '국방 운용 마진',
+};
+
+/* ════════════════════════════════════════════════════
+   BUILD MATRIX
+════════════════════════════════════════════════════ */
+function buildMatrix(field) {
+  // Returns [cluster][outcome] value array suitable for ECharts heatmap
+  // ECharts heatmap data: [xIdx, yIdx, value]
+  const lookup = {};
+  RAW.forEach(d => { lookup[`${d.cluster}_${d.outcome}`] = d[field]; });
+
+  const data = [];
+  CLUSTER_LABELS.forEach((_, ci) => {
+    OUTCOME_KEYS.forEach((ok, oi) => {
+      const raw = lookup[`${ci}_${ok}`];
+      const val = (raw === null || raw === undefined || (typeof raw === 'number' && isNaN(raw))) ? null : +raw.toFixed(3);
+      data.push([oi, ci, val]);
+    });
+  });
+  return data;
+}
+
+/* ════════════════════════════════════════════════════
+   COLOUR HELPERS (dark-mode aware)
+════════════════════════════════════════════════════ */
+function isDark() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function themeColors() {
+  return isDark()
+    ? { text: '#c8c8c0', subtext: '#787870', bg: '#1c1c1e', splitLine: '#2e2e30', tooltipBg: '#252520', tooltipBorder: '#3a3a38' }
+    : { text: '#1a1a1a', subtext: '#888888', bg: '#f8f8f6', splitLine: '#e8e6e0', tooltipBg: '#ffffff', tooltipBorder: '#e0ddd8' };
+}
+
+/* ════════════════════════════════════════════════════
+   ECHARTS OPTION FACTORY
+════════════════════════════════════════════════════ */
+function makeOption(field, compact = false) {
+  const tc = themeColors();
+  const data = buildMatrix(field);
+  const outLabels = OUTCOME_KEYS.map(k => OUTCOME_LABELS[k] || k);
+
+  // RdBu diverging: blue=-1, white=0, red=+1
+  const colorStops = [
+    [0,    '#2166ac'],
+    [0.1,  '#4393c3'],
+    [0.2,  '#74b9d5'],
+    [0.35, '#d1e5f0'],
+    [0.5,  '#f7f7f7'],
+    [0.65, '#fddbc7'],
+    [0.8,  '#f4a582'],
+    [0.9,  '#d6604d'],
+    [1,    '#b2182b'],
+  ];
+
+  const fontSize = compact ? 10 : 11;
+  const gridTop   = compact ? 12 : 18;
+  const gridLeft  = compact ? 80 : 88;
+  const gridRight = compact ? 90 : 100;
+  const gridBottom = compact ? 62 : 72;
+
+  return {
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'item',
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: tc.tooltipBorder,
+      backgroundColor: tc.tooltipBg,
+      textStyle: { color: tc.text, fontSize: 12, fontFamily: "'Noto Sans KR', sans-serif" },
+      padding: [10, 14],
+      formatter(params) {
+        const [xi, yi, val] = params.data;
+        const item = RAW.find(d => d.cluster === yi && d.outcome === OUTCOME_KEYS[xi]);
+        if (!item) return '';
+        const vStr = val === null ? '<span style="color:#aaa">N/A</span>' : `<b style="font-size:14px">${val.toFixed(3)}</b>`;
+        const lvl  = (item.corr_levels === null || item.corr_levels === undefined) ? 'N/A' : item.corr_levels.toFixed(3);
+        return [
+          `<div style="font-size:11px;color:#aaa;margin-bottom:4px">${outLabels[xi]}</div>`,
+          `<div style="font-weight:700;margin-bottom:6px">${CLUSTER_SHORT[yi]}</div>`,
+          `<div style="display:grid;grid-template-columns:auto auto;gap:2px 10px;font-size:12px">`,
+          `  <span style="color:#aaa">corr_diff</span><span>${vStr}</span>`,
+          `  <span style="color:#aaa">corr_levels</span><span>${lvl}</span>`,
+          `  <span style="color:#aaa">n 연도</span><span>${item.n}</span>`,
+          `</div>`,
+        ].join('');
+      },
+    },
+    grid: {
+      top: gridTop,
+      left: gridLeft,
+      right: gridRight,
+      bottom: gridBottom,
+      containLabel: false,
+    },
+    xAxis: {
+      type: 'category',
+      data: outLabels,
+      splitArea: { show: true, areaStyle: { color: ['transparent','transparent'] } },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: {
+        rotate: 38,
+        fontSize,
+        color: tc.subtext,
+        fontFamily: "'Noto Sans KR', sans-serif",
+        interval: 0,
+      },
+    },
+    yAxis: {
+      type: 'category',
+      data: CLUSTER_LABELS,
+      splitArea: { show: false },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: {
+        fontSize,
+        color: tc.text,
+        fontFamily: "'Noto Sans KR', sans-serif",
+      },
+    },
+    visualMap: {
+      min: -1,
+      max: 1,
+      calculable: true,
+      orient: 'vertical',
+      right: 0,
+      top: 'center',
+      itemWidth: compact ? 12 : 14,
+      itemHeight: compact ? 100 : 140,
+      inRange: { color: colorStops.map(s => s[1]) },
+      text: ['+1', '−1'],
+      textStyle: { color: tc.subtext, fontSize: 10.5, fontFamily: "'Noto Sans KR', sans-serif" },
+      precision: 2,
+    },
+    series: [{
+      name: field,
+      type: 'heatmap',
+      data,
+      label: {
+        show: !compact,
+        fontSize: 9.5,
+        color: '#333',
+        formatter(p) {
+          return p.data[2] === null ? '–' : p.data[2].toFixed(2);
+        },
+      },
+      emphasis: {
+        itemStyle: {
+          borderColor: isDark() ? '#ffffff' : '#111111',
+          borderWidth: 2,
+          shadowBlur: 6,
+          shadowColor: 'rgba(0,0,0,0.4)',
+        },
+      },
+      itemStyle: {
+        borderColor: isDark() ? '#1c1c1e' : '#f8f8f6',
+        borderWidth: 1,
+        borderRadius: 2,
+      },
+    }],
+  };
+}
+
+/* ════════════════════════════════════════════════════
+   SUMMARY STATS
+════════════════════════════════════════════════════ */
+function populateStats() {
+  const valid = RAW.filter(d => d.corr_diff !== null && !isNaN(d.corr_diff));
+  const sorted = [...valid].sort((a,b) => b.corr_diff - a.corr_diff);
+  const mx = sorted[0], mn = sorted[sorted.length-1];
+  const nans = RAW.filter(d => d.corr_diff === null || isNaN(d.corr_diff)).length;
+
+  document.getElementById('stat-max').textContent   = mx.corr_diff.toFixed(3);
+  document.getElementById('stat-max-label').textContent = `${CLUSTER_SHORT[mx.cluster]} × ${OUTCOME_LABELS[mx.outcome]||mx.outcome}`;
+  document.getElementById('stat-min').textContent   = mn.corr_diff.toFixed(3);
+  document.getElementById('stat-min-label').textContent = `${CLUSTER_SHORT[mn.cluster]} × ${OUTCOME_LABELS[mn.outcome]||mn.outcome}`;
+  document.getElementById('stat-nan').textContent   = nans;
+}
+
+/* ════════════════════════════════════════════════════
+   CHART INSTANCES
+════════════════════════════════════════════════════ */
+let charts = {};
+
+function initChart(id, field, compact = false) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const c = echarts.init(el, null, { renderer: 'canvas' });
+  c.setOption(makeOption(field, compact));
+
+  c.on('click', params => {
+    const [xi, yi, val] = params.data;
+    const ok = OUTCOME_KEYS[xi];
+    const item = RAW.find(d => d.cluster === yi && d.outcome === ok);
+    if (!item) return;
+    const bar = document.getElementById('cell-info');
+    const diffStr = val === null ? 'N/A' : val.toFixed(3);
+    const lvlStr  = (item.corr_levels === null) ? 'N/A' : item.corr_levels.toFixed(3);
+    bar.innerHTML = [
+      `<span class="ci-highlight">${CLUSTER_SHORT[yi]}</span>`,
+      `<span class="ci-sep">×</span>`,
+      `<span class="ci-highlight">${OUTCOME_LABELS[ok]||ok}</span>`,
+      `<span class="ci-sep">|</span>`,
+      `corr_diff <b>${diffStr}</b>`,
+      `<span class="ci-sep">·</span>`,
+      `corr_levels <b>${lvlStr}</b>`,
+      `<span class="ci-sep">·</span>`,
+      `n=${item.n}년`,
+    ].join(' ');
+  });
+
+  charts[id] = c;
+  return c;
+}
+
+function resizeAll() {
+  Object.values(charts).forEach(c => c && c.resize());
+}
+
+/* ════════════════════════════════════════════════════
+   TAB LOGIC
+════════════════════════════════════════════════════ */
+function showTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+
+  // hide all panels
+  document.querySelectorAll('.chart-panel, .compare-panel').forEach(p => p.classList.remove('active'));
+
+  if (tab === 'diff') {
+    document.getElementById('panel-diff').classList.add('active');
+    if (!charts['chart-diff']) initChart('chart-diff', 'corr_diff', false);
+    else charts['chart-diff'].resize();
+  } else if (tab === 'levels') {
+    document.getElementById('panel-levels').classList.add('active');
+    if (!charts['chart-levels']) initChart('chart-levels', 'corr_levels', false);
+    else charts['chart-levels'].resize();
+  } else {
+    document.getElementById('panel-compare').classList.add('active');
+    if (!charts['chart-diff-c']) initChart('chart-diff-c', 'corr_diff', true);
+    else charts['chart-diff-c'].resize();
+    if (!charts['chart-levels-c']) initChart('chart-levels-c', 'corr_levels', true);
+    else charts['chart-levels-c'].resize();
+  }
+}
+
+/* ════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => showTab(btn.dataset.tab));
+});
+
+window.addEventListener('resize', resizeAll);
+
+// Optional: re-render on color-scheme change
+if (window.matchMedia) {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    Object.entries(charts).forEach(([id, c]) => {
+      const field = id.includes('levels') ? 'corr_levels' : 'corr_diff';
+      const compact = id.endsWith('-c');
+      c.setOption(makeOption(field, compact), true);
+    });
+  });
+}
+
+populateStats();
+showTab('diff'); // initial tab
+</script>
+</body>
+</html>

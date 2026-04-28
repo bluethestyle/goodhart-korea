@@ -1,6 +1,9 @@
 site_name: "한국 정부 재정 굿하트 효과"
 site_description: "Multi-method robustness analysis of Goodhart's Law in Korean public spending"
-site_url: ""
+site_url: "https://bluethestyle.github.io/goodhart-korea/"
+repo_url: "https://github.com/bluethestyle/goodhart-korea"
+repo_name: "bluethestyle/goodhart-korea"
+edit_uri: ""
 
 theme:
   name: material
@@ -80,6 +83,8 @@ nav:
     - "Findings": findings.md
     - "방법론": methods.md
     - "한계": limitations.md
+  - 인터랙티브 시각화:
+    - "Overview": interactive/index.md
   - 데이터:
     - "출처 (SOURCES)": ../data/external/SOURCES.md
     - "결과 CSV (INDEX)": ../data/results/INDEX.md

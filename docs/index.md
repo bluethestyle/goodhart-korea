@@ -107,7 +107,7 @@
   title  = {Goodhart's Law in Korean Public Spending: A Multi-Method
             Robustness Analysis with Heterogeneous Effects},
   year   = {2026},
-  url    = {https://github.com/{user}/{repo}},
+  url    = {https://github.com/bluethestyle/goodhart-korea},
   doi    = {10.5281/zenodo.{TBD}}
 }
 ```
