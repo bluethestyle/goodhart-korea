@@ -193,12 +193,11 @@ agg_fld = (df_raw.groupby(['year','month','FLD_NM'])
            .agg(mean_daily=('daily_ep','mean'))
            .reset_index())
 
-# ── 8. 그림 1: 주 RDD 시각화 ──────────────────────────────────────────────────
-fig = plt.figure(figsize=(W_IN, W_IN * 2.2), dpi=DPI)
-gs  = GridSpec(4, 1, figure=fig, height_ratios=[1, 1, 1.4, 1], hspace=0.4)
-
-# --- A. 월별 연도별 일집행액 ---
-ax_a = fig.add_subplot(gs[0, 0])
+# ── 8. 그림 1 (Main): A 월별 일집행액 + B 연도별 점프 (2-panel) ────────
+# 폰트 20pt 환경에서 4-panel은 sub-panel overlap 발생 → 2-panel main + appendix 분리
+# A 패널 legend가 ncol=6×13행이라 세로 스택 시 폭 문제 → 가로 1×2 layout
+fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(W_IN * 1.6, W_IN * 0.7), dpi=DPI,
+                                  gridspec_kw={'width_ratios': [1.5, 1], 'wspace': 0.3})
 yr_list   = sorted(agg_all['year'].unique())
 cmap_vals = plt.cm.Blues(np.linspace(0.35, 0.9, len(yr_list)))
 for i, yr in enumerate(yr_list):
@@ -218,11 +217,10 @@ ax_a.set_ylabel('활동 평균 일집행액 (십억원)')
 ax_a.set_title('A. 월별 활동 평균 일집행액 (2015~2025)', fontweight='bold')
 ax_a.set_xticks([10, 11, 12])
 ax_a.set_xticklabels(['10월', '11월', '12월'])
-ax_a.legend(ncol=6, loc='upper left', framealpha=0.7)
+ax_a.legend(ncol=3, loc='upper left', framealpha=0.85, fontsize=plt.rcParams['font.size']*0.6)
 ax_a.grid(alpha=0.3)
 
 # --- B. RDD 점프 시각화 (연도별 11→12월 변화율) ---
-ax_b = fig.add_subplot(gs[1, 0])
 # 각 연도×활동의 11월→12월 변화
 pivot = df_raw[df_raw['month'].isin([11,12])].pivot_table(
     index=['year','ACTV_CD'], columns='month', values='log_daily'
@@ -255,8 +253,18 @@ ax_b.set_xticklabels([str(y)[2:] for y in yr_list])
 ax_b.legend()
 ax_b.grid(alpha=0.3)
 
+# Save Main (A+B) — suptitle 생략 (sub-panel title이 충분히 설명적)
+plt.tight_layout()
+plt.savefig(f'{FDIR}/H22_rdd_main.png', dpi=DPI, bbox_inches='tight', pad_inches=0.2, facecolor='white')
+print(f"저장: {FDIR}/H22_rdd_main.png")
+plt.close()
+
+# ── 8b. 그림 1 부록 (Appendix): C 분야별 forest + D 클러스터별 (2-panel vertical) ───────
+fig = plt.figure(figsize=(W_IN, W_IN * 1.25), dpi=DPI)
+gs  = GridSpec(2, 1, figure=fig, height_ratios=[1.6, 1], hspace=0.45)
+
 # --- C. 분야별 β Forest plot ---
-ax_c = fig.add_subplot(gs[2, 0])
+ax_c = fig.add_subplot(gs[0, 0])
 if not field_df.empty:
     colors_c = ['crimson' if p < 0.05 else '#aaaaaa'
                 for p in field_df['pval']]
@@ -287,7 +295,7 @@ if not field_df.empty:
     ax_c.grid(alpha=0.3, axis='x')
 
 # --- D. H3 클러스터별 β ---
-ax_d = fig.add_subplot(gs[3, 0])
+ax_d = fig.add_subplot(gs[1, 0])
 if clust_results:
     cl_df = pd.DataFrame(clust_results).sort_values('beta').reset_index(drop=True)
     colors_d = ['crimson' if p < 0.05 else '#aaaaaa' for p in cl_df['pval']]
@@ -308,26 +316,12 @@ if clust_results:
     ax_d.set_title('D. 활동 클러스터별\n12월 점프', fontweight='bold')
     ax_d.grid(alpha=0.3, axis='x')
 
-# 하단 결과 요약 텍스트
-if r_bw1:
-    r2 = next((r for r in results if r['bw']==2), None)
-    lines = [
-        f"한국 전체: β={r_bw1['beta']:.3f} (SE={r_bw1['se']:.3f}, p={r_bw1['pval']:.2e})"
-        f"  →  12월 배수 = {r_bw1['mult']:.2f}x",
-    ]
-    if r2:
-        lines.append(
-            f"bw=2(±2월 시): β={r2['beta']:.3f} → {r2['mult']:.2f}x"
-        )
-    lines.append(f"참고: Liebman-Mahoney (2017, AER) 미국 = 5.0x")
-    fig.text(0.5, -0.02, '\n'.join(lines), ha='center',
-             bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.92))
-
-fig.suptitle('한국판 Year-End Spending RDD\n(Liebman & Mahoney 2017, AER 복제)',
-             fontweight='bold', y=1.02)
-
-plt.savefig(f'{FDIR}/H22_rdd_main.png', dpi=DPI, facecolor='white')
-print(f"저장: {FDIR}/H22_rdd_main.png")
+# 부록 figure suptitle
+fig.suptitle('회계연도 RDD — 분야별 forest plot + 사업원형별 점프 (부록)',
+             fontweight='bold', y=1.00)
+plt.tight_layout()
+plt.savefig(f'{FDIR}/H22_rdd_appendix.png', dpi=DPI, bbox_inches='tight', pad_inches=0.15, facecolor='white')
+print(f"저장: {FDIR}/H22_rdd_appendix.png")
 plt.close()
 
 # ── 9. 그림 2: 분야별 상세 시계열 ─────────────────────────────────────────────
