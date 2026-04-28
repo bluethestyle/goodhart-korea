@@ -65,7 +65,8 @@ panel = con.execute("""
                           'grdp_national',
                           'housing_supply','local_tax_per_capita','private_edu_hours',
                           'farm_income','fishery_income',
-                          'traffic_deaths','traffic_accidents')
+                          'traffic_deaths','traffic_accidents',
+                          'ghg_total','ghg_net','ghg_energy')
 """).fetchdf()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
                          values='value').reset_index()
@@ -85,6 +86,8 @@ OUTCOME_MAP = {
     '농림수산':       'farm_income',
     # H11 추가 (도로교통공단)
     '교통및물류':     'traffic_deaths',
+    # H12 추가
+    '환경':           'ghg_total',
 }
 
 # ============================================================

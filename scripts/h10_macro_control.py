@@ -64,7 +64,8 @@ panel = con.execute("""
                           'rd_total','industry_production_index','tourists_sample',
                           'housing_supply','local_tax_per_capita','private_edu_hours',
                           'farm_income','fishery_income',
-                          'traffic_deaths','traffic_accidents')
+                          'traffic_deaths','traffic_accidents',
+                          'ghg_total','ghg_net','ghg_energy')
 """).fetchdf()
 con.close()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
@@ -82,6 +83,7 @@ OUTCOME_MAP = {
     '일반·지방행정':   'local_tax_per_capita',
     '농림수산':       'farm_income',
     '교통및물류':     'traffic_deaths',
+    '환경':           'ghg_total',
 }
 
 # ============================================================
