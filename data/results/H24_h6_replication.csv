@@ -1,0 +1,16 @@
+﻿fld,outcome,n_diff,corr_stl,pval_stl,corr_fft,pval_fft,sign_change
+농림수산,farm_income,9,0.664,0.0609,0.4933,0.1578,False
+산업·중소기업및에너지,industry_production_index,10,0.4672,0.1878,0.5942,0.0779,False
+환경,ghg_total,8,0.5014,0.2278,0.5002,0.2098,False
+교육,private_edu_hours,10,-0.3329,0.3626,-0.2038,0.5884,False
+문화및관광,foreign_tourists_total,9,0.3236,0.3896,0.0532,0.8541,False
+국토및지역개발,housing_supply,9,0.3192,0.4206,-0.3326,0.3826,True
+일반·지방행정,fiscal_indep_natl,10,0.2993,0.4256,0.1386,0.6853,False
+교통및물류,traffic_deaths,9,0.1834,0.6114,-0.1287,0.7433,True
+보건,life_expectancy,9,0.1956,0.6174,0.5792,0.1329,False
+국방,defense_op_margin,8,0.0898,0.8472,0.0599,0.8821,False
+공공질서및안전,crime_occurrence,9,0.0707,0.8571,-0.2881,0.4466,True
+통신,broadband_per_100,10,0.0519,0.8911,0.2467,0.5055,False
+통일·외교,oda_total,9,-0.0285,0.9481,-0.0765,0.8442,False
+과학기술,patent_apps_total,9,-0.0158,0.979,0.1185,0.7952,True
+사회복지,wealth_gini,8,0.0034,0.991,-0.7622,0.037,True

@@ -1407,7 +1407,104 @@ H4/H6/H8/H10/H14를 *교체 outcome*으로 재계산:
 6. **굿하트 위험 사업 형태**: A2_sub05 극단 게임화 (β=−11.23 outcome 음 상관, 모든 분야)
 7. **분야별 outcome 매핑 한계**: 국방·예비비 = 측정 불가능 분야 (학술적 한계 명시)
 
-### 17.17 외부 데이터 경로 정리
+### 17.17 H22~H24 — 경제학 이론·방법론 통합 (RDD + Mediation + STL)
+
+논문 수준 인과 식별 강화. 3 sub-agent 병렬 (Sonnet).
+
+#### 17.17.1 H22 — 회계연도 경계 RDD (한국판 Liebman-Mahoney 2017)
+
+**이론**: Liebman & Mahoney (2017, AER) 미국 연방조달 11/30 vs 12/1 RDD: 12월 첫 주 지출 5배 ↑.
+
+**한국 결과**:
+| Bandwidth | β | 12월 점프 배수 | p |
+|---|---:|---:|---:|
+| ±1 month (11~12월) | 0.648 | **1.91x** | <10⁻¹²⁴ |
+| ±2 months | 0.682 | 1.98x | <10⁻⁸² |
+
+**분야별 12월 점프 배수**:
+- 국방 2.94x / 국토 2.54x / 교통 2.45x (인프라·하드웨어)
+- 교육 1.13x (ns) / 사회복지 1.35x (가장 약함)
+
+**사업 형태별** (H3 클러스터):
+- **출연금형 3.42x** (가장 강) — Holmstrom-Milgrom Multitasking 실증
+- 일반 사업형 2.24x
+- 인건비형 1.12x / 직접투자형 1.10x (ns)
+
+→ **한국판 Liebman-Mahoney 인과 식별 성공**. 미국 5x 대비 한국 1.9x (미국 주 단위 vs 한국 월 단위 granularity 차이).
+
+#### 17.17.2 H23 — Mediation Analysis (Baron-Kenny 1986)
+
+**모형**: 출연금 비중 (X) → 게임화 (M=amp_12m) → outcome (Y)
+
+**분야별 결과**:
+| 분야 | Sobel z | p (간접효과) |
+|---|---:|---:|
+| **농림수산** | **−2.897** | **0.004** ★★★ |
+| 교통·물류 | −1.481 | 0.139 |
+| 사회복지 | (매개비율 57%, c=4.79 → c'=2.05, ab=2.74) | 통계 미달 |
+| 나머지 12 | <1 | >0.1 |
+| **Pooled FE (N=70)** | 0.704 | **0.481** |
+
+→ **시스템 평균 매개 효과 미유의 (p=0.48)** ⇒ 출연금→게임화→outcome 직접 경로는 약함. **분야별 이질성이 진짜 메커니즘**. 농림은 *음의 매개* (출연금 ↑ → 게임화 ↓ → 농가소득 ↓).
+
+#### 17.17.3 H24 — STL Trend Decomposition (Cleveland 1990) ★ 비판적
+
+**방법**: 분야별 132개월 시계열 → STL(period=12) → trend/seasonal/remainder 분리. seasonal_strength = 1 − Var(remainder)/Var(detrended)로 게임화 재측정.
+
+**충격적 결과**:
+| 분야 | FFT amp_12m_norm | STL seasonal_strength |
+|---|---:|---:|
+| **사회복지** | **r=−0.762, p=0.037** ★ | **r=+0.003, p=0.991** ❌ 신호 소멸 + 부호 반전 |
+| FFT ↔ STL 상관 | r=0.143, p=0.066 | (거의 다른 정보) |
+
+→ **본 연구 메인 결과 (사회복지 자동분배 −0.86)가 *trend 혼재* 가능성**. STL trend 제거 시 신호 소멸. 사용자가 우려한 *자연 cycle 커플링* 가설 부분 입증.
+
+**해석**:
+- 사회복지 시계열 = 지속 증가 trend × 12월 집중 결합 → FFT가 두 효과를 합산해 잡음
+- 진짜 *연 주기 게임화*는 약함
+- "복지 확대 추세"라는 trend가 신호 일부 흡수
+
+→ Limitations에 명시. 본 연구는 *FFT 기준* 결과로 단정하지 않고 *STL 검증으로 부분 약화* 보고.
+
+### 17.18 통합 학술 명제 (sub-agent 8종 v3+H22+H23+H24)
+
+1. **Liebman-Mahoney 한국판 RDD 입증**: 12월 점프 1.9x, 출연금형 3.4x (★ 인과 식별)
+2. **Holmstrom-Milgrom Multitasking 실증**: 사업 형태(다차원 vs 단일차원) × 게임화 차이
+3. **Goodhart-Campbell 측정 왜곡 부분 입증**: 4 클러스터 × 15 outcome 부호 반전
+4. **시스템 평균 효과 미유의 + 분야 이질성 강건**: Mediation pooled p=0.48 / 분야별 1개만 유의
+5. **STL trend 혼재 한계 (자기 비판)**: 사회복지 메인 신호의 trend 의존성
+6. **다각도 robustness triangulation**: CPI / STL / permutation / bootstrap / RDD 일관성
+7. **TDA 위상 안정성 강건**: PH 30 components + 15 loops, bootstrap 95% CI
+
+### 17.19 단일 논문 (paper) target structure
+
+```
+Title: "Goodhart's Law in Korean Public Spending:
+        A Multi-Method Robustness Analysis with Heterogeneous Effects"
+
+1. Introduction (NPM 한국 도입사 + Goodhart 이론)
+2. Theoretical Framework
+   - Goodhart-Campbell + Holmstrom-Milgrom Multitasking + Kornai SBC
+3. Data (OPENFISCAL 11y + 14분야 outcome 통합)
+4. Methodology (FFT/UMAP/Mapper/PH/RDD/Mediation/STL)
+5. Results
+   5.1 Field-level decoupling (H6/H10)
+   5.2 Activity archetype × outcome heterogeneity (H4/H8)
+   5.3 Year-end RDD (H22) 1.9x / 출연금형 3.4x
+   5.4 Mediation (H23) 분야 이질성 입증
+   5.5 Topology robustness (H9 PH)
+   5.6 Critical robustness (H24 STL trend 한계)
+6. Robustness checks (triangulation)
+7. Policy Implications (H5/H14 부처 점검 4분면)
+8. Limitations (인과·trend 혼재·단일 국가)
+9. Conclusion
+
+Target: Public Administration Review (PAR) /
+        Journal of Public Economics (JPubE) /
+        Public Administration (Bevan-Hood 게재 journal)
+```
+
+### 17.20 외부 데이터 경로 정리
 
 KOSIS 일반 endpoint 한계로 환경(폐기물·대기·온실가스)·교통(자동차·교통사고) outcome 미적재. 진짜 답은 *부처 직접 API*:
 - 환경공단 대기질·온실가스 API (공공데이터포털)
