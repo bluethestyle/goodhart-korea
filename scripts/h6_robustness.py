@@ -67,7 +67,9 @@ panel = con.execute("""
                           'farm_income','fishery_income',
                           'traffic_deaths','traffic_accidents',
                           'ghg_total','ghg_net','ghg_energy',
-                          'ict_value_added')
+                          'ict_value_added',
+                          'oda_total','crime_occurrence','crime_arrest_rate',
+                          'defense_op_margin','defense_revenue','defense_util_rate')
 """).fetchdf()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
                          values='value').reset_index()
@@ -91,6 +93,10 @@ OUTCOME_MAP = {
     '환경':           'ghg_total',
     # H13 추가
     '통신':           'ict_value_added',
+    # H15~H17 추가
+    '통일·외교':      'oda_total',
+    '공공질서및안전':  'crime_occurrence',
+    '국방':           'defense_op_margin',
 }
 
 # ============================================================

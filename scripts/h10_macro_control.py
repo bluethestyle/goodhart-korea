@@ -66,7 +66,8 @@ panel = con.execute("""
                           'farm_income','fishery_income',
                           'traffic_deaths','traffic_accidents',
                           'ghg_total','ghg_net','ghg_energy',
-                          'ict_value_added')
+                          'ict_value_added',
+                          'oda_total','crime_occurrence','defense_op_margin')
 """).fetchdf()
 con.close()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
@@ -86,6 +87,9 @@ OUTCOME_MAP = {
     '교통및물류':     'traffic_deaths',
     '환경':           'ghg_total',
     '통신':           'ict_value_added',
+    '통일·외교':      'oda_total',
+    '공공질서및안전':  'crime_occurrence',
+    '국방':           'defense_op_margin',
 }
 
 # ============================================================
