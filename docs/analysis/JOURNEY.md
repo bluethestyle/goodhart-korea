@@ -1107,7 +1107,32 @@ monthly_exec 11년치(2015~2025)로 H3 활동 임베딩 재추출. expenditure_*
 
 **의의**: H9 PH의 "30 강건 components" 결과와 일관 — 시계열 길어지면 위상적 단절이 더 명확해져 5y에선 정상사업에 묻혀있던 미세 클러스터가 표면화. 사업 형태 분류는 더 풍부해질 수 있음.
 
-### 17.5 미해결: 부처 직접 outcome (환경·교통)
+### 17.5 H11 — 도로교통공단 교통사고 outcome 매핑 (분야 9→10)
+
+공공데이터포털 키 발급 + 활용신청 후 첫 fetch 성공:
+
+**도로교통공단 lgStat API** (`B552061/lgStat/getRestLgStat`)
+- 응답에 `tot_acc_cnt` (전국 사고건수), `tot_dth_dnv_cnt` (전국 사망자수) 포함
+- 한 시도 호출만으로 전국 시계열 추출 가능
+
+**교통 분야 outcome 신규** (10년 시계열):
+| 연도 | 사고건수 | 사망자수 |
+|---:|---:|---:|
+| 2015 | 232,035 | 4,621 |
+| 2020 | 209,654 | 3,081 |
+| 2024 | 196,349 | **2,521** (45% 감소) |
+
+**H6/H10 결과**:
+- 교통 traffic_deaths permutation p=0.733 (raw 약한 신호)
+- **CPI 통제 후 corr_diff = −0.129 → −0.557** (Δ = −0.43, p=0.119)
+- 교통 게임화↑ → 사망자수↓ 자동분배 효과 패턴 (사회복지와 유사)
+
+미해결:
+- **자동차등록**: 통계누리 CSV 파싱 — 천단위/구분자 콤마 충돌 + 따옴표 없음으로 자동 파싱 정확도 미달. 또한 *등록대수는 노출 변수지 outcome 부적합*. 보류.
+- **에어코리아**: 활성화 OK이나 실시간/시간대별 → 거시 시계열 부적합. 측정소별 연도 평균 API 별도 신청 필요.
+- **온실가스 환경영향평가 (1480523)**: HTTP 500 — endpoint URL 잘못 또는 *사업별 데이터*. 더 적합한 후보: 기후에너지환경부 온실가스종합정보센터_국가 인벤토리 (fileData ID 15049589)
+
+### 17.6 미해결 — 환경 outcome
 
 KOSIS 일반 endpoint 한계로 환경(폐기물·대기·온실가스)·교통(자동차·교통사고) outcome 미적재. 진짜 답은 *부처 직접 API*:
 - 환경공단 대기질·온실가스 API (공공데이터포털)
@@ -1173,6 +1198,9 @@ h9_persistent_homology.py    ★ Persistent Homology + bootstrap 안정성
 fetch_bok_macro.py           한은 ECOS 거시 통계 fetch (CPI 등)
 h10_macro_control.py         ★ CPI 외생 통제 후 H6 디커플링 견고성
 h3_v2_11y.py                 H3 활동 임베딩 11년 재추출
+h11_traffic_outcome.py       ★ 도로교통공단 교통사고 fetch (분야 9→10)
+h11_load_motor_csv.py        자동차등록 CSV 파싱 (부정확, 보류)
+fetch_data_go_kr.py          공공데이터포털 활용신청 점검 도구
 ```
 
 ### 시각화 (`data/figs/`)
@@ -1214,6 +1242,14 @@ h9/H9_persistence_diagram.png      ★ PH (persistence + barcode + bootstrap)
 h10/H10_macro_control_compare.png  ★ CPI 통제 전후 corr_diff 비교
 h3_embed_11y/                      ★ H3 v2 11년 재추출 (4 클러스터 신규)
 ```
+
+### 데이터 외부 (`data/external/`)
+```
+data_go_kr/traffic_*.json          도로교통공단 lgStat 캐시 (2015~2024)
+data_go_kr/traffic_national_yearly.csv  ★ 전국 교통사고 11y 시계열
+molit/motor_registration_*.csv     자동차등록 시도×연도 (파싱 부정확, 보류)
+bok_data/cpi_annual.json           한은 CPI 36년치
+kosis_data/...                     KOSIS outcome 캐시 (10분야)
 
 ### 데이터 결과 (`data/results/`)
 ```

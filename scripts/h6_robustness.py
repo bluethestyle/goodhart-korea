@@ -64,7 +64,8 @@ panel = con.execute("""
                           'rd_total','industry_production_index','tourists_sample',
                           'grdp_national',
                           'housing_supply','local_tax_per_capita','private_edu_hours',
-                          'farm_income','fishery_income')
+                          'farm_income','fishery_income',
+                          'traffic_deaths','traffic_accidents')
 """).fetchdf()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
                          values='value').reset_index()
@@ -82,6 +83,8 @@ OUTCOME_MAP = {
     '일반·지방행정':   'local_tax_per_capita',
     # 농림 (2026-04-28 추가)
     '농림수산':       'farm_income',
+    # H11 추가 (도로교통공단)
+    '교통및물류':     'traffic_deaths',
 }
 
 # ============================================================

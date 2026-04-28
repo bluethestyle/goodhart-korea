@@ -63,7 +63,8 @@ panel = con.execute("""
     WHERE metric_code IN ('amp_12m_norm','wealth_gini','life_expectancy',
                           'rd_total','industry_production_index','tourists_sample',
                           'housing_supply','local_tax_per_capita','private_edu_hours',
-                          'farm_income','fishery_income')
+                          'farm_income','fishery_income',
+                          'traffic_deaths','traffic_accidents')
 """).fetchdf()
 con.close()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
@@ -80,6 +81,7 @@ OUTCOME_MAP = {
     '국토및지역개발': 'housing_supply',
     '일반·지방행정':   'local_tax_per_capita',
     '농림수산':       'farm_income',
+    '교통및물류':     'traffic_deaths',
 }
 
 # ============================================================
