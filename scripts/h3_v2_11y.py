@@ -45,6 +45,31 @@ import umap
 import hdbscan
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
+import seaborn as sns
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -57,14 +82,7 @@ SUFFIX = '_11y'
 os.makedirs(OUT_DIR, exist_ok=True)
 os.makedirs(RES_DIR, exist_ok=True)
 
-# 한글 폰트
-KFONT = None
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 
 PURE_ACCT = """(
     ACTV_NM ILIKE '%전출금%' OR ACTV_NM ILIKE '%타계정%' OR ACTV_NM ILIKE '%여유자금%'
@@ -388,7 +406,7 @@ ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
 ax.legend(loc='best', fontsize=8, ncol=2)
 ax.grid(alpha=0.3)
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure B: 클러스터 프로파일 heatmap ────────────
@@ -399,7 +417,7 @@ sns.heatmap(zprof.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
 ax.set_title('클러스터별 피처 z-score 프로파일')
 ax.set_xlabel(f'cluster (총 N: {zprof["n"].sum()})')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure C: 분야 × 클러스터 heatmap ──────────────
@@ -408,7 +426,7 @@ sns.heatmap(ct.drop(columns='n'), annot=True, fmt='.2f', cmap='YlOrRd',
             ax=ax, cbar_kws={'label':'활동 비율'})
 ax.set_title('분야별 클러스터 분포 (행=분야, 행 합=1)')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_field_cluster_heatmap.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_field_cluster_heatmap.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ============================================================
@@ -560,7 +578,7 @@ ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
 ax.legend(loc='best', fontsize=8, ncol=2)
 ax.grid(alpha=0.3)
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure B: 클러스터 프로파일 heatmap ────────────
@@ -570,7 +588,7 @@ sns.heatmap(zprof.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
 ax.set_title(f'1차 클러스터 z-score 프로파일 (N: {zprof["n"].astype(int).tolist()})')
 ax.set_xlabel('cluster')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure C: 분야 × 클러스터 heatmap ──────────────
@@ -579,7 +597,7 @@ sns.heatmap(ct.drop(columns='n'), annot=True, fmt='.2f', cmap='YlOrRd',
             ax=ax, cbar_kws={'label':'활동 비율'})
 ax.set_title('분야별 1차 클러스터 분포 (행=분야, 행 합=1)')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_field_cluster_heatmap.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_field_cluster_heatmap.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure D: 부처 그래프 (피처 평균 cosine) ────────
@@ -594,7 +612,7 @@ nx.draw_networkx_labels(G2, pos, font_size=7, ax=ax,
 ax.set_title(f'부처 시그니처 유사 그래프 (cos>{THRESH2}, 커뮤니티={len(comms2)})\n색=커뮤니티  크기=활동 수')
 ax.axis('off')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_ministry_graph.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_ministry_graph.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure E: cluster 2 sub-clustering ────────────
@@ -617,7 +635,7 @@ sns.heatmap(zsub.drop(columns='n').T, annot=True, fmt='.2f',
 ax.set_title(f'sub-cluster z-score 프로파일 (N: {zsub["n"].astype(int).tolist()})')
 ax.set_xlabel('subcluster')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_subcluster.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_subcluster.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure F: 분야 유사도 + KS heat ────────────────
@@ -635,7 +653,7 @@ sns.heatmap(ks_mat, annot=True, fmt='.2f', cmap='YlOrRd', ax=axes[1],
             cbar_kws={'label':'KS statistic'})
 axes[1].set_title('분야 amp_12m 분포 차이 (KS statistic)')
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H3_field_similarity.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H3_field_similarity.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 print('\n=== 그림 ===')

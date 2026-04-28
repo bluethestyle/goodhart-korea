@@ -28,8 +28,33 @@ import pandas as pd
 import duckdb
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
+import seaborn as sns
 from scipy.stats import pearsonr
 from statsmodels.tsa.seasonal import STL
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -41,22 +66,6 @@ H3_CSV = os.path.join(ROOT, 'data', 'results', 'H3_activity_embedding.csv')
 RES    = os.path.join(ROOT, 'data', 'results')
 FIG    = os.path.join(ROOT, 'data', 'figs', 'h24')
 os.makedirs(FIG, exist_ok=True)
-
-# ── 한국어 폰트 ──
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
-mpl.rcParams.update({
-    'font.size': 14,
-    'axes.titlesize': 16,
-    'axes.labelsize': 14,
-    'xtick.labelsize': 12,
-    'ytick.labelsize': 12,
-    'legend.fontsize': 12,
-    'figure.titlesize': 17,
-})
 
 RNG     = np.random.default_rng(42)
 MAX_PX  = 1800

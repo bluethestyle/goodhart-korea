@@ -30,8 +30,32 @@ import pandas as pd
 import duckdb
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
 import seaborn as sns
 from scipy.stats import pearsonr
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -44,14 +68,7 @@ OUT_DIR = os.path.join(ROOT, 'data', 'figs', 'h8_v3')
 RES_DIR = os.path.join(ROOT, 'data', 'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# Korean font
-KFONT = None
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 
 # ============================================================
 # Step 1: 데이터 로드
@@ -421,55 +438,52 @@ else:
 # ============================================================
 # Step 5: 시각화 (max 1800px)
 # ============================================================
-DPI = 130
+DPI = 200
 MAX_PX = 1800
 FIGW = min(MAX_PX / DPI, 14)
 FIGH = 7.5
 
-fig, axes = plt.subplots(1, 2, figsize=(FIGW, FIGH))
-fig.suptitle('H8 v3 (11년 + 교체 outcome): 분야 FE vs 원형 비중×Δamp — 비판적 자기평가',
-             fontsize=12, fontweight='bold', y=1.01)
-
-# --- 왼쪽: Q1 R² 분해 바 차트 (v3 vs 참조값) ---
-ax = axes[0]
+# ============================================================
+# Figure 1 (KEY): 분야 FE vs 원형×Δamp R² 분해 — H8_field_FE_vs_archetype.png
+# ============================================================
+fig, ax = plt.subplots(figsize=(11, 6))
 r2_vals = [decomp.loc[decomp['model'] == m, 'r2'].values[0]
            for m in ['A_base', 'B_field_FE', 'C_field_FE+archetype_xamp']]
 labels = ['A: 기본\n(Δamp만)', 'B: +분야 FE', 'C: +원형×Δamp']
-colors = ['#bbbbbb', '#5475a8', '#a85454']
+pal = sns.color_palette('Set2', 3)
 xx = np.arange(len(labels))
-bars = ax.bar(xx, r2_vals, color=colors, alpha=0.85, width=0.6)
+bars = ax.bar(xx, r2_vals, color=pal, alpha=0.85, width=0.6)
 ax.set_xticks(xx)
-ax.set_xticklabels(labels, fontsize=10)
-ax.set_ylabel('R²', fontsize=11)
+ax.set_xticklabels(labels, fontsize=15)
+ax.set_ylabel('R²')
 ax.set_title(
-    f'Q1: R² 분해 (v3)\n'
-    f'ΔR² (B→C, 원형 추가) = {dr2_arch:+.3f}\n'
-    f'[5y: +0.094 / 11y v2: +0.085]',
-    fontsize=10
+    f'분야 FE vs 원형 비중×Δamp — R² 분해 (v3, 11y)\n'
+    f'ΔR² (B→C, 원형 추가) = {dr2_arch:+.3f}  [5y: +0.094 / 11y v2: +0.085]'
 )
-ax.grid(alpha=0.3, axis='y')
-for i, (v, b) in enumerate(zip(r2_vals, bars)):
-    ax.annotate(f'{v:.3f}', (xx[i], v), xytext=(0, 5),
-                textcoords='offset points', ha='center', fontsize=10)
-
-# 원형 interaction β 주석
+for i, v in enumerate(r2_vals):
+    ax.annotate(f'{v:.3f}', (xx[i], v), xytext=(0, 8),
+                textcoords='offset points', ha='center', fontsize=14)
 beta_labels = []
 for i, col in enumerate(m_c.get('cols', [])):
     if 'x_amp' in col:
         beta_labels.append(f'{col.replace("_x_amp","")}: β={m_c["beta"][i]:.2f}')
 if beta_labels:
     ax.text(0.02, 0.97, '\n'.join(beta_labels),
-            transform=ax.transAxes, va='top', fontsize=7.5,
+            transform=ax.transAxes, va='top', fontsize=12,
             bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))
-
-# 교체 표시
 ax.text(0.98, 0.03,
-        '교체: 과기→patent\n관광→외국인\n행정→재정자립도\n통신→광대역',
-        transform=ax.transAxes, va='bottom', ha='right', fontsize=7,
+        '교체: 과기→patent / 관광→외국인\n행정→재정자립도 / 통신→광대역',
+        transform=ax.transAxes, va='bottom', ha='right', fontsize=11,
         bbox=dict(boxstyle='round,pad=0.3', facecolor='lightblue', alpha=0.7))
+plt.tight_layout()
+out_fe = os.path.join(OUT_DIR, 'H8_field_FE_vs_archetype.png')
+fig.savefig(out_fe, dpi=DPI, bbox_inches='tight')
+plt.close()
+print(f'\n그림 저장: {out_fe}')
 
-# --- 오른쪽: Q2 분야×원형그룹 corr_diff 히트맵 ---
-ax = axes[1]
+# ============================================================
+# Figure 2: 분야×원형그룹 corr_diff 히트맵 — H8_archetype_outcome.png
+# ============================================================
 if not arch_corr.empty:
     piv = arch_corr.pivot_table(index='fld', columns='arch_grp', values='corr_diff')
     grp_order = [g for g in ['personnel', 'direct_invest', 'chooyeon_sub0', 'chooyeon_sub1', 'normal']
@@ -477,33 +491,34 @@ if not arch_corr.empty:
     piv = piv[grp_order] if grp_order else piv
     vals = piv.values[~np.isnan(piv.values)]
     vabs = max(abs(vals).max() if len(vals) > 0 else 0.5, 0.3)
+    fig, ax = plt.subplots(figsize=(12, 7))
+    sw_max = sign_width_df["sign_width"].max() if len(sign_width_df) > 0 else 0
+    sw_fld = sign_width_df.iloc[0]["fld"] if len(sign_width_df) > 0 else '-'
     sns.heatmap(
         piv, annot=True, fmt='.2f', cmap='RdBu_r',
         center=0, vmin=-vabs, vmax=vabs, ax=ax,
         cbar_kws={'label': 'corr(Δamp ~ Δoutcome)'},
-        linewidths=0.4, linecolor='#cccccc'
+        linewidths=0.4, linecolor='#cccccc',
+        annot_kws={'size': 13}
     )
-    sw_max = sign_width_df["sign_width"].max() if len(sign_width_df) > 0 else 0
-    sw_fld = sign_width_df.iloc[0]["fld"] if len(sign_width_df) > 0 else '-'
     ax.set_title(
-        'Q2: 분야×원형그룹 outcome 결합 (v3)\n'
-        '(부호 차이 = 회계 cycle 가설 기각)\n'
-        f'최대 부호 폭: {sw_max:.2f} ({sw_fld})',
-        fontsize=10
+        '분야×원형그룹 outcome 차분 상관 (v3, 11y)\n'
+        f'최대 부호 폭: {sw_max:.2f} ({sw_fld})'
     )
-    ax.set_xlabel('원형 그룹', fontsize=10)
-    ax.set_ylabel('분야', fontsize=10)
+    ax.set_xlabel('원형 그룹')
+    ax.set_ylabel('분야')
     ax.tick_params(axis='x', rotation=25)
     ax.tick_params(axis='y', rotation=0)
-else:
-    ax.text(0.5, 0.5, 'arch_corr 데이터 없음', ha='center', va='center',
-            transform=ax.transAxes)
+    plt.tight_layout()
+    out_ao = os.path.join(OUT_DIR, 'H8_archetype_outcome.png')
+    fig.savefig(out_ao, dpi=DPI, bbox_inches='tight')
+    plt.close()
+    print(f'그림 저장: {out_ao}')
 
-plt.tight_layout()
-out_png = os.path.join(OUT_DIR, 'H8_within_field_panel_v3.png')
-fig.savefig(out_png, dpi=DPI, bbox_inches='tight')
-plt.close()
-print(f'\n그림 저장: {out_png}')
+# keep old filename as alias of the key figure
+import shutil as _shutil
+_shutil.copy2(out_fe, os.path.join(OUT_DIR, 'H8_within_field_panel_v3.png'))
+out_png = out_fe
 
 # 최종 요약 출력
 print('\n' + '=' * 70)

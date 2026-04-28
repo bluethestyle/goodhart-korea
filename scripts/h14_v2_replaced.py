@@ -36,7 +36,32 @@ import duckdb
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import matplotlib.patches as mpatches
+import scienceplots
+import seaborn as sns
 from scipy.stats import pearsonr
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -50,23 +75,7 @@ OUT_DIR = os.path.join(ROOT, 'data', 'figs', 'h14_v2')
 RES_DIR = os.path.join(ROOT, 'data', 'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# ── 폰트 설정 ──────────────────────────────────────────────────────────────
-KFONT = None
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
-mpl.rcParams.update({
-    'font.size': 14,
-    'axes.titlesize': 16,
-    'axes.labelsize': 14,
-    'xtick.labelsize': 12,
-    'ytick.labelsize': 12,
-    'legend.fontsize': 12,
-    'figure.titlesize': 17,
-})
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 MAX_PX = 1800
 DPI = 200
 
@@ -346,8 +355,8 @@ ax.text(EXPO_THRESH - 0.01, ylim[0] + 0.05,
 
 fig_save(fig, os.path.join(OUT_DIR, 'H14_exposure_vs_outcome_v2.png'))
 
-# ── Figure 2: 4분면 위험 분류도 ───────────────────────────────────────────
-print('[Fig 2] H14_risk_quadrant_v2.png')
+# ── Figure 2: 4분면 위험 분류도 (PRIMARY: quadrant_main) ─────────────────
+print('[Fig 2] H14_risk_quadrant_v2.png + H14_quadrant_main.png')
 fig, ax = plt.subplots(figsize=(12, 8))
 
 # 4분면 배경 색칠
@@ -417,6 +426,11 @@ ax.set_title('굿하트 위험 4분면 분류 (교체 outcome)\n'
 ax.grid(alpha=0.2, zorder=0)
 
 fig_save(fig, os.path.join(OUT_DIR, 'H14_risk_quadrant_v2.png'))
+# Also save as quadrant_main (split single-panel version)
+import shutil as _shutil14
+_shutil14.copy2(os.path.join(OUT_DIR, 'H14_risk_quadrant_v2.png'),
+                os.path.join(OUT_DIR, 'H14_quadrant_main.png'))
+print('  저장: H14_quadrant_main.png')
 
 # ── 최종 요약 출력 ────────────────────────────────────────────────────────
 print('\n=== 최종 요약 ===')

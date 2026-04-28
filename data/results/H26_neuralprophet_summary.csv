@@ -1,0 +1,4 @@
+﻿measure,r_vs_FFT,r_vs_STL,r_vs_NP,p_vs_FFT,p_vs_STL,p_vs_NP
+FFT amp_12m_norm,1.0,-0.1301,-0.0392,0.0,0.0,0.2046
+STL seasonal_strength,-0.1301,1.0,-0.0177,0.0,0.0,0.5661
+NP seasonal_strength,-0.0392,-0.0177,1.0,0.2046,0.5661,0.0

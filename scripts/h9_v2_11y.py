@@ -15,6 +15,31 @@ from sklearn.preprocessing import StandardScaler
 from ripser import ripser
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
+import seaborn as sns
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -25,13 +50,7 @@ OUT_DIR = os.path.join(ROOT, 'data', 'figs', 'h9_11y')
 RES_DIR = os.path.join(ROOT, 'data', 'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-KFONT = None
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 RNG = np.random.default_rng(42)
 
 # ============================================================
@@ -152,7 +171,7 @@ print(f'  11y: H0 sig={sig0 if len(p0)>0 else 0}, H1 sig={sig1 if len(p1)>0 else
 # ============================================================
 # Step 5: Figure (3-panel, max 1800px)
 # ============================================================
-DPI = 130
+DPI = 200
 fig, axes = plt.subplots(1, 3, figsize=(18, 5.8))
 
 # A. Persistence diagram
@@ -212,7 +231,7 @@ ax.set_title(f'Bootstrap PH — 50회 (11y)\n5y 비교: median 0.65, CI [0.46,0.
 ax.legend(fontsize=8)
 ax.grid(alpha=0.3, axis='y')
 
-plt.suptitle('H9 Persistent Homology — 11y (자산취득형 4-클러스터)', fontsize=12, y=1.01)
+plt.suptitle('Persistent Homology — 11y (자산취득형 4-클러스터)', fontsize=12, y=1.01)
 plt.tight_layout()
 
 out_png = os.path.join(OUT_DIR, 'H9_persistence_diagram_11y.png')

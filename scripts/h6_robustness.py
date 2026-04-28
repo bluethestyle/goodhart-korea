@@ -30,8 +30,32 @@ import pandas as pd
 import duckdb
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
 import seaborn as sns
 from scipy.stats import pearsonr
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -43,13 +67,7 @@ OUT_DIR = os.path.join(ROOT, 'data', 'figs', 'h6')
 RES_DIR = os.path.join(ROOT, 'data', 'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-KFONT = None
-for f in ['Malgun Gothic','Noto Sans CJK KR','AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 RNG = np.random.default_rng(42)
 
 con = duckdb.connect(DB, read_only=True)
@@ -341,71 +359,45 @@ print('\n  활동 분포 cv (분야 내 활동 amp 분산):')
 print(emb_actv_cv.round(3).to_string(index=False))
 
 # ============================================================
-# Figure A: 견고성 패널 (4 subplots)
+# Figure A1 (PRIMARY): FE 회귀 — H6_fe_regression.png
 # ============================================================
-fig, axes = plt.subplots(2, 2, figsize=(15, 10))
-
-# A1: FE 회귀 결과
-ax = axes[0,0]
+fig, ax = plt.subplots(figsize=(11, 6))
 xx = np.arange(len(fe_summary))
-ax.bar(xx, fe_summary['beta'], yerr=fe_summary['se']*1.96, color='#5475a8', alpha=0.85)
-ax.axhline(0, color='#888', lw=0.8)
-ax.set_xticks(xx); ax.set_xticklabels(fe_summary['model'], rotation=10)
-ax.set_ylabel('β (Δoutcome ~ Δamp)')
-ax.set_title(f'FE 회귀 — Δoutcome_z ~ Δamp_z + FE\n(N={int(fe_summary.iloc[0]["n"])}, ±95% CI)')
-ax.grid(alpha=0.3)
+colors_fe = sns.color_palette('Set2', len(fe_summary))
+bars = ax.bar(xx, fe_summary['beta'], yerr=fe_summary['se']*1.96,
+              color=colors_fe, alpha=0.85, capsize=6, error_kw={'lw': 2})
+ax.axhline(0, color='#888', lw=1.2, ls='--')
+ax.set_xticks(xx)
+ax.set_xticklabels(fe_summary['model'], rotation=10)
+ax.set_ylabel('β (Δoutcome_z ~ Δamp_z)')
+ax.set_title(f'패널 Fixed-Effect 회귀 — Δamp → Δoutcome\n(N={int(fe_summary.iloc[0]["n"])}, ±95% CI)')
 for i, p in enumerate(fe_summary['p']):
     ax.annotate(f'p={p:.3f}', (xx[i], fe_summary['beta'].iloc[i]),
-                xytext=(0,8), textcoords='offset points',
-                ha='center', fontsize=9)
-
-# A2: 자연 vs 게임화 cv (분야)
-ax = axes[0,1]
-nat_sorted = nat_df.sort_values('amp_cv', ascending=True)
-ax.barh(range(len(nat_sorted)), nat_sorted['amp_cv'], color='#c87f5a')
-ax.set_yticks(range(len(nat_sorted)))
-ax.set_yticklabels(nat_sorted['fld'])
-ax.set_xlabel('amp_12m 시간적 cv (높을수록 게임화 변동, 낮으면 자연 주기)')
-ax.set_title('분야별 amp_12m 시간 변동성')
-ax.grid(alpha=0.3, axis='x')
-
-# A3: 부처 노출 vs 부처 outcome 차분 상관
-ax = axes[1,0]
-if len(ofc_corr_w_expo) > 0:
-    sub = ofc_corr_w_expo.dropna()
-    ax.scatter(sub['exposure_score'], sub['corr_diff'],
-               s=40, c=sub['fld_weight']*250, alpha=0.6, cmap='Reds')
-    # outcome 별 색
-    for oc in sub['metric'].unique():
-        ss = sub[sub['metric']==oc]
-        ax.scatter(ss['exposure_score'], ss['corr_diff'], label=oc, alpha=0.8, s=30)
-    ax.axhline(0, color='#888', lw=0.6)
-    ax.set_xlabel('굿하트 노출 점수 (H5)')
-    ax.set_ylabel('amp ~ outcome 차분 상관 (부처 단위)')
-    ax.set_title(f'부처 노출 × outcome 디커플링 (N={len(sub)})')
-    ax.legend(fontsize=7, loc='best')
-    ax.grid(alpha=0.3)
-
-# A4: Permutation null vs obs
-ax = axes[1,1]
-if len(perm_df) > 0:
-    yy = np.arange(len(perm_df))
-    ax.barh(yy, perm_df['obs_corr_diff'], color='#a85454', alpha=0.85, label='관측 corr_diff')
-    ax.errorbar(perm_df['null_mean'], yy, xerr=perm_df['null_std']*2,
-                fmt='o', color='#444', label='null ±2σ')
-    ax.set_yticks(yy); ax.set_yticklabels([f'{r["fld"]}/{r["outcome"]}' for _,r in perm_df.iterrows()])
-    ax.axvline(0, color='#888', lw=0.6)
-    for i, p in enumerate(perm_df['pval_2sided'].values):
-        ax.annotate(f'p={p:.3f}', (perm_df['obs_corr_diff'].iloc[i], yy[i]),
-                    xytext=(5,0), textcoords='offset points', va='center', fontsize=8)
-    ax.set_xlabel('Δamp ~ Δoutcome 상관')
-    ax.set_title(f'Permutation test ({N_PERM}회) — null 대비 관측치')
-    ax.legend(fontsize=8)
-    ax.grid(alpha=0.3, axis='x')
-
+                xytext=(0, 10), textcoords='offset points',
+                ha='center', fontsize=13)
 plt.tight_layout()
-fig.savefig(os.path.join(OUT_DIR, 'H6_robustness_panel.png'), dpi=130, bbox_inches='tight')
+fig.savefig(os.path.join(OUT_DIR, 'H6_fe_regression.png'), dpi=200, bbox_inches='tight')
 plt.close()
+
+# ============================================================
+# Figure A2: 분야별 amp_12m 변동성 — H6_amp_cv.png
+# ============================================================
+fig, ax = plt.subplots(figsize=(11, 6))
+nat_sorted = nat_df.sort_values('amp_cv', ascending=True)
+colors_cv = sns.color_palette('Set2', len(nat_sorted))
+ax.barh(range(len(nat_sorted)), nat_sorted['amp_cv'], color=colors_cv, alpha=0.85)
+ax.set_yticks(range(len(nat_sorted)))
+ax.set_yticklabels(nat_sorted['fld'], fontsize=14)
+ax.set_xlabel('amp_12m 시간적 CV (높을수록 게임화 변동, 낮으면 자연 주기)')
+ax.set_title('분야별 amp_12m 시간 변동성 (자연 주기 vs 게임화)')
+plt.tight_layout()
+fig.savefig(os.path.join(OUT_DIR, 'H6_amp_cv.png'), dpi=200, bbox_inches='tight')
+plt.close()
+
+# Keep robustness_panel as alias (FE regression = primary)
+import shutil as _shutil
+_shutil.copy2(os.path.join(OUT_DIR, 'H6_fe_regression.png'),
+              os.path.join(OUT_DIR, 'H6_robustness_panel.png'))
 
 # ============================================================
 # Figure B: Permutation null distribution detail
@@ -430,7 +422,7 @@ if len(perm_df) > 0:
         ax.grid(alpha=0.3)
     axes[0].set_ylabel('빈도')
     plt.tight_layout()
-    fig.savefig(os.path.join(OUT_DIR, 'H6_permutation_null.png'), dpi=130, bbox_inches='tight')
+    fig.savefig(os.path.join(OUT_DIR, 'H6_permutation_null.png'), dpi=200, bbox_inches='tight')
     plt.close()
 
 # ============================================================
@@ -443,7 +435,7 @@ if len(lag_df) > 0:
                 cbar_kws={'label':'corr_diff'})
     ax.set_title('Lag/Lead 차분 상관 — k=-2..+2 (k>0: outcome → amp 가능성)')
     plt.tight_layout()
-    fig.savefig(os.path.join(OUT_DIR, 'H6_lag_lead.png'), dpi=130, bbox_inches='tight')
+    fig.savefig(os.path.join(OUT_DIR, 'H6_lag_lead.png'), dpi=200, bbox_inches='tight')
     plt.close()
 
 print('\n=== 그림 ===')

@@ -36,8 +36,32 @@ import kmapper as km
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import scienceplots
 import seaborn as sns
 from PIL import Image
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -49,19 +73,12 @@ OUT_DIR = os.path.join(ROOT, 'data', 'figs', 'h4_11y_v3')
 RES_DIR = os.path.join(ROOT, 'data', 'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# 한글 폰트
-KFONT = None
-for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
-    if any(f in fn.name for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = f
-        KFONT = f
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 print(f'  [font] 사용 폰트: {KFONT}')
 
 MAX_PX = 1800  # 최대 픽셀
 
-def save_and_resize(fig, path, dpi=130):
+def save_and_resize(fig, path, dpi=200):
     """저장 후 1800px 초과 시 PIL로 리사이즈."""
     fig.savefig(path, dpi=dpi, bbox_inches='tight')
     plt.close(fig)

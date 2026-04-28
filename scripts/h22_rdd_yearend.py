@@ -20,31 +20,38 @@ import os, duckdb, warnings
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import matplotlib.font_manager as fm
 import matplotlib.patches as mpatches
 from matplotlib.gridspec import GridSpec
 import statsmodels.formula.api as smf
+import scienceplots
+import seaborn as sns
+plt.style.use(['science', 'no-latex', 'grid'])
+plt.rcParams.update({
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'legend.title_fontsize': 14,
+    'figure.titlesize': 19,
+    'lines.linewidth': 2.0,
+    'lines.markersize': 8,
+    'axes.linewidth': 1.0,
+    'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix',
+    'mathtext.default': 'regular',
+})
+for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
+        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        break
+mpl.rcParams['axes.unicode_minus'] = False
+sns.set_palette('Set2')
 
 warnings.filterwarnings('ignore')
-
-# ── 폰트 ──────────────────────────────────────────────────────────────────────
-def set_korean_font():
-    for name in ['Malgun Gothic', 'NanumGothic', 'AppleGothic']:
-        if any(name.lower() in f.name.lower() for f in fm.fontManager.ttflist):
-            plt.rcParams['font.family'] = name
-            break
-    plt.rcParams['axes.unicode_minus'] = False
-
-set_korean_font()
-plt.rcParams.update({
-    'font.size': 14,
-    'axes.titlesize': 16,
-    'axes.labelsize': 14,
-    'xtick.labelsize': 12,
-    'ytick.labelsize': 12,
-    'legend.fontsize': 12,
-    'figure.titlesize': 17,
-})
 
 # ── 상수 ──────────────────────────────────────────────────────────────────────
 DB    = 'data/warehouse.duckdb'
