@@ -183,14 +183,14 @@ df.to_csv(f'{RES}/H10_macro_control_corr.csv', index=False, encoding='utf-8-sig'
 # ============================================================
 # Figure
 # ============================================================
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+fig, axes = plt.subplots(2, 1, figsize=(11, 13), sharex=False)
 
-# A: raw vs resid scatter
+# A (top): raw vs resid scatter
 ax = axes[0]
 ax.scatter(df['corr_raw'], df['corr_resid_CPI'], s=60, c='#5475a8', alpha=0.85)
 for _, r in df.iterrows():
     ax.annotate(f'{r["fld"][:8]}', (r['corr_raw'], r['corr_resid_CPI']),
-                xytext=(4,4), textcoords='offset points', fontsize=8)
+                xytext=(4,4), textcoords='offset points', fontsize=plt.rcParams['font.size'] * 0.85)
 ax.plot([-1,1],[-1,1],'--', color='#888', alpha=0.5, label='identity')
 ax.axhline(0, color='#888', lw=0.5); ax.axvline(0, color='#888', lw=0.5)
 ax.set_xlabel('raw corr_diff (H6)')
@@ -201,7 +201,7 @@ ax.legend()
 ax.grid(alpha=0.3)
 ax.set_xlim(-1, 1); ax.set_ylim(-1, 1)
 
-# B: 각 분야 raw vs resid bar
+# B (bottom): 각 분야 raw vs resid bar
 ax = axes[1]
 df_sorted = df.sort_values('corr_raw')
 y = np.arange(len(df_sorted))

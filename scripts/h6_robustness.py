@@ -375,7 +375,7 @@ ax.set_title(f'패널 Fixed-Effect 회귀 — Δamp → Δoutcome\n(N={int(fe_su
 for i, p in enumerate(fe_summary['p']):
     ax.annotate(f'p={p:.3f}', (xx[i], fe_summary['beta'].iloc[i]),
                 xytext=(0, 10), textcoords='offset points',
-                ha='center', fontsize=13)
+                ha='center', fontsize=plt.rcParams['font.size'] * 0.85)
 plt.tight_layout()
 fig.savefig(os.path.join(OUT_DIR, 'H6_fe_regression.png'), dpi=200, bbox_inches='tight')
 plt.close()
@@ -388,7 +388,7 @@ nat_sorted = nat_df.sort_values('amp_cv', ascending=True)
 colors_cv = sns.color_palette('Set2', len(nat_sorted))
 ax.barh(range(len(nat_sorted)), nat_sorted['amp_cv'], color=colors_cv, alpha=0.85)
 ax.set_yticks(range(len(nat_sorted)))
-ax.set_yticklabels(nat_sorted['fld'], fontsize=14)
+ax.set_yticklabels(nat_sorted['fld'])
 ax.set_xlabel('amp_12m 시간적 CV (높을수록 게임화 변동, 낮으면 자연 주기)')
 ax.set_title('분야별 amp_12m 시간 변동성 (자연 주기 vs 게임화)')
 plt.tight_layout()
@@ -401,12 +401,16 @@ _shutil.copy2(os.path.join(OUT_DIR, 'H6_fe_regression.png'),
               os.path.join(OUT_DIR, 'H6_robustness_panel.png'))
 
 # ============================================================
-# Figure B: Permutation null distribution detail
+# Figure B: Permutation null distribution detail (7×2 grid)
 # ============================================================
 if len(perm_df) > 0:
-    fig, axes = plt.subplots(1, len(perm_df), figsize=(4*len(perm_df), 4), sharey=True)
-    if len(perm_df) == 1: axes = [axes]
-    for ax, (_, row) in zip(axes, perm_df.iterrows()):
+    n_panels = len(perm_df)
+    n_cols = 2
+    n_rows = (n_panels + n_cols - 1) // n_cols  # ceil division
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(11, 4 * n_rows))
+    axes_flat = axes.flatten() if n_panels > 1 else [axes]
+    for idx, (_, row) in enumerate(perm_df.iterrows()):
+        ax = axes_flat[idx]
         # 다시 simulate (간단히 다시)
         amp_ts = wide[wide['fld_nm']==row['fld']].set_index('year')['amp_12m_norm'].dropna()
         oc_ts  = wide[wide['fld_nm']==row['fld']].set_index('year')[row['outcome']].dropna()
@@ -419,9 +423,13 @@ if len(perm_df) > 0:
                    label=f'관측: {row["obs_corr_diff"]:.2f}')
         ax.set_title(f'{row["fld"]} × {row["outcome"]}\np={row["pval_2sided"]:.3f}, N={int(row["n_diff"])}')
         ax.set_xlabel('null corr_diff')
-        ax.legend(fontsize=8)
+        ax.legend()
         ax.grid(alpha=0.3)
-    axes[0].set_ylabel('빈도')
+        if idx % n_cols == 0:
+            ax.set_ylabel('빈도')
+    # 남은 빈 axes 숨기기
+    for idx in range(n_panels, len(axes_flat)):
+        axes_flat[idx].set_visible(False)
     plt.tight_layout()
     fig.savefig(os.path.join(OUT_DIR, 'H6_permutation_null.png'), dpi=200, bbox_inches='tight')
     plt.close()

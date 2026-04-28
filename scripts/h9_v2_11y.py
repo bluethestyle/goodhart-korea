@@ -229,10 +229,10 @@ ax.axvline(0.65, color='steelblue', lw=1.5, linestyle='--', label='5y median=0.6
 ax.set_xlabel('H1 max persistence (bootstrap n=200)')
 ax.set_ylabel('빈도')
 ax.set_title(f'Bootstrap PH — 50회 (11y)\n5y 비교: median 0.65, CI [0.46,0.98]')
-ax.legend(fontsize=8)
+ax.legend()
 ax.grid(alpha=0.3, axis='y')
 
-plt.suptitle('Persistent Homology — 11y (자산취득형 4-클러스터)', fontsize=12, y=1.01)
+plt.suptitle('Persistent Homology — 11y (자산취득형 4-클러스터)', y=1.01)
 plt.tight_layout()
 
 out_png = os.path.join(OUT_DIR, 'H9_persistence_diagram_11y.png')

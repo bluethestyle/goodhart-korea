@@ -258,21 +258,21 @@ for row, fld in enumerate(EXAMPLE_FLDS):
         ax.axhline(0, color='#aaa', lw=0.5, ls='--')
         ax.grid(alpha=0.3, lw=0.5)
         if row == 0:
-            ax.set_title(ctitle, fontsize=10, fontweight='bold')
+            ax.set_title(ctitle, fontweight='bold')
         if col == 0:
-            ax.set_ylabel(fld, fontsize=10, fontweight='bold')
+            ax.set_ylabel(fld, fontweight='bold')
         ax.tick_params(labelsize=7)
         # x축 레이블: 첫 열만 연도 표시
         if row == n_ex - 1:
-            ax.set_xlabel('연월', fontsize=8)
+            ax.set_xlabel('연월')
         # seas_strength 표기 (seasonal 패널)
         if col == 2:
             ss_val = stl_df[stl_df['fld_nm'] == fld]['seas_strength_all'].iloc[0] \
                      if len(stl_df[stl_df['fld_nm'] == fld]) > 0 else np.nan
-            ax.set_title(f'{ctitle}\n(seas_str={ss_val:.3f})', fontsize=9)
+            ax.set_title(f'{ctitle}\n(seas_str={ss_val:.3f})')
 
 plt.suptitle('STL 분해 예시 (4개 분야)\ntend + seasonal + remainder',
-             fontsize=12, fontweight='bold', y=1.01)
+             fontweight='bold', y=1.01)
 plt.tight_layout()
 out_a = os.path.join(FIG, 'H24_stl_examples.png')
 fig.savefig(out_a, dpi=DPI, bbox_inches='tight')
@@ -312,11 +312,11 @@ for i, fld in enumerate(fld_list):
     ax.scatter(sub['amp_12m_norm'], sub['seasonal_strength'],
                color=cmap(i / max(len(fld_list) - 1, 1)),
                s=35, alpha=0.7, label=fld[:6])
-ax.set_xlabel('amp_12m_norm (FFT 기반)', fontsize=10)
-ax.set_ylabel('seasonal_strength (STL 기반)', fontsize=10)
+ax.set_xlabel('amp_12m_norm (FFT 기반)')
+ax.set_ylabel('seasonal_strength (STL 기반)')
 ax.set_title(f'FFT vs STL seasonal_strength\n(N={len(compare_df)}, r={r_all:.3f}, p={p_all:.3f})',
-             fontsize=10)
-ax.legend(fontsize=6, ncol=2, loc='upper left')
+             )
+ax.legend(ncol=2, loc='upper left')
 ax.grid(alpha=0.3)
 
 # B2: 분야별 평균 비교 (막대 2종 비교)
@@ -333,10 +333,10 @@ ax.barh(yy - bw/2, fld_mean_sort['seasonal_strength'], height=bw,
 ax.barh(yy + bw/2, amp_scaled, height=bw,
         color='#c87f5a', alpha=0.8, label='amp_12m_norm (FFT, 정규화)')
 ax.set_yticks(yy)
-ax.set_yticklabels(fld_mean_sort['fld_nm'], fontsize=9)
-ax.set_xlabel('값', fontsize=9)
-ax.set_title('분야별 평균: STL vs FFT\n(FFT는 0~1 정규화)', fontsize=10)
-ax.legend(fontsize=8)
+ax.set_yticklabels(fld_mean_sort['fld_nm'])
+ax.set_xlabel('값')
+ax.set_title('분야별 평균: STL vs FFT\n(FFT는 0~1 정규화)')
+ax.legend()
 ax.grid(alpha=0.3, axis='x')
 
 # B3: trend_strength vs seasonal_strength
@@ -349,13 +349,13 @@ for i, fld in enumerate(fld_list):
 r_ts, p_ts = pearsonr(compare_df['seasonal_strength'].dropna(),
                        compare_df['trend_strength'].dropna()) \
     if len(compare_df.dropna(subset=['trend_strength'])) >= 3 else (np.nan, np.nan)
-ax.set_xlabel('seasonal_strength', fontsize=10)
-ax.set_ylabel('trend_strength', fontsize=10)
-ax.set_title(f'seasonal_strength vs trend_strength\n(r={r_ts:.3f}, p={p_ts:.3f})', fontsize=10)
-ax.legend(fontsize=6, ncol=2, loc='upper left')
+ax.set_xlabel('seasonal_strength')
+ax.set_ylabel('trend_strength')
+ax.set_title(f'seasonal_strength vs trend_strength\n(r={r_ts:.3f}, p={p_ts:.3f})')
+ax.legend(ncol=2, loc='upper left')
 ax.grid(alpha=0.3)
 
-plt.suptitle('STL vs FFT 비교 — seasonal_strength vs amp_12m_norm', fontsize=12, fontweight='bold', y=1.01)
+plt.suptitle('STL vs FFT 비교 — seasonal_strength vs amp_12m_norm', fontweight='bold', y=1.01)
 plt.tight_layout()
 out_b = os.path.join(FIG, 'H24_seasonal_vs_amp12m.png')
 fig.savefig(out_b, dpi=DPI, bbox_inches='tight')
@@ -471,18 +471,18 @@ if len(h6_df) > 0:
     colors_stl = ['#a85454' if v < 0 else '#5475a8' for v in h6_sort_stl['corr_stl']]
     ax.barh(yy, h6_sort_stl['corr_stl'], color=colors_stl, alpha=0.85)
     ax.set_yticks(yy)
-    ax.set_yticklabels(h6_sort_stl['fld'], fontsize=9)
+    ax.set_yticklabels(h6_sort_stl['fld'])
     ax.axvline(0, color='#888', lw=0.7)
     for i, (_, row) in enumerate(h6_sort_stl.iterrows()):
         sig = '★' if row['pval_stl'] < 0.05 else ''
         ax.annotate(f'{sig}p={row["pval_stl"]:.3f}',
                     (row['corr_stl'], yy[i]),
                     xytext=(4, 0), textcoords='offset points',
-                    va='center', fontsize=7)
+                    va='center', fontsize=plt.rcParams['font.size'] * 0.85)
     n_sig_stl = (h6_df['pval_stl'] < 0.05).sum()
-    ax.set_xlabel('Δseasonal_strength ~ Δoutcome 상관', fontsize=9)
+    ax.set_xlabel('Δseasonal_strength ~ Δoutcome 상관')
     ax.set_title(f'STL seasonal_strength — 견고성 검증\n★p<0.05: {n_sig_stl}/{len(h6_df)} 분야',
-                 fontsize=10, fontweight='bold')
+                 fontweight='bold')
     ax.grid(alpha=0.3, axis='x')
 
     # C2: FFT corr
@@ -493,7 +493,7 @@ if len(h6_df) > 0:
                   for v in h6_sort_fft['corr_fft']]
     ax.barh(yy2, h6_sort_fft['corr_fft'].fillna(0), color=colors_fft, alpha=0.75)
     ax.set_yticks(yy2)
-    ax.set_yticklabels(h6_sort_fft['fld'], fontsize=9)
+    ax.set_yticklabels(h6_sort_fft['fld'])
     ax.axvline(0, color='#888', lw=0.7)
     for i, (_, row) in enumerate(h6_sort_fft.iterrows()):
         if not np.isnan(row['pval_fft']):
@@ -501,11 +501,11 @@ if len(h6_df) > 0:
             ax.annotate(f'{sig}p={row["pval_fft"]:.3f}',
                         (row['corr_fft'] if not np.isnan(row['corr_fft']) else 0, yy2[i]),
                         xytext=(4, 0), textcoords='offset points',
-                        va='center', fontsize=7)
+                        va='center', fontsize=plt.rcParams['font.size'] * 0.85)
     n_sig_fft = (h6_df['pval_fft'].fillna(1.0) < 0.05).sum()
-    ax.set_xlabel('Δamp_12m_norm ~ Δoutcome 상관', fontsize=9)
+    ax.set_xlabel('Δamp_12m_norm ~ Δoutcome 상관')
     ax.set_title(f'FFT amp_12m_norm — 견고성 검증\n★p<0.05: {n_sig_fft}/{len(h6_df)} 분야',
-                 fontsize=10, fontweight='bold')
+                 fontweight='bold')
     ax.grid(alpha=0.3, axis='x')
 
     # C3: STL vs FFT 산점도 (분야별)
@@ -520,18 +520,18 @@ if len(h6_df) > 0:
     ax.axvline(0, color='#aaa', lw=0.5)
     for _, row in valid.iterrows():
         ax.annotate(row['fld'][:5], (row['corr_fft'], row['corr_stl']),
-                    xytext=(3, 3), textcoords='offset points', fontsize=7)
+                    xytext=(3, 3), textcoords='offset points', fontsize=plt.rcParams['font.size'] * 0.85)
     r_ff_st, _ = pearsonr(valid['corr_fft'], valid['corr_stl']) if len(valid) >= 3 else (np.nan, np.nan)
-    ax.set_xlabel('FFT 상관 (amp_12m_norm)', fontsize=9)
-    ax.set_ylabel('STL 상관 (seasonal_strength)', fontsize=9)
-    ax.set_title(f'FFT vs STL 상관\nr={r_ff_st:.3f}, 동부호: {sign_same}/{len(valid)}\n(빨강=부호반전)', fontsize=9)
-    ax.legend(fontsize=8)
+    ax.set_xlabel('FFT 상관 (amp_12m_norm)')
+    ax.set_ylabel('STL 상관 (seasonal_strength)')
+    ax.set_title(f'FFT vs STL 상관\nr={r_ff_st:.3f}, 동부호: {sign_same}/{len(valid)}\n(빨강=부호반전)')
+    ax.legend()
     ax.grid(alpha=0.3)
     ax.set_xlim(-1.05, 1.05)
     ax.set_ylim(-1.05, 1.05)
 
     plt.suptitle('견고성 재실행 — STL seasonal_strength vs FFT amp_12m_norm',
-                 fontsize=12, fontweight='bold', y=1.01)
+                 fontweight='bold', y=1.01)
     plt.tight_layout()
     out_c = os.path.join(FIG, 'H24_h6_replication.png')
     fig.savefig(out_c, dpi=DPI, bbox_inches='tight')

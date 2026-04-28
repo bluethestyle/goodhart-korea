@@ -244,7 +244,7 @@ ax.set_xticklabels(labels[1:], rotation=15, ha='right')
 ax.set_ylabel('정규화 power spectral density')
 ax.set_xlabel('주파수 빈 (period)')
 ax.set_title('사업원형별 평균 PSD — 12개월 vs 분기·기타 고조파',
-             fontsize=15, fontweight='bold')
+             fontweight='bold')
 ax.legend(loc='best', frameon=True, fancybox=True)
 plt.tight_layout()
 plt.savefig(os.path.join(FIG, 'h27_psd_archetype.png'), dpi=200, bbox_inches='tight')
@@ -253,7 +253,7 @@ print(f'  → h27_psd_archetype.png')
 
 # (B) Phase polar plot — 12월/1월 피크 분포
 from matplotlib.patches import Wedge
-fig, axes = plt.subplots(2, 2, figsize=(16, 14), subplot_kw=dict(projection='polar'))
+fig, axes = plt.subplots(2, 2, figsize=(11, 11), subplot_kw=dict(projection='polar'))
 for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']):
     sub = psd_df[psd_df['archetype'] == arch]
     if len(sub) == 0:
@@ -267,11 +267,11 @@ for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest', 'C2_cho
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     ax.set_xticks(np.linspace(0, 2*np.pi, 12, endpoint=False))
-    ax.set_xticklabels(['1','2','3','4','5','6','7','8','9','10','11','12'], fontsize=16)
-    ax.set_title(f'{arch_names.get(arch, arch)}\n(N={len(sub)})', fontsize=22, fontweight='bold', pad=20)
+    ax.set_xticklabels(['1','2','3','4','5','6','7','8','9','10','11','12'])
+    ax.set_title(f'{arch_names.get(arch, arch)}\n(N={len(sub)})', fontweight='bold', pad=20)
     ax.set_yticklabels([])
 fig.suptitle('사업원형별 12개월 주기 Phase 분포 — 어느 월에 피크하는가',
-             fontsize=24, fontweight='bold', y=1.00)
+             fontweight='bold', y=1.00)
 plt.tight_layout()
 plt.savefig(os.path.join(FIG, 'h27_phase_polar.png'), dpi=200, bbox_inches='tight')
 plt.close()
@@ -286,7 +286,7 @@ sns.heatmap(piv, annot=True, fmt='.2f', cmap='RdYlGn', vmin=0, vmax=1,
             cbar_kws={'label': 'Phase coherence (1.0 = 완전 동조)'}, ax=ax,
             linewidths=0.5)
 ax.set_title('원형 내 활동 간 Phase Coherence — 같은 원형 활동들이 같은 월에 피크하는가',
-             fontsize=14, fontweight='bold')
+             fontweight='bold')
 ax.set_xlabel('주파수 빈')
 ax.set_ylabel('')
 plt.tight_layout()

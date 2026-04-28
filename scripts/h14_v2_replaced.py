@@ -322,36 +322,36 @@ for _, row in filt.iterrows():
         row['OFFC_NM'],
         (row['exposure_score'], row['w_corr_diff']),
         xytext=(4, 4), textcoords='offset points',
-        fontsize=8, color='#222',
+        fontsize=plt.rcParams['font.size'] * 0.85, color='#222',
         ha='left', va='bottom',
         bbox=dict(boxstyle='round,pad=0.15', fc='white', alpha=0.55, ec='none'),
     )
 
-ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=12)
-ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=12)
+ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)')
+ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)')
 ax.set_title('부처-결과변수 4분면 — 굿하트 노출 × outcome 디커플링 (교체 outcome)\n'
              f'(exposure ≥ {EXPO_THRESH}, n_year ≥ {MIN_N}, N={len(filt)})',
-             fontsize=13)
-ax.legend(fontsize=9, loc='lower right')
+             )
+ax.legend(loc='lower right')
 ax.grid(alpha=0.25, zorder=0)
 
 # 4분면 텍스트 주석
 xlim = ax.get_xlim(); ylim = ax.get_ylim()
 ax.text(EXPO_THRESH + 0.01, ylim[1] - 0.05,
         'Q2\n굿하트 위험\n+측정 왜곡\n→ 점검 필요',
-        fontsize=8.5, color='#e63946', va='top', ha='left',
+        fontsize=plt.rcParams['font.size'] * 0.85, color='#e63946', va='top', ha='left',
         bbox=dict(boxstyle='round', fc='#fff0f0', alpha=0.7, ec='#e63946'))
 ax.text(EXPO_THRESH + 0.01, ylim[0] + 0.05,
         'Q1\n굿하트 위험\n+자동분배\n→ 계속 OK',
-        fontsize=8.5, color='#e07b54', va='bottom', ha='left',
+        fontsize=plt.rcParams['font.size'] * 0.85, color='#e07b54', va='bottom', ha='left',
         bbox=dict(boxstyle='round', fc='#fff8f0', alpha=0.7, ec='#e07b54'))
 ax.text(EXPO_THRESH - 0.01, ylim[1] - 0.05,
         'Q4 안전\n(양 상관)',
-        fontsize=8, color='#457b9d', va='top', ha='right',
+        fontsize=plt.rcParams['font.size'] * 0.85, color='#457b9d', va='top', ha='right',
         bbox=dict(boxstyle='round', fc='#f0f5ff', alpha=0.7, ec='#457b9d'))
 ax.text(EXPO_THRESH - 0.01, ylim[0] + 0.05,
         'Q3 안전\n(음 상관)',
-        fontsize=8, color='#2c7873', va='bottom', ha='right',
+        fontsize=plt.rcParams['font.size'] * 0.85, color='#2c7873', va='bottom', ha='right',
         bbox=dict(boxstyle='round', fc='#f0fff4', alpha=0.7, ec='#2c7873'))
 
 fig_save(fig, os.path.join(OUT_DIR, 'H14_exposure_vs_outcome_v2.png'))
@@ -400,7 +400,7 @@ for _, row in filt.iterrows():
     )
 
 # 4분면 제목
-kw = dict(fontsize=11, va='center', ha='center', alpha=0.7, zorder=3)
+kw = dict(fontsize=plt.rcParams['font.size'] * 0.85, va='center', ha='center', alpha=0.7, zorder=3)
 ax.text((EXPO_THRESH + x1) / 2, y1_lim * 0.72,
         'Q2\n굿하트 위험 + 측정 왜곡\n→ 점검 필요', color='#c0392b', **kw)
 ax.text((EXPO_THRESH + x1) / 2, y0_lim * 0.72,
@@ -413,17 +413,17 @@ ax.text(EXPO_THRESH * 0.5, y0_lim * 0.72,
 # 범례
 patches = [mpatches.Patch(color=c, label=q, alpha=0.8)
            for q, c in Q_COLORS.items()]
-ax.legend(handles=patches, fontsize=9, loc='upper left',
-          title='4분면 분류', title_fontsize=9)
+ax.legend(handles=patches, loc='upper left',
+          title='4분면 분류')
 
 ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
-ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=12)
-ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=12)
+ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)')
+ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)')
 ax.set_title('굿하트 위험 4분면 분류 (교체 outcome)\n'
              '(X: 노출 점수, Y: outcome 디커플링, 기준선: 노출=0.3, corr=0)\n'
              '과기→특허, 관광→방한외래객, 행정→재정자립도, 통신→초고속인터넷',
-             fontsize=12)
+             )
 ax.grid(alpha=0.2, zorder=0)
 
 fig_save(fig, os.path.join(OUT_DIR, 'H14_risk_quadrant_v2.png'))

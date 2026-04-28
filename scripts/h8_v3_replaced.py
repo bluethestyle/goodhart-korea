@@ -455,7 +455,7 @@ pal = sns.color_palette('Set2', 3)
 xx = np.arange(len(labels))
 bars = ax.bar(xx, r2_vals, color=pal, alpha=0.85, width=0.6)
 ax.set_xticks(xx)
-ax.set_xticklabels(labels, fontsize=15)
+ax.set_xticklabels(labels)
 ax.set_ylabel('R²')
 ax.set_title(
     f'분야 FE vs 원형 비중×Δamp — R² 분해 (v3, 11y)\n'
@@ -463,18 +463,18 @@ ax.set_title(
 )
 for i, v in enumerate(r2_vals):
     ax.annotate(f'{v:.3f}', (xx[i], v), xytext=(0, 8),
-                textcoords='offset points', ha='center', fontsize=14)
+                textcoords='offset points', ha='center', fontsize=plt.rcParams['font.size'] * 0.85)
 beta_labels = []
 for i, col in enumerate(m_c.get('cols', [])):
     if 'x_amp' in col:
         beta_labels.append(f'{col.replace("_x_amp","")}: β={m_c["beta"][i]:.2f}')
 if beta_labels:
     ax.text(0.02, 0.97, '\n'.join(beta_labels),
-            transform=ax.transAxes, va='top', fontsize=12,
+            transform=ax.transAxes, va='top',
             bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))
 ax.text(0.98, 0.03,
         '교체: 과기→patent / 관광→외국인\n행정→재정자립도 / 통신→광대역',
-        transform=ax.transAxes, va='bottom', ha='right', fontsize=11,
+        transform=ax.transAxes, va='bottom', ha='right',
         bbox=dict(boxstyle='round,pad=0.3', facecolor='lightblue', alpha=0.7))
 plt.tight_layout()
 out_fe = os.path.join(OUT_DIR, 'H8_field_FE_vs_archetype.png')

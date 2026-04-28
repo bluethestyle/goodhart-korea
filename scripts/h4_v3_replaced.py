@@ -429,7 +429,7 @@ ax.set_title(
     f'Mapper graph (11y v3) — color=평균 amp_12m_norm\n'
     f'{G.number_of_nodes()} nodes, {G.number_of_edges()} edges, '
     f'components={len(comps)}, loops={n_loops}',
-    fontsize=10
+    
 )
 ax.axis('off')
 fig.colorbar(sc, ax=ax, label='amp_12m_norm', shrink=0.7)
@@ -450,11 +450,11 @@ nx.draw_networkx_labels(G, pos,
 from matplotlib.patches import Patch
 legend_elems = [Patch(facecolor=palette(cl), label=f'{cl}:{CLU_LABEL.get(cl,"?")}')
                 for cl in sorted(CLU_LABEL.keys())]
-ax.legend(handles=legend_elems, loc='lower right', fontsize=8)
+ax.legend(handles=legend_elems, loc='lower right')
 ax.set_title(
     f'Mapper graph (11y v3) — color=H3 클러스터\n'
     f'0:인건비/1:자산취득/2:출연금/3:정상  |  분기점={len(branches)}, 말단={len(endpoints)}',
-    fontsize=10
+    
 )
 ax.axis('off')
 plt.tight_layout()
@@ -473,9 +473,9 @@ ax = axes[0, 0]
 for cl in clusters:
     s = cluster_amp_ts[cl].dropna()
     ax.plot(s.index, s.values, marker='o', label=f'{cl}:{CLU_LABEL.get(cl,"?")}')
-ax.set_title('클러스터별 amp_12m 가중평균 시계열 (11y v3, 분야 가중)', fontsize=10)
+ax.set_title('클러스터별 amp_12m 가중평균 시계열 (11y v3, 분야 가중)')
 ax.set_xlabel('year'); ax.set_ylabel('amp_12m_norm')
-ax.legend(fontsize=8); ax.grid(alpha=0.3)
+ax.legend(); ax.grid(alpha=0.3)
 
 # (상단 우) 4×15 outcome 차분 상관 히트맵
 ax = axes[0, 1]
@@ -486,7 +486,7 @@ if len(oc_corr) > 0:
     replaced_labels = [OUTCOME_LABEL.get(m, m) for m in REPLACED.keys()]
     sns.heatmap(pv, annot=True, fmt='.2f', cmap='RdBu_r', center=0, ax=ax,
                 cbar_kws={'label': 'corr(1차 차분)'}, annot_kws={'size': 7})
-    ax.set_title('클러스터 × outcome 차분 상관 (15 outcome × 4 cluster, v3)\n★=교체 항목', fontsize=10)
+    ax.set_title('클러스터 × outcome 차분 상관 (15 outcome × 4 cluster, v3)\n★=교체 항목')
     ax.set_xlabel('cluster'); ax.set_ylabel('outcome metric')
     ax.tick_params(axis='x', labelsize=8)
     ax.tick_params(axis='y', labelsize=8)
@@ -503,7 +503,7 @@ ax = axes[1, 0]
 sizes_dist = sorted([len(c) for c in comps], reverse=True)
 ax.bar(range(len(sizes_dist)), sizes_dist, color='#5475a8')
 ax.set_yscale('log')
-ax.set_title(f'Mapper 연결 성분 크기 분포 ({len(comps)}개, 11y v3)', fontsize=10)
+ax.set_title(f'Mapper 연결 성분 크기 분포 ({len(comps)}개, 11y v3)')
 ax.set_xlabel('component rank'); ax.set_ylabel('node 수 (log)')
 ax.grid(alpha=0.3)
 
@@ -534,14 +534,14 @@ if os.path.exists(v2_path) and len(oc_corr) > 0:
         ax.bar(x + w/2, cmp_df['v3_corr'], w, label='v3(교체)', color='#c87f5a', alpha=0.8)
         ax.axhline(0, color='k', linewidth=0.8)
         ax.set_xticks(x)
-        ax.set_xticklabels(cmp_df['label'], fontsize=6, rotation=45, ha='right')
+        ax.set_xticklabels(cmp_df['label'], rotation=45, ha='right')
         ax.set_ylabel('차분 상관계수')
-        ax.set_title('v2 vs v3: 교체 4개 metric 차분 상관 비교', fontsize=10)
-        ax.legend(fontsize=8); ax.grid(alpha=0.3, axis='y')
+        ax.set_title('v2 vs v3: 교체 4개 metric 차분 상관 비교')
+        ax.legend(); ax.grid(alpha=0.3, axis='y')
 else:
     ax.text(0.5, 0.5, 'v2 비교 데이터 없음', ha='center', va='center',
-            transform=ax.transAxes, fontsize=12)
-    ax.set_title('v2 vs v3 비교 (데이터 없음)', fontsize=10)
+            transform=ax.transAxes)
+    ax.set_title('v2 vs v3 비교 (데이터 없음)')
 
 plt.tight_layout()
 save_and_resize(fig, os.path.join(OUT_DIR, 'H4_cluster_outcome_panel_11y_v3.png'))
@@ -568,7 +568,7 @@ ax.set_title(
     f'Mapper (11y v3) — 출연금 비중 + 분기점 분야 라벨\n'
     f'components={len(comps)}, loops={n_loops}, branches={len(branches)}\n'
     f'outcome: 15분야 v3 (교체 4개 반영)',
-    fontsize=11
+    
 )
 ax.axis('off')
 plt.tight_layout()

@@ -390,7 +390,7 @@ for cl in sorted(df['cluster'].unique()):
                label=f'cluster {cl} (n={len(sub_)})')
 ax.set_title('UMAP 임베딩 — HDBSCAN 클러스터')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
-ax.legend(loc='best', fontsize=8)
+ax.legend(loc='best')
 ax.grid(alpha=0.3)
 
 # 분야별 색
@@ -404,7 +404,7 @@ others = df[~df['FLD_NM'].isin(top_flds)]
 ax.scatter(others['u1'], others['u2'], s=4, c='#dddddd', alpha=0.4, label='기타')
 ax.set_title('UMAP 임베딩 — 분야별 (상위 8개)')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
-ax.legend(loc='best', fontsize=8, ncol=2)
+ax.legend(loc='best', ncol=2)
 ax.grid(alpha=0.3)
 plt.tight_layout()
 fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=200, bbox_inches='tight')
@@ -553,7 +553,7 @@ ks_df.to_csv(os.path.join(RES_DIR, f'H3_field_ks_amp12m{SUFFIX}.csv'),
 # 그림: A,B,C 기존 + D(부처 그래프 v2) + E(sub-cluster) + F(분야 유사도)
 # ============================================================
 # ── Figure A: UMAP scatter (클러스터별) ─────────────
-fig, axes = plt.subplots(1, 2, figsize=(15, 6.5))
+fig, axes = plt.subplots(2, 1, figsize=(11, 13))
 ax = axes[0]
 palette = plt.get_cmap('tab10')
 for cl in sorted(df['cluster'].unique()):
@@ -563,7 +563,7 @@ for cl in sorted(df['cluster'].unique()):
                label=f'cluster {cl} (n={len(sub_)})')
 ax.set_title('UMAP — HDBSCAN 클러스터 (전체 1,641 활동)')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
-ax.legend(loc='best', fontsize=8)
+ax.legend(loc='best')
 ax.grid(alpha=0.3)
 
 ax = axes[1]
@@ -576,7 +576,7 @@ others = df[~df['FLD_NM'].isin(top_flds)]
 ax.scatter(others['u1'], others['u2'], s=4, c='#dddddd', alpha=0.4, label='기타')
 ax.set_title('UMAP — 분야별 (상위 8개)')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
-ax.legend(loc='best', fontsize=8, ncol=2)
+ax.legend(loc='best', ncol=2)
 ax.grid(alpha=0.3)
 plt.tight_layout()
 fig.savefig(os.path.join(OUT_DIR, 'H3_umap_scatter.png'), dpi=200, bbox_inches='tight')
@@ -627,7 +627,7 @@ for sc in sorted(df_c2['subcluster'].unique()):
                label=f'sub {sc} (n={len(sub_)})')
 ax.set_title('cluster 2 (정상 사업, N=1,327) 내부 UMAP+HDBSCAN')
 ax.set_xlabel('UMAP-A'); ax.set_ylabel('UMAP-B')
-ax.legend(loc='best', fontsize=7)
+ax.legend(loc='best')
 ax.grid(alpha=0.3)
 
 ax = axes[1]

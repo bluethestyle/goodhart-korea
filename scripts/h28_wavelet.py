@@ -160,9 +160,10 @@ print('\nStep 4: Scaleogram figure 생성')
 arch_names = {'C0_personnel': '인건비형', 'C1_direct_invest': '자산취득형',
               'C2_chooyeon': '출연금형', 'C3_normal': '정상사업'}
 
-fig, axes = plt.subplots(2, 2, figsize=(20, 13), sharex=True, sharey=True)
-for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest',
-                                       'C2_chooyeon', 'C3_normal']):
+fig, axes = plt.subplots(4, 1, figsize=(11, 22), sharex=False, sharey=False,
+                         constrained_layout=True)
+arch_list = ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']
+for ax, arch in zip(axes.flatten(), arch_list):
     if arch not in cwt_results:
         continue
     d = cwt_results[arch]
@@ -177,21 +178,17 @@ for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest',
     ax.set_ylim(2, 36)
     ax.invert_yaxis()
     ax.axhline(12, color='red', linestyle='--', alpha=0.6, linewidth=2)
-    ax.set_title(arch_names.get(arch, arch), fontsize=22, fontweight='bold')
-    ax.tick_params(labelsize=18)
-    if arch in ('C2_chooyeon', 'C3_normal'):
-        ax.set_xlabel('연도', fontsize=20)
-    if arch in ('C0_personnel', 'C2_chooyeon'):
-        ax.set_ylabel('주기 (개월)', fontsize=20)
+    ax.set_title(arch_names.get(arch, arch), fontweight='bold')
+    ax.set_ylabel('주기 (개월)')
+    ax.set_xlabel('연도')
 
-# colorbar
-cbar = fig.colorbar(im, ax=axes.ravel().tolist(), orientation='vertical',
+# colorbar: figure 오른쪽 세로로 한 번에
+cbar = fig.colorbar(im, ax=axes.tolist(), orientation='vertical',
                      label='log(1 + power)', pad=0.02, shrink=0.8)
-cbar.ax.tick_params(labelsize=16)
-cbar.set_label('log(1 + power)', fontsize=18)
+cbar.set_label('log(1 + power)')
 
 fig.suptitle('웨이블릿 Scaleogram — 사업원형별 시간×주기 power 분포\n'
-             '(붉은 점선: 12m, 색이 밝을수록 강한 진폭)', y=1.00, fontsize=22, fontweight='bold')
+             '(붉은 점선: 12m, 색이 밝을수록 강한 진폭)', fontweight='bold')
 plt.savefig(os.path.join(FIG, 'h28_scaleogram.png'), dpi=200, bbox_inches='tight')
 plt.close()
 print(f'  → h28_scaleogram.png')
@@ -216,12 +213,12 @@ for arch in ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']:
 for yr, lbl in [(2017, '국가재정법 시행 후 10년'),
                  (2020, 'COVID 확장재정')]:
     ax.axvline(yr, color='gray', linestyle=':', alpha=0.5)
-    ax.text(yr, ax.get_ylim()[1] * 0.95, f' {lbl}', fontsize=9, color='gray', va='top')
+    ax.text(yr, ax.get_ylim()[1] * 0.95, f' {lbl}', fontsize=plt.rcParams['font.size'] * 0.85, color='gray', va='top')
 
 ax.set_xlabel('연도')
 ax.set_ylabel('웨이블릿 12m 평균 power')
 ax.set_title('12개월 cycle 진폭의 시간 진화 — 게임화 강도가 시간에 따라 변하는가',
-             fontsize=15, fontweight='bold')
+             fontweight='bold')
 ax.legend(loc='best', frameon=True, fancybox=True)
 ax.grid(True, alpha=0.3)
 plt.tight_layout()
