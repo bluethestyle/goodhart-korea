@@ -144,8 +144,8 @@ REPLACED = {
     'broadband_per_100':    ('ict_value_added',        '통신'),
 }
 
-# 클러스터 레이블 (11y v2)
-CLU_LABEL = {0:'인건비형', 1:'자산취득형', 2:'출연금형', 3:'정상형'}
+# 클러스터 레이블 (11y v2) — N 카운트 포함
+CLU_LABEL = {0:'인건비형 (n=129)', 1:'자산취득형 (n=99)', 2:'출연금형 (n=154)', 3:'정상사업 (n=1,175)'}
 
 # ============================================================
 # Step 1: 데이터 로드
@@ -448,7 +448,7 @@ nx.draw_networkx_labels(G, pos,
                         font_size=7, font_family=KFONT or 'sans-serif', ax=ax)
 # 범례
 from matplotlib.patches import Patch
-legend_elems = [Patch(facecolor=palette(cl), label=f'{cl}:{CLU_LABEL.get(cl,"?")}')
+legend_elems = [Patch(facecolor=palette(cl), label=CLU_LABEL.get(cl, f'cluster {cl}'))
                 for cl in sorted(CLU_LABEL.keys())]
 ax.legend(handles=legend_elems, loc='lower right')
 ax.set_title(
@@ -472,7 +472,7 @@ fig, axes = plt.subplots(2, 2, figsize=(17, 11))
 ax = axes[0, 0]
 for cl in clusters:
     s = cluster_amp_ts[cl].dropna()
-    ax.plot(s.index, s.values, marker='o', label=f'{cl}:{CLU_LABEL.get(cl,"?")}')
+    ax.plot(s.index, s.values, marker='o', label=CLU_LABEL.get(cl, f'cluster {cl}'))
 ax.set_title('클러스터별 amp_12m 가중평균 시계열 (11y v3, 분야 가중)')
 ax.set_xlabel('year'); ax.set_ylabel('amp_12m_norm')
 ax.legend(); ax.grid(alpha=0.3)

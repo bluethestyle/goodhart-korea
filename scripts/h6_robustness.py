@@ -253,9 +253,9 @@ m3 = ols_with_dummies(fe_z, 'd_oc_z', 'd_amp_z', fld_fe=True, year_fe=True)
 print('   ' + m3[m3['var']=='d_amp_z'].round(4).to_string(index=False).replace('\n','\n   '))
 
 fe_summary = pd.DataFrame([
-    {'model': 'pooled', **m1[m1['var']=='d_amp_z'].iloc[0].to_dict()},
-    {'model': '+fld_FE', **m2[m2['var']=='d_amp_z'].iloc[0].to_dict()},
-    {'model': '+fld+year_FE', **m3[m3['var']=='d_amp_z'].iloc[0].to_dict()},
+    {'model': 'pooled (분야 FE 없음)', **m1[m1['var']=='d_amp_z'].iloc[0].to_dict()},
+    {'model': '+분야 FE', **m2[m2['var']=='d_amp_z'].iloc[0].to_dict()},
+    {'model': '+분야 FE +연도 FE', **m3[m3['var']=='d_amp_z'].iloc[0].to_dict()},
 ])
 fe_summary.to_csv(os.path.join(RES_DIR, 'H6_fe_regression.csv'),
                   index=False, encoding='utf-8-sig')

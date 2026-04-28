@@ -314,7 +314,7 @@ for cl, grp in filt.groupby('co_cluster'):
     ax.scatter(grp['exposure_score'], grp['w_corr_diff'],
                s=70, color=CLUSTER_COLORS.get(cl, '#888'),
                edgecolors='#333', linewidths=0.5,
-               alpha=0.85, zorder=3, label=f'Co-cluster {cl}')
+               alpha=0.85, zorder=3, label=f'부처 그룹 {cl}')
 
 # 라벨
 for _, row in filt.iterrows():

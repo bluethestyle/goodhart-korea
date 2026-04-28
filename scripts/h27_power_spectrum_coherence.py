@@ -229,8 +229,8 @@ print('\nStep 6: 시각화 figure 생성')
 fig, ax = plt.subplots(figsize=(11, 6))
 freqs = list(range(7))
 labels = ['DC (k=0)', '12m (k=1)', '6m (k=2)', '4m (k=3)', '3m·분기 (k=4)', '2.4m (k=5)', '2m (k=6)']
-arch_names = {'C0_personnel': '인건비형', 'C1_direct_invest': '자산취득형',
-              'C2_chooyeon': '출연금형', 'C3_normal': '정상사업'}
+arch_names = {'C0_personnel': '인건비형 (n=129)', 'C1_direct_invest': '자산취득형 (n=99)',
+              'C2_chooyeon': '출연금형 (n=154)', 'C3_normal': '정상사업 (n=1,175)'}
 arch_colors = {'C0_personnel': '#4C72B0', 'C1_direct_invest': '#DD8452',
                'C2_chooyeon': '#55A868', 'C3_normal': '#C44E52'}
 
@@ -267,8 +267,8 @@ for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest', 'C2_cho
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     ax.set_xticks(np.linspace(0, 2*np.pi, 12, endpoint=False))
-    ax.set_xticklabels(['1','2','3','4','5','6','7','8','9','10','11','12'])
-    ax.set_title(f'{arch_names.get(arch, arch)}\n(N={len(sub)})', fontweight='bold', pad=20)
+    ax.set_xticklabels(['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'])
+    ax.set_title(arch_names.get(arch, arch), fontweight='bold', pad=20)
     ax.set_yticklabels([])
 fig.suptitle('사업원형별 12개월 주기 Phase 분포 — 어느 월에 피크하는가',
              fontweight='bold', y=1.00)

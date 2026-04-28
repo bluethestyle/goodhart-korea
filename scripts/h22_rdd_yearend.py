@@ -60,8 +60,8 @@ FDIR  = 'data/figs/h22'
 RDIR  = 'data/results'
 DAYS  = {1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
 DPI   = 200
-MAXPX = 1800
-W_IN  = MAXPX / DPI   # 12 inch
+MAXPX = 1100
+W_IN  = MAXPX / DPI
 LM_MULT = 5.0         # Liebman-Mahoney 기준
 
 os.makedirs(FDIR, exist_ok=True)
@@ -94,7 +94,7 @@ h3 = pd.read_csv('data/results/H3_activity_embedding_11y.csv',
                           'chooyeon_pct','direct_invest_pct',
                           'personnel_pct','operating_pct']
                 ).drop_duplicates('ACTV_NM')
-CLUSTER_LABEL = {0:'인건비형', 1:'출연금형', 2:'직접투자형', 3:'일반사업형'}
+CLUSTER_LABEL = {0:'인건비형', 1:'자산취득형', 2:'출연금형', 3:'정상사업'}
 
 df_raw = df_raw.merge(h3, on='ACTV_NM', how='left')
 df_raw['days']      = df_raw['month'].map(DAYS)
@@ -194,11 +194,11 @@ agg_fld = (df_raw.groupby(['year','month','FLD_NM'])
            .reset_index())
 
 # ── 8. 그림 1: 주 RDD 시각화 ──────────────────────────────────────────────────
-fig = plt.figure(figsize=(W_IN, W_IN * 0.95), dpi=DPI)
-gs  = GridSpec(2, 3, figure=fig, hspace=0.55, wspace=0.42)
+fig = plt.figure(figsize=(W_IN, W_IN * 2.2), dpi=DPI)
+gs  = GridSpec(4, 1, figure=fig, height_ratios=[1, 1, 1.4, 1], hspace=0.4)
 
 # --- A. 월별 연도별 일집행액 ---
-ax_a = fig.add_subplot(gs[0, :2])
+ax_a = fig.add_subplot(gs[0, 0])
 yr_list   = sorted(agg_all['year'].unique())
 cmap_vals = plt.cm.Blues(np.linspace(0.35, 0.9, len(yr_list)))
 for i, yr in enumerate(yr_list):
@@ -222,7 +222,7 @@ ax_a.legend(ncol=6, loc='upper left', framealpha=0.7)
 ax_a.grid(alpha=0.3)
 
 # --- B. RDD 점프 시각화 (연도별 11→12월 변화율) ---
-ax_b = fig.add_subplot(gs[0, 2])
+ax_b = fig.add_subplot(gs[1, 0])
 # 각 연도×활동의 11월→12월 변화
 pivot = df_raw[df_raw['month'].isin([11,12])].pivot_table(
     index=['year','ACTV_CD'], columns='month', values='log_daily'
@@ -256,7 +256,7 @@ ax_b.legend()
 ax_b.grid(alpha=0.3)
 
 # --- C. 분야별 β Forest plot ---
-ax_c = fig.add_subplot(gs[1, :2])
+ax_c = fig.add_subplot(gs[2, 0])
 if not field_df.empty:
     colors_c = ['crimson' if p < 0.05 else '#aaaaaa'
                 for p in field_df['pval']]
@@ -287,7 +287,7 @@ if not field_df.empty:
     ax_c.grid(alpha=0.3, axis='x')
 
 # --- D. H3 클러스터별 β ---
-ax_d = fig.add_subplot(gs[1, 2])
+ax_d = fig.add_subplot(gs[3, 0])
 if clust_results:
     cl_df = pd.DataFrame(clust_results).sort_values('beta').reset_index(drop=True)
     colors_d = ['crimson' if p < 0.05 else '#aaaaaa' for p in cl_df['pval']]
@@ -326,8 +326,7 @@ if r_bw1:
 fig.suptitle('한국판 Year-End Spending RDD\n(Liebman & Mahoney 2017, AER 복제)',
              fontweight='bold', y=1.02)
 
-plt.savefig(f'{FDIR}/H22_rdd_main.png', dpi=DPI,
-            bbox_inches='tight', facecolor='white')
+plt.savefig(f'{FDIR}/H22_rdd_main.png', dpi=DPI, facecolor='white')
 print(f"저장: {FDIR}/H22_rdd_main.png")
 plt.close()
 
@@ -389,7 +388,7 @@ fig2.suptitle('분야별 12월 Year-End 집행 점프\n(상위·하위 각 3개 
               fontweight='bold')
 plt.tight_layout()
 plt.savefig(f'{FDIR}/H22_rdd_by_field.png', dpi=DPI,
-            bbox_inches='tight', facecolor='white')
+            bbox_inches='tight', pad_inches=0.15, facecolor='white')
 print(f"저장: {FDIR}/H22_rdd_by_field.png")
 plt.close()
 

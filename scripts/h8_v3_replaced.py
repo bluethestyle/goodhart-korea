@@ -485,11 +485,20 @@ print(f'\n그림 저장: {out_fe}')
 # ============================================================
 # Figure 2: 분야×원형그룹 corr_diff 히트맵 — H8_archetype_outcome.png
 # ============================================================
+ARCH_GRP_KR = {
+    'personnel':     '인건비형 (n=129)',
+    'direct_invest': '자산취득형 (n=99)',
+    'chooyeon_sub0': '출연금형-A (n=77)',
+    'chooyeon_sub1': '출연금형-B (n=77)',
+    'normal':        '정상사업 (n=1,175)',
+    'noise':         '미분류',
+}
 if not arch_corr.empty:
     piv = arch_corr.pivot_table(index='fld', columns='arch_grp', values='corr_diff')
     grp_order = [g for g in ['personnel', 'direct_invest', 'chooyeon_sub0', 'chooyeon_sub1', 'normal']
                  if g in piv.columns]
     piv = piv[grp_order] if grp_order else piv
+    piv.columns = [ARCH_GRP_KR.get(c, c) for c in piv.columns]
     vals = piv.values[~np.isnan(piv.values)]
     vabs = max(abs(vals).max() if len(vals) > 0 else 0.5, 0.3)
     fig, ax = plt.subplots(figsize=(12, 7))

@@ -157,8 +157,8 @@ print(f'  → H28_wavelet_12m_evolution.csv')
 # Step 4: Scaleogram 시각화 (4 원형)
 # ============================================================
 print('\nStep 4: Scaleogram figure 생성')
-arch_names = {'C0_personnel': '인건비형', 'C1_direct_invest': '자산취득형',
-              'C2_chooyeon': '출연금형', 'C3_normal': '정상사업'}
+arch_names = {'C0_personnel': '인건비형 (n=129)', 'C1_direct_invest': '자산취득형 (n=99)',
+              'C2_chooyeon': '출연금형 (n=154)', 'C3_normal': '정상사업 (n=1,175)'}
 
 fig, axes = plt.subplots(4, 1, figsize=(11, 22), sharex=False, sharey=False,
                          constrained_layout=True)

@@ -85,6 +85,9 @@ os.makedirs(RES_DIR, exist_ok=True)
 
 KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 
+# 클러스터 한글 레이블 매핑
+CLUSTER_KR = {-1: '노이즈', 0: '인건비형', 1: '자산취득형', 2: '출연금형', 3: '정상사업'}
+
 PURE_ACCT = """(
     ACTV_NM ILIKE '%전출금%' OR ACTV_NM ILIKE '%타계정%' OR ACTV_NM ILIKE '%여유자금%'
  OR ACTV_NM ILIKE '%국고예탁%' OR ACTV_NM ILIKE '%기금예탁%' OR ACTV_NM ILIKE '%국고예치%'
@@ -386,8 +389,9 @@ palette = plt.get_cmap('tab10')
 for cl in sorted(df['cluster'].unique()):
     sub_ = df[df['cluster']==cl]
     color = '#bbbbbb' if cl == -1 else palette(cl % 10)
+    kr_name = CLUSTER_KR.get(cl, f'cluster {cl}')
     ax.scatter(sub_['u1'], sub_['u2'], s=10, c=[color], alpha=0.6,
-               label=f'cluster {cl} (n={len(sub_)})')
+               label=f'{kr_name} (n={len(sub_):,})')
 ax.set_title('UMAP 임베딩 — HDBSCAN 클러스터')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
 ax.legend(loc='best')
@@ -399,7 +403,7 @@ top_flds = df['FLD_NM'].value_counts().head(8).index.tolist()
 palette2 = plt.get_cmap('tab20')
 for i, f in enumerate(top_flds):
     sub_ = df[df['FLD_NM']==f]
-    ax.scatter(sub_['u1'], sub_['u2'], s=8, c=[palette2(i)], alpha=0.6, label=f'{f} (n={len(sub_)})')
+    ax.scatter(sub_['u1'], sub_['u2'], s=8, c=[palette2(i)], alpha=0.6, label=f'{f} (n={len(sub_):,})')
 others = df[~df['FLD_NM'].isin(top_flds)]
 ax.scatter(others['u1'], others['u2'], s=4, c='#dddddd', alpha=0.4, label='기타')
 ax.set_title('UMAP 임베딩 — 분야별 (상위 8개)')
@@ -413,17 +417,21 @@ plt.close()
 # ── Figure B: 클러스터 프로파일 heatmap ────────────
 fig, ax = plt.subplots(figsize=(12, 6))
 import seaborn as sns
-sns.heatmap(zprof.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
+zprof_plot = zprof.copy()
+zprof_plot.index = [CLUSTER_KR.get(i, f'cluster {i}') for i in zprof_plot.index]
+sns.heatmap(zprof_plot.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
             center=0, ax=ax, cbar_kws={'label':'z-score'})
 ax.set_title('클러스터별 피처 z-score 프로파일')
-ax.set_xlabel(f'cluster (총 N: {zprof["n"].sum()})')
+ax.set_xlabel(f'사업 원형 (총 N: {int(zprof["n"].sum())})')
 plt.tight_layout()
 fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure C: 분야 × 클러스터 heatmap ──────────────
 fig, ax = plt.subplots(figsize=(12, 7))
-sns.heatmap(ct.drop(columns='n'), annot=True, fmt='.2f', cmap='YlOrRd',
+ct_plot = ct.drop(columns='n').copy()
+ct_plot.columns = [CLUSTER_KR.get(c, f'cluster {c}') for c in ct_plot.columns]
+sns.heatmap(ct_plot, annot=True, fmt='.2f', cmap='YlOrRd',
             ax=ax, cbar_kws={'label':'활동 비율'})
 ax.set_title('분야별 클러스터 분포 (행=분야, 행 합=1)')
 plt.tight_layout()
@@ -559,9 +567,10 @@ palette = plt.get_cmap('tab10')
 for cl in sorted(df['cluster'].unique()):
     sub_ = df[df['cluster']==cl]
     color = '#bbbbbb' if cl == -1 else palette(cl % 10)
+    kr_name = CLUSTER_KR.get(cl, f'cluster {cl}')
     ax.scatter(sub_['u1'], sub_['u2'], s=10, c=[color], alpha=0.6,
-               label=f'cluster {cl} (n={len(sub_)})')
-ax.set_title('UMAP — HDBSCAN 클러스터 (전체 1,641 활동)')
+               label=f'{kr_name} (n={len(sub_):,})')
+ax.set_title(f'UMAP — HDBSCAN 클러스터 (전체 {len(df):,} 활동)')
 ax.set_xlabel('UMAP 1'); ax.set_ylabel('UMAP 2')
 ax.legend(loc='best')
 ax.grid(alpha=0.3)
@@ -571,7 +580,7 @@ top_flds = df['FLD_NM'].value_counts().head(8).index.tolist()
 palette2 = plt.get_cmap('tab20')
 for i, f in enumerate(top_flds):
     sub_ = df[df['FLD_NM']==f]
-    ax.scatter(sub_['u1'], sub_['u2'], s=8, c=[palette2(i)], alpha=0.6, label=f'{f} (n={len(sub_)})')
+    ax.scatter(sub_['u1'], sub_['u2'], s=8, c=[palette2(i)], alpha=0.6, label=f'{f} (n={len(sub_):,})')
 others = df[~df['FLD_NM'].isin(top_flds)]
 ax.scatter(others['u1'], others['u2'], s=4, c='#dddddd', alpha=0.4, label='기타')
 ax.set_title('UMAP — 분야별 (상위 8개)')
@@ -584,17 +593,22 @@ plt.close()
 
 # ── Figure B: 클러스터 프로파일 heatmap ────────────
 fig, ax = plt.subplots(figsize=(11, 6))
-sns.heatmap(zprof.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
+zprof_plot2 = zprof.copy()
+zprof_plot2.index = [CLUSTER_KR.get(i, f'cluster {i}') for i in zprof_plot2.index]
+n_labels = [f'{CLUSTER_KR.get(i, f"C{i}")} (n={int(v)})' for i, v in zip(zprof.index, zprof['n'])]
+sns.heatmap(zprof_plot2.drop(columns='n').T, annot=True, fmt='.2f', cmap='RdBu_r',
             center=0, ax=ax, cbar_kws={'label':'z-score'})
-ax.set_title(f'1차 클러스터 z-score 프로파일 (N: {zprof["n"].astype(int).tolist()})')
-ax.set_xlabel('cluster')
+ax.set_title(f'1차 클러스터 z-score 프로파일\n({" / ".join(n_labels)})')
+ax.set_xlabel('사업 원형')
 plt.tight_layout()
 fig.savefig(os.path.join(OUT_DIR, 'H3_cluster_profile.png'), dpi=200, bbox_inches='tight')
 plt.close()
 
 # ── Figure C: 분야 × 클러스터 heatmap ──────────────
 fig, ax = plt.subplots(figsize=(10, 6.5))
-sns.heatmap(ct.drop(columns='n'), annot=True, fmt='.2f', cmap='YlOrRd',
+ct_plot2 = ct.drop(columns='n').copy()
+ct_plot2.columns = [CLUSTER_KR.get(c, f'cluster {c}') for c in ct_plot2.columns]
+sns.heatmap(ct_plot2, annot=True, fmt='.2f', cmap='YlOrRd',
             ax=ax, cbar_kws={'label':'활동 비율'})
 ax.set_title('분야별 1차 클러스터 분포 (행=분야, 행 합=1)')
 plt.tight_layout()
