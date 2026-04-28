@@ -485,7 +485,119 @@ H2 (보조): 게임화-결과 관계는 분야별 이질성을 보임
 
 ---
 
-## 11. 한계 및 주의
+## 11. H3 — 활동 단위 임베딩으로 본 게임화 시그니처 (UMAP + 그래프)
+
+### 11.1 동기
+
+H1·H2는 분야 단위(N≤16)에서 본 결과. "분야별 게임화 패턴이 어떻게 다른가?"를 더 미시적으로 보려면 활동(ACTV) 단위로 내려가야 한다.
+- 활동 ≥4년 보유 = **2,040건**, 12피처 결측 제거 후 **N=1,641**
+- 사업 단위 거대 패널이 생기면 클러스터링·그래프 분석으로 **분야를 가로지르는 시그니처 그룹**을 발견 가능
+
+### 11.2 피처 12개 (활동 1개당 1행)
+
+```
+게임화 시그니처 (월별 시계열 → 연도 평균)
+  amp_12m_norm        1cycle/year FFT 진폭
+  amp_6m_norm         2cycle/year FFT 진폭
+  hhi_period          월별 비중 HHI
+  q4_pct, dec_pct     Q4·12월 집중도
+  cv_monthly          월별 변동계수
+
+예산 구성 (편성목 비중)
+  chooyeon_pct        출연금 비중
+  operating_pct       운영비 비중
+  direct_invest_pct   자산취득·건설비 비중
+  personnel_pct       인건비 비중
+
+스케일·추이
+  log_annual          연 평균 집행 log10
+  growth_cagr         예산 CAGR
+```
+
+### 11.3 1차 클러스터 — 3개의 사업 원형 발견
+
+`UMAP(n_neighbors=30) → HDBSCAN(min_cluster_size=60)`
+
+| Cluster | N | 핵심 시그니처 (z-score) | 해석 |
+|---|---:|---|---|
+| C0 | 127 | personnel_pct **+3.15**, amp_12m −1.32, cv_monthly −1.49 | **인건비 평탄형** (월급봉투 사업) |
+| C1 | 187 | chooyeon_pct **+2.67**, amp_12m +0.88, q4_pct −1.09 | **출연금 의존형** (연내 분산 집행, 12월 비집중) |
+| C2 | 1,327 | 평균 부근 | **정상 사업** (운영비·직접투자 mix) |
+
+→ **C1(출연금형)은 게임화 진폭이 평균보다 높다**. 이는 H1 회귀(β_chooyeon=+0.375)의 사업 단위 재현.
+
+### 11.4 분야 × 1차 클러스터 — 출연금 의존이 분야를 가른다
+
+| 분야 | 출연금형(C1) 비율 | 해석 |
+|---|---:|---|
+| 과학기술 | **39%** | R&D 출연 핵심 |
+| 교육 | **33%** | 대학·교육원 출연 |
+| 산업·중소기업·에너지 | **30%** | 진흥기관 출연 |
+| 통신 | **29%** | KISA·정보통신정책연 등 |
+| 통일·외교 | 11% | |
+| 일반·지방행정 | 12% | |
+| 보건 | 2% | 직접 집행 |
+| 공공질서및안전 | 2% | 직접 집행 |
+| 농림수산 | 4% | |
+
+→ **분야별 게임화 강도 격차의 미시적 메커니즘** = 출연금 사업 비중. 과기·교육·산업·통신은 활동의 1/3 이상이 출연금형이고, 보건·공공질서·농림은 거의 0.
+
+### 11.5 정상 사업(C2) 내부 sub-clustering — 15개 미시 패턴
+
+`UMAP(min_dist=0) → HDBSCAN(leaf, min_cluster=40)`로 C2의 1,327건을 다시 임베딩 → **15 sub-cluster + 26% 노이즈**.
+
+대표 sub:
+
+| sub | N | 시그니처 |
+|---|---:|---|
+| 5 | 50 | hhi z=+2.91, cv z=+2.28 — **극단 게임화 (단일월 집중)** |
+| 6 | 124 | amp_12m +0.85, q4 −1.09 — **분기 비집중·연주기 큰 사업** |
+| 1 | 92 | direct_invest +3.50, q4/dec 매우 높음 — **공사·자산취득 (12월 잔금)** |
+| 4 | 44 | q4 +2.08, dec +2.19 — **Q4 집중 운영비 사업** |
+| 7 | 162 | amp_12m −0.89, cv −1.02 — **평탄 운영비** |
+| 10 | 62 | personnel_pct +1.31 — **준-인건비 사업** |
+| 11 | 55 | growth_cagr +1.76 — **급성장 신규 사업** |
+
+→ "정상" 사업도 **"평탄형/Q4몰빵형/공사형/급성장형/극단게임화형"** 등 매우 이질적이며, 이게 분야별 다른 비율로 섞여 분야 평균을 만든다.
+
+### 11.6 부처 시그니처 그래프 — 5개 커뮤니티
+
+부처별 12피처 평균 → z-score → cosine 유사도 (>0.55) 그래프 → greedy modularity:
+
+| 커뮤니티 | N | 주도 피처 (+) | 약한 피처 (−) | 대표 부처 |
+|---|---:|---|---|---|
+| **C0 행정형** | 22 | operating_pct, q4, dec | amp_12m, cv | 감사원·경찰청·국세청·국방부·식약처·인사혁신처 등 |
+| **C1 사업형** | 19 | amp_12m, cv, hhi | operating, q4, dec | 과기정통부·교육부·국토부·농식품부·문체부·산업부·환경부 등 |
+| **C2 분기말집중** | 4 | q4, cv, operating | growth_cagr, direct_invest | 기재부·통계청·공정거래위·중앙선관위 |
+| **C3 직접투자형** | 4 | growth_cagr, direct_invest, amp_6m | personnel, operating | 금융위·방위사업청·소방청·해양경찰청 |
+| **C4 출연금형** | 2 | chooyeon, growth_cagr, log_annual | amp_6m, dec, hhi | 국무조정실·원자력안전위 |
+
+→ **부처는 자기 사업 포트폴리오 형태에 따라 시그니처를 공유한다**. 특히 C0(행정형) vs C1(사업형) 분리가 가장 두꺼움 — "정책 집행 체질"이 부처 간에 구조적으로 다르다는 증거.
+
+### 11.7 분야 시그니처 비교 — 양극·유사 쌍
+
+분야 12피처 평균 z-score → cosine + amp_12m KS-test:
+
+- **분야 쌍 KS-test (105 pair) 중 29 pair에서 p<0.001** → 분야 간 amp_12m 분포 차이가 통계적으로 매우 유의
+- **양극단 (시그니처 정반대)**:
+  - 산업·중소기업·에너지 ↔ 공공질서및안전 (cos = −0.92)
+  - 국방 ↔ 산업·중소기업·에너지 (cos = −0.69)
+  - KS 최대: 국방 vs 국토및지역개발 = **0.59** (분포 거의 별개)
+- **유사 쌍 (시그니처 거의 동일)**:
+  - 교통및물류 ↔ 국토및지역개발 (cos = **0.91**) — 둘 다 인프라 공사형
+  - 일반·지방행정 ↔ 통일·외교 (cos = 0.85)
+  - 공공질서및안전 ↔ 통일·외교 (cos = 0.81) — 둘 다 운영비·Q4 집중
+
+### 11.8 H3의 의의
+
+1. **분야 단위 회귀(N=15)와 활동 단위 임베딩(N=1,641)이 같은 결론**을 가리킴 → H1 메커니즘(출연금→게임화) 강건성 ↑
+2. "정상 사업"도 15개 미시 패턴으로 분해됨 → 분야 평균을 가르는 진짜 단위는 **사업 형태**, 분야 라벨이 아님
+3. 부처는 행정형·사업형·분기말집중·직접투자·출연금 5개 체질로 묶임 → 부처별 게임화 차이는 **개별 부처 특질**이 아니라 **구조적 그룹 효과**
+4. 분야 쌍 KS-test의 28%가 강력 유의 → 분야 간 게임화 패턴 차이는 무작위 아님
+
+---
+
+## 12. 한계 및 주의
 
 ### 11.1 데이터 한계
 - **편성 vs 결산 차이**: 본예산·추경·월별 집행 보유, 결산(이월·불용)은 일부만
@@ -512,7 +624,7 @@ H2 (보조): 게임화-결과 관계는 분야별 이질성을 보임
 
 ---
 
-## 12. 산출물 인덱스
+## 13. 산출물 인덱스
 
 ### 분석 스크립트 (`scripts/`)
 ```
@@ -524,6 +636,10 @@ build_docs.py             분류별 마크다운
 eda.py                    광역 EDA (분야·부처·통계목)
 eda_goodhart.sql          굿하트 가설 SQL EDA
 goodhart_freq.py          ★ 주기성 분석 (FFT + STL + Coherence)
+build_indicator_panel.py     분야×연도 long-format 패널 (게임화+예산구성+outcome)
+h2_decoupling_test.py        ★ H2 분야별 차분 회귀 + 상관관계
+h1_mechanism_full.py         ★ H1 출연·운영·직접투자 회귀 + GRDP 적재
+h3_activity_embedding.py     ★ 활동 단위 UMAP+HDBSCAN + 부처 그래프
 ```
 
 ### 시각화 (`data/figs/`)
@@ -544,6 +660,12 @@ h2/T3_scatter_diff.png        차분 산점도 (Δgaming vs Δlnoutcome)
 h2/T4_correlation_summary.png ★ 분야별 상관관계 요약 — H2 핵심
 h2/T5_field_crosssection.png  분야 간 단면 비교
 h1_mech/H1_mech_scatter.png   ★ 출연·운영·직접투자 vs 게임화 산점도
+h3_embed/H3_umap_scatter.png       ★ 활동 1,641건 UMAP (클러스터/분야)
+h3_embed/H3_cluster_profile.png    1차 클러스터 z-score 프로파일
+h3_embed/H3_field_cluster_heatmap.png  ★ 분야×클러스터 분포 (출연금형 비중)
+h3_embed/H3_subcluster.png         정상 사업(C2) 내부 15 sub-cluster
+h3_embed/H3_ministry_graph.png     ★ 부처 시그니처 그래프 (5 커뮤니티)
+h3_embed/H3_field_similarity.png   분야 cosine 유사도 + amp_12m KS
 ```
 
 ### 데이터 결과 (`data/results/`)
@@ -556,6 +678,12 @@ H2_correlation_summary.csv    ★ H2 분야별 상관관계 요약
 H2_panel_levels.csv           H2 패널 (수준)
 H2_panel_diff.csv             H2 패널 (1차 차분)
 H1_mechanism_panel.csv        ★ H1 메커니즘 회귀 패널
+H3_activity_embedding.csv     ★ 활동 1,641건 12피처 + UMAP + 클러스터
+H3_cluster_profile.csv        1차 클러스터 z-score 프로파일
+H3_field_x_cluster.csv        분야×클러스터 분포
+H3_cluster2_subembedding.csv  C2 내부 sub-cluster 라벨
+H3_ministry_community_v2.csv  부처 5 커뮤니티 매핑
+H3_field_ks_amp12m.csv        분야 105 pair amp_12m KS-test
 ```
 
 ---
