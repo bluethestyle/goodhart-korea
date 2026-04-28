@@ -12,8 +12,10 @@
   numbering: "1",
 )
 
+// 학술 표준 한글 명조 폰트 우선 (KoPubWorld·Noto Serif KR·함초롬바탕 fallback)
 #set text(
-  font: ("Noto Sans KR", "Times New Roman"),
+  font: ("KoPubWorld Batang", "Noto Serif KR", "Source Han Serif K",
+         "함초롬바탕", "바탕", "Times New Roman"),
   size: 11pt,
   lang: "ko",
 )
@@ -22,14 +24,17 @@
 
 #set heading(numbering: "1.1")
 
+// 제목은 sans-serif 고딕 (KoPub돋움 / Noto Sans KR)
 #show heading.where(level: 1): it => [
-  #set text(size: 13pt, weight: "bold")
+  #set text(font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"),
+            size: 13pt, weight: "bold")
   #v(1em)
   #it
   #v(0.5em)
 ]
 #show heading.where(level: 2): it => [
-  #set text(size: 11.5pt, weight: "bold")
+  #set text(font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"),
+            size: 11.5pt, weight: "bold")
   #v(0.7em)
   #it
   #v(0.3em)
@@ -43,11 +48,13 @@
 // =============================================================
 #align(center)[
   #v(1em)
-  #text(size: 16pt, weight: "bold")[
+  #text(size: 16pt, weight: "bold",
+        font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"))[
     한국 정부 재정 집행의 굿하트 효과
   ]
   #v(0.5em)
-  #text(size: 13pt)[
+  #text(size: 13pt,
+        font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"))[
     다각적 측정과 정책 함의
   ]
   #v(2em)
@@ -57,6 +64,12 @@
   #v(0.5em)
   #text(size: 10pt)[
     2026년 4월
+  ]
+  #v(0.5em)
+  #text(size: 9pt, fill: rgb("#666"))[
+    GitHub: #link("https://github.com/{user}/{repo}")[github.com/\{user\}/\{repo\}] · #h(0.5em)
+    Zenodo: #link("https://doi.org/10.5281/zenodo.{TBD}")[10.5281/zenodo.\{TBD\}] · #h(0.5em)
+    인터랙티브 시각화: #link("https://{user}.github.io/{repo}/interactive/")[Pages 사이트]
   ]
 ]
 
@@ -165,36 +178,86 @@
 
 == 4개 사업원형의 위상 안정성
 
-  활동 1,557건의 12피처를 UMAP으로 2D 임베딩하고 HDBSCAN을 적용해 4개 클러스터를 얻었다. 각 클러스터의 z-score 프로파일:
+  활동 1,557건의 12피처를 UMAP으로 2D 임베딩하고 HDBSCAN을 적용해 4개 클러스터를 얻었다(@fig-umap). 각 클러스터의 z-score 프로파일:
 
   - C0 인건비형(n=129): personnel +3.07, 게임화 진폭 −1.32
   - C1 자산취득형(n=99): direct_invest +3.28, 인프라 공사 분야 비중 큼
   - C2 출연금형(n=154): chooyeon +2.89, 게임화 진폭 +0.88
   - C3 정상사업(n=1,175): 평균 부근
 
-  지속 호몰로지는 30개 강건 component와 15개 강건 loop를 보고하며, 50회 부트스트랩에서 H1 max persistence 95% CI [0.46, 0.98]로 위상 구조의 우연성을 배제한다.
+  지속 호몰로지는 30개 강건 component와 15개 강건 loop를 보고하며, 50회 부트스트랩에서 H1 max persistence 95% CI [0.46, 0.98]로 위상 구조의 우연성을 배제한다(@fig-ph).
+
+#figure(
+  image("figures/h3_umap.png", width: 100%),
+  caption: [활동 임베딩 UMAP — 4개 사업원형 (1,557 활동 × 12 피처)],
+) <fig-umap>
+
+#figure(
+  image("figures/h4_mapper.png", width: 100%),
+  caption: [Mapper graph — 32 nodes / 38 edges / 10 components / 7 loops],
+) <fig-mapper>
+
+#figure(
+  image("figures/h9_persistence.png", width: 100%),
+  caption: [Persistent Homology — 30 강건 components, 15 강건 loops, bootstrap 50회 H1 max persistence 95% CI],
+) <fig-ph>
 
 == 사회복지 자동분배 효과
 
-  사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1000회)로 14분야 중 유일하게 통계적으로 유의했다. CPI 외생 통제 후 r=−0.86(p=0.007)로 신호가 강화되어, 자연 경기 cycle 가설을 기각한다. 사회복지 정상사업의 12월 집중 집행이 빈곤 격차 완화와 결합되는 자동분배 효과로 해석한다.
+  사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1000회)로 14분야 중 유일하게 통계적으로 유의했다(@fig-h6). CPI 외생 통제 후 r=−0.86(p=0.007)로 신호가 강화되어, 자연 경기 cycle 가설을 기각한다(@fig-h10). 사회복지 정상사업의 12월 집중 집행이 빈곤 격차 완화와 결합되는 자동분배 효과로 해석한다.
+
+#figure(
+  image("figures/h6_robustness.png", width: 100%),
+  caption: [H6 견고성 패널 — FE 회귀, permutation null, lag/lead, amp_cv],
+) <fig-h6>
+
+#figure(
+  image("figures/h10_cpi_control.png", width: 100%),
+  caption: [H10 CPI 외생 통제 — 14/14 부호+70% 유지 (100%)],
+) <fig-h10>
+
+#figure(
+  image("figures/h8_panel.png", width: 100%),
+  caption: [H8 비판적 자기평가 — 분야 FE ΔR²=0.000 vs 원형×Δamp ΔR²=+0.024],
+) <fig-h8>
 
 == 회계연도 12월 점프 (한국판 Liebman-Mahoney)
 
-  활동 단위 일평균 집행을 11월~12월 RDD로 추정한 결과, 12월 첫 달 점프는 전체 평균 1.91배(p<10⁻¹²⁴)다. 사업 형태별로 출연금형이 3.42배(가장 강함), 일반 사업형 2.24배, 인건비형 1.12배, 직접투자형 1.10배(통계 미달)이다.
+  활동 단위 일평균 집행을 11월~12월 RDD로 추정한 결과, 12월 첫 달 점프는 전체 평균 1.91배(p<10⁻¹²⁴)다(@fig-rdd). 사업 형태별로 출연금형이 3.42배(가장 강함), 일반 사업형 2.24배, 인건비형 1.12배, 직접투자형 1.10배(통계 미달)이다(@fig-rdd-field).
 
   미국 Liebman-Mahoney(2017)의 5배 대비 한국 1.9배는 미국 주(week) 단위 vs 한국 월 단위의 granularity 차이다. 사업 형태별 차이는 Holmstrom-Milgrom 다업무 가설의 한국 실증이다.
 
+#figure(
+  image("figures/h22_rdd.png", width: 100%),
+  caption: [회계연도 경계 RDD (한국판 Liebman-Mahoney) — 12월 점프 1.91배],
+) <fig-rdd>
+
+#figure(
+  image("figures/h22_rdd_field.png", width: 100%),
+  caption: [분야별 12월 점프 배수 — 국방·국토·교통이 가장 큼, 출연금형 3.42x],
+) <fig-rdd-field>
+
 == STL trend 자기 비판
 
-  STL 분해 후 seasonal_strength를 게임화 지표로 사용하면 사회복지 신호는 r=+0.003(p=0.991)로 완전히 소멸한다. FFT 신호가 *지속 증가 trend × 12월 집중*의 결합일 가능성이며, 본 연구는 이를 정직하게 한계로 명시한다.
+  STL 분해 후 seasonal_strength를 게임화 지표로 사용하면 사회복지 신호는 r=+0.003(p=0.991)로 완전히 소멸한다(@fig-stl). FFT 신호가 *지속 증가 trend × 12월 집중*의 결합일 가능성이며, 본 연구는 이를 정직하게 한계로 명시한다.
+
+#figure(
+  image("figures/h24_stl.png", width: 100%),
+  caption: [STL vs FFT 비교 — 사회복지 신호의 trend 혼재 가능성 자기 비판],
+) <fig-stl>
 
 = 정책 함의
 
-  부처×결과변수 4분면 분석(H14)에서:
+  부처×결과변수 4분면 분석(H14)에서(@fig-quadrant):
   - Q2(점검 필요): 국무조정실 및 국무총리비서실, 과학기술정보통신부 — 굿하트 노출 + 결과변수 양 상관 (측정 왜곡 가능)
   - Q1(자동분배 OK): 행정중심복합도시건설청 등
 
   추가 점검 우선순위로 모든 분야의 극단 게임화 활동(sub05, 50건)이 식별된다.
+
+#figure(
+  image("figures/h14_quadrant.png", width: 95%),
+  caption: [부처별 굿하트 노출 × 결과변수 4분면 — Q2가 점검 우선],
+) <fig-quadrant>
 
 = 한계
 
@@ -224,7 +287,12 @@
 
   연구 가설 설정·결과 해석·정책 함의는 저자가 직접 결정하고 검토했다. AI 도구의 모든 출력물은 저자가 학술적 정합성·재현성·인과 추론 한계 측면에서 검토했다.
 
-  연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다(DOI: TBD).
+  연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다.
+
+  - GitHub: #link("https://github.com/{user}/{repo}")
+  - Zenodo DOI: #link("https://doi.org/10.5281/zenodo.{TBD}")
+  - 인터랙티브 시각화: #link("https://{user}.github.io/{repo}/interactive/")
+  - 분석 여정 (전체 H1\~H24): #link("https://{user}.github.io/{repo}/analysis/JOURNEY/")
 ]
 
 #v(1em)
