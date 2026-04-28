@@ -9,6 +9,10 @@ lightning_logs/
 
 # Paper preview renders
 paper/preview/
+paper/figures/_preview/
+
+# Paper fonts (114MB, downloaded from Google Fonts — KoPubWorld + Noto KR)
+paper/fonts/
 
 # Big binary / regeneratable (warehouse는 공개 데이터 + 재현 편의를 위해 트랙)
 # data/warehouse.duckdb (56MB) 트랙됨 — fetch 재실행 없이 즉시 분석 가능
