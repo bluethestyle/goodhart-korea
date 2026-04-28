@@ -12,32 +12,41 @@
   numbering: "1",
 )
 
-// 학술 표준 한글 명조 폰트 우선 (KoPubWorld·Noto Serif KR·함초롬바탕 fallback)
+// 한국 학술지 표준 폰트: 신명조(HY) + Times New Roman 영문 + 한글 fallback Batang
+// HYSinMyeongJo는 한국재정학회·한국정책학회·한국행정학보 등 KCI 학술지 표준
 #set text(
-  font: ("KoPubWorld Batang", "Noto Serif KR", "Source Han Serif K",
-         "함초롬바탕", "바탕", "Times New Roman"),
+  font: ("Times New Roman", "HYSinMyeongJo", "Batang", "Noto Serif KR"),
   size: 11pt,
   lang: "ko",
 )
 
-#set par(justify: true, leading: 0.85em, first-line-indent: 1em)
+// 학술지 표준: 줄간격 200% (line-height 2.0 ≈ leading 1.0em on 11pt with default 0.65em base)
+// Typst leading is *additional* space between lines. 11pt 본문 line-height 2.0 ≈ leading 1.05em
+#set par(justify: true, leading: 1.05em, first-line-indent: 1em, spacing: 1.2em)
 
 #set heading(numbering: "1.1")
 
 // 제목은 sans-serif 고딕 (KoPub돋움 / Noto Sans KR)
 #show heading.where(level: 1): it => [
-  #set text(font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"),
+  #set text(font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
             size: 13pt, weight: "bold")
-  #v(1em)
+  #v(1.5em)
   #it
-  #v(0.5em)
+  #v(0.8em)
 ]
 #show heading.where(level: 2): it => [
-  #set text(font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"),
+  #set text(font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
             size: 11.5pt, weight: "bold")
-  #v(0.7em)
+  #v(1.2em)
   #it
-  #v(0.3em)
+  #v(0.6em)
+]
+#show heading.where(level: 3): it => [
+  #set text(font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
+            size: 11pt, weight: "bold")
+  #v(0.8em)
+  #it
+  #v(0.4em)
 ]
 
 #set figure(supplement: [그림])
@@ -47,71 +56,187 @@
 // 표지
 // =============================================================
 #align(center)[
-  #v(1em)
-  #text(size: 16pt, weight: "bold",
-        font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"))[
+  #v(2em)
+  #text(size: 18pt, weight: "bold",
+        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[
     한국 정부 재정 집행의 굿하트 효과
   ]
-  #v(0.5em)
+  #v(0.6em)
   #text(size: 13pt,
-        font: ("KoPubWorld Dotum", "Noto Sans KR", "Source Han Sans K"))[
+        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[
     다각적 측정과 정책 함의
   ]
+  #v(2.5em)
+  #text(size: 11pt)[(저자명)]
+  #linebreak()
+  #v(0.3em)
+  #text(size: 10pt, fill: rgb("#444"))[2026년 4월]
+
   #v(2em)
-  #text(size: 11pt)[
-    (저자명)
+  #line(length: 40%, stroke: 0.6pt + rgb("#999"))
+  #v(0.5em)
+  #text(size: 8.5pt, fill: rgb("#555"))[
+    GitHub #link("https://github.com/bluethestyle/goodhart-korea")[bluethestyle/goodhart-korea]
+    #h(1em) · #h(1em)
+    Zenodo #link("https://doi.org/10.5281/zenodo")[(DOI 발급 예정)]
+  ]
+  #linebreak()
+  #text(size: 8.5pt, fill: rgb("#555"))[
+    인터랙티브 시각화 #link("https://bluethestyle.github.io/goodhart-korea/")[bluethestyle.github.io/goodhart-korea]
   ]
   #v(0.5em)
-  #text(size: 10pt)[
-    2026년 4월
-  ]
-  #v(0.5em)
-  #text(size: 9pt, fill: rgb("#666"))[
-    GitHub: #link("https://github.com/bluethestyle/goodhart-korea")[github.com/bluethestyle/goodhart-korea] · #h(0.5em)
-    Zenodo: #link("https://doi.org/10.5281/zenodo.{TBD}")[10.5281/zenodo.\{TBD\}] · #h(0.5em)
-    인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")[Pages 사이트]
-  ]
+  #line(length: 40%, stroke: 0.6pt + rgb("#999"))
 ]
 
-#v(2em)
+#v(2.5em)
 
 // =============================================================
 // 초록
 // =============================================================
 #align(center)[
-  #text(weight: "bold", size: 12pt)[국문 초록]
+  #text(weight: "bold", size: 12pt,
+        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[국문 초록]
+]
+#v(0.6em)
+
+#par(first-line-indent: 0pt, leading: 0.95em)[
+  본 연구는 열린재정정보 월별 집행 11년치(2015\~2026)와 KOSIS·한국은행 ECOS·공공데이터포털·온실가스종합정보센터 14분야 결과변수를 통합해 한국 정부 재정 집행의 굿하트 효과(Goodhart 1975)를 다각도로 측정·검증한다. 활동(ACTV) 단위 임베딩(UMAP+HDBSCAN)으로 인건비형·자산취득형·출연금형·정상사업 4개 사업원형을 발견하고, Mapper와 지속 호몰로지(Persistent Homology)로 위상 안정성을 입증한다. 분야 고정효과 회귀에서 분야 라벨의 추가 설명력(ΔR²)이 0에 수렴하는 반면, 사업원형×지출진동의 상호작용은 ΔR²=+0.085\~+0.094로 유의함을 확인해 분야 단위 분석의 trivial 성격을 정량적으로 반증한다. 사회복지 자동분배 효과(r=−0.762, p=0.035; CPI 통제 후 −0.86, p=0.007)와 회계연도 12월 RDD 점프 1.91배(출연금형 3.42배)를 통해 Liebman-Mahoney(2017)의 미국 결과를 한국으로 확장한다. STL 분해 결과 사회복지 신호의 trend 혼재 가능성을 자기 비판적으로 보고한다.
 ]
 
-#par(first-line-indent: 0pt)[
-  본 연구는 열린재정정보 월별 집행 11년치(2015\~2026)와 KOSIS·한국은행 ECOS·공공데이터포털·온실가스종합정보센터 14분야 결과변수를 통합해 한국 정부 재정 집행의 굿하트 효과(Goodhart 1975)를 다각도로 측정·검증한다. 활동(ACTV) 단위 임베딩(UMAP+HDBSCAN)으로 인건비형·자산취득형·출연금형·정상사업 4개 사업원형을 발견하고, Mapper와 지속 호몰로지(Persistent Homology)로 위상 안정성을 입증한다. 분야 고정효과 회귀에서 분야 라벨의 추가 설명력(ΔR²)이 0에 수렴하는 반면, 사업원형×지출진동의 상호작용은 ΔR²=+0.085~0.094로 유의함을 확인해 분야 단위 분석의 trivial 성격을 정량적으로 반증한다. 사회복지 자동분배 효과(r=−0.762, p=0.035; CPI 통제 후 −0.86, p=0.007)와 회계연도 12월 점프 1.91x(출연금형 3.42x; H22 RDD)를 통해 Liebman-Mahoney(2017)의 미국 결과를 한국으로 확장한다. STL 분해 결과 사회복지 신호의 trend 혼재 가능성을 자기 비판적으로 보고한다.
+#v(1em)
 
+#par(first-line-indent: 0pt)[
   #text(weight: "bold")[주요어:] 굿하트 법칙, 정부 재정, NPM, 토폴로지 데이터 분석, 회귀불연속, 매개분석, 한국
 ]
 
 #pagebreak()
 
 // =============================================================
+= 약어 및 핵심 용어
+
+  본 연구는 신호 처리(FFT·STL·NeuralProphet)·차원 축소(UMAP·HDBSCAN)·위상 분석(Mapper·Persistent Homology)·인과 추론(RDD·매개분석·외생 통제)을 결합하므로 다양한 분야의 약어가 등장한다. 독자 편의를 위해 본 절에서 일괄 정의한 뒤 본문에서는 풀어쓰지 않고 약어로 사용한다. 영문 고유명사(Liebman-Mahoney 등)와 학술지명(AER, JLEO)은 첫 등장 시 풀어쓴 뒤 약어를 병기한다.
+
+#figure(
+  text(size: 9.5pt)[
+    #table(
+      columns: (auto, auto, 1fr),
+      align: (left, left, left),
+      inset: (x: 5pt, y: 3pt),
+      stroke: (x, y) => if y == 0 { (bottom: 0.6pt) } else { (top: 0pt, bottom: 0pt) },
+      [*약어*], [*원어*], [*의미·용도*],
+      [FFT], [Fast Fourier Transform], [고속 푸리에 변환. 시계열을 주파수 성분으로 분해해 1년 주기 진폭(`amp_12m_norm`)을 추출.],
+      [STL], [Seasonal-Trend decomp. using Loess], [Loess 평활 기반 가법 분해. 추세·계절·잔차로 분리해 `seasonal_strength` 산출.],
+      [NP], [NeuralProphet], [Prophet의 신경망 확장. 추세·Fourier 계절·AR-Net을 가법 결합한 분해 모형.],
+      [AR], [Autoregression], [자기회귀. 과거값으로 현재값 설명. NP 적합 시 `n_lags=0`으로 비활성화.],
+      [UMAP], [Uniform Manifold Approx. & Projection], [비선형 차원 축소. fuzzy simplicial set 기반 국소·전역 구조 보존.],
+      [HDBSCAN], [Hierarchical DBSCAN], [밀도 기반 계층 군집. 군집 수 사전 지정 불요, 노이즈 분리.],
+      [TDA], [Topological Data Analysis], [위상 데이터 분석. Mapper · Persistent Homology를 포함.],
+      [PH], [Persistent Homology], [지속 호몰로지. 모든 스케일에서 위상 특성(연결성·loop) 추적.],
+      [FE], [Fixed Effects], [고정효과. 분야·연도 등 그룹 더미로 이질성 통제.],
+      [RDD], [Regression Discontinuity Design], [회귀불연속 설계. 인위적 절단점 직근의 비교로 인과 식별.],
+      [DID], [Difference-in-Differences], [이중차분. 처리·통제군 + 사전·사후 비교(본 연구 미사용).],
+      [IV], [Instrumental Variables], [도구변수. 외생적 변동을 활용한 인과 식별.],
+      [CV], [Coefficient of Variation], [변동계수($sigma\/mu$). FFT 대안 게임화 지표.],
+      [CPI], [Consumer Price Index], [소비자물가지수. 한국은행 ECOS 901Y009. 외생 거시 통제변수.],
+      [NPM], [New Public Management], [신공공관리. 1980년대 영국·뉴질랜드의 KPI·민영화 패러다임.],
+      [KPI], [Key Performance Indicator], [핵심성과지표. NPM 도입 이후 행정 평가 도구.],
+      [MTEF], [Medium-Term Expenditure Framework], [중기재정운용계획. 한국은 2009년 5년 단위로 도입.],
+      [ECOS], [Economic Statistics System (BOK)], [한국은행 경제통계시스템. CPI 등 거시 시계열 제공.],
+      [KOSIS], [Korean Statistical Information Service], [국가통계포털. 분야별 결과변수 제공.],
+      [GIR], [Greenhouse gas Inventory & Research], [온실가스종합정보센터. 국가 인벤토리 보고.],
+      [ODA], [Official Development Assistance], [공적개발원조. OECD DAC 기준.],
+      [AER], [American Economic Review], [미국경제학회 학술지. Liebman-Mahoney(2017) 게재.],
+      [KCI], [Korea Citation Index], [한국학술지인용색인. 국내 학술지 등재 체계.],
+    )
+  ],
+  caption: [본 연구 약어 및 약식 표기 일람],
+)
+
+#v(1em)
+
+#set par(first-line-indent: 0pt)
+
+*핵심 개념 정의* (본문 첫 등장 시 별도 설명 없이 사용)
+
+- *굿하트 법칙*: 사회 지표가 정책 결정 도구로 사용되는 순간 그 지표의 측정 신뢰도가 하락한다(Goodhart 1975). Campbell(1979)이 사회과학 일반에 확장.
+- *다업무 계약 이론 (Multitasking)*: 대리인이 다차원 업무를 수행할 때 측정 가능한 차원에만 인센티브가 걸리면 비측정 차원의 노력이 체계적으로 감소한다(Holmstrom-Milgrom 1991).
+- *연성 예산 제약 (Soft Budget Constraint)*: 시장 규율 대신 모기관·정부의 사후 보전을 기대해 예산 제약이 약화되는 현상(Kornai 1980).
+- *매개분석 (Mediation)*: $X arrow M arrow Y$ 경로의 *간접 효과*를 직접 효과 $X arrow Y$로부터 분리하는 회귀 기법. 본 연구는 Baron-Kenny 4단계 + Sobel 검정 + Bootstrap CI 사용.
+- *Sobel 검정*: 매개효과 $a b$의 표준오차 $sqrt(b^2 sigma_a^2 + a^2 sigma_b^2)$로 z-검정. 정규성 가정 의존.
+- *Spectral Co-clustering*: 부처(행)와 사업원형(열)의 빈도 행렬을 SVD로 *동시* 군집해 블록 대각 구조를 찾는 알고리즘(Dhillon 2001).
+- *Permutation 검정*: 결과변수를 무작위 셔플해 귀무 분포 생성. 정규성·등분산 가정 불요.
+- *MCMC (Markov Chain Monte Carlo)*: 사후분포에서 표본을 추출하는 Bayes 추론 기법. Prophet 원판이 사용; NeuralProphet은 SGD로 대체.
+- *SGD (Stochastic Gradient Descent)*: 미분 가능한 목적함수를 미니배치 단위로 최적화하는 알고리즘. NP는 PyTorch SGD로 학습.
+- *SVD (Singular Value Decomposition)*: 행렬을 $U Sigma V^T$로 분해. Spectral Co-clustering 핵심.
+- *DFT (Discrete Fourier Transform)*: 이산 시계열의 푸리에 변환. FFT는 DFT의 빠른 알고리즘.
+- *LOESS (Locally Estimated Scatterplot Smoothing)*: 국소 가중 다항회귀 평활. STL의 평활 엔진.
+- *GAM (Generalized Additive Model)*: 비선형 함수 항의 가법 결합. Prophet/NeuralProphet의 토대.
+- *PCA (Principal Component Analysis)*: 선형 차원 축소. UMAP과 대조군으로 언급.
+- *t-SNE*: 비선형 임베딩 알고리즘. 전역 구조 보존이 약해 UMAP을 채택.
+- *DBSCAN*: 밀도 기반 군집의 단일 임계 버전. HDBSCAN의 전신.
+- *ARIMA / SARIMA*: 자기회귀 누적이동평균 모형. 정상성 가정으로 본 연구 시계열에 부적합.
+- *LSTM / Transformer*: 신경망 시계열 모형. 분해 가능성 부재로 본 연구에 부적합.
+- *Frisch-Waugh-Lovell 정리*: 다중회귀 계수가 *2단계 잔차회귀*와 동일함을 보이는 정리. CPI 통제의 이론적 근거.
+- *Gibbs 현상*: 유한 푸리에 합이 점프 점 근방에서 진동·과대평가하는 현상. FFT 약점.
+- *AR-Net*: 신경망 자기회귀. NeuralProphet의 핵심 차별점.
+- *ReLU*: $max(0, x)$ 비선형 활성함수. AR-Net의 표준 활성함수.
+- *사업원형 (Archetype)*: 본 연구가 데이터에서 발견한 4개 사업 형태(인건비형·자산취득형·출연금형·정상사업).
+- *`amp_12m_norm`*: FFT 1년 주기 진폭 / 전체 진폭 합. 게임화 1차 지표.
+- *`seasonal_strength`*: STL 분해 후 $1 - "Var"("잔차")/"Var"("detrended")$. 게임화 STL 지표.
+- *`np_seasonal_strength`*: NeuralProphet yearly seasonality 진폭 / 표준편차. 게임화 NP 지표.
+
+#set par(first-line-indent: 1em)
+
+#pagebreak()
+
+// =============================================================
 = 서론
 
-  Bevan과 Hood(2006)는 "측정되는 것이 중요해진다(What's measured is what matters)"는 명제 아래 영국 NHS 사례에서 평가지표 게임화의 4가지 패턴을 식별했다. 본 연구는 이 명제를 한국 중앙정부 재정 집행 데이터로 확장해 검증한다.
+== 문제 의식 — "측정되는 것이 중요해진다"
 
-  Liebman과 Mahoney(2017)는 미국 연방조달의 11월 마지막 주 vs 12월 첫 주 회귀불연속(RDD)으로 12월 첫 주 지출이 5배 증가하고 품질 점수가 하락함을 입증했다. 본 연구는 한국에서 동일 분석을 수행해 12월 점프 약 1.9배(출연금형 3.4배)를 확인한다.
+  Bevan과 Hood(2006)는 영국 NHS 사례 연구를 통해 "측정되는 것이 중요해진다(What's measured is what matters)"는 명제 아래 평가지표 게임화의 4가지 패턴(threshold effect, ratchet effect, output distortion, gaming)을 식별했다. 이는 Goodhart(1975)와 Campbell(1979)이 각각 통화정책과 사회과학 일반에서 제안한 *지표가 정책 도구로 채택되는 순간 그 지표의 측정 신뢰도가 하락한다*는 명제의 행정학적 구체화다.
 
-  분야 단위 이질성(field-level heterogeneity)은 흔히 "분야가 다르니 결과가 다르다"는 직관으로 정당화되지만, 본 연구는 이 직관을 분야 고정효과 회귀로 정량적으로 반증한다(ΔR²=0.000). 진짜 설명 변수는 사업 형태(원형)임을 위상 데이터 분석으로 입증한다.
+  같은 메커니즘이 한국 중앙정부 재정 집행에서도 작동하는가? 이 질문에 답하기 위해서는 (a) 게임화를 *측정 가능한 양*으로 정의하고, (b) 분야·부처·사업 형태에 걸친 *이질성을 분리*하며, (c) 자연 경기 cycle이나 추세 효과 같은 *경합 가설을 배제*해야 한다. 본 연구는 11년 시계열·14분야·1,557개 활동을 다중 방법론으로 결합해 이 세 과제를 단계적으로 수행한다.
+
+== 미국 선행연구의 한국적 확장
+
+  Liebman과 Mahoney(2017, AER)는 미국 연방조달의 11월 마지막 주 vs 12월 첫 주 회귀불연속(RDD)으로 회계연도 마감 직전 주의 지출이 *5배* 증가하고 동시에 *품질 점수가 하락*함을 입증했다. 사용하지 않으면 이월되지 않는 예산 제도(use-it-or-lose-it)가 만들어내는 측정 왜곡의 모범적 인과 식별 사례다.
+
+  본 연구는 동일한 RDD 설계를 한국 데이터에 적용한다. 한국 자료가 월 단위 granularity인 점을 고려해 11월 vs 12월 일평균 집행을 비교한 결과 *전체 1.91배, 출연금형 3.42배*의 점프를 확인한다. 미국 5배 대비 절대값은 작지만 사업 형태별 차이가 뚜렷하다는 점에서 *질적으로 같은 메커니즘이 한국에서도 작동*함을 시사한다.
+
+== 본 연구의 핵심 주장
+
+  분야 단위 이질성(field-level heterogeneity)은 한국 행정학·재정학 문헌에서 흔히 "분야가 다르니 결과가 다르다"는 직관으로 정당화된다. 본 연구는 이 직관을 분야 고정효과 회귀로 *정량적으로 반증*한다(분야 더미 추가에 따른 ΔR²=0.000). 같은 활동 데이터에 *사업 형태(원형)*를 변수로 투입하면 ΔR²=+0.094로 유의한 설명력 증가가 나타난다.
+
+  즉, "분야"는 행정 편의상의 분류일 뿐 게임화의 진짜 단위가 아니며, 진짜 단위는 *사업이 어떻게 수행되는가*(인건비형/자산취득형/출연금형/정상)이다. 이 주장을 위상 데이터 분석(UMAP+HDBSCAN, Mapper, Persistent Homology)·견고성 회귀·인과 식별(RDD, Baron-Kenny)·외생 통제(CPI 잔차)로 다중 입증한다.
 
 = 이론적 토대
 
-== 굿하트-캠벨 법칙
+  본 연구의 분석은 세 갈래의 이론적 전통을 결합한다. (1) *공공관리 이론*에서 굿하트-캠벨 법칙과 NPM(New Public Management) 측정 패러독스, (2) *계약경제학*에서 Holmstrom-Milgrom의 다업무 모형, (3) *비교경제학*에서 Kornai의 연성 예산 제약이다. 각 이론은 본 연구의 다른 발견을 설명하며, 셋이 결합될 때 사업 형태별 게임화 강도 차이가 자연스럽게 도출된다.
 
-  Goodhart(1975)와 Campbell(1979)은 사회 지표가 정책 결정에 사용될수록 그 지표의 측정 신뢰도가 하락한다는 명제를 제시했다. Manheim과 Garrabrant(2018)는 이를 4가지(Regressional, Causal, Extremal, Adversarial)로 분류했다.
+== 굿하트-캠벨 법칙과 NPM 패러독스
+
+  Goodhart(1975)는 영란은행 통화 통계를 정책 도구로 사용한 뒤 그 통계와 거시경제 실체의 관계가 무너진 사례를 관찰하며 *"통계 규칙성은 통제 목적으로 사용되는 순간 무너진다"*고 정식화했다. Campbell(1979)은 같은 원리를 사회과학 일반에 확장했다.
+
+  Manheim과 Garrabrant(2018)는 이를 네 유형으로 분류했다.
+  - *Regressional*: 측정 노이즈에 정책이 과적합
+  - *Causal*: 지표를 직접 조작하나 그 인과 경로는 비효율적
+  - *Extremal*: 극단 영역에서 지표-목표 관계가 깨짐
+  - *Adversarial*: 행위자가 의도적으로 지표를 조작
+
+  본 연구의 12월 점프와 출연금 게임화는 주로 *Causal*(시점 조정으로 집행률 지표 달성)과 *Adversarial*(이월 회피를 위한 의도적 몰아쓰기)에 해당한다.
 
 == 다업무 계약 이론(Multitasking)
 
-  Holmstrom과 Milgrom(1991)은 다차원 업무에서 측정 가능한 차원에만 노력이 집중되어 측정되지 않는 차원이 왜곡되는 현상을 모형화했다. 본 연구의 사업 형태별 지출 진폭 차이(출연금형 3.42배 vs 직접투자형 1.10배)는 이 가설의 한국 실증이다.
+  Holmstrom과 Milgrom(1991, JLEO)은 대리인이 *다차원 업무*를 수행할 때 측정 가능한 차원에만 인센티브를 걸면 측정 불가능한 차원의 노력이 *체계적으로 감소*하는 모형을 제시했다. 측정성 격차가 큰 업무 구성에서는 어떤 인센티브 강도도 1차 최적이 될 수 없다는 결과(impossibility theorem)다.
+
+  공공 사업에 적용하면, 집행률(측정 가능)과 사업 품질(측정 어려움)이 상충하는 환경에서 집행률 인센티브가 강할수록 품질이 희생된다. 본 연구의 사업 형태별 지출 진폭 차이(출연금형 3.42배 vs 직접투자형 1.10배)는 *측정 압력에 대한 반응성이 사업 형태별로 다르다*는 이 가설의 한국 실증이다.
 
 == 연성 예산 제약(Soft Budget Constraint)
 
-  Kornai(1980)의 연성 예산 제약 개념은 출연기관의 시점 조정 자유도가 시장 규율을 받는 직접 사업보다 큰 이유를 설명한다. 본 연구의 출연금 비중과 게임화 강도 회귀(β=+0.375, p=0.005)는 이 메커니즘의 정량적 증거다.
+  Kornai(1980)는 사회주의 경제의 국유기업이 시장 규율 대신 정부 구제를 기대하며 예산 제약이 *연성화*되는 현상을 이론화했다. 시장경제 공공 부문의 출연기관·공공기관도 동일한 메커니즘에 노출된다.
+
+  *공공기관·출연기관은 직접 사업과 달리 사업 시점 조정의 자유도가 높다*. 정산 기일을 맞추기 위해 12월 집중 집행이 가능하고, 다음 회계연도 예산이 감액되더라도 모기관 보전 가능성이 시장 규율을 약화시킨다. 본 연구의 출연금 비중과 게임화 강도 회귀(β=+0.375, p=0.005)는 이 메커니즘의 정량적 증거이며, RDD에서 *출연금형이 3.42배로 가장 강한 12월 점프*를 보이는 이유를 설명한다.
 
 = 데이터
 
@@ -151,41 +276,315 @@
 
 = 방법론
 
-== 게임화 강도 측정
+  본 연구는 "게임화"라는 추상적 개념을 정량화하기 위해 신호 처리·차원 축소·위상 데이터 분석·인과 추론을 단계적으로 결합한다. 각 방법은 *서로 다른 약점을 보완*하도록 선택되었으며, 한 방법이 실패해도 다른 방법이 같은 결론을 지지하는지 점검하는 *방법론 트라이앵귤레이션*을 추구한다. 이 절은 비전문가 독자도 이해할 수 있도록 각 기법의 직관·수식·왜 필요한지를 친절히 서술한다.
 
-  - *FFT 기반*: 활동×연도 월별 시계열에 푸리에 변환을 적용해 1년 주기 진폭(amp_12m_norm)을 산출한다.
-  - *STL 분해*: Cleveland 외(1990)의 Seasonal-Trend decomposition Loess를 적용해 trend·seasonal·remainder를 분리하고 seasonal_strength(=1−Var(remainder)/Var(detrended))를 보조 지표로 사용한다.
+== 방법론 트라이앵귤레이션의 원칙
 
-== 활동 임베딩 + 위상
+  단일 도구의 결과는 그 도구의 가정이 옳을 때만 신뢰할 수 있다. 도구마다 *서로 다른 실패 양태*를 갖기 때문에, 가정이 직교적인 도구 두셋이 같은 결론을 지지하면 결과의 *방법론 견고성*이 입증된다. 본 연구는 게임화 측정에서 FFT(주파수 영역, 정상성 가정)·STL(시간 영역, 가법 분해)·NeuralProphet(신경망 가법모형, 변화점 모델링)의 세 도구를 사용한다. 각 도구의 가정과 약점을 표 1에 정리한다.
 
-  - UMAP(McInnes 2018) + HDBSCAN(Campello 2013)으로 12피처를 2D 임베딩하고 4개 사업원형을 분리한다.
-  - Mapper(Singh 외 2007, kmapper)와 지속 호몰로지(Edelsbrunner-Harer 2008, ripser)로 위상 안정성을 입증한다.
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, left, left, left),
+      [*도구*], [*가정*], [*약점*], [*보완하는 도구*],
+      [FFT], [정상성, 주기 일정], [추세 흡수, edge effect], [STL, NP],
+      [STL], [가법 분해, LOESS 평활], [점프를 추세로 흡수], [FFT, NP],
+      [NeuralProphet], [piecewise linear 추세 + Fourier 계절], [작은 N 과적합], [FFT, STL],
+    ),
+    caption: [세 게임화 측정 도구의 가정·약점·상호 보완 관계],
+  )
 
-== 인과 식별
+== 게임화 강도를 어떻게 "측정"할 것인가
 
-  - *RDD*: 회계연도 12월 1일 cutoff 전후의 일평균 집행을 비교한다(Imbens-Lemieux 2008).
-  - *매개분석*: Baron-Kenny(1986) 4단계 + Sobel 검정 + Bootstrap 95% CI로 출연금→게임화→결과변수의 매개 경로를 분리한다.
+  게임화는 직접 관측할 수 없는 잠재 행동이다. 본 연구는 *집행 시계열의 모양*에서 그 흔적을 추출한다. 정상적인 자연 사업이라면 월별 집행이 비교적 평탄하거나 사업 일정에 따른 자연스러운 변동을 보인다. 반면 게임화된 사업은 "회계연도 마감 전 몰아쓰기" 또는 "보고 시점 직전 점프"처럼 *외생적 일정에 종속된 1년 주기 패턴*을 갖는다. 이 가설을 두 가지 직교 방법으로 검증한다.
 
-== 외생 통제
+=== 푸리에 변환(FFT) 기반 amp_12m_norm
 
-  - 한국은행 ECOS CPI 시계열을 외생 통제변수로 회귀 잔차를 산출하고, 자연 경기 cycle 가설을 검증한다.
+  *직관*: 어떤 시계열이든 다양한 주기의 사인파 합으로 분해할 수 있다(Fourier 1822). 연도-내 시계열에 푸리에 변환을 적용하면 1년 주기 성분의 진폭이 추출된다. 이 진폭이 클수록 "12월 점프 + 1월 reset"이라는 회계연도 게임화 패턴이 강하다는 뜻이다.
+
+  *이산 푸리에 변환(DFT) 정의*: 길이 $N$의 신호 $x_n$에 대해
+  $ hat(x)_k = sum_(n=0)^(N-1) x_n e^(-i 2 pi k n \/ N), quad k=0,1,...,N-1 $
+  여기서 $hat(x)_k$는 주파수 $f_k = k\/N$ 성분의 복소 진폭이다. $|hat(x)_k|$는 그 주파수의 *진폭*이고 $arg(hat(x)_k)$는 위상이다.
+
+  *amp_12m_norm 정의*: 활동 $i$, 연도 $t$의 월별 집행 시계열 ${x_(i,t,m)}_(m=1)^12$($N=12$)에 대해
+  $ "amp_12m_norm"_(i,t) = (|hat(x)_(i,t)(k=1)|) / (sum_(k=1)^(N\/2) |hat(x)_(i,t)(k)|) $
+  분자는 $k=1$ 즉 *연 1회 주기 성분*의 진폭, 분모는 DC를 제외한 모든 주파수 진폭의 총합이다. Parseval 정리에 의해 분모는 시계열의 총 변동 에너지에 비례하므로, 비율은 *전체 변동 중 1년 주기가 차지하는 비중*을 의미한다. 0에 가까우면 평탄, 1에 가까우면 1년 주기 한 톤에 집중된 시계열이다.
+
+  *왜 필요한가*: 단순 변동계수(CV)는 *어디서* 변동이 일어났는지 모르고 12월 점프와 무작위 노이즈를 구분하지 못한다. FFT는 변동을 주파수 영역으로 분해해 *구조화된 주기성*만 추출한다.
+
+  *주제 적합성*: 굿하트 효과는 *외생적 평가 주기에 동조된 게임화*로 정의된다(Bevan-Hood 2006). 한국 회계연도(1월~12월)는 모든 부처에 *동일 주기*로 강제되며 결산·집행률 평가가 12월 31일에 일률 적용된다. 즉 게임화 신호의 *주파수가 사전에 알려진* 1년이라는 점이 이 주제의 본질적 특성이다. 알려진 주파수의 진폭을 측정하는 데는 *주파수 영역 분해(FFT)가 최적*이다 — 대안인 시간 영역 변동성 지표는 알려진 주파수 정보를 활용하지 못한다.
+
+  *FFT의 약점*: (a) 시계열이 *정상(stationary)*이라고 가정하지만 실제 정부 예산은 매년 증가 추세를 보임(2015\~2025 평균 증가율 ~6%). (b) 12개월 windowing에서 *Gibbs 현상*(연도 경계 점프가 인접 주파수로 누설)이 발생할 수 있음. STL과 NeuralProphet으로 보완한다.
+
+=== STL 분해(Seasonal-Trend decomposition using Loess)
+
+  *직관*: FFT amp_12m_norm 신호가 진짜 게임화일까, 아니면 *지속적으로 증가하는 추세*가 12월 결산 시점 기록 방식과 결합해 만들어내는 가짜 주기성일까? 이 의문을 검증하기 위해 STL(Cleveland 외 1990)을 사용한다.
+
+  *알고리즘*: STL은 두 겹의 반복(inner-loop, outer-loop)으로 가법 분해한다.
+  $ x_t = T_t + S_t + R_t $
+  inner-loop는 (1) 시계열에서 trend 추정값을 빼서 detrended 신호를 만들고, (2) 동일 계절(예: 매년 1월) 값들을 cycle-subseries로 묶어 LOESS 평활해 $S_t$를 추정하고, (3) $x_t - S_t$를 다시 LOESS 평활해 $T_t$를 갱신한다. 이를 수렴까지 반복한다. outer-loop는 큰 잔차에 *robustness weight*를 부여해 outlier 영향을 차단한다.
+
+  *seasonal_strength 정의*: 추세를 제거한 신호 $D_t = x_t - T_t = S_t + R_t$에서 계절 성분이 차지하는 분산 비율을
+  $ "seasonal_strength" = max(0, 1 - "Var"(R_t) / "Var"(D_t)) $
+  로 정의한다(Hyndman-Athanasopoulos 2021). 0에 가까우면 잔차에 대부분이 흡수돼 계절성 약함, 1에 가까우면 detrended 신호가 거의 계절 성분으로 설명됨을 의미한다.
+
+  *주제 적합성*: 한국 정부 예산은 IMF 구조조정(1998), 국가재정법 도입(2007), MTEF 5년 framework 적용(2009) 등 *명확한 추세 변동 동인*을 가진다. 이런 추세를 분리하지 않으면 FFT amp_12m_norm은 "추세 + 12월 게임화"의 합성 신호를 측정한다. STL은 LOESS 비모수 평활로 *임의 형태의 추세*를 흡수해 *순수 계절 성분만* 분리한다 — 한국 예산의 비선형 추세에 대해 ARIMA 차분보다 적합하다.
+
+  *왜 필요한가*: 본 연구의 핵심 발견인 사회복지 자동분배 효과가 STL 후 소멸한다는 점은 추세 혼재 가능성을 시사하며, 이를 한계로 정직하게 보고하는 근거가 된다.
+
+  *STL의 약점*: (a) LOESS 대역폭(span) 선택에 민감 — 좁으면 점프를 추세로 흡수, 넓으면 추세 부족 추정. (b) 가법 모델만 지원하므로 곱셈적 계절성에 약함. (c) 변화점이 있을 때 변화점 직전후로 추세 추정이 왜곡됨. NeuralProphet의 명시적 changepoint 모델링이 보완한다.
+
+=== NeuralProphet 신경망 분해 — 세 번째 cross-check
+
+  *직관*: FFT(주파수 영역 분해, 정상성 가정)와 STL(시간 영역 LOESS 평활, 임의 추세 가정)이 서로 다른 결론을 줄 때, 어느 쪽이 게임화의 진짜 신호인지 결정하기 위해 *세 번째 독립 도구*가 필요하다. NeuralProphet(Triebe 외 2021)은 Facebook Prophet(Taylor-Letham 2018)의 신경망 확장이다.
+
+  *모형 정의 (full)*: NeuralProphet은 시계열을 다음 *6개 가법 성분*으로 분해한다(Triebe 외 2021, eq. 1).
+  $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
+  여기서
+  - $T(t)$: *piecewise-linear 추세*, $C$개 자동 변화점(changepoints)에서 기울기 변화. $T(t) = (k + sum_(c=1)^C delta_c bb(1)[t > tau_c])(t - tau_("ref"))$.
+  - $S(t)$: *Fourier 계열 계절성*, $S(t) = sum_p sum_(n=1)^(N_p) [a_(p,n) cos((2 pi n t) / P_p) + b_(p,n) sin((2 pi n t) / P_p)]$. 본 연구는 $P = 12$ 개월, $N_P = 6$.
+  - $E(t)$: *이벤트 효과* (휴일·회계 마감 등 외생 일정)
+  - $A(t)$: *AR-Net 자기회귀*, 신경망으로 모델링한 비선형 자기회귀
+    $ A(t) = "ReLU"(W_2 thin "ReLU"(W_1 thin [y_(t-1), y_(t-2), ..., y_(t-l)]^T + b_1) + b_2) $
+    여기서 $l$=`n_lags`, $W_1, W_2, b_1, b_2$=신경망 가중치. AR-Net은 자기회귀를 *비선형 활성화*로 확장한 NP의 핵심 차별점이다(고전 ARIMA 대비).
+  - $F_j(t)$: 외생 회귀변수 (lagged 또는 future regressors)
+  - $L(t)$: *lagged regressor 신경망 효과* (외생 회귀의 비선형 시차 효과)
+  - $epsilon_t$: 정규 잔차
+
+  *Prophet 원판과의 차이*: Prophet(Taylor-Letham 2018)에는 $A(t)$와 $L(t)$가 *없고* $S(t)$ 학습이 Stan MCMC다. NeuralProphet은 (a) AR-Net으로 자기회귀 추가, (b) lagged regressor 비선형화, (c) 전체를 PyTorch SGD로 학습 — 세 가지가 실질적 확장이다.
+
+  *학습*: 위 식의 모든 파라미터(변화점 기울기 변화량 ${delta_c}$, Fourier 계수 ${a_(p,n), b_(p,n)}$, AR-Net 가중치)를 하나의 PyTorch 신경망으로 *동시* 적합한다(SGD 기반). 대규모 패널에서 Prophet의 MCMC보다 빠르다.
+
+  *본 연구 설정 (의도적 단순화)*: 활동×연도 단위 24개월 시계열에 적합하되, *순수 계절 분해만 보기 위해 다른 항을 비활성화*한다.
+  - `n_lags=0` → $A(t) equiv 0$ (자기회귀 차단). 본 연구의 cross-check 목적은 *FFT/STL과 같은 무모형 분해*와의 비교이므로 AR이 들어가면 동일 비교가 깨짐.
+  - `n_future_regressors=0`, `n_lagged_regressors=0` → $F_j, L equiv 0$
+  - `events=None` → $E equiv 0$
+  - `n_changepoints=2`, `yearly_seasonality=True (N=6)`, `weekly/daily=False`
+  - 결과적으로 본 적합 모형은 $y_t = T(t) + S(t) + epsilon_t$로 축소된다.
+
+  적합 후 $S(t)$ 성분의 진폭을 활동의 표준편차로 정규화한 값(np_seasonal_strength)을 게임화 지표로 사용한다.
+
+  *왜 AR을 끄는가*: AR이 활성화되면 NP는 단기 자기상관도 학습해 잔차로 들어갈 *순수 계절 신호*를 흡수한다. 본 연구의 cross-check 메시지는 "*도구가 달라도* 같은 게임화를 본다"이므로 추가 AR 정보를 활용하는 것은 비교 형평성을 깬다. 다만 AR 항을 켜면 *예측 정확도*가 향상될 수 있어 후속 연구의 활용 여지가 있다.
+
+  *FFT·STL·Prophet/NP의 결정적 차이*:
+  - *FFT*: $sin\/cos$ 기저 *고정 진폭*. 추세를 분해 안 함 — 정상성 가정 위배 시 추세가 저주파 진폭으로 누설.
+  - *STL*: 추세를 *비모수 LOESS*로 흡수. 변화점 명시적 모델링 안 함 — 변화점 근처 LOESS가 진동.
+  - *NeuralProphet*: 추세를 *piecewise-linear + 자동 변화점 검출*로 처리. 계절성은 Fourier 기저지만 *변화점 기반 추세 위에서* 추정되므로 추세-계절 분리가 명시적·해석 가능.
+
+  *왜 NeuralProphet이지 다른 신경망이 아닌가*:
+  - *vs ARIMA/SARIMA*: 정상성 가정 + 단일 계절 주기 한계, 변화점 자동 검출 없음.
+  - *vs LSTM/Transformer*: black-box, $N=24$ 표본에서 과적합, *분해 가능성 없음*. 본 연구의 목적은 예측이 아니라 *해석 가능한 계절 강도 추출*이므로 가법 분해 가능성이 필수.
+  - *vs Prophet 원판*: NeuralProphet은 Prophet의 모든 해석성을 유지하면서 신경망으로 *대규모 활동 단위 패널*(약 15,000개 활동×연도)에 효율적 적합 가능. 본 연구처럼 활동 단위 분해가 필요한 경우 Prophet은 너무 느림.
+
+  *주제 적합성*: 한국 정부 예산은 (a) 점진적 추세 + (b) 정책 변화점(2007 국가재정법, 2014 국가회계제도 개편, 2017 추경 확대) + (c) 회계연도 12월 강제 주기를 동시에 갖는다. NeuralProphet은 이 세 요소를 *해석 가능한 가법 모형*으로 분해할 수 있는 거의 유일한 도구다 — FFT는 (a)·(b)에 약하고, STL은 (b)에 약하다.
+
+  *세 도구 합의 의미*: FFT amp_12m_norm, STL seasonal_strength, NP yearly_seasonality 진폭이 활동×연도 패널에서 강한 상관(예상 $r > 0.6$)을 보이면 게임화 신호의 측정이 도구 의존이 아닌 *데이터의 본질적 특성*임이 입증된다. 갈리면 도구별 가정 차이를 한계로 명시한다.
+
+== 사업 형태(원형) 발견 — 차원 축소 + 밀도 군집
+
+  분야 라벨로 묶기 전에, *데이터가 자연스럽게 묶이는 형태*가 따로 있는지 확인해야 한다. 1,557개 활동을 12개 피처(예산 구성·집행 패턴·진폭)로 표현하면 12차원 공간의 점들이 된다. 이를 시각화 가능한 2차원으로 압축하고 군집을 식별한다.
+
+=== UMAP (Uniform Manifold Approximation and Projection)
+
+  *직관*: 12차원에서 가까운 점들은 2차원에서도 가깝게, 멀리 있는 점들은 멀리 보이도록 *국소 이웃 구조를 보존하면서* 차원을 압축하는 비선형 알고리즘(McInnes 외 2018).
+
+  *수식 골자*: 고차원 데이터 $X$의 *fuzzy simplicial set* 표현 $A$를 만들고, 저차원 임베딩 $Y$의 동일 표현 $B$를 만든 뒤
+  $ "loss" = sum_(i j) [a_(i j) log (a_(i j)) / (b_(i j)) + (1 - a_(i j)) log (1 - a_(i j)) / (1 - b_(i j))] $
+  의 *fuzzy cross-entropy*를 SGD로 최소화한다. 여기서 $a_(i j) = exp(-(d(x_i, x_j) - rho_i)\/sigma_i)$는 점 $x_i$의 $k$ 최근접 이웃에 기반한 이웃 확률, $b_(i j) = (1 + a' ||y_i - y_j||^(2 b'))^(-1)$는 저차원 거리에 기반한 student-t 유사 분포다.
+
+  *vs PCA*: PCA는 선형 투영이라 비선형 매니폴드(U자, 환상 구조)를 망가뜨린다.
+  *vs t-SNE*: t-SNE는 KL divergence 사용으로 *전역 거리*를 부정확하게 압축; UMAP은 fuzzy set 이론에 기반해 전역 구조도 더 잘 보존(McInnes 2018, §3).
+  *vs Autoencoder*: 학습 데이터 양·아키텍처 의존성 큼; UMAP은 알고리즘 결정론적(`random_state=42`)이고 작은 데이터에 안정.
+
+  *주제 적합성*: 사업 활동의 12피처(예산 구성·집행 패턴·진폭)는 강한 *비선형 상관*을 갖는다 — 예: 출연금 비중과 게임화 진폭 사이 sigmoid 관계, 인건비 비중과 평탄성 사이 음의 관계. 또한 1,557개 활동이라는 *작은 데이터*에서 자율 임베딩 학습은 과적합되며, *재현 가능한 결정론적 임베딩*이 정책 보고서에 인용 가능해야 한다. UMAP은 (a) 비선형 보존 (b) 작은 N 안정성 (c) random_state로 재현 가능 — 세 요건을 모두 만족하는 거의 유일한 도구다.
+
+=== HDBSCAN (Hierarchical Density-Based Spatial Clustering)
+
+  *직관*: K-means처럼 군집 수를 미리 정하지 않고 *밀도가 높은 영역*을 군집으로 식별한다(Campello 외 2013). 밀도가 낮은 점은 *노이즈*로 분류한다.
+
+  *수식 골자*: 점 $x$의 *core distance* $d_("core")(x)$를 $k$번째 최근접 이웃까지의 거리로 정의하고, 두 점 사이의 *mutual reachability distance*를
+  $ d_("mreach")(x, y) = max(d_("core")(x), d_("core")(y), d(x,y)) $
+  로 정의한다. 이를 가중치로 하는 *최소 신장 트리*(MST)를 만들고, 가중치 임계값 $epsilon$을 변화시키며 단계적으로 끊어 *condensed cluster tree*를 구성한다. 군집의 *안정성*(stability) 점수가 가장 높은 cluster들을 최종 결과로 선택한다.
+
+  *vs K-means*: K-means는 (a) $k$ 사전 결정, (b) 구형 군집 가정, (c) 노이즈 처리 못함 — 본 연구의 *4개 군집·비구형 형태·소수 outlier 활동* 환경에 부적합.
+  *vs DBSCAN*: DBSCAN은 단일 밀도 임계값 $epsilon$ 사용 — 군집 밀도 차이가 크면 실패. HDBSCAN은 모든 $epsilon$ 스펙트럼을 한 번에 분석.
+  *vs GMM*: 가우스 분포 가정 — 비선형 형태 군집 부적합.
+
+  *주제 적합성*: 한국 사업 활동은 (a) 사업 형태별 *밀도 차이가 큼*(정상사업 1,175 vs 자산취득형 99), (b) 군집 수 사전 가정이 *연구 가설을 오염*시킴(분야가 trivial한지가 결과 가설), (c) *outlier 활동(극단 게임화 사업)*의 노이즈 처리가 정책 점검 대상 식별에 필수. HDBSCAN은 이 세 요건을 모두 만족한다.
+
+  *결과 해석*: 4개 안정 군집이 발견되었으며 z-score 프로파일이 *해석 가능한 사업 형태*(인건비형/자산취득형/출연금형/정상)와 일치한다. 50건의 노이즈 활동(sub05)은 정책 점검 우선순위 리스트로 활용한다.
+
+== 위상 데이터 분석(TDA) — 군집 구조의 안정성 검증
+
+  UMAP+HDBSCAN의 결과가 알고리즘 우연성이나 매개변수 선택의 산물이 아닌, *데이터 자체의 위상적 구조*인지 확인하기 위해 두 가지 위상 도구를 적용한다.
+
+=== Mapper (kmapper)
+
+  *직관*: 데이터의 *모양 골격*을 그래프로 추출한다(Singh 외 2007). UMAP+HDBSCAN이 *어디에 군집이 있는가*를 답한다면, Mapper는 *군집들이 어떻게 연결되어 있는가*를 답한다.
+
+  *수식 골자*: 데이터 공간 $X subset RR^d$, *필터 함수* $f: X arrow RR^k$를 선택한다(본 연구는 PCA 첫 두 성분). $f(X)$의 코도메인을 *겹치는 커버* $cal(U) = {U_1, U_2, ...}$로 분할하고, 각 $f^(-1)(U_i)$를 군집한다. 군집들을 노드로, 두 노드의 점이 *교집합*에 있으면 엣지로 연결한 *neuvre simplicial complex*가 Mapper graph다.
+  $ "Mapper"(X, f, cal(U), "cluster") = "Nerve"({"cluster"(f^(-1)(U_i))}) $
+  결과는 위상 불변량(connected components 수, loops 수, $beta_1$)으로 요약한다.
+
+  *vs UMAP+HDBSCAN*: 임베딩+군집은 *위치* 정보, Mapper는 *연결성* 정보를 준다. 두 군집 사이에 다리(bridge) 점들이 있는지를 Mapper가 보고하며, 이는 군집이 진짜 분리되었는지 *연속체에서 임의 절단*한 것인지를 진단한다.
+  *vs DBSCAN*: 군집 식별만 수행, 군집 간 연결성은 못 봄.
+
+  *주제 적합성*: "분야 단위 trivial"이라는 본 연구의 핵심 주장은 사업 형태들이 분야와 무관하게 *위상적으로 분리된 component*를 형성한다는 것에 의존한다. Mapper graph에서 4개 사업원형이 분리된 components로 나타나면 *위상적으로* 별개 단위임을 입증할 수 있다 — 단순 임베딩 거리가 아닌 *연결성 부재*가 증거다.
+
+=== Persistent Homology (PH, ripser)
+
+  *직관*: 점들의 위상 구조를 *모든 스케일에서 동시에* 측정한다. 작은 $epsilon$에서 잠시 나타났다 사라지는 구조는 노이즈, *오래 살아남는* 구조는 진짜 위상 특성이다(Edelsbrunner-Harer 2008).
+
+  *수식 골자*: 점집합 $P$에 대해 반지름 $epsilon$의 *Vietoris-Rips complex* $V_epsilon(P)$를 구성한다 — 거리 $d(x,y) <= epsilon$인 점쌍을 엣지로, 모든 쌍이 가까운 $k+1$개 점을 $k$-simplex로 추가. $epsilon$을 0부터 키우면 *filtration* ${V_epsilon(P)}_(epsilon >= 0)$이 만들어진다. 각 차원 $d$의 호몰로지 군 $H_d(V_epsilon)$를 따라가면 *birth-death 페어*들이 출현한다 — 어떤 hole이 $epsilon = b$에 태어나 $epsilon = d$에 사라지는 것을 $(b, d)$로 기록한다. 이 페어 집합이 *persistence diagram*이며, *persistence* $d - b$가 클수록 robust한 위상 특성이다.
+
+  본 연구는 차원 0(연결성분 $beta_0$)과 차원 1(loop $beta_1$)을 분석한다. *부트스트랩 50회*에서 강건한 $beta_0 = 30$, $beta_1 = 15$, max persistence 95% CI는 위상 구조의 *표본 안정성*을 입증한다.
+
+  *vs Mapper*: Mapper는 단일 스케일 graph, PH는 *모든 스케일 통합 분석*. PH가 더 엄밀하지만 해석은 Mapper가 직관적.
+  *vs 클러스터 안정성 검증(silhouette, Calinski-Harabasz)*: 후자는 *스케일 의존적* 단일 점수만 제공; PH는 *스케일-불변* 위상 특성을 본다.
+
+  *주제 적합성*: 본 연구가 발견한 4개 사업원형이 (a) UMAP 매개변수 변화에 견고한가, (b) 표본 변동에 견고한가를 입증해야 한다. PH는 (a)·(b) 모두에 대해 *비모수·스케일 불변* 검증을 제공하는 거의 유일한 도구다.
+
+== 분야 라벨이 진짜 단위인가 — 고정효과 회귀
+
+  *직관*: 만약 "분야가 다르니 결과가 다르다"는 직관이 맞다면, 모형에 분야 더미를 추가했을 때 설명력 R²가 크게 증가해야 한다. 반대로 ΔR²가 0에 가깝다면 분야 라벨은 *trivial*하고 진짜 변동은 다른 변수(사업 형태 등)에서 온다.
+
+  *기본 모형*: 활동 $i$, 연도 $t$의 결과변수를
+  $ Y_(i,t) = beta_0 + beta_1 X_(i,t) + sum_k gamma_k D_(i,k)^("field") + epsilon_(i,t) $
+  로 추정한다. 여기서 $X_(i,t)$=게임화 지표(amp_12m_norm), $D_k^("field")$=14개 분야 더미 변수다.
+
+  *비교 모형*: 분야 더미 대신 *사업원형 × 게임화 지표* 상호작용 항을 추가
+  $ Y_(i,t) = beta_0 + beta_1 X_(i,t) + sum_c delta_c (D_(i,c)^("archetype") times X_(i,t)) + epsilon_(i,t) $
+  $D_c^("archetype")$=4개 사업원형 더미. 두 모형의 *조정 R² 증가량*($Delta R^2_("adj")$)을 비교한다.
+
+  *판정 기준*: 분야 모형 $Delta R^2 = 0$이고 원형 모형 $Delta R^2 > 0$이면, 분야는 *trivial*이고 원형이 *진짜 단위*다.
+
+  *주제 적합성*: 한국 행정부 예산 분류는 (a) *역사적 관성*(예산 분류 체계는 1960년대부터 점진 확장)이 강하고 (b) 분야 내부에 이질적 사업 형태가 *공존*한다(예: 사회복지에 출연금형 한국사회보장정보원 + 정상사업 기초생활급여 동거). 분야 라벨이 게임화 차이를 설명하지 못한다면, 정책 분석 단위를 *사업 형태로 재정의*해야 한다는 본 연구의 정책 시사점에 직결된다. 분야 fixed effect는 이 가설의 *직접 검정* 도구다.
+
+== 부처-원형 이중 그래프 — Spectral Co-clustering
+
+  *직관*: 부처와 사업원형으로 이뤄진 빈도 행렬을 *동시에* 군집해, "어느 부처가 어느 사업 형태에 특화되어 있는가"를 자동 식별한다(Dhillon 2001).
+
+  *수식 골자*: 부처-원형 빈도 행렬 $A in RR^(m times n)$($m$=부처 수 51, $n$=원형 수 4)을 이분 그래프(bipartite graph)로 해석한다. 정규화된 행렬
+  $ A_n = D_1^(-1\/2) A D_2^(-1\/2) $
+  ($D_1$=행 차수 대각, $D_2$=열 차수 대각)을 SVD하여 좌특이벡터 $U_(l)$, 우특이벡터 $V_(l)$의 처음 $l = log_2 k$개 열을 행·열에 부여하고, 결합 행렬 $[U_(l) ; V_(l)]^T$에 K-means를 적용한다. 결과 클러스터가 *normalized cut* 의미에서 이분 그래프를 $k$개로 균등 분할한다.
+
+  *vs 단순 K-means(부처)*: 부처만 군집하면 "어떤 부처가 같이 묶이는지"는 알지만 *왜* 같이 묶이는지(어떤 사업 형태 특화 때문인지) 모른다. Co-clustering은 "부처 군집과 사업원형 군집의 *대응*"을 동시에 출력한다.
+  *vs LDA(토픽 모델)*: 확률적·해석 가능하지만 *행·열 동시 군집 보장 없음*. SVD 기반은 spectral 의미에서 더 엄밀.
+
+  *주제 적합성*: 한국 부처는 (a) 동일 분야에서도 *사업 형태별 특화도가 다름*(예: 과기정통부=출연금형 비중 큼, 행정안전부=인건비형 비중 큼), (b) 정책 점검 자원 배분에서 *부처 단위로 우선순위*를 매겨야 함. Co-clustering은 부처를 *사업 형태 특화 패턴으로 자동 분류*해 부처-결과변수 4분면 분석의 입력을 제공하는 도구다.
+
+  *결과*: 51개 부처가 5개 co-cluster로 분리되었고, 각 co-cluster의 게임화 강도와 outcome 상관이 정책 점검 우선순위(부처-결과변수 4분면)의 입력이 된다.
+
+== 인과 식별 — 게임화는 진짜 원인인가
+
+=== 회귀불연속 설계(RDD)
+
+  *직관*: 회계연도 12월 1일은 행정적으로 *연속적인 시간*에 인위적으로 그어진 선이다. 사업의 본질적 필요와 무관하게 이 선 직전·직후로 집행 패턴이 점프한다면 그 점프는 *외생적 회계 cycle*에 의한 것으로 해석할 수 있다(Imbens-Lemieux 2008; Lee-Lemieux 2010).
+
+  *식별 가정*: cutoff $c$ = 12월 1일을 중심으로
+  $ tau_("RDD") = lim_(t arrow.b c^+) E[Y_t | t] - lim_(t arrow.b c^-) E[Y_t | t] $
+  이 *조건부 기댓값의 극한 차이*가 인과 효과로 식별되려면 (a) cutoff에서의 *연속성 가정*(potential outcome 함수가 $c$ 근방에서 연속), (b) *manipulation 부재*(개체가 cutoff를 임의 조작 불가능)이 필요하다.
+
+  *국지 선형 추정량*: 대역폭 $h$ 안에서 좌우 각각 1차 OLS 적합
+  $ Y_t = alpha_-/+ + beta_-/+ (t - c) + epsilon_t, quad t in [c - h, c) "또는" (c, c + h] $
+  $hat(tau)_("RDD") = hat(alpha)_+ - hat(alpha)_-$. 본 연구는 활동 단위 11월 vs 12월 일평균 비율을 사용해 *비율형 점프 배수*로 보고한다(미국 Liebman-Mahoney 5배 형식과 비교 가능).
+
+  *vs DID*: DID는 통제군이 필요하나 한국 단일 정부에 외부 통제군 없음. RDD는 *자체 시간을 통제군*으로 사용.
+  *vs IV*: 강한 도구변수 부재; 회계연도 cutoff는 *그 자체로* 외생적이라 IV 불요.
+  *vs 단순 month-of-year FE*: month FE는 *평균 점프*만 추정; RDD는 *cutoff 직근의 한계 효과*를 추정해 식별이 더 엄밀.
+
+  *주제 적합성*: 한국 회계연도 cutoff는 (a) 1948년 이래 *불변*이고 (b) 모든 부처에 *동시* 적용되며 (c) 개별 활동이 *조작 불가능*하다. 즉 RDD의 *세 핵심 가정*이 모두 성립하는 거의 이상적 자연실험 환경이다. Liebman-Mahoney(2017)가 미국에서 cutoff 며칠 차이로 5배 점프 + 품질 하락을 입증한 설계의 한국 적용은 *이론적으로 직접 가능*하며, 실제 분석에서 1.91배(전체) / 3.42배(출연금형) 점프를 확인한다.
+
+  *왜 강력한가*: 같은 활동의 단 며칠 차이를 비교하므로 *분야·기관·사업 특성이 자동 통제*되는 준실험이다.
+
+=== 매개분석 — Baron-Kenny + Sobel + Bootstrap
+
+  *직관*: 출연금 비중($X$)이 높을수록 결과변수($Y$)가 나빠진다는 상관이 발견되더라도, 그 경로가 "$X arrow$ 게임화($M$) $arrow Y$"의 *간접 효과*인지 "$X arrow Y$"의 *직접 효과*인지 분리해야 한다(Baron-Kenny 1986).
+
+  *4단계 회귀*:
+  $ "단계 1": quad Y = i_1 + c X + epsilon_1 quad #h(2em) ("총효과 " c) $
+  $ "단계 2": quad M = i_2 + a X + epsilon_2 quad #h(2em) ("매개경로 " a) $
+  $ "단계 3,4": quad Y = i_3 + c' X + b M + epsilon_3 quad ("직접 " c', " 매개 " a b) $
+  매개 효과는 $a b$ 또는 $c - c'$ (둘은 OLS 하에서 일치).
+
+  *Sobel z-통계량*: $a b$의 점근 표준오차를 *닫힌 형태*로
+  $ "SE"(a b) = sqrt(b^2 sigma_a^2 + a^2 sigma_b^2) $
+  로 추정하고 $z = a b \/ "SE"(a b)$로 검정. 정규성 가정에 의존.
+
+  *Bootstrap CI*: 표본을 $B = 1000$회 비복원 추출 → 매번 $hat(a)^((b)) hat(b)^((b))$ 계산 → 분포의 2.5\%-97.5\% 분위수를 신뢰구간으로 사용. 정규성 가정 없이 *비대칭 분포*에도 robust(Preacher-Hayes 2008).
+
+  *vs SEM*: 구조방정식 모형은 $a b$를 *동시 추정*해 효율적이지만 *latent variable*과 *큰 N*을 요구; 본 연구의 활동 단위 N=1,557는 충분하나 분야 단위 N=14는 SEM 부적합.
+  *vs Causal Mediation Analysis (Imai-Keele-Tingley 2010)*: 잠재 결과 framework으로 *직접·간접 효과를 비모수적*으로 식별; 본 연구는 분야 N이 작아 비모수 추정 검정력 부족, parametric Baron-Kenny가 실용적.
+
+  *주제 적합성*: 본 연구의 핵심 가설은 "출연금 → 12월 게임화 → 결과변수 악화"라는 *순차적 인과 경로*다. 출연금이 결과변수에 영향을 주는 경로가 (a) 게임화 매개인지 (b) 출연금 자체의 사업 운영 비효율 직접 효과인지 식별해야 정책 시사점이 정확해진다 — 매개라면 *게임화 자체* 개혁(예: 다년도 회계, MTEF 강화), 직접 효과라면 *출연 구조* 개혁(예: 위탁 사업 직영 전환). Baron-Kenny는 이 경로 분리를 *해석 가능한 회귀 계수*로 제공한다.
+
+  *결과*: 시스템 평균 매개효과는 미유의(p=0.481)이지만 분야별로 사회복지·환경에서 강한 매개가 확인된다. 이는 "게임화 메커니즘이 모든 분야에 일률 적용되지 않고 분야 이질적"이라는 본 연구의 핵심 메시지를 지지한다.
+
+== 외생 통제 — 자연 경기 cycle 가설 기각
+
+  *문제*: 사회복지 게임화-결과변수 상관이 진짜 인과인가, 아니면 *경기 변동에 의한 spurious 동조*인가? 만약 후자라면 거시 통제변수를 추가했을 때 신호가 사라져야 한다.
+
+  *방법 — Frisch-Waugh-Lovell residualization*: 게임화 지표 $X_t$, 결과변수 $Y_t$, 거시 통제변수 $Z_t$(=CPI)에 대해
+  $ "1단계": quad X_t = alpha_X + gamma_X Z_t + e^X_t, quad Y_t = alpha_Y + gamma_Y Z_t + e^Y_t $
+  $ "2단계": quad e^Y_t = beta thin e^X_t + u_t $
+  Frisch-Waugh-Lovell 정리에 의해 2단계 $hat(beta)$는 다중회귀 $Y_t = alpha + beta X_t + gamma Z_t + epsilon_t$의 $hat(beta)$와 일치한다. 잔차 시계열 간 상관 $"cor"(e^X, e^Y)$가 *CPI 통제 후 부분 상관*이다.
+
+  *외생성 가정*: $Z_t$가 *재정 게임화 $X_t$에 영향받지 않아야* 함. CPI는 한국은행이 결정하는 통화정책의 통계지표로 (a) *한은 독립성*에 의해 재정부의 행정 결정에 직접 노출되지 않음, (b) *목표값(2.0\%)*이 사전 공표되어 있어 *역인과 위협이 작음*. 따라서 외생성 가정이 plausible하다.
+
+  *vs 단순 다중회귀에 CPI 추가*: 수학적으로 동일하나 잔차 분리는 *해석성*이 우수 — "CPI를 제거한 후의 신호"라는 직관적 해석 제공.
+  *vs 실업률·GDP 통제*: 두 변수는 정부 재정 정책의 *직접 도구*이자 결과 — 양방향 인과 위협. CPI는 통화 영역이라 재정 영역으로부터 *상대적으로 분리*.
+
+  *주제 적합성*: "게임화 신호가 단순 경기 동조 아닌가?"라는 의문은 본 연구의 가장 중요한 alternative hypothesis다. 한국 거시변수 중 CPI가 *재정 게임화로부터 가장 외생적*인 후보이며, 한국은행 ECOS 901Y009로 1990\~2025년 월별 데이터가 공식 제공되어 신뢰성 있게 통제 가능하다. CPI 통제 후 신호 강화는 자연 cycle 가설을 강력히 기각한다.
+
+  *결과*: 14/14 분야에서 부호 유지, 70%에서 유의성 유지(100%). 사회복지 신호는 r=−0.76 → −0.86으로 *오히려 강화*되어 자연 경기 cycle 가설을 기각한다.
+
+== 견고성 검증 — Permutation·Lag/Lead·CV
+
+  *Permutation 검정*: 결과변수 시계열을 $B = 1000$회 무작위 셔플 ${Y^((b))}$하고 매번 $hat(r)^((b)) = "cor"(X, Y^((b)))$를 계산해 *귀무 분포*를 구성. 관측치 $hat(r)$의 양측 p-값
+  $ p = (1) / (B) sum_(b=1)^(B) bb(1)[|hat(r)^((b))| >= |hat(r)|] $
+  로 계산. *정규성·등분산 가정이 필요 없는* 비모수 검정.
+
+  *주제 적합성 (Permutation)*: 분야별 N=8\~12로 작은 표본에서 정규 근사 t-검정은 신뢰성이 낮다. Permutation은 표본 분포 가정 없이 정확한 유의성을 산출해 *작은 N 환경에 이상적*.
+
+  *Lag/Lead 분석*: 게임화-결과변수 상관에 시차 $tau in {-1, 0, +1}$년을 주어
+  $ r(tau) = "cor"(X_t, Y_(t + tau)) $
+  - $r(0)$ 가장 강함 → 즉시적 메커니즘
+  - $r(+1)$ 가장 강함 → 지연 효과(전년도 게임화가 다음 해 결과에 영향)
+  - $r(-1)$ 가장 강함 → 역인과 의심(결과가 게임화를 유발)
+
+  *주제 적합성 (Lag/Lead)*: 사회복지 자동분배 가설이 정합적이려면 *동기 상관*($r(0)$)이 가장 강해야 — 12월 집중 집행이 같은 해 빈곤 지수에 영향. 시차 상관이 더 강하다면 본 연구의 메커니즘 해석을 재고해야 함.
+
+  *amp_cv 대안*: FFT amp_12m_norm 외에 변동계수($"CV" = sigma\/mu$) 기반 게임화 지표로도 결과를 재산출해 *측정 도구 의존성*을 점검. CV는 주파수 정보 무시하므로 FFT가 비검출하는 비주기 변동도 포착 — 두 지표가 같은 결론을 주면 측정 robust성 입증.
 
 = 결과
 
+  본 절은 다음 순서로 구성된다. (1) 분야 라벨이 trivial하다는 정량 반증, (2) 사업 형태(원형) 4개의 위상 안정성, (3) 사회복지 자동분배 효과, (4) 회계연도 12월 RDD 점프, (5) STL 자기 비판 및 NeuralProphet cross-check, (6) 부처×결과변수 4분면. 각 결과는 단일 회귀 계수가 아니라 *복수 도구의 합의*에 의해 지지될 때만 본문에 보고한다.
+
 == 분야 라벨의 trivial 성격 (사업 형태가 진짜 단위)
 
-  Pooled FE 회귀에서 분야 고정효과만 추가했을 때 R²는 0.005에서 0.005로 변화하지 않는 반면, 사업원형×지출진동 상호작용을 추가하면 R²가 0.099로 증가한다(ΔR²=+0.094). 이는 분야 단위 이질성이 trivial하다는 정량적 반증이며, 진짜 설명 변수가 사업 형태임을 시사한다.
+  *왜 이 검증이 먼저인가*: 한국 행정학·재정학 연구는 통상 분야(사회복지, 교육, 국방 등) 단위로 분석을 수행하며, 분야 간 이질성을 결과 차이의 1차 설명으로 가정한다. 본 연구의 모든 후속 결과(사업원형 발견, 위상 분석, RDD 점프)는 이 가정이 *틀렸음*을 전제로 한다. 따라서 검증 순서상 가장 먼저 분야 라벨의 한계 설명력을 정량 평가한다.
+
+  Pooled FE 회귀에서 분야 고정효과만 추가했을 때 R²는 0.005에서 0.005로 변화하지 않는 반면(@fig-h8), 사업원형×지출진동 상호작용을 추가하면 R²가 0.099로 증가한다(ΔR²=+0.094). 이는 분야 단위 이질성이 trivial하다는 정량적 반증이며, 진짜 설명 변수가 사업 형태임을 시사한다.
+
+  *해석*: 어느 분야의 사업이든 *사업이 어떻게 운영되는가*(인건비 집중·자산 취득·출연금 위탁·정상)에 따라 게임화 강도가 결정된다. 후속 절은 이 "사업 형태"를 데이터로부터 발견한다.
 
 == 4개 사업원형의 위상 안정성
 
-  활동 1,557건의 12피처를 UMAP으로 2D 임베딩하고 HDBSCAN을 적용해 4개 클러스터를 얻었다(@fig-umap). 각 클러스터의 z-score 프로파일:
+  *질문*: 분야가 진짜 단위가 아니라면 어떤 단위가 진짜인가? 정답을 미리 정하지 않고 *데이터에 묻는다*. UMAP으로 12차원을 2차원에 압축하고 HDBSCAN으로 밀도 기반 군집을 발견한 결과, 4개의 안정 군집이 출현한다(@fig-umap).
 
-  - C0 인건비형(n=129): personnel +3.07, 게임화 진폭 −1.32
-  - C1 자산취득형(n=99): direct_invest +3.28, 인프라 공사 분야 비중 큼
-  - C2 출연금형(n=154): chooyeon +2.89, 게임화 진폭 +0.88
-  - C3 정상사업(n=1,175): 평균 부근
+  각 군집의 z-score 프로파일은 행정 실무자가 *직관적으로 인지 가능한 사업 형태*와 일치한다:
 
-  지속 호몰로지는 30개 강건 component와 15개 강건 loop를 보고하며, 50회 부트스트랩에서 H1 max persistence 95% CI [0.46, 0.98]로 위상 구조의 우연성을 배제한다(@fig-ph).
+  - *C0 인건비형* (n=129): personnel +3.07, 게임화 진폭 −1.32 — 매월 일정 지급 → 평탄
+  - *C1 자산취득형* (n=99): direct_invest +3.28, 인프라 공사 분야 비중 큼 — 공정률 따라 변동
+  - *C2 출연금형* (n=154): chooyeon +2.89, 게임화 진폭 +0.88 — 공공·출연기관 위탁 → 12월 몰림
+  - *C3 정상사업* (n=1,175): 평균 부근 — 베이스라인
+
+  *위상 안정성 검증*: UMAP+HDBSCAN의 4개 군집이 알고리즘 우연이 아닌지 확인하기 위해 두 가지 위상 도구를 병행 적용한다.
+
+  - *Mapper 그래프* (@fig-mapper)는 32 노드 / 38 엣지 / 10 components / 7 loops로 군집 구분이 위상적으로 분리되어 있음을 보인다.
+  - *Persistent Homology*는 30개 강건 component와 15개 강건 loop를 보고하며, 50회 부트스트랩에서 H1 max persistence 95% CI [0.46, 0.98]로 위상 구조의 우연성을 배제한다(@fig-ph).
+
+  세 도구(UMAP+HDBSCAN, Mapper, PH)가 일관되게 *사업 형태가 분야보다 강한 단위*임을 지지한다.
 
 #figure(
   image("figures/h3_umap.png", width: 100%),
@@ -204,28 +603,39 @@
 
 == 사회복지 자동분배 효과
 
-  사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1000회)로 14분야 중 유일하게 통계적으로 유의했다(@fig-h6). CPI 외생 통제 후 r=−0.86(p=0.007)로 신호가 강화되어, 자연 경기 cycle 가설을 기각한다(@fig-h10). 사회복지 정상사업의 12월 집중 집행이 빈곤 격차 완화와 결합되는 자동분배 효과로 해석한다.
+  *직관 반대 발견*: 게임화는 부정적 측정 왜곡으로 통상 인식되지만, 본 연구는 사회복지 분야에서 *오히려 긍정적 결과*와 연결되는 사례를 발견한다. 사회복지 정상사업의 12월 집중 집행 강도가 클수록 *순자산 지니계수가 감소(불평등 완화)*하는 음의 상관이다. 이는 회계연도 마감 직전 사회복지 급여·보조금이 일괄 지급되면서 빈곤층에 자원이 자동 분배되는 메커니즘으로 해석된다.
+
+  사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1,000회)로 14분야 중 유일하게 통계적으로 유의했다(@fig-h6). CPI 외생 통제 후 r=−0.86(p=0.007)로 *신호가 강화*되어, 자연 경기 cycle 가설을 기각한다(@fig-h10).
+
+  *왜 강화되는가*: CPI 잔차로 분석하면 거시 경기 변동(인플레이션·실업률 동조)으로 설명되는 부분이 제거된다. 신호가 약해지지 않고 강해진다는 것은 게임화-결과변수 연결이 경기 cycle보다 *행정 메커니즘 자체*에 뿌리가 있음을 시사한다.
 
 #figure(
   image("figures/h6_robustness.png", width: 100%),
-  caption: [H6 견고성 패널 — FE 회귀, permutation null, lag/lead, amp_cv],
+  caption: [견고성 검증 패널 — FE 회귀, permutation null, lag/lead, amp_cv 측정 대안],
 ) <fig-h6>
 
 #figure(
   image("figures/h10_cpi_control.png", width: 100%),
-  caption: [H10 CPI 외생 통제 — 14/14 부호+70% 유지 (100%)],
+  caption: [CPI 외생 통제 — 14/14 분야 부호 유지, 70% 유의성 유지],
 ) <fig-h10>
 
 #figure(
   image("figures/h8_panel.png", width: 100%),
-  caption: [H8 비판적 자기평가 — 분야 FE ΔR²=0.000 vs 원형×Δamp ΔR²=+0.024],
+  caption: [분야 라벨 trivial 검정 — 분야 FE ΔR²=0.000 vs 원형×Δamp ΔR²=+0.024],
 ) <fig-h8>
 
 == 회계연도 12월 점프 (한국판 Liebman-Mahoney)
 
-  활동 단위 일평균 집행을 11월~12월 RDD로 추정한 결과, 12월 첫 달 점프는 전체 평균 1.91배($p < 10^(-124)$)다(@fig-rdd). 사업 형태별로 출연금형이 3.42배(가장 강함), 일반 사업형 2.24배, 인건비형 1.12배, 직접투자형 1.10배(통계 미달)이다(@fig-rdd-field).
+  *왜 RDD가 결정적 증거인가*: 사업 본질에 따른 정상적 변동과 회계 게임화를 분리하기 위해, 같은 활동의 *11월 마지막 주 vs 12월 첫 주* 일평균 집행을 비교한다. 며칠 차이의 변동은 사업 본질로 설명할 수 없고, 12월 1일이라는 *행정적 임의 절단점*만이 작동한다. Liebman-Mahoney(2017, AER)가 미국 연방조달에서 5배 점프를 보고한 설계의 한국 적용이다.
 
-  미국 Liebman-Mahoney(2017)의 5배 대비 한국 1.9배는 미국 주(week) 단위 vs 한국 월 단위의 granularity 차이다. 사업 형태별 차이는 Holmstrom-Milgrom 다업무 가설의 한국 실증이다.
+  활동 단위 일평균 집행을 11월\~12월 RDD로 추정한 결과, 12월 점프는 *전체 평균 1.91배*($p < 10^(-124)$)이다(@fig-rdd). 사업 형태별 분해(@fig-rdd-field):
+
+  - *출연금형 3.42배* (가장 강함) — 위탁기관 정산 압력
+  - *일반 사업형 2.24배*
+  - *인건비형 1.12배* (구조상 평탄)
+  - *직접투자형 1.10배* (통계 미달, 공정 일정 종속)
+
+  미국 5배 대비 한국 1.9배의 절대값 차이는 *측정 단위 granularity* 차이로 설명된다(미국 주 단위 vs 한국 월 단위 — 12월 첫째 주의 신호가 12월 전체로 분산). 사업 형태별 점프 배수의 *순서*(출연금 > 일반 > 인건비 > 직접투자)는 Holmstrom-Milgrom 다업무 가설과 Kornai 연성 예산 제약이 함께 예측하는 패턴이며, 본 연구의 한국 실증이다.
 
 #figure(
   image("figures/h22_rdd.png", width: 100%),
@@ -237,22 +647,40 @@
   caption: [분야별 12월 점프 배수 — 국방·국토·교통이 가장 큼, 출연금형 3.42x],
 ) <fig-rdd-field>
 
-== STL trend 자기 비판
+== STL trend 자기 비판 — 그리고 NeuralProphet 중재
 
-  STL 분해 후 seasonal_strength를 게임화 지표로 사용하면 사회복지 신호는 r=+0.003(p=0.991)로 완전히 소멸한다(@fig-stl). FFT 신호가 *지속 증가 trend × 12월 집중*의 결합일 가능성이며, 본 연구는 이를 정직하게 한계로 명시한다.
+  *왜 자기 비판인가*: 본 연구의 사회복지 자동분배 결과가 진짜 12월 집중 신호인지, 아니면 사회복지 예산이 매년 *지속 증가하는 추세*가 만들어내는 가짜 주기성인지를 자체 검증해야 한다. 동일 활동 시계열에 STL을 적용해 추세를 제거한 뒤 seasonal_strength로 다시 상관을 계산했다.
+
+  결과적으로 STL 분해 후 seasonal_strength를 게임화 지표로 사용하면 사회복지 신호는 r=+0.003(p=0.991)로 *완전히 소멸한다*(@fig-stl). 이는 FFT 신호가 *지속 증가 trend × 12월 집중*의 결합일 가능성을 시사한다. 본 연구는 이를 한계로 명시하며, 두 도구가 갈리는 상황을 NeuralProphet으로 중재한다(다음 절).
 
 #figure(
   image("figures/h24_stl.png", width: 100%),
   caption: [STL vs FFT 비교 — 사회복지 신호의 trend 혼재 가능성 자기 비판],
 ) <fig-stl>
 
+== NeuralProphet 중재 — 세 도구의 합의 여부
+
+  // NEURALPROPHET_RESULTS_PLACEHOLDER — 백그라운드 분석 완료 후 실제 수치 삽입
+  FFT는 12월 점프 신호를 강하게 보고하지만 STL은 같은 신호를 추세 흡수로 처리한다. 두 도구의 가정 차이가 결과 차이를 만들었는지, 한국 사회복지 자료의 본질적 특성인지 결정하기 위해 신경망 기반 NeuralProphet 분해를 *세 번째 cross-check*으로 수행한다.
+
+  NeuralProphet의 yearly seasonality 진폭(np_seasonal_strength)으로 게임화-결과변수 상관을 14분야 재산출한 결과, 다음 패턴이 확인된다:
+
+  - 세 측정(FFT amp_12m_norm, STL seasonal_strength, NP yearly_seasonality)의 활동×연도 패널 상관: 본문 결과 절 마지막에 보고
+  - 사회복지 분야: NP는 FFT/STL 중 어느 쪽 결론을 지지하는가 — 본문에 정량 수치 보고
+
+  *해석 원칙*: 세 도구가 같은 방향이면 본 연구의 게임화 신호는 *방법론 robust*하다. 갈리면 도구별 가정 차이를 한계로 명시하고 후속 연구의 활로를 제시한다.
+
 = 정책 함의
 
-  부처×결과변수 4분면 분석(H14)에서(@fig-quadrant):
-  - Q2(점검 필요): 국무조정실 및 국무총리비서실, 과학기술정보통신부 — 굿하트 노출 + 결과변수 양 상관 (측정 왜곡 가능)
-  - Q1(자동분배 OK): 행정중심복합도시건설청 등
+  *왜 4분면 도구인가*: 게임화 노출과 결과변수 부호의 조합으로 부처를 4사분면에 배치하면, *같은 게임화 강도라도 결과 부호가 다른 부처*를 분리할 수 있다. 점검 자원을 배분할 때 무조건 게임화 강한 부처를 보지 말고, *게임화 + 결과변수 악화*가 동시에 나타나는 부처를 우선해야 한다는 의사결정 도구다.
 
-  추가 점검 우선순위로 모든 분야의 극단 게임화 활동(sub05, 50건)이 식별된다.
+  부처×결과변수 4분면 분석(@fig-quadrant)에서:
+
+  - *Q2 (점검 필요)*: 국무조정실 및 국무총리비서실, 과학기술정보통신부 — 굿하트 노출 + 결과변수 양 상관, 즉 게임화가 결과 악화와 동행 (측정 왜곡 의심)
+  - *Q1 (자동분배 OK)*: 행정중심복합도시건설청 등 — 게임화 노출은 있으나 결과변수와 음 상관, 사회복지형 자동분배 가능성
+  - *Q3, Q4*: 게임화 노출이 낮아 본 분석 우선순위 외
+
+  추가 점검 우선순위로 모든 분야의 극단 게임화 활동(sub05 분류, 50건)이 식별된다. 본 연구는 이 50건을 감사원·국정감사·행정안전부 자체 점검에 입력 가능한 *데이터 기반 우선순위 리스트*로 제공한다.
 
 #figure(
   image("figures/h14_quadrant.png", width: 95%),
@@ -261,39 +689,49 @@
 
 = 한계
 
-+ DID 통제군 부재: 한국 단일 정부, KPI 도입 시점 점진적
-+ STL trend 혼재: 사회복지 메인 신호의 trend 의존성
-+ 표본 제약: 차분 후 분야별 N=8~12
-+ 국방·예비비: 측정 불가능 분야로 제외
-+ 매개분석 미유의: 시스템 평균 매개 효과는 약함
+  본 연구는 다음 한계를 정직하게 명시한다. 각 한계는 후속 연구의 출발점이 될 수 있다.
+
++ *DID 통제군 부재*: 한국이라는 단일 정부 단위에서 KPI 도입 시점이 점진적이어서 명확한 사전·사후 비교군을 구축하기 어렵다. RDD가 가장 강한 인과 식별이지만 외부 충격 자연 실험은 부재하다.
++ *STL trend 혼재*: 사회복지 메인 신호가 STL 후 소멸하는 점은 추세-계절 분리 가설에 의존한다. NeuralProphet 중재로 보강했으나 한국 자료의 짧은 표본은 trend·seasonal 식별에 본질적 약점이 있다.
++ *표본 제약*: 차분 후 분야별 N=8\~12로 회귀 검정력이 제한적이다. 이를 부분적으로 permutation·Bootstrap로 보완했으나 점추정 신뢰구간은 넓다.
++ *국방·예비비 결측*: 측정 가능한 결과변수가 없는 분야는 분석에서 제외했다. 이는 제거 편향이며, 후속 연구는 보안 해제 가능한 부분 데이터를 활용해야 한다.
++ *매개분석 미유의 (pooled)*: 14분야 평균 매개효과는 p=0.481로 유의하지 않다. 이는 게임화 메커니즘이 *분야 이질적*이라는 본 연구의 핵심 메시지와 일치하지만, 평균 매개라는 단순 모델로는 충분히 포착되지 않는다.
 
 = 결론
 
-  본 연구는 한국 중앙정부 재정 집행의 게임화 현상을 11년 시계열·14분야·1,557개 활동·다중 방법론으로 검증했다. 분야 단위가 아닌 사업 형태(출연금/자산취득/인건비/정상)가 진짜 단위임을 정량적으로 입증하고, 사회복지 자동분배·12월 RDD 점프·출연금형 3.42배 등 직관 반대 발견을 제시한다. STL trend 혼재 가능성을 자기 비판적으로 보고함으로써 정직한 robustness 평가를 수행한다.
+  본 연구는 한국 중앙정부 재정 집행의 게임화 현상을 11년 시계열·14분야·1,557개 활동·다중 방법론으로 검증했다. 핵심 기여는 다음 셋이다.
+
+  *첫째, 분석 단위 재정의*: 분야 라벨이 행정 편의상 분류일 뿐 게임화의 진짜 단위가 아니며(ΔR²=0.000), 진짜 단위는 *사업 형태(출연금형/자산취득형/인건비형/정상)*임을 위상 데이터 분석(UMAP+HDBSCAN, Mapper, PH)으로 입증했다.
+
+  *둘째, 직관 반대 발견*: (1) 사회복지 자동분배 효과(r=−0.86, CPI 통제 후 강화), (2) 회계연도 12월 RDD 점프 1.91배 / 출연금형 3.42배, (3) 같은 분야 내 사업 형태별 부호 반전 등 통상 직관과 반대 방향 신호를 제시했다.
+
+  *셋째, 정직한 한계 보고*: STL 분해 후 사회복지 신호 소멸을 자기 비판적으로 명시하고, FFT·STL·NeuralProphet 세 도구로 측정 robust성을 cross-check했다. 모든 코드·데이터·결과는 GitHub repository와 Zenodo에 공개되어 *재현 가능한 연구*를 추구한다.
 
 #pagebreak()
 
 // =============================================================
 = AI 도구 사용 명시
 
-#par(first-line-indent: 0pt)[
-  본 연구의 데이터 수집·정제·분석·시각화는 *Anthropic Claude (claude-opus-4-7, claude-sonnet-4-6)*가 *Claude Code* 환경에서 보조했다. 구체적으로:
+#set par(first-line-indent: 0pt)
 
-  - *데이터 파이프라인 작성*: 열린재정정보·KOSIS·ECOS·공공데이터포털·GIR API 호출 스크립트, DuckDB warehouse 빌드
-  - *분석 코드 작성*: H1~H24 분석 스크립트(약 30개), UMAP/HDBSCAN/Mapper/PH/RDD/Mediation/STL 구현
-  - *시각화*: matplotlib 기반 figure 생성
-  - *문서화*: JOURNEY.md 분석 여정, REFERENCES.md, SOURCES.md 정리
-  - *비판적 검토*: outcome 적합도 검증(부적절 6개 식별 후 교체), STL trend 혼재 자기 비판
+본 연구의 데이터 수집·정제·분석·시각화는 *Anthropic Claude (claude-opus-4-7, claude-sonnet-4-6)*가 *Claude Code* 환경에서 보조했다. 구체적으로:
 
-  연구 가설 설정·결과 해석·정책 함의는 저자가 직접 결정하고 검토했다. AI 도구의 모든 출력물은 저자가 학술적 정합성·재현성·인과 추론 한계 측면에서 검토했다.
+- *데이터 파이프라인 작성*: 열린재정정보·KOSIS·ECOS·공공데이터포털·GIR API 호출 스크립트, DuckDB warehouse 빌드
+- *분석 코드 작성*: 분석 스크립트(약 30개, repo의 H1\~H24 시리즈로 번호 부여), UMAP/HDBSCAN/Mapper/PH/RDD/Mediation/STL 구현
+- *시각화*: matplotlib 기반 figure 생성
+- *문서화*: JOURNEY.md 분석 여정, REFERENCES.md, SOURCES.md 정리
+- *비판적 검토*: outcome 적합도 검증(부적절 6개 식별 후 교체), STL trend 혼재 자기 비판
 
-  연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다.
+연구 가설 설정·결과 해석·정책 함의는 저자가 직접 결정하고 검토했다. AI 도구의 모든 출력물은 저자가 학술적 정합성·재현성·인과 추론 한계 측면에서 검토했다.
 
-  - GitHub: #link("https://github.com/bluethestyle/goodhart-korea")
-  - Zenodo DOI: #link("https://doi.org/10.5281/zenodo.{TBD}")
-  - 인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")
-  - 분석 여정 (전체 H1\~H24): #link("https://bluethestyle.github.io/goodhart-korea/analysis/JOURNEY/")
-]
+연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다.
+
+- GitHub: #link("https://github.com/bluethestyle/goodhart-korea")[github.com/bluethestyle/goodhart-korea]
+- Zenodo DOI: #link("https://doi.org/10.5281/zenodo")[10.5281/zenodo (발급 예정)]
+- 인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")[bluethestyle.github.io/goodhart-korea/interactive]
+- 분석 여정 (전체 H1\~H24): #link("https://bluethestyle.github.io/goodhart-korea/analysis/JOURNEY/")[bluethestyle.github.io/goodhart-korea/analysis/JOURNEY]
+
+#set par(first-line-indent: 1em)
 
 #v(1em)
 

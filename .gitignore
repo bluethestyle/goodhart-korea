@@ -5,6 +5,10 @@ __pycache__/
 # Local working directories
 tmp/
 logs/
+lightning_logs/
+
+# Paper preview renders
+paper/preview/
 
 # Big binary / regeneratable
 data/warehouse.duckdb
