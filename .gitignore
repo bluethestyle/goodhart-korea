@@ -34,6 +34,7 @@ data/cases/
 
 # Lightning checkpoints (NeuralProphet uses pytorch-lightning by default)
 lightning_logs/
+.lr_find_*.ckpt
 
 # Probe HTML/JSON caches (regeneratable)
 raw/
