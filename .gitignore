@@ -11,13 +11,20 @@ data/warehouse.duckdb
 data/budget/raw/
 data/budget/2026_b0.json
 
-# Probe HTML caches (regeneratable)
-raw/list_pages/page_*.json
-raw/list_pages/page.html
-raw/list_pages/api_list.html
-raw/list_pages/rendered_p1.html
-raw/detail_probe/detail_after_tabs.html
-raw/detail_probe/detail_rendered.html
+# Probe HTML/JSON caches (regeneratable)
+raw/
+
+# Root-level temp files
+/warehouse.duckdb
+/통계표
+
+# MkDocs build
+site/
+
+# Paper build
+paper/main.pdf
+paper/*.pdf
+paper/.typst-cache/
 
 # Secrets
 .env
