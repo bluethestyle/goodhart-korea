@@ -1,7 +1,8 @@
 # MANIFEST — 외부 데이터 raw 캐시 재현 가이드
 
-본 폴더의 raw 데이터는 *모두 warehouse.duckdb로 적재 완료*된 상태이므로 git에서 제외(`.gitignore`)되었습니다.
-새로 받아야 하는 경우 아래 fetch 명령으로 재생성하세요. 모든 명령은 repo 루트에서 실행합니다.
+> **단축 경로**: `data/warehouse.duckdb` (56MB)는 git에 트랙되어 있습니다. clone만으로 모든 분석을 재실행할 수 있습니다 — 아래 fetch 단계는 *raw 데이터를 새로 받고 싶을 때만* 필요합니다.
+
+본 폴더의 raw 데이터는 모두 warehouse.duckdb로 적재 완료된 상태이므로 git에서 제외(`.gitignore`)되었습니다. 새로 받아야 하는 경우 아래 fetch 명령으로 재생성하세요. 모든 명령은 repo 루트에서 실행합니다.
 
 자세한 출처·시계열·지표 정의는 [SOURCES.md](SOURCES.md) 참조.
 

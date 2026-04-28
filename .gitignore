@@ -10,8 +10,8 @@ lightning_logs/
 # Paper preview renders
 paper/preview/
 
-# Big binary / regeneratable
-data/warehouse.duckdb
+# Big binary / regeneratable (warehouse는 공개 데이터 + 재현 편의를 위해 트랙)
+# data/warehouse.duckdb (56MB) 트랙됨 — fetch 재실행 없이 즉시 분석 가능
 data/budget/raw/
 data/budget/2026_b0.json
 
@@ -40,7 +40,6 @@ lightning_logs/
 raw/
 
 # Root-level temp files
-/warehouse.duckdb
 /통계표
 
 # MkDocs build
