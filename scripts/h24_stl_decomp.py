@@ -48,10 +48,19 @@ for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
         mpl.rcParams['font.family'] = f
         break
 mpl.rcParams['axes.unicode_minus'] = False
+mpl.rcParams.update({
+    'font.size': 14,
+    'axes.titlesize': 16,
+    'axes.labelsize': 14,
+    'xtick.labelsize': 12,
+    'ytick.labelsize': 12,
+    'legend.fontsize': 12,
+    'figure.titlesize': 17,
+})
 
 RNG     = np.random.default_rng(42)
 MAX_PX  = 1800
-DPI     = 130
+DPI     = 200
 N_PERM  = 1000
 
 # ── H6 outcome 매핑 (v3 기준) ──
@@ -252,7 +261,7 @@ for row, fld in enumerate(EXAMPLE_FLDS):
                      if len(stl_df[stl_df['fld_nm'] == fld]) > 0 else np.nan
             ax.set_title(f'{ctitle}\n(seas_str={ss_val:.3f})', fontsize=9)
 
-plt.suptitle('H24: STL 분해 예시 (4개 분야)\ntend + seasonal + remainder',
+plt.suptitle('STL 분해 예시 (4개 분야)\ntend + seasonal + remainder',
              fontsize=12, fontweight='bold', y=1.01)
 plt.tight_layout()
 out_a = os.path.join(FIG, 'H24_stl_examples.png')
@@ -336,7 +345,7 @@ ax.set_title(f'seasonal_strength vs trend_strength\n(r={r_ts:.3f}, p={p_ts:.3f})
 ax.legend(fontsize=6, ncol=2, loc='upper left')
 ax.grid(alpha=0.3)
 
-plt.suptitle('H24: STL metric vs FFT amp_12m_norm 비교', fontsize=12, fontweight='bold', y=1.01)
+plt.suptitle('STL vs FFT 비교 — seasonal_strength vs amp_12m_norm', fontsize=12, fontweight='bold', y=1.01)
 plt.tight_layout()
 out_b = os.path.join(FIG, 'H24_seasonal_vs_amp12m.png')
 fig.savefig(out_b, dpi=DPI, bbox_inches='tight')
@@ -462,7 +471,7 @@ if len(h6_df) > 0:
                     va='center', fontsize=7)
     n_sig_stl = (h6_df['pval_stl'] < 0.05).sum()
     ax.set_xlabel('Δseasonal_strength ~ Δoutcome 상관', fontsize=9)
-    ax.set_title(f'STL seasonal_strength H6\n★p<0.05: {n_sig_stl}/{len(h6_df)} 분야',
+    ax.set_title(f'STL seasonal_strength — 견고성 검증\n★p<0.05: {n_sig_stl}/{len(h6_df)} 분야',
                  fontsize=10, fontweight='bold')
     ax.grid(alpha=0.3, axis='x')
 
@@ -485,7 +494,7 @@ if len(h6_df) > 0:
                         va='center', fontsize=7)
     n_sig_fft = (h6_df['pval_fft'].fillna(1.0) < 0.05).sum()
     ax.set_xlabel('Δamp_12m_norm ~ Δoutcome 상관', fontsize=9)
-    ax.set_title(f'FFT amp_12m_norm H6\n★p<0.05: {n_sig_fft}/{len(h6_df)} 분야',
+    ax.set_title(f'FFT amp_12m_norm — 견고성 검증\n★p<0.05: {n_sig_fft}/{len(h6_df)} 분야',
                  fontsize=10, fontweight='bold')
     ax.grid(alpha=0.3, axis='x')
 
@@ -511,7 +520,7 @@ if len(h6_df) > 0:
     ax.set_xlim(-1.05, 1.05)
     ax.set_ylim(-1.05, 1.05)
 
-    plt.suptitle('H24: H6 재실행 — STL seasonal_strength vs FFT amp_12m_norm',
+    plt.suptitle('견고성 재실행 — STL seasonal_strength vs FFT amp_12m_norm',
                  fontsize=12, fontweight='bold', y=1.01)
     plt.tight_layout()
     out_c = os.path.join(FIG, 'H24_h6_replication.png')

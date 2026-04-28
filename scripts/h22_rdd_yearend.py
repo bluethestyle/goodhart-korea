@@ -36,13 +36,22 @@ def set_korean_font():
     plt.rcParams['axes.unicode_minus'] = False
 
 set_korean_font()
+plt.rcParams.update({
+    'font.size': 14,
+    'axes.titlesize': 16,
+    'axes.labelsize': 14,
+    'xtick.labelsize': 12,
+    'ytick.labelsize': 12,
+    'legend.fontsize': 12,
+    'figure.titlesize': 17,
+})
 
 # ── 상수 ──────────────────────────────────────────────────────────────────────
 DB    = 'data/warehouse.duckdb'
 FDIR  = 'data/figs/h22'
 RDIR  = 'data/results'
 DAYS  = {1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
-DPI   = 150
+DPI   = 200
 MAXPX = 1800
 W_IN  = MAXPX / DPI   # 12 inch
 LM_MULT = 5.0         # Liebman-Mahoney 기준
@@ -288,7 +297,7 @@ if clust_results:
                   va='center', ha='left', fontsize=9,
                   color='black' if row['pval'] < 0.05 else '#888888')
     ax_d.set_xlabel('β (log 일집행액)', fontsize=9)
-    ax_d.set_title('D. H3 클러스터별\n12월 점프', fontsize=10, fontweight='bold')
+    ax_d.set_title('D. 활동 클러스터별\n12월 점프', fontsize=10, fontweight='bold')
     ax_d.grid(alpha=0.3, axis='x')
 
 # 하단 결과 요약 텍스트
@@ -306,7 +315,7 @@ if r_bw1:
     fig.text(0.5, -0.02, '\n'.join(lines), ha='center', fontsize=8.5,
              bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.92))
 
-fig.suptitle('H22: 한국판 Year-End Spending RDD\n(Liebman & Mahoney 2017, AER 복제)',
+fig.suptitle('한국판 Year-End Spending RDD\n(Liebman & Mahoney 2017, AER 복제)',
              fontsize=13, fontweight='bold', y=1.02)
 
 plt.savefig(f'{FDIR}/H22_rdd_main.png', dpi=DPI,
@@ -368,7 +377,7 @@ for idx, fld in enumerate(plot_list):
 for idx in range(n_panels, len(axes2_flat)):
     axes2_flat[idx].set_visible(False)
 
-fig2.suptitle('H22: 분야별 12월 Year-End 집행 점프\n(상위·하위 각 3개 분야)',
+fig2.suptitle('분야별 12월 Year-End 집행 점프\n(상위·하위 각 3개 분야)',
               fontsize=11, fontweight='bold')
 plt.tight_layout()
 plt.savefig(f'{FDIR}/H22_rdd_by_field.png', dpi=DPI,

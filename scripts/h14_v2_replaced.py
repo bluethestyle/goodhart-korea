@@ -58,8 +58,17 @@ for f in ['Malgun Gothic', 'Noto Sans CJK KR', 'AppleGothic']:
         KFONT = f
         break
 mpl.rcParams['axes.unicode_minus'] = False
+mpl.rcParams.update({
+    'font.size': 14,
+    'axes.titlesize': 16,
+    'axes.labelsize': 14,
+    'xtick.labelsize': 12,
+    'ytick.labelsize': 12,
+    'legend.fontsize': 12,
+    'figure.titlesize': 17,
+})
 MAX_PX = 1800
-DPI = 150
+DPI = 200
 
 def fig_save(fig, path):
     """1800px 이하 보장하여 저장."""
@@ -310,7 +319,7 @@ for _, row in filt.iterrows():
 
 ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=12)
 ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=12)
-ax.set_title('H14 v2 — 부처 굿하트 노출 × outcome 디커플링 (교체 outcome)\n'
+ax.set_title('부처-결과변수 4분면 — 굿하트 노출 × outcome 디커플링 (교체 outcome)\n'
              f'(exposure ≥ {EXPO_THRESH}, n_year ≥ {MIN_N}, N={len(filt)})',
              fontsize=13)
 ax.legend(fontsize=9, loc='lower right')
@@ -401,7 +410,7 @@ ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
 ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=12)
 ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=12)
-ax.set_title('H14 v2 — 굿하트 위험 4분면 분류 (교체 outcome)\n'
+ax.set_title('굿하트 위험 4분면 분류 (교체 outcome)\n'
              '(X: 노출 점수, Y: outcome 디커플링, 기준선: 노출=0.3, corr=0)\n'
              '과기→특허, 관광→방한외래객, 행정→재정자립도, 통신→초고속인터넷',
              fontsize=12)
