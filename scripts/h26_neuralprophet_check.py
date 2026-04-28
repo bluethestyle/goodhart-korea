@@ -24,6 +24,16 @@ from scipy.stats import pearsonr
 from scipy import fft as scfft
 
 warnings.filterwarnings('ignore')
+
+# torch 2.6+ weights_only 기본값 True 호환 — NP/Lightning checkpoint 로드 위해 우회
+# (NP 0.9.0 / Lightning checkpoint은 NP configure 객체 직렬화 포함; 신뢰 가능한 자가 데이터)
+import torch as _torch
+_orig_torch_load = _torch.load
+def _patched_torch_load(*args, **kwargs):
+    kwargs['weights_only'] = False  # 강제 (setdefault는 명시 True 시 무력)
+    return _orig_torch_load(*args, **kwargs)
+_torch.load = _patched_torch_load
+
 # NeuralProphet 로깅 억제
 logging.getLogger("NP").setLevel(logging.ERROR)
 logging.getLogger("neuralprophet").setLevel(logging.ERROR)
@@ -32,7 +42,12 @@ logging.getLogger("lightning").setLevel(logging.ERROR)
 # torch/lightning verbose 억제
 os.environ.setdefault("PYTHONWARNINGS", "ignore")
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+# UTF-8 stdout: avoid TextIOWrapper override (breaks -u unbuffering); use reconfigure() Py3.7+
+try:
+    sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
+    sys.stderr.reconfigure(encoding='utf-8', line_buffering=True)
+except AttributeError:
+    pass
 
 ROOT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB     = os.path.join(ROOT, 'data', 'warehouse.duckdb')
@@ -174,10 +189,11 @@ print(f'  유효 활동(≥1년): {len(valid_keys):,}')
 total_fits = sum(len(activity_years[k]) for k in valid_keys)
 print(f'  예상 NP fit 횟수: {total_fits:,}')
 
-if total_fits > 20000:
-    print(f'  >> {SAMPLE_N}개 활동으로 샘플링 (random_state=42)')
+# 항상 200 활동 random subsample (cross-check 용도, full panel은 시간 비용)
+if len(valid_keys) > SAMPLE_N:
+    print(f'  >> {SAMPLE_N}개 활동으로 random sampling (random_state=42)')
     rng_sample = np.random.default_rng(42)
-    sampled_idx = rng_sample.choice(len(valid_keys), size=min(SAMPLE_N, len(valid_keys)), replace=False)
+    sampled_idx = rng_sample.choice(len(valid_keys), size=SAMPLE_N, replace=False)
     valid_keys = [valid_keys[i] for i in sorted(sampled_idx)]
     total_fits = sum(len(activity_years[k]) for k in valid_keys)
     print(f'  샘플링 후 NP fit 횟수: {total_fits:,}')

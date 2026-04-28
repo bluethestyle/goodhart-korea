@@ -15,6 +15,26 @@ data/warehouse.duckdb
 data/budget/raw/
 data/budget/2026_b0.json
 
+# External raw caches — all in warehouse, regeneratable via fetch scripts (see data/external/MANIFEST.md)
+# data/external/SOURCES.md and MANIFEST.md remain tracked
+data/external/bok_data/
+data/external/data_go_kr/
+data/external/kosis_data/
+data/external/kosis_meta/
+data/external/molit/
+data/external/kosis_catalog.json
+# gir/ is manual-download only — keep tracked for archive (small, 48KB)
+
+# Exploratory metadata (regeneratable via fetch_specs.py / fetch_kodas.py / probe_*)
+data/all_apis.json
+data/api_specs*
+data/kodas_catalog*
+data/specs_summary.txt
+data/cases/
+
+# Lightning checkpoints (NeuralProphet uses pytorch-lightning by default)
+lightning_logs/
+
 # Probe HTML/JSON caches (regeneratable)
 raw/
 
