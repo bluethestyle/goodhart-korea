@@ -33,14 +33,17 @@ import seaborn as sns
 import pywt
 plt.style.use(['science', 'no-latex', 'grid'])
 plt.rcParams.update({
-    'font.size': 14, 'axes.titlesize': 16, 'axes.labelsize': 14,
-    'xtick.labelsize': 12, 'ytick.labelsize': 12, 'legend.fontsize': 12,
-    'figure.titlesize': 18, 'mathtext.fontset': 'stix',
-    'mathtext.default': 'regular', 'grid.alpha': 0.3,
+    'font.size': 20, 'axes.titlesize': 22, 'axes.labelsize': 20,
+    'xtick.labelsize': 17, 'ytick.labelsize': 17,
+    'legend.fontsize': 17, 'legend.title_fontsize': 17,
+    'figure.titlesize': 23, 'lines.linewidth': 2.5, 'lines.markersize': 10,
+    'axes.linewidth': 1.2, 'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix', 'mathtext.default': 'regular',
+    'axes.unicode_minus': False,
 })
-for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+for fname in ['Arial Unicode MS', 'Malgun Gothic', 'NanumGothic']:
     if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        mpl.rcParams['font.family'] = [fname, 'Arial Unicode MS', 'Times New Roman', 'DejaVu Sans']
         break
 mpl.rcParams['axes.unicode_minus'] = False
 
@@ -157,7 +160,7 @@ print('\nStep 4: Scaleogram figure 생성')
 arch_names = {'C0_personnel': '인건비형', 'C1_direct_invest': '자산취득형',
               'C2_chooyeon': '출연금형', 'C3_normal': '정상사업'}
 
-fig, axes = plt.subplots(2, 2, figsize=(15, 10), sharex=True, sharey=True)
+fig, axes = plt.subplots(2, 2, figsize=(20, 13), sharex=True, sharey=True)
 for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest',
                                        'C2_chooyeon', 'C3_normal']):
     if arch not in cwt_results:
@@ -173,19 +176,22 @@ for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest',
     ax.set_yticklabels(['3m', '6m', '12m', '24m'])
     ax.set_ylim(2, 36)
     ax.invert_yaxis()
-    ax.axhline(12, color='red', linestyle='--', alpha=0.5, linewidth=1)
-    ax.set_title(arch_names.get(arch, arch), fontsize=14, fontweight='bold')
+    ax.axhline(12, color='red', linestyle='--', alpha=0.6, linewidth=2)
+    ax.set_title(arch_names.get(arch, arch), fontsize=22, fontweight='bold')
+    ax.tick_params(labelsize=18)
     if arch in ('C2_chooyeon', 'C3_normal'):
-        ax.set_xlabel('연도')
+        ax.set_xlabel('연도', fontsize=20)
     if arch in ('C0_personnel', 'C2_chooyeon'):
-        ax.set_ylabel('주기 (개월)')
+        ax.set_ylabel('주기 (개월)', fontsize=20)
 
 # colorbar
 cbar = fig.colorbar(im, ax=axes.ravel().tolist(), orientation='vertical',
                      label='log(1 + power)', pad=0.02, shrink=0.8)
+cbar.ax.tick_params(labelsize=16)
+cbar.set_label('log(1 + power)', fontsize=18)
 
 fig.suptitle('웨이블릿 Scaleogram — 사업원형별 시간×주기 power 분포\n'
-             '(붉은 점선: 12m, 색이 밝을수록 강한 진폭)', y=1.00, fontsize=15)
+             '(붉은 점선: 12m, 색이 밝을수록 강한 진폭)', y=1.00, fontsize=22, fontweight='bold')
 plt.savefig(os.path.join(FIG, 'h28_scaleogram.png'), dpi=200, bbox_inches='tight')
 plt.close()
 print(f'  → h28_scaleogram.png')

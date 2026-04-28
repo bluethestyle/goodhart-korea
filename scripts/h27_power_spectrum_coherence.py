@@ -31,16 +31,17 @@ import scienceplots
 import seaborn as sns
 plt.style.use(['science', 'no-latex', 'grid'])
 plt.rcParams.update({
-    'font.size': 14, 'axes.titlesize': 17, 'axes.labelsize': 15,
-    'xtick.labelsize': 12, 'ytick.labelsize': 12,
-    'legend.fontsize': 12, 'figure.titlesize': 18,
-    'lines.linewidth': 2.0, 'lines.markersize': 8,
-    'grid.alpha': 0.3, 'mathtext.fontset': 'stix',
-    'mathtext.default': 'regular',
+    'font.size': 20, 'axes.titlesize': 22, 'axes.labelsize': 20,
+    'xtick.labelsize': 17, 'ytick.labelsize': 17,
+    'legend.fontsize': 17, 'legend.title_fontsize': 17,
+    'figure.titlesize': 23, 'lines.linewidth': 2.5, 'lines.markersize': 10,
+    'axes.linewidth': 1.2, 'grid.alpha': 0.3,
+    'mathtext.fontset': 'stix', 'mathtext.default': 'regular',
+    'axes.unicode_minus': False,
 })
-for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+for fname in ['Arial Unicode MS', 'Malgun Gothic', 'NanumGothic']:
     if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        mpl.rcParams['font.family'] = [fname, 'Arial Unicode MS', 'Times New Roman', 'DejaVu Sans']
         break
 mpl.rcParams['axes.unicode_minus'] = False
 sns.set_palette('Set2')
@@ -252,8 +253,8 @@ print(f'  → h27_psd_archetype.png')
 
 # (B) Phase polar plot — 12월/1월 피크 분포
 from matplotlib.patches import Wedge
-fig, axes = plt.subplots(1, 4, figsize=(16, 4.5), subplot_kw=dict(projection='polar'))
-for ax, arch in zip(axes, ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']):
+fig, axes = plt.subplots(2, 2, figsize=(16, 14), subplot_kw=dict(projection='polar'))
+for ax, arch in zip(axes.flatten(), ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']):
     sub = psd_df[psd_df['archetype'] == arch]
     if len(sub) == 0:
         ax.set_title(arch_names.get(arch, arch))
@@ -262,15 +263,15 @@ for ax, arch in zip(axes, ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C
     angles = sub['phase_k1'].values
     # histogram on polar
     ax.hist(angles, bins=12, color=arch_colors.get(arch, '#888'), alpha=0.7,
-            edgecolor='white')
+            edgecolor='white', linewidth=1.5)
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     ax.set_xticks(np.linspace(0, 2*np.pi, 12, endpoint=False))
-    ax.set_xticklabels(['1','2','3','4','5','6','7','8','9','10','11','12'])
-    ax.set_title(f'{arch_names.get(arch, arch)}\n(N={len(sub)})', fontsize=12, pad=15)
+    ax.set_xticklabels(['1','2','3','4','5','6','7','8','9','10','11','12'], fontsize=16)
+    ax.set_title(f'{arch_names.get(arch, arch)}\n(N={len(sub)})', fontsize=22, fontweight='bold', pad=20)
     ax.set_yticklabels([])
 fig.suptitle('사업원형별 12개월 주기 Phase 분포 — 어느 월에 피크하는가',
-             fontsize=15, fontweight='bold', y=1.02)
+             fontsize=24, fontweight='bold', y=1.00)
 plt.tight_layout()
 plt.savefig(os.path.join(FIG, 'h27_phase_polar.png'), dpi=200, bbox_inches='tight')
 plt.close()

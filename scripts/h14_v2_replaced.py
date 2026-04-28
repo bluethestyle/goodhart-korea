@@ -41,24 +41,25 @@ import seaborn as sns
 from scipy.stats import pearsonr
 plt.style.use(['science', 'no-latex', 'grid'])
 plt.rcParams.update({
-    'font.size': 16,
-    'axes.titlesize': 18,
-    'axes.labelsize': 16,
-    'xtick.labelsize': 14,
-    'ytick.labelsize': 14,
-    'legend.fontsize': 14,
-    'legend.title_fontsize': 14,
-    'figure.titlesize': 19,
-    'lines.linewidth': 2.0,
-    'lines.markersize': 8,
-    'axes.linewidth': 1.0,
+    'font.size': 20,
+    'axes.titlesize': 22,
+    'axes.labelsize': 20,
+    'xtick.labelsize': 17,
+    'ytick.labelsize': 17,
+    'legend.fontsize': 17,
+    'legend.title_fontsize': 17,
+    'figure.titlesize': 23,
+    'lines.linewidth': 2.5,
+    'lines.markersize': 10,
+    'axes.linewidth': 1.2,
     'grid.alpha': 0.3,
     'mathtext.fontset': 'stix',
     'mathtext.default': 'regular',
+    'axes.unicode_minus': False,
 })
-for fname in ['Malgun Gothic', 'NanumGothic', 'HYGothic']:
+for fname in ['Arial Unicode MS', 'Malgun Gothic', 'NanumGothic']:
     if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
+        mpl.rcParams['font.family'] = [fname, 'Arial Unicode MS', 'Times New Roman', 'DejaVu Sans']
         break
 mpl.rcParams['axes.unicode_minus'] = False
 sns.set_palette('Set2')
