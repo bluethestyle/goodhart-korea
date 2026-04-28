@@ -1,0 +1,293 @@
+{
+ "nodes": [
+  {
+   "id": "cube0_cluster0",
+   "name": "공공질서및안전",
+   "value": 6.0,
+   "symbolSize": 9.898979485566356,
+   "amp_12m": 0.066521859821565,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube0_cluster1",
+   "name": "일반·지방행정",
+   "value": 13.0,
+   "symbolSize": 12.21110255092798,
+   "amp_12m": 0.0715476834151079,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube1_cluster0",
+   "name": "일반·지방행정",
+   "value": 51.0,
+   "symbolSize": 19.2828568570857,
+   "amp_12m": 0.0792136246365612,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube1_cluster1",
+   "name": "공공질서및안전",
+   "value": 6.0,
+   "symbolSize": 9.898979485566356,
+   "amp_12m": 0.066521859821565,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube2_cluster0",
+   "name": "일반·지방행정",
+   "value": 62.0,
+   "symbolSize": 20.748015748023622,
+   "amp_12m": 0.0743818978388023,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube2_cluster1",
+   "name": "일반·지방행정",
+   "value": 5.0,
+   "symbolSize": 9.47213595499958,
+   "amp_12m": 0.1112183233769517,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube3_cluster0",
+   "name": "일반·지방행정",
+   "value": 53.0,
+   "symbolSize": 19.560219778561034,
+   "amp_12m": 0.0705136478256386,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube3_cluster1",
+   "name": "일반·지방행정",
+   "value": 5.0,
+   "symbolSize": 9.47213595499958,
+   "amp_12m": 0.1112183233769517,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube4_cluster0",
+   "name": "보건",
+   "value": 29.0,
+   "symbolSize": 15.770329614269007,
+   "amp_12m": 0.077080022097287,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube5_cluster0",
+   "name": "일반·지방행정",
+   "value": 13.0,
+   "symbolSize": 12.21110255092798,
+   "amp_12m": 0.0715476834151079,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube6_cluster0",
+   "name": "일반·지방행정",
+   "value": 47.0,
+   "symbolSize": 18.711309200802088,
+   "amp_12m": 0.0691894399771997,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube7_cluster0",
+   "name": "일반·지방행정",
+   "value": 37.0,
+   "symbolSize": 17.165525060596437,
+   "amp_12m": 0.0664253081317536,
+   "chooyeon": 0.0,
+   "cluster": 0
+  },
+  {
+   "id": "cube28_cluster0",
+   "name": "교통및물류",
+   "value": 9.0,
+   "symbolSize": 11.0,
+   "amp_12m": 0.1634486054920396,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube28_cluster1",
+   "name": "공공질서및안전",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.184869714014242,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube28_cluster2",
+   "name": "산업·중소기업및에너지",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2034720100039578,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube29_cluster0",
+   "name": "공공질서및안전",
+   "value": 8.0,
+   "symbolSize": 10.65685424949238,
+   "amp_12m": 0.1602755509460793,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube29_cluster1",
+   "name": "보건",
+   "value": 9.0,
+   "symbolSize": 11.0,
+   "amp_12m": 0.2407079968504427,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube29_cluster2",
+   "name": "공공질서및안전",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.184869714014242,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube29_cluster3",
+   "name": "산업·중소기업및에너지",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2034720100039578,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube40_cluster0",
+   "name": "일반·지방행정",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2841849440310274,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube40_cluster1",
+   "name": "교통및물류",
+   "value": 9.0,
+   "symbolSize": 11.0,
+   "amp_12m": 0.1634486054920396,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube40_cluster2",
+   "name": "과학기술",
+   "value": 3.0,
+   "symbolSize": 8.464101615137753,
+   "amp_12m": 0.2281449917431117,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube40_cluster3",
+   "name": "산업·중소기업및에너지",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2034720100039578,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube41_cluster0",
+   "name": "일반·지방행정",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2841849440310274,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube41_cluster1",
+   "name": "공공질서및안전",
+   "value": 8.0,
+   "symbolSize": 10.65685424949238,
+   "amp_12m": 0.1602755509460793,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube41_cluster2",
+   "name": "과학기술",
+   "value": 3.0,
+   "symbolSize": 8.464101615137753,
+   "amp_12m": 0.2281449917431117,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube41_cluster3",
+   "name": "보건",
+   "value": 9.0,
+   "symbolSize": 11.0,
+   "amp_12m": 0.2407079968504427,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube41_cluster4",
+   "name": "산업·중소기업및에너지",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2034720100039578,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube53_cluster0",
+   "name": "일반·지방행정",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2841849440310274,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube54_cluster0",
+   "name": "일반·지방행정",
+   "value": 4.0,
+   "symbolSize": 9.0,
+   "amp_12m": 0.2841849440310274,
+   "chooyeon": 0.0,
+   "cluster": 3
+  },
+  {
+   "id": "cube72_cluster0",
+   "name": "일반·지방행정",
+   "value": 23.0,
+   "symbolSize": 14.591663046625438,
+   "amp_12m": 0.5933725986837295,
+   "chooyeon": 0.9999130049829658,
+   "cluster": 2
+  },
+  {
+   "id": "cube84_cluster0",
+   "name": "일반·지방행정",
+   "value": 23.0,
+   "symbolSize": 14.591663046625438,
+   "amp_12m": 0.5933725986837295,
+   "chooyeon": 0.9999130049829658,
+   "cluster": 2
+  }
+ ],
+ "links": []
+}

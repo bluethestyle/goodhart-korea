@@ -1,0 +1,563 @@
+{
+ "nodes": [
+  {
+   "name": "과학기술"
+  },
+  {
+   "name": "교육"
+  },
+  {
+   "name": "교통및물류"
+  },
+  {
+   "name": "국토및지역개발"
+  },
+  {
+   "name": "농림수산"
+  },
+  {
+   "name": "문화및관광"
+  },
+  {
+   "name": "보건"
+  },
+  {
+   "name": "사회복지"
+  },
+  {
+   "name": "산업·중소기업및에너지"
+  },
+  {
+   "name": "일반·지방행정"
+  },
+  {
+   "name": "통신"
+  },
+  {
+   "name": "환경"
+  },
+  {
+   "name": "A_chooyeon"
+  },
+  {
+   "name": "A_direct_invest"
+  },
+  {
+   "name": "A_extreme_gaming"
+  },
+  {
+   "name": "A_normal"
+  },
+  {
+   "name": "A_personnel"
+  },
+  {
+   "name": "outcome ↑ (양상관)"
+  },
+  {
+   "name": "outcome ↓ (음상관)"
+  }
+ ],
+ "links": [
+  {
+   "source": "과학기술",
+   "target": "A_chooyeon_sub0",
+   "value": 0.3070311838094943
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3070311838094943
+  },
+  {
+   "source": "과학기술",
+   "target": "A_chooyeon_sub1",
+   "value": 0.1383314422366647
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1383314422366647
+  },
+  {
+   "source": "과학기술",
+   "target": "A_direct_invest",
+   "value": 0.1539603796824353
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.1539603796824353
+  },
+  {
+   "source": "과학기술",
+   "target": "A_normal",
+   "value": 0.1358525457544211
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1358525457544211
+  },
+  {
+   "source": "과학기술",
+   "target": "A_personnel",
+   "value": 0.2038358094031962
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.2038358094031962
+  },
+  {
+   "source": "교육",
+   "target": "A_chooyeon_sub0",
+   "value": 0.2399897611032357
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2399897611032357
+  },
+  {
+   "source": "교육",
+   "target": "A_chooyeon_sub1",
+   "value": 0.3378747960706174
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3378747960706174
+  },
+  {
+   "source": "교육",
+   "target": "A_direct_invest",
+   "value": 0.2893765369198156
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.2893765369198156
+  },
+  {
+   "source": "교육",
+   "target": "A_normal",
+   "value": 0.4599739302629715
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.4599739302629715
+  },
+  {
+   "source": "교통및물류",
+   "target": "A_chooyeon_sub0",
+   "value": 0.4855412735103191
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.4855412735103191
+  },
+  {
+   "source": "교통및물류",
+   "target": "A_chooyeon_sub1",
+   "value": 0.3895318607118868
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3895318607118868
+  },
+  {
+   "source": "교통및물류",
+   "target": "A_direct_invest",
+   "value": 0.17355423676419
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.17355423676419
+  },
+  {
+   "source": "교통및물류",
+   "target": "A_normal",
+   "value": 0.3342665848545391
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.3342665848545391
+  },
+  {
+   "source": "교통및물류",
+   "target": "A_personnel",
+   "value": 0.1151656349629571
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1151656349629571
+  },
+  {
+   "source": "국토및지역개발",
+   "target": "A_chooyeon_sub1",
+   "value": 0.2046534386465161
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2046534386465161
+  },
+  {
+   "source": "국토및지역개발",
+   "target": "A_normal",
+   "value": 0.1233558243532311
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.1233558243532311
+  },
+  {
+   "source": "국토및지역개발",
+   "target": "A_personnel",
+   "value": 0.3419724756479805
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3419724756479805
+  },
+  {
+   "source": "농림수산",
+   "target": "A_chooyeon_sub0",
+   "value": 0.3060026682808143
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.3060026682808143
+  },
+  {
+   "source": "농림수산",
+   "target": "A_chooyeon_sub1",
+   "value": 0.1765373975085545
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1765373975085545
+  },
+  {
+   "source": "농림수산",
+   "target": "A_normal",
+   "value": 0.2490899712615671
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2490899712615671
+  },
+  {
+   "source": "농림수산",
+   "target": "A_personnel",
+   "value": 0.432314370651633
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.432314370651633
+  },
+  {
+   "source": "문화및관광",
+   "target": "A_chooyeon_sub0",
+   "value": 0.2093203515331116
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.2093203515331116
+  },
+  {
+   "source": "문화및관광",
+   "target": "A_direct_invest",
+   "value": 0.524794398240721
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.524794398240721
+  },
+  {
+   "source": "문화및관광",
+   "target": "A_normal",
+   "value": 0.2071338791496823
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2071338791496823
+  },
+  {
+   "source": "문화및관광",
+   "target": "A_personnel",
+   "value": 0.503383950334174
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.503383950334174
+  },
+  {
+   "source": "보건",
+   "target": "A_chooyeon_sub0",
+   "value": 0.6304419670703489
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.6304419670703489
+  },
+  {
+   "source": "보건",
+   "target": "A_chooyeon_sub1",
+   "value": 0.5594600568157644
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.5594600568157644
+  },
+  {
+   "source": "보건",
+   "target": "A_direct_invest",
+   "value": 0.3711804142383771
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3711804142383771
+  },
+  {
+   "source": "보건",
+   "target": "A_normal",
+   "value": 0.2646705995013064
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2646705995013064
+  },
+  {
+   "source": "보건",
+   "target": "A_personnel",
+   "value": 0.4520905381076288
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.4520905381076288
+  },
+  {
+   "source": "사회복지",
+   "target": "A_chooyeon_sub1",
+   "value": 0.1031001543057452
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1031001543057452
+  },
+  {
+   "source": "사회복지",
+   "target": "A_normal",
+   "value": 0.4917123780638469
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.4917123780638469
+  },
+  {
+   "source": "사회복지",
+   "target": "A_personnel",
+   "value": 0.2185146784105659
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.2185146784105659
+  },
+  {
+   "source": "산업·중소기업및에너지",
+   "target": "A_chooyeon_sub0",
+   "value": 0.3094442786423875
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3094442786423875
+  },
+  {
+   "source": "산업·중소기업및에너지",
+   "target": "A_chooyeon_sub1",
+   "value": 0.5765687642669616
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.5765687642669616
+  },
+  {
+   "source": "산업·중소기업및에너지",
+   "target": "A_normal",
+   "value": 0.7844995613653135
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.7844995613653135
+  },
+  {
+   "source": "산업·중소기업및에너지",
+   "target": "A_personnel",
+   "value": 0.1191360293680956
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.1191360293680956
+  },
+  {
+   "source": "일반·지방행정",
+   "target": "A_chooyeon_sub0",
+   "value": 0.1433307392212764
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1433307392212764
+  },
+  {
+   "source": "일반·지방행정",
+   "target": "A_chooyeon_sub1",
+   "value": 0.4567225663465872
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.4567225663465872
+  },
+  {
+   "source": "일반·지방행정",
+   "target": "A_direct_invest",
+   "value": 0.1756977835325161
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.1756977835325161
+  },
+  {
+   "source": "일반·지방행정",
+   "target": "A_normal",
+   "value": 0.3293691548997954
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.3293691548997954
+  },
+  {
+   "source": "통신",
+   "target": "A_chooyeon_sub0",
+   "value": 0.1629841969055043
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.1629841969055043
+  },
+  {
+   "source": "통신",
+   "target": "A_chooyeon_sub1",
+   "value": 0.8480332376336661
+  },
+  {
+   "source": "A_chooyeon_sub1",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.8480332376336661
+  },
+  {
+   "source": "통신",
+   "target": "A_direct_invest",
+   "value": 0.268999296194791
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.268999296194791
+  },
+  {
+   "source": "통신",
+   "target": "A_normal",
+   "value": 0.5631828711234326
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.5631828711234326
+  },
+  {
+   "source": "통신",
+   "target": "A_personnel",
+   "value": 0.6565717341974018
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.6565717341974018
+  },
+  {
+   "source": "환경",
+   "target": "A_chooyeon_sub0",
+   "value": 0.8233856525046132
+  },
+  {
+   "source": "A_chooyeon_sub0",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.8233856525046132
+  },
+  {
+   "source": "환경",
+   "target": "A_direct_invest",
+   "value": 0.6174223984587205
+  },
+  {
+   "source": "A_direct_invest",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.6174223984587205
+  },
+  {
+   "source": "환경",
+   "target": "A_normal",
+   "value": 0.1790489687197837
+  },
+  {
+   "source": "A_normal",
+   "target": "outcome ↑ (양상관)",
+   "value": 0.1790489687197837
+  },
+  {
+   "source": "환경",
+   "target": "A_personnel",
+   "value": 0.3859607428419636
+  },
+  {
+   "source": "A_personnel",
+   "target": "outcome ↓ (음상관)",
+   "value": 0.3859607428419636
+  }
+ ]
+}

@@ -1,0 +1,422 @@
+[
+ {
+  "cluster": 0,
+  "outcome": "wealth_gini",
+  "corr_diff": -0.4972880842476394,
+  "corr_levels": 0.8783709064666688,
+  "n": 9
+ },
+ {
+  "cluster": 0,
+  "outcome": "life_expectancy",
+  "corr_diff": -0.2118544395005955,
+  "corr_levels": 0.7734099017086392,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "patent_apps_total",
+  "corr_diff": 0.0228464589342102,
+  "corr_levels": 0.8230703995488908,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "industry_production_index",
+  "corr_diff": 0.4499396363945961,
+  "corr_levels": 0.9648585263619008,
+  "n": 11
+ },
+ {
+  "cluster": 0,
+  "outcome": "foreign_tourists_total",
+  "corr_diff": 0.2876848527933814,
+  "corr_levels": -0.2847784664803511,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "private_edu_hours",
+  "corr_diff": 0.5796024526377619,
+  "corr_levels": 0.936220753946281,
+  "n": 11
+ },
+ {
+  "cluster": 0,
+  "outcome": "housing_supply",
+  "corr_diff": 0.0471085927458553,
+  "corr_levels": 0.9704634525731314,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "fiscal_indep_natl",
+  "corr_diff": -0.1955187651959166,
+  "corr_levels": -0.7396289997605351,
+  "n": 11
+ },
+ {
+  "cluster": 0,
+  "outcome": "farm_income",
+  "corr_diff": 0.3497596078659333,
+  "corr_levels": 0.9549008484300128,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "traffic_deaths",
+  "corr_diff": 0.0773538761035208,
+  "corr_levels": -0.9540253408822724,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "ghg_total",
+  "corr_diff": 0.6328049722666286,
+  "corr_levels": -0.2794900485754643,
+  "n": 9
+ },
+ {
+  "cluster": 0,
+  "outcome": "broadband_per_100",
+  "corr_diff": -0.0359036363269937,
+  "corr_levels": 0.9564714721677818,
+  "n": 11
+ },
+ {
+  "cluster": 0,
+  "outcome": "oda_total",
+  "corr_diff": 0.2391036634134418,
+  "corr_levels": 0.8833914683987009,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "crime_occurrence",
+  "corr_diff": -0.3960804803421034,
+  "corr_levels": -0.8050017764570112,
+  "n": 10
+ },
+ {
+  "cluster": 0,
+  "outcome": "defense_op_margin",
+  "corr_diff": 0.3720040663576598,
+  "corr_levels": 0.6679068591714931,
+  "n": 9
+ },
+ {
+  "cluster": 1,
+  "outcome": "wealth_gini",
+  "corr_diff": -0.3882251924539028,
+  "corr_levels": 0.7384751798592839,
+  "n": 9
+ },
+ {
+  "cluster": 1,
+  "outcome": "life_expectancy",
+  "corr_diff": -0.1228309904829412,
+  "corr_levels": 0.6046289021977459,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "patent_apps_total",
+  "corr_diff": -0.584651941751796,
+  "corr_levels": 0.5059028654188765,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "industry_production_index",
+  "corr_diff": 0.5493658426003616,
+  "corr_levels": 0.918636383656042,
+  "n": 11
+ },
+ {
+  "cluster": 1,
+  "outcome": "foreign_tourists_total",
+  "corr_diff": 0.9180209607360228,
+  "corr_levels": 0.1666843228404184,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "private_edu_hours",
+  "corr_diff": 0.594607899502969,
+  "corr_levels": 0.9131677891551132,
+  "n": 11
+ },
+ {
+  "cluster": 1,
+  "outcome": "housing_supply",
+  "corr_diff": -0.5944101654539502,
+  "corr_levels": 0.8182498439318737,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "fiscal_indep_natl",
+  "corr_diff": 0.2312763692325748,
+  "corr_levels": -0.5477524029159717,
+  "n": 11
+ },
+ {
+  "cluster": 1,
+  "outcome": "farm_income",
+  "corr_diff": -0.254797070769598,
+  "corr_levels": 0.7609541801078896,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "traffic_deaths",
+  "corr_diff": -0.1231145659307789,
+  "corr_levels": -0.7832228913385423,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "ghg_total",
+  "corr_diff": 0.2780913374149389,
+  "corr_levels": -0.2157080938712963,
+  "n": 9
+ },
+ {
+  "cluster": 1,
+  "outcome": "broadband_per_100",
+  "corr_diff": 0.1890309329742787,
+  "corr_levels": 0.8990185467263979,
+  "n": 11
+ },
+ {
+  "cluster": 1,
+  "outcome": "oda_total",
+  "corr_diff": NaN,
+  "corr_levels": null,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "crime_occurrence",
+  "corr_diff": 0.4010678795678447,
+  "corr_levels": -0.4884940210324641,
+  "n": 10
+ },
+ {
+  "cluster": 1,
+  "outcome": "defense_op_margin",
+  "corr_diff": 0.3834264587562732,
+  "corr_levels": 0.6637423128175545,
+  "n": 9
+ },
+ {
+  "cluster": 2,
+  "outcome": "wealth_gini",
+  "corr_diff": 0.1669522326358969,
+  "corr_levels": 0.7725262866922785,
+  "n": 9
+ },
+ {
+  "cluster": 2,
+  "outcome": "life_expectancy",
+  "corr_diff": -0.6298456795970403,
+  "corr_levels": 0.5940826808909548,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "patent_apps_total",
+  "corr_diff": -0.1181264362962087,
+  "corr_levels": 0.776171627712759,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "industry_production_index",
+  "corr_diff": 0.5584941968387688,
+  "corr_levels": 0.8779048172809601,
+  "n": 11
+ },
+ {
+  "cluster": 2,
+  "outcome": "foreign_tourists_total",
+  "corr_diff": 0.0775812551637716,
+  "corr_levels": -0.3969299168518005,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "private_edu_hours",
+  "corr_diff": 0.443824106133609,
+  "corr_levels": 0.8639767404348297,
+  "n": 11
+ },
+ {
+  "cluster": 2,
+  "outcome": "housing_supply",
+  "corr_diff": 0.0550587941574207,
+  "corr_levels": 0.8659254987834724,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "fiscal_indep_natl",
+  "corr_diff": -0.1120755741798735,
+  "corr_levels": -0.684347781987577,
+  "n": 11
+ },
+ {
+  "cluster": 2,
+  "outcome": "farm_income",
+  "corr_diff": -0.2330392165498568,
+  "corr_levels": 0.8170181530095184,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "traffic_deaths",
+  "corr_diff": -0.0460917517681947,
+  "corr_levels": -0.8743965291106973,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "ghg_total",
+  "corr_diff": 0.465233267946762,
+  "corr_levels": -0.1819392596965016,
+  "n": 9
+ },
+ {
+  "cluster": 2,
+  "outcome": "broadband_per_100",
+  "corr_diff": -0.0011225212032134,
+  "corr_levels": 0.8416759398335114,
+  "n": 11
+ },
+ {
+  "cluster": 2,
+  "outcome": "oda_total",
+  "corr_diff": -0.0272802245752831,
+  "corr_levels": 0.6906497910932045,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "crime_occurrence",
+  "corr_diff": -0.30235882948766,
+  "corr_levels": -0.8269522359782522,
+  "n": 10
+ },
+ {
+  "cluster": 2,
+  "outcome": "defense_op_margin",
+  "corr_diff": 0.0917148222997179,
+  "corr_levels": 0.571539386925477,
+  "n": 9
+ },
+ {
+  "cluster": 3,
+  "outcome": "wealth_gini",
+  "corr_diff": -0.5519911764932749,
+  "corr_levels": 0.856682410316545,
+  "n": 9
+ },
+ {
+  "cluster": 3,
+  "outcome": "life_expectancy",
+  "corr_diff": -0.2930004867991306,
+  "corr_levels": 0.7486686619689567,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "patent_apps_total",
+  "corr_diff": -0.0393041787256732,
+  "corr_levels": 0.8066224693173474,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "industry_production_index",
+  "corr_diff": 0.5926639981325919,
+  "corr_levels": 0.9758561199505016,
+  "n": 11
+ },
+ {
+  "cluster": 3,
+  "outcome": "foreign_tourists_total",
+  "corr_diff": 0.3633734242871178,
+  "corr_levels": -0.2575480308837601,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "private_edu_hours",
+  "corr_diff": 0.7557159608245237,
+  "corr_levels": 0.9574482974339796,
+  "n": 11
+ },
+ {
+  "cluster": 3,
+  "outcome": "housing_supply",
+  "corr_diff": -0.137313318991267,
+  "corr_levels": 0.9684246602949256,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "fiscal_indep_natl",
+  "corr_diff": -0.2178585405220596,
+  "corr_levels": -0.7429005627582641,
+  "n": 11
+ },
+ {
+  "cluster": 3,
+  "outcome": "farm_income",
+  "corr_diff": 0.1742709013841036,
+  "corr_levels": 0.941927577086494,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "traffic_deaths",
+  "corr_diff": 0.1961817550246842,
+  "corr_levels": -0.9433674330036363,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "ghg_total",
+  "corr_diff": 0.7014578215906591,
+  "corr_levels": -0.2918102634814752,
+  "n": 9
+ },
+ {
+  "cluster": 3,
+  "outcome": "broadband_per_100",
+  "corr_diff": 0.103468903636331,
+  "corr_levels": 0.9637343708698256,
+  "n": 11
+ },
+ {
+  "cluster": 3,
+  "outcome": "oda_total",
+  "corr_diff": 0.4286709206400622,
+  "corr_levels": 0.9139639276025768,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "crime_occurrence",
+  "corr_diff": -0.3460020065941159,
+  "corr_levels": -0.7773742302906367,
+  "n": 10
+ },
+ {
+  "cluster": 3,
+  "outcome": "defense_op_margin",
+  "corr_diff": 0.3394829368472939,
+  "corr_levels": 0.6872068936849178,
+  "n": 9
+ }
+]
