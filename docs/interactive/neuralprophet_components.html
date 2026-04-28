@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>NeuralProphet 분해 — 사업원형별 인터랙티브 시각화</title>
+<style>
+  body { font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+         max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8rem; border-bottom: 2px solid #5a67d8; padding-bottom: 0.5rem; }
+  h2 { font-size: 1.2rem; margin-top: 2.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+          gap: 1.5rem; margin: 2rem 0; }
+  .card { border: 1px solid #ddd; border-radius: 8px; padding: 1.2rem;
+          transition: all 0.15s; background: #fff; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .card h3 { margin: 0 0 0.5rem 0; }
+  .card p { font-size: 0.95rem; color: #555; margin: 0.4rem 0; }
+  .badge { display: inline-block; padding: 0.15rem 0.55rem; font-size: 0.78rem;
+           border-radius: 4px; margin-right: 0.4rem; font-weight: 500; }
+  .b-personnel  { background: #e6f0fa; color: #2c5282; }
+  .b-asset      { background: #faead8; color: #9c4221; }
+  .b-chooyeon   { background: #e6f0e6; color: #285e2a; }
+  .b-normal     { background: #fae6e6; color: #9b2c2c; }
+  .b-compare    { background: #f0e6fa; color: #553c9a; }
+  .btn { display: inline-block; margin-top: 0.6rem; padding: 0.4rem 1rem;
+          background: #5a67d8; color: #fff !important; text-decoration: none;
+          border-radius: 5px; font-weight: 500; font-size: 0.9rem; }
+  .btn:hover { background: #4c51bf; }
+  .nav { margin-bottom: 1rem; }
+  .nav a { font-size: 0.9rem; color: #5a67d8; text-decoration: none; }
+  .ctx { background: #f7fafc; padding: 1rem 1.4rem; border-left: 3px solid #5a67d8;
+          border-radius: 4px; margin: 1rem 0; }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a href="index.md">← 인터랙티브 시각화 인덱스로</a>
+  </div>
+
+  <h1>NeuralProphet 분해 — 사업원형별 시계열 분해 시각화</h1>
+
+  <div class="ctx">
+  <p><strong>맥락:</strong> 본 연구는 게임화 측정에 FFT amp_12m_norm·STL seasonal_strength·NeuralProphet 세 도구를 cross-check으로 사용한다. NP는 시계열을 <em>piecewise-linear 추세 + Fourier 계열 계절성</em>으로 가법 분해해 추세와 계절을 명시적으로 분리한다. 본 페이지는 4개 사업원형의 대표 활동에 대해 NP 분해 결과를 인터랙티브로 보여준다.</p>
+  </div>
+
+  <h2>사업원형별 분해 (대표 활동 1개씩)</h2>
+  <div class="grid">
+    
+    <div class="card">
+      <h3>인건비형</h3>
+      <span class="badge b-personnel">대표 활동</span>
+      <p style="font-size:0.85rem; color:#888;">중소벤처기업부 — 국립마이스터고인건비</p>
+      <p>인건비 비중이 매우 높고 매월 일정 지급. 게임화 진폭이 가장 낮은 평탄한 시계열.</p>
+      <a class="btn" href="np_components_C0_personnel.html">분해 보기 →</a>
+    </div>
+
+    <div class="card">
+      <h3>자산취득형</h3>
+      <span class="badge b-asset">대표 활동</span>
+      <p style="font-size:0.85rem; color:#888;">대법원 — 등기소 확충</p>
+      <p>자산 취득·시설 공사 사업. 공정률에 따른 자연스러운 변동, 12월 점프 약함.</p>
+      <a class="btn" href="np_components_C1_direct_invest.html">분해 보기 →</a>
+    </div>
+
+    <div class="card">
+      <h3>출연금형</h3>
+      <span class="badge b-chooyeon">대표 활동</span>
+      <p style="font-size:0.85rem; color:#888;">국방부 — 한국국방연구원 운영</p>
+      <p>공공·출연기관 위탁 사업. 12월 정산 압력으로 가장 강한 yearly seasonality (3.42x RDD 점프).</p>
+      <a class="btn" href="np_components_C2_chooyeon.html">분해 보기 →</a>
+    </div>
+
+    <div class="card">
+      <h3>정상사업</h3>
+      <span class="badge b-normal">대표 활동</span>
+      <p style="font-size:0.85rem; color:#888;">행정안전부 — 과학수사활동지원</p>
+      <p>일반 사업 (n=1,175). 평균적인 12월 1.91x 집중 패턴.</p>
+      <a class="btn" href="np_components_C3_normal.html">분해 보기 →</a>
+    </div>
+  </div>
+
+  <h2>4 원형 비교 — Yearly Seasonality 패턴</h2>
+  <div class="grid">
+    <div class="card" style="grid-column: 1/-1;">
+      <h3>월별 NP yearly seasonality 비교</h3>
+      <span class="badge b-compare">4 원형 overlay</span>
+      <p>4 사업원형의 월별 평균 NP 계절 성분을 한 그래프에 겹쳐서, 어느 원형이 12월에 가장 강한 점프를 보이는지 비교한다. 출연금형(C2)이 가장 강한 12월 양의 진폭을 보일 것으로 예상.</p>
+      <a class="btn" href="np_archetype_comparison.html">열기 →</a>
+    </div>
+  </div>
+
+  <h2>분석 도구 정보</h2>
+  <p style="font-size: 0.9rem; color: #666;">
+    NeuralProphet 0.9 / PyTorch Lightning, n_lags=0 (자기회귀 차단), n_changepoints=2, yearly_seasonality=True (Fourier order=6), epochs=50.
+    상세 모형식과 본 연구에서 AR을 끈 이유는 <a href="https://github.com/bluethestyle/goodhart-korea">논문 부록 C.3</a> 참조.
+  </p>
+
+</body>
+</html>

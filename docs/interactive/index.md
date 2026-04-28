@@ -52,6 +52,14 @@ hide:
   <a class="btn" href="cluster_outcome_heatmap.html">열기 →</a>
 </div>
 
+<div class="viz-card">
+  <h3>5. NeuralProphet 분해 (사업원형별)</h3>
+  <span class="badge">Plotly</span>
+  <span class="badge">H26</span>
+  <p>NP 가법 분해를 4 사업원형 대표 활동에 대해 인터랙티브로 — trend/yearly seasonality. 출연금형이 12월에 가장 강한 점프.</p>
+  <a class="btn" href="neuralprophet_components.html">열기 →</a>
+</div>
+
 </div>
 
 ---
