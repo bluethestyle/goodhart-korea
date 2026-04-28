@@ -1,0 +1,9 @@
+﻿fld,version,outcome,obs_corr,pval,n
+과학기술,v1_old,rd_total,-0.239,0.5584,9
+과학기술,v3_new,patent_apps_total,0.1185,0.7962,9
+문화및관광,v1_old,tourists_sample,-0.2149,0.6923,5
+문화및관광,v3_new,foreign_tourists_total,0.0532,0.8621,9
+일반·지방행정,v1_old,local_tax_per_capita,-0.3628,0.5445,5
+일반·지방행정,v3_new,fiscal_indep_natl,0.1386,0.6933,10
+통신,v1_old,ict_value_added,0.4807,0.1628,10
+통신,v3_new,broadband_per_100,0.2467,0.4765,10

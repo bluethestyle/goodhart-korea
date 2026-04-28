@@ -24,11 +24,11 @@
 문화및관광,foreign_tourists_total,0,9,0.05320629627104951
 문화및관광,foreign_tourists_total,1,8,-0.7079042295897424
 문화및관광,foreign_tourists_total,2,7,0.3497314397903175
-교육,imd_edu_rank,-2,8,0.6788526957268044
-교육,imd_edu_rank,-1,9,-0.12234572941315724
-교육,imd_edu_rank,0,10,-0.5881754761329747
-교육,imd_edu_rank,1,9,0.22405181275930924
-교육,imd_edu_rank,2,8,0.05257215049812552
+교육,private_edu_hours,-2,8,-0.37966064114270326
+교육,private_edu_hours,-1,9,-0.11453697579400594
+교육,private_edu_hours,0,10,-0.2038484908123283
+교육,private_edu_hours,1,9,0.2947648571216182
+교육,private_edu_hours,2,8,0.4595114354402825
 국토및지역개발,housing_supply,-2,7,0.21945494453957948
 국토및지역개발,housing_supply,-1,8,-0.09847685572918669
 국토및지역개발,housing_supply,0,9,-0.33263899793023755
@@ -69,3 +69,8 @@
 공공질서및안전,crime_occurrence,0,9,-0.2880781914525913
 공공질서및안전,crime_occurrence,1,8,0.21405471885552935
 공공질서및안전,crime_occurrence,2,7,0.45762653200468484
+국방,defense_op_margin,-2,6,0.4719897588419045
+국방,defense_op_margin,-1,7,-0.3480002294645813
+국방,defense_op_margin,0,8,0.0599001660561414
+국방,defense_op_margin,1,7,-0.1257218774576107
+국방,defense_op_margin,2,6,0.6805962327827265

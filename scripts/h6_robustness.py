@@ -69,7 +69,8 @@ panel = con.execute("""
                           'ghg_total','ghg_net','ghg_energy',
                           'ict_value_added',
                           'oda_total','crime_occurrence','crime_arrest_rate',
-                          'defense_op_margin','defense_revenue','defense_util_rate')
+                          'patent_apps_total','foreign_tourists_total',
+                          'fiscal_indep_natl','broadband_per_100','imd_edu_rank')
 """).fetchdf()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
                          values='value').reset_index()
@@ -96,7 +97,13 @@ OUTCOME_MAP = {
     # H15~H17 추가
     '통일·외교':      'oda_total',
     '공공질서및안전':  'crime_occurrence',
-    '국방':           'defense_op_margin',
+    # 국방: outcome 매핑 보류 (안보 outcome 비공개·다요인, 산업 outcome ≠ 정책 효과)
+    # 4개 부적절 outcome 교체 (사용자 비판 반영):
+    '과학기술':       'patent_apps_total',     # 기존 rd_total (자기 인과)
+    '문화및관광':     'foreign_tourists_total', # 기존 tourists_sample (표본수)
+    '일반·지방행정':   'fiscal_indep_natl',     # 기존 local_tax_per_capita (징세)
+    '통신':           'broadband_per_100',      # 기존 ict_value_added (자기 인과)
+    '교육':           'imd_edu_rank',           # 기존 private_edu_hours (역지표)
 }
 
 # ============================================================

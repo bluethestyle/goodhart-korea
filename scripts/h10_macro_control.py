@@ -67,7 +67,9 @@ panel = con.execute("""
                           'traffic_deaths','traffic_accidents',
                           'ghg_total','ghg_net','ghg_energy',
                           'ict_value_added',
-                          'oda_total','crime_occurrence','defense_op_margin')
+                          'oda_total','crime_occurrence',
+                          'patent_apps_total','foreign_tourists_total',
+                          'fiscal_indep_natl','broadband_per_100','imd_edu_rank')
 """).fetchdf()
 con.close()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
@@ -89,7 +91,13 @@ OUTCOME_MAP = {
     '통신':           'ict_value_added',
     '통일·외교':      'oda_total',
     '공공질서및안전':  'crime_occurrence',
-    '국방':           'defense_op_margin',
+    # 국방: outcome 매핑 보류
+    # 4개 부적절 + 1 의심 outcome 교체:
+    '과학기술':       'patent_apps_total',
+    '문화및관광':     'foreign_tourists_total',
+    '일반·지방행정':   'fiscal_indep_natl',
+    '통신':           'broadband_per_100',
+    '교육':           'imd_edu_rank',
 }
 
 # ============================================================
