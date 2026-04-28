@@ -1,14 +1,12 @@
-"""VWFOEM 월별 지출집행 2007~2019 추가 다운로드.
+"""VWFOEM 월별 지출집행 2015~2019 추가 다운로드.
 
-fetch_monthly_exec.py의 확장: 기존 monthly_exec 테이블을 DROP하지 않고
-2007~2019 데이터만 추가로 fetch + INSERT.
+API는 2015년부터 데이터 제공 (2014 이전 INFO-200).
+fetch_monthly_exec.py의 확장: monthly_exec 테이블을 DROP하지 않고
+2015~2019 데이터만 추가로 fetch + INSERT.
 
 사용:
-  export OPENFISCAL_KEY=...
+  .env에 OPENFISCAL_KEY 설정 (자동 로드) 또는 export
   python scripts/fetch_monthly_exec_2007_2019.py
-
-캐시: data/budget/raw/VWFOEM/{year}_{month:02d}_{offc_cd}.json
-DB:   data/warehouse.duckdb (monthly_exec append)
 """
 import os, sys, io, json, time, urllib.request, urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -17,6 +15,10 @@ import duckdb
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+from _env import load_env
+load_env()
+
 RAW_DIR = os.path.join(ROOT, 'data', 'budget', 'raw', 'VWFOEM')
 CODE_FILE = os.path.join(ROOT, 'data', 'budget', 'raw', 'codes', 'offc_codes.json')
 DB_PATH = os.path.join(ROOT, 'data', 'warehouse.duckdb')
@@ -24,7 +26,7 @@ os.makedirs(RAW_DIR, exist_ok=True)
 
 KEY = os.environ.get('OPENFISCAL_KEY')
 if not KEY:
-    sys.exit('OPENFISCAL_KEY 필요. export OPENFISCAL_KEY=... 후 재시도.')
+    sys.exit('OPENFISCAL_KEY 필요. .env 또는 환경변수에 설정.')
 
 H_API = {'User-Agent': 'Mozilla/5.0'}
 H_PORTAL = {
@@ -34,7 +36,7 @@ H_PORTAL = {
     'Referer': 'https://www.openfiscaldata.go.kr/op/ko/sd/UOPKOSDA01',
 }
 
-YEARS_NEW = list(range(2007, 2020))   # 2007~2019
+YEARS_NEW = list(range(2015, 2020))   # 2015~2019 (API가 2015부터 제공)
 
 def get_offc_codes(year):
     body = json.dumps({'opKoCmItgFiCdList':[{'condType':'YR_OFFC_CD','acntYr':str(year)}]}).encode('utf-8')
@@ -89,7 +91,7 @@ def main():
     else:
         codes_all = {}
 
-    print('>>> 부처 코드 사전 (2007~2019)')
+    print('>>> 부처 코드 사전 (2015~2019)')
     for yr in YEARS_NEW:
         if yr in codes_all and codes_all[yr]:
             print(f'  {yr}: {len(codes_all[yr])}개 (캐시)')
@@ -109,7 +111,7 @@ def main():
         for month in range(1, 13):
             for cd in codes.keys():
                 combos.append((yr, month, cd))
-    print(f'>>> 총 {len(combos):,} 조합 (2007~2019)')
+    print(f'>>> 총 {len(combos):,} 조합 (2015~2019)')
 
     new_rows = []
     done = 0
@@ -147,8 +149,8 @@ def main():
     common_sel = ','.join(common)
     con.execute(f"INSERT INTO monthly_exec ({common_sel}) SELECT {common_sel} FROM _new")
     n = con.execute("SELECT COUNT(*) FROM monthly_exec").fetchone()[0]
-    n_new = con.execute("SELECT COUNT(*) FROM monthly_exec WHERE FSCL_YY BETWEEN 2007 AND 2019").fetchone()[0]
-    print(f'>>> 적재 후: monthly_exec 총 {n:,} rows (2007~2019: {n_new:,})')
+    n_new = con.execute("SELECT COUNT(*) FROM monthly_exec WHERE FSCL_YY BETWEEN 2015 AND 2019").fetchone()[0]
+    print(f'>>> 적재 후: monthly_exec 총 {n:,} rows (2015~2019: {n_new:,})')
     con.close()
 
 if __name__ == '__main__':
