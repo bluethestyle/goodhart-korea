@@ -63,7 +63,8 @@ panel = con.execute("""
     WHERE metric_code IN ('amp_12m_norm','wealth_gini','life_expectancy',
                           'rd_total','industry_production_index','tourists_sample',
                           'grdp_national',
-                          'housing_supply','local_tax_per_capita','private_edu_hours')
+                          'housing_supply','local_tax_per_capita','private_edu_hours',
+                          'farm_income','fishery_income')
 """).fetchdf()
 wide = panel.pivot_table(index=['fld_nm','year'], columns='metric_code',
                          values='value').reset_index()
@@ -79,6 +80,8 @@ OUTCOME_MAP = {
     '교육':           'private_edu_hours',
     '국토및지역개발': 'housing_supply',
     '일반·지방행정':   'local_tax_per_capita',
+    # 농림 (2026-04-28 추가)
+    '농림수산':       'farm_income',
 }
 
 # ============================================================

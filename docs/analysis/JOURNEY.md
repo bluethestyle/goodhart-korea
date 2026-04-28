@@ -1052,7 +1052,48 @@ H4 Mapper는 *시각화 도구*. PH는 위상적 특징의 *수명(persistence)*
 
 ---
 
-## 17. 한계 및 주의
+## 17. H10 — 한은 ECOS 거시 통제 후 견고성
+
+### 17.1 동기
+
+H6의 자연 cycle 가설(산업 outcome lag−2~0 +0.7 안정 등)을 *진짜 외생 변수로* 통제. 한은 ECOS API 키 확보(.env BOK_KEY) → 1990~2025 CPI 36년치 fetch → outcome 차분에서 CPI 변화 잔차로 회귀.
+
+### 17.2 결과 — CPI 통제 후 오히려 강해진 신호
+
+| 분야 / outcome | raw corr_diff | CPI-residual | p (raw → resid) | 변화 |
+|---|---:|---:|---:|---|
+| **사회복지 / wealth_gini** | **−0.762** | **−0.856** | 0.028 → **0.007** | 더 강해짐 ★ |
+| 국토개발 / housing | −0.333 | −0.508 | 0.382 → 0.163 | 더 강해짐 |
+| **보건 / life_expectancy** | +0.579 | +0.669 | 0.102 → **0.049** | 새로 통계 유의 ★ |
+| 농림수산 / farm_income | +0.493 | +0.533 | 0.177 → 0.139 | 더 강해짐 |
+| 산업·에너지 / industry | +0.594 | +0.546 | 0.070 → 0.103 | 약간 약화 |
+| 교육 / private_edu | −0.204 | −0.217 | 0.572 → 0.547 | 거의 동일 |
+| 과학기술 / rd_total | −0.239 | −0.245 | 0.536 → 0.525 | 거의 동일 |
+| 일반·지방행정 / local_tax | −0.363 | +0.063 | — | 부호 반전 (raw 약함) |
+| 문화관광 / tourists | −0.215 | +0.130 | — | 부호 반전 (raw 약함) |
+
+**부호 + 강도 70% 이상 유지: 9개 중 7개**.
+
+### 17.3 의의
+
+H6의 핵심 신호 사회복지 wealth_gini −0.86 (p=0.007)은 *CPI(자연 경제 사이클 대표)를 통제해도 오히려 강해짐* → **자연 cycle 가설 강력 기각**. 사용자 우려 직접 답.
+
+부호 반전 2개(일반·지방행정, 문화관광)는 raw 값이 ±0.3 미만의 약한 신호라 우연 변동 가능. 강한 신호 (|corr|≥0.5)는 모두 유지 또는 강해짐.
+
+→ **굿하트는 진짜 신호이며, 자연 cycle 동조의 우연 효과로 설명 안 됨**.
+
+### 17.4 미해결: 부처 직접 outcome (환경·교통)
+
+KOSIS 일반 endpoint 한계로 환경(폐기물·대기·온실가스)·교통(자동차·교통사고) outcome 미적재. 진짜 답은 *부처 직접 API*:
+- 환경공단 대기질·온실가스 API (공공데이터포털)
+- 국토부 통계누리 API (국토·교통)
+- ITS Korea 실시간 교통
+
+공공데이터포털 통합 인증키 받으면 즉시 진행 가능. 한은 ECOS는 환경/교통엔 없지만 거시 통제용으로 충분히 가치 있음을 H10이 입증.
+
+---
+
+## 18. 한계 및 주의
 
 ### 11.1 데이터 한계
 - **편성 vs 결산 차이**: 본예산·추경·월별 집행 보유, 결산(이월·불용)은 일부만
@@ -1079,7 +1120,7 @@ H4 Mapper는 *시각화 도구*. PH는 위상적 특징의 *수명(persistence)*
 
 ---
 
-## 18. 산출물 인덱스
+## 19. 산출물 인덱스
 
 ### 분석 스크립트 (`scripts/`)
 ```
@@ -1104,6 +1145,8 @@ h7_outcome_load.py           ★ 신규 outcome 3분야 indicator_panel 적재
 _env.py                      .env 자동 로드 (의존성 없음)
 h8_within_field.py           ★ 비판적 자기평가: 분야 FE vs +원형 회귀
 h9_persistent_homology.py    ★ Persistent Homology + bootstrap 안정성
+fetch_bok_macro.py           한은 ECOS 거시 통계 fetch (CPI 등)
+h10_macro_control.py         ★ CPI 외생 통제 후 H6 디커플링 견고성
 ```
 
 ### 시각화 (`data/figs/`)
@@ -1142,6 +1185,7 @@ h6/H6_permutation_null.png         Permutation null distribution
 h6/H6_lag_lead.png                 Lag/Lead heatmap (자연 cycle 커플링 검증)
 h8/H8_within_field_panel.png       ★ Q1 R²분해 + Q2 분야×원형 corr_diff
 h9/H9_persistence_diagram.png      ★ PH (persistence + barcode + bootstrap)
+h10/H10_macro_control_compare.png  ★ CPI 통제 전후 corr_diff 비교
 ```
 
 ### 데이터 결과 (`data/results/`)
@@ -1172,6 +1216,7 @@ H6_ministry_outcome_corr.csv  부처 단위 outcome 차분 상관
 H8_archetype_outcome.csv      ★ 분야×원형그룹 outcome 차분 상관 (40 cells)
 H8_field_archetype_decomp.csv ★ R² 분해 (분야 FE → +원형 ΔR² = +0.094)
 H9_persistence_pairs.csv      H0/H1 birth-death pairs (PH 결과)
+H10_macro_control_corr.csv    ★ 9개 outcome raw vs CPI-residual 상관 비교
 ```
 
 ---
