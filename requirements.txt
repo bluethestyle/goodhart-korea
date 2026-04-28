@@ -1,0 +1,30 @@
+# 재정자료분석 — 분석 환경 (Python 3.11+)
+# 검증된 버전 (2026-04-28 기준)
+
+# Core data
+duckdb==1.4.2
+pandas==2.3.3
+numpy==2.2.6
+scipy==1.17.1
+statsmodels==0.14.6
+
+# ML / clustering
+scikit-learn==1.8.0
+umap-learn==0.5.12
+hdbscan==0.8.42
+
+# TDA (Topological Data Analysis)
+kmapper==2.1.0       # H4 Mapper
+ripser==0.6.14       # H9 Persistent Homology
+persim==0.3.8        # PH visualization
+
+# Network analysis
+networkx==3.6.1      # H3 ministry graph, H5 bipartite
+
+# Visualization
+matplotlib==3.10.8
+seaborn==0.13.2
+Pillow>=10.0         # 이미지 리사이즈
+
+# 표준 라이브러리만 사용:
+# urllib (API 호출), json, os, sys, io, re, time, concurrent.futures
