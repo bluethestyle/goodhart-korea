@@ -1,0 +1,86 @@
+site_name: "한국 정부 재정 굿하트 효과"
+site_description: "Multi-method robustness analysis of Goodhart's Law in Korean public spending"
+site_url: ""
+
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Noto Sans KR
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - toc:
+      permalink: true
+  - footnotes
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search:
+      lang:
+        - ko
+        - en
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - 분석 여정 (JOURNEY):
+    - "전체 여정": analysis/JOURNEY.md
+  - 핵심 결과:
+    - "Findings": findings.md
+    - "방법론": methods.md
+    - "한계": limitations.md
+  - 데이터:
+    - "출처 (SOURCES)": ../data/external/SOURCES.md
+    - "결과 CSV (INDEX)": ../data/results/INDEX.md
+  - 참고문헌: REFERENCES.md
