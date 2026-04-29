@@ -140,7 +140,7 @@ def quadrant(row):
 filt['quadrant'] = filt.apply(quadrant, axis=1)
 
 # ── Figure
-fig, ax = plt.subplots(figsize=(8.2, 5.2))
+fig, ax = plt.subplots(figsize=(9.84, 5.2))
 
 # 4분면 배경
 x1 = max(merged['exposure_score'].max() + 0.05, 0.85)

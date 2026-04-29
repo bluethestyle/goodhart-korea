@@ -65,7 +65,7 @@ target_keys = ['사회복지', '복지', 'wealth']
 # ============================================================
 # Figure 1: h6_robustness.png — (a) FE 회귀 + (b) 14분야 Permutation forest
 # ============================================================
-fig, axes = plt.subplots(1, 2, figsize=(6.3, 4.2),
+fig, axes = plt.subplots(1, 2, figsize=(7.56, 4.2),
                          gridspec_kw={'width_ratios': [1, 1.4]})
 
 # ── (a) FE 회귀 (제목 단축)
@@ -141,7 +141,7 @@ save_resize(fig, 'h6_robustness.png')
 # Figure 2: h6_lag_amp.png — (c) Lag/Lead heatmap + (d) amp_cv 수평막대
 # (원본 source: scripts/h6_robustness.py Figure C, A2)
 # ============================================================
-fig, axes = plt.subplots(1, 2, figsize=(6.3, 4.2))
+fig, axes = plt.subplots(1, 2, figsize=(7.56, 4.2))
 
 # ── (c) Lag/Lead heatmap (분야 × lag, color = corr_diff)
 ax = axes[0]

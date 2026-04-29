@@ -67,7 +67,7 @@ estimates = pd.read_csv(os.path.join(RES, 'H22_rdd_estimates.csv'))
 beta_total = float(estimates[estimates['bw'] == 1]['beta'].values[0])
 mult_total = float(estimates[estimates['bw'] == 1]['mult'].values[0])
 
-fig, ax = plt.subplots(figsize=(8.2, 5.0))
+fig, ax = plt.subplots(figsize=(9.84, 5.0))
 
 ys = np.arange(len(df))
 colors = ['#a85454' if p < 0.05 else '#aaaaaa' for p in df['pval']]

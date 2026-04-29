@@ -88,7 +88,7 @@ h0 = ph[(ph['dim'] == 0) & ph['death'].apply(is_finite)]
 h1 = ph[(ph['dim'] == 1) & ph['death'].apply(is_finite)]
 
 # ── 3A: Persistence Diagram
-fig, ax = plt.subplots(figsize=(8.2, 5))
+fig, ax = plt.subplots(figsize=(9.84, 5))
 ax.scatter(h0['birth'], h0['death'], s=18, c='#5475a8',
            label=f'H0 (n={len(h0)})', alpha=0.7)
 ax.scatter(h1['birth'], h1['death'], s=22, c='#a85454',
@@ -108,7 +108,7 @@ plt.tight_layout()
 save_resize(fig, 'h9_pd.png')
 
 # ── 3B: H1 Barcode top 30
-fig, ax = plt.subplots(figsize=(6.3, 4.2))
+fig, ax = plt.subplots(figsize=(8.82, 4.2))
 h1_sorted = h1.sort_values('persistence', ascending=False).reset_index(drop=True)
 n_top = min(30, len(h1_sorted))
 for i in range(n_top):
@@ -129,7 +129,7 @@ plt.tight_layout()
 save_resize(fig, 'h9_barcode.png')
 
 # ── 3C: Bootstrap H1 max histogram
-fig, ax = plt.subplots(figsize=(6.3, 4.2))
+fig, ax = plt.subplots(figsize=(8.82, 4.2))
 ax.hist(boot, bins=15, color='#a85454', alpha=0.78, edgecolor='black')
 ax.axvline(h1m, color='black', lw=2, label=f'median = {h1m:.2f}')
 ax.axvspan(h1lo, h1hi, alpha=0.15, color='black',

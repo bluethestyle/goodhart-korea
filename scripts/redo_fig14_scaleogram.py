@@ -91,7 +91,7 @@ freqs = pywt.scale2frequency(wavelet, scales)
 periods = 1 / freqs
 
 # ── Figure
-fig, axes = plt.subplots(2, 2, figsize=(8.2, 6.0), sharex=True, sharey=True)
+fig, axes = plt.subplots(2, 2, figsize=(11.48, 6.0), sharex=True, sharey=True)
 arch_order = ['C0_personnel', 'C1_direct_invest',
               'C2_chooyeon', 'C3_normal']
 

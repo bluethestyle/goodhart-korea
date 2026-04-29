@@ -72,7 +72,7 @@ def save_resize(fig, fname):
         print(f'  {fname:28s} {w}x{h}')
 
 # ── (a) 분야별 STL vs FFT grouped barh — 부호 반전 행 배경 강조 + 화살표
-fig, ax = plt.subplots(figsize=(8.2, 5.0))
+fig, ax = plt.subplots(figsize=(9.84, 5.0))
 y = np.arange(len(df))
 
 # 부호 반전 분야 행 배경
@@ -107,7 +107,7 @@ plt.tight_layout()
 save_resize(fig, 'h24_stl_bars.png')
 
 # ── (b) STL vs FFT 산점도 — 2·4 사분면(부호 반전 영역) 배경 강조
-fig, ax = plt.subplots(figsize=(8.2, 5.0))
+fig, ax = plt.subplots(figsize=(9.84, 5.0))
 # 2사분면 (FFT < 0, STL > 0)
 ax.fill_between([-1.05, 0], 0, 1.05, color='#ffe0e0', alpha=0.55, zorder=0)
 # 4사분면 (FFT > 0, STL < 0)
