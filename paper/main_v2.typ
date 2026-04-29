@@ -174,7 +174,7 @@
 
   + *기여 4 — 시간 동적 강화 (§6.6, H6, Wavelet 신규)*: FFT 정상성 가정의 한계를 웨이블릿으로 보완해 *게임화가 시간이 갈수록 강화*됨을 새롭게 입증. 출연금형 12개월 cycle 진폭 *2015\~2017 → 2023\~2025로 +554\%* 증가, 인건비형 변화 없음(통제). 한국 굿하트 효과는 *고정 패턴이 아닌 진행 중인 동적 현상*.
 
-  + *기여 5 — 정책 처방의 모형적 도출 (§7)*: 정책 권고를 *임의 나열*이 아닌 모형의 비교정역학 ($(partial e_t^*) / (partial w_t) > 0$ 등)에서 *직접 도출*. 6대 권고 — 다년도 회계, 출연기관 평가 지표 전환, 정산 분산, 데이터 인프라, 자동 flagging, 시간 가중 점검 — 은 모형 레버 ($w_t, w_q$, $(partial^2 c) / (partial e_t^2)$)와 1:1 대응. Holmstrom-Milgrom impossibility의 본질적 한계를 정직 명시.
+  + *기여 5 — 정책 처방의 모형적 도출 (§7)*: 정책 권고를 *임의 나열*이 아닌 모형의 비교정역학 ($(partial e_t^*) / (partial w_t) > 0$ 등)에서 *직접 도출*. 6대 권고 — 다년도 회계, 출연기관 평가 지표 전환, 정산 분산, 데이터 인프라, 자동 flagging, 시간 가중 점검 — 은 모형 레버 ($w_t, w_q$, $c_(t t)$)와 1:1 대응. Holmstrom-Milgrom impossibility의 본질적 한계를 정직 명시.
 
 = 이론적 토대
 
@@ -257,6 +257,8 @@
 
   *핵심 비대칭*: $Y$는 Principal의 목적이지만 Agent의 목적함수에 *직접 들어가지 않는다*. Agent는 $Y$를 신경쓰지 않고 평가 점수 $w_t e_t + w_q tilde(e)_q$만 최대화한다. *모든 $Y$-개선은 우연한 alignment의 결과*다.
 
+  *비용 함수 편미분 표기 규약*: 본 절 이하에서 비용 함수 $c$의 1·2계 편미분은 하첨자 표기로 줄여 쓴다 — $c_t equiv (partial c)/(partial e_t)$, $c_q equiv (partial c)/(partial e_q)$, $c_(t t) equiv (partial^2 c)/(partial e_t^2)$, $c_(q q) equiv (partial^2 c)/(partial e_q^2)$, $c_(t q) equiv (partial^2 c)/(partial e_t partial e_q)$. 비교정역학에서 *분수 안 분수* 표기를 회피하기 위한 표준 규약이다.
+
 == 균형점 도출 — 굿하트 게임의 1차 조건
 
   Agent의 1차 조건(FOC):
@@ -277,12 +279,12 @@
   $e_t^*$의 부분 미분(상세 도출은 부록 F):
   $ (partial e_t^*) / (partial w_t) > 0 quad ("시점 평가 가중 ↑ → 게임화 ↑") $
   $ (partial e_t^*) / (partial w_q) < 0 quad ("품질 평가 가중 ↑ → 게임화 ↓") $
-  $ (partial e_t^*) / (partial^2 c / partial e_t^2) < 0 quad ("시점 조정 비용 ↑ → 게임화 ↓") $
+  $ (partial e_t^*) / (partial c_(t t)) < 0 quad ("시점 조정 비용 ↑ → 게임화 ↓") $
 
   세 부분 미분은 *세 가지 정책 처방*에 직접 대응한다.
   + $w_t$ 감소: *집행률 평가 완화* (다년도 회계, MTEF 강화)
   + $w_q$ 증가: *사업 성과 측정 인프라* 구축 (단점: 측정성 격차 본질적 한계)
-  + $(partial^2 c) / (partial e_t^2)$ 증가: *시점 조정의 한계 비용 증가* (출연기관 정산 분산, 자동 flagging)
+  + $c_(t t)$ 증가: *시점 조정의 한계 비용 증가* (출연기관 정산 분산, 자동 flagging)
 
   세 처방은 본 연구의 정책 함의 절(권고 1\~4)과 일대일 대응한다.
 
@@ -296,7 +298,23 @@
 
   *우리 결과의 직접 해석*: 출연금형 phase coherence 0.54 (다른 원형 0.08\~0.13의 *4\~7배*; 부록 D.3)는 *개별 합리성*만으로 설명하기 어려운 *집단 동기화 신호*다. Career Concerns 확장은 이 동기화를 *모기관 평판 매개의 자연 균형*으로 frame한다 — 출연기관들은 *서로의 평가 결과를 학습*해 모기관 평가 기준에 *공동 적응*한다.
 
-  *후속 연구의 자연 출발점*: $w_R$의 정량 측정 (모기관별 출연기관 군의 평가 결과 분산 → 집단 평판 신호 강도) + dynamic 게임 균형 (Sannikov 2008)으로 우리 stationary 모형의 한계를 확장 가능. 본 연구는 stationary 균형의 *cross-section* 검증에 집중하며, 동적 reputational equilibrium은 §8 후속 연구로 제시한다.
+  *동적 게임 메커니즘 — Phase Coherence의 미시 도출*: 단일 stage 모형으로는 *왜* phase coherence 0.54가 발현하는지 설명할 수 없다. 다음의 *반복 게임 + Bayesian learning* 구조가 그 미시적 기제를 제공한다.
+
+  연도 $t = 1, 2, ..., T$에서 활동 $i in cal(I)_("모기관")$ (동일 모기관 산하 출연기관 활동)이 시점 노력 $e_(i,t)$를 선택한다. 각 활동의 평가 점수는 $s_(i,t) = w_t e_(i,t) + w_q tilde(e)_(q,i,t) + epsilon_(i,t)$. 활동 $i$는 다른 활동 $j$의 *평가 점수 $s_(j,t-1)$를 관측*하고, 이를 *모기관 평가 기준 $mu_("모기관")*$ * 의 신호로 사용한다.
+
+  Bayesian belief update:
+  $ Pr(mu_("모기관")^* | s_(j,t-1)) prop Pr(s_(j,t-1) | mu_("모기관")^*) Pr(mu_("모기관")^*) $
+
+  이로부터 활동 $i$의 *연도 $t$ 시점 노력 균형*은 *연도 $t-1$의 동료 활동 신호 평균*에 의존:
+  $ e_(i,t)^* = arg max_(e_t) {w_t e_t + w_q tilde(e)_q + w_R hat(R)_(t-1) - c(e_t, e_q)} $
+  여기서 $hat(R)_(t-1) = (1\/n) sum_(j != i) s_(j,t-1)$.
+
+  *Nash 수렴 (collective synchronization)*: 모든 활동이 동일 belief update 규칙을 사용하고 *동일 신호 분포*에 노출되면, *고정점 균형*에서 모든 $e_(i,t)^*$는 *유사한 시간 패턴*으로 수렴 (Bayesian Nash equilibrium of similar games). 즉:
+  $ "phase"(e_(i,t)^*) approx "phase"(e_(j,t)^*) quad forall i, j in cal(I)_("모기관") $
+
+  *우리 실증과의 정확한 대응*: 출연금형 phase coherence 0.54는 이 *Nash 수렴 상태의 직접 측정*이다 — 활동 $i, j$가 *학습된 belief를 통해 동시에 피크*에 도달함. 인건비형 phase coherence 0.41(통제)은 *구조적 균등 지급*에 따른 자연 동기화이며, 자산취득형(0.08)·정상사업(0.13)은 *동료 평가 신호 학습이 약한* 사업 환경 — 즉 모기관-위탁기관 결속이 출연금형보다 약함 — 의 발현으로 해석된다.
+
+  *후속 연구의 자연 출발점*: 본 동적 mechanism의 정량 검증은 *연도별 평가 결과 패널*과 *agent 행동 lag 분석*으로 가능 (Sannikov 2008 연속시간 PA, Cabrales-Charness 2011 동조 학습). $w_R$ 정량 측정 (모기관별 출연기관 평가 결과 분산 → 집단 평판 신호 강도)도 후속 자연 실험의 핵심 calibration 대상이다.
 
 == 사업원형별 균형 예측
 
@@ -788,7 +806,7 @@
 
   본 절은 정책 처방을 *임의로 나열*하지 않고, *P-A 모형의 비교정역학 결과*에서 직접 도출한다. 모형(이론 모형 절)은 균형 시점 조정 노력 $e_t^*$의 부분 미분으로 *세 가지 정책 레버*를 식별했다.
 
-  $ (partial e_t^*) / (partial w_t) > 0, quad (partial e_t^*) / (partial w_q) < 0, quad (partial e_t^*) / (partial^2 c / partial e_t^2) < 0 $
+  $ (partial e_t^*) / (partial w_t) > 0, quad (partial e_t^*) / (partial w_q) < 0, quad (partial e_t^*) / (partial c_(t t)) < 0 $
 
   각 레버를 한국 행정 환경에서 *어떤 액션*으로 작동시킬 수 있는가:
 
@@ -808,11 +826,11 @@
 
   *권고 2 — 출연기관 평가 지표 전환 ($w_t$ ↓ + $w_q$ ↑)*: 출연금형 phase coherence 0.54 + PSD k=1 진폭 0.332는 *모기관-위탁기관의 12월 일률 정산 압력*의 직접 증거다. 출연기관 경영평가에서 *집행률 100\%*의 비중 축소($w_t$ ↓) + *사업 품질 평가*(피인용·인용·산출물 평가) 가중 확대($w_q$ ↑)가 두 레버를 동시에 움직인다. 다만 $w_q$ 증가의 효과는 *측정성 격차의 본질적 한계*(Holmstrom-Milgrom impossibility)로 일부에 그친다.
 
-  *권고 3 — 출연기관 정산 시점 분산 ($(partial^2 c) / (partial e_t^2)$ ↑)*: 위탁계약별 정산 주기를 *분기 또는 반기*로 분산하면, 12월 1일 직후의 시점 조정 한계 비용이 증가($(partial^2 c) / (partial e_t^2)$ ↑)해 $e_t^*$가 분산된다. 출연금형 phase coherence가 0.54에서 *분산형 cycle*로 바뀌면 outcome alignment에서 우연한 alignment 외 효과를 추가로 식별 가능.
+  *권고 3 — 출연기관 정산 시점 분산 ($c_(t t)$ ↑)*: 위탁계약별 정산 주기를 *분기 또는 반기*로 분산하면, 12월 1일 직후의 시점 조정 한계 비용이 증가($c_(t t)$ ↑)해 $e_t^*$가 분산된다. 출연금형 phase coherence가 0.54에서 *분산형 cycle*로 바뀌면 outcome alignment에서 우연한 alignment 외 효과를 추가로 식별 가능.
 
   *권고 4 — 데이터 인프라 강화 (모형 $w_q$ ↑의 *전제 조건*)*: 본 연구는 *월별 집행*(VWFOEM) 자료 한계로 12월 *주(week) 단위* 점프를 직접 관측하지 못했다. 미국 Liebman-Mahoney(2017)는 주별 자료로 5배 점프를 보고했다. 열린재정 API의 *주별·일별 granularity 추가*는 RDD 식별력 향상 외에도 $w_q$ 증가에 필요한 *사업 성과 측정 인프라*의 1차 자료가 된다.
 
-  *권고 5 — 자동 감사 flagging 시스템 ($(partial^2 c) / (partial e_t^2)$ ↑)*: 본 연구의 50건 sub05 (극단 게임화 활동) 식별 알고리즘(amp_12m_norm 상위 + RDD 점프 3배 이상)을 *상시 운영*하면 적발 가능성 ↑ → $(partial c) / (partial e_t)$ 증가 → $e_t^*$ 감소. 감사원·국회 예산정책처와 협력해 *실시간 게임화 모니터링 dashboard* 구축 가능.
+  *권고 5 — 자동 감사 flagging 시스템 ($c_(t t)$ ↑)*: 본 연구의 50건 sub05 (극단 게임화 활동) 식별 알고리즘(amp_12m_norm 상위 + RDD 점프 3배 이상)을 *상시 운영*하면 적발 가능성 ↑ → $(partial c) / (partial e_t)$ 증가 → $e_t^*$ 감소. 감사원·국회 예산정책처와 협력해 *실시간 게임화 모니터링 dashboard* 구축 가능.
 
   *권고 6 — 시간 가중 점검 (모형 H6 검증)*: 웨이블릿 분석에서 출연금형 게임화가 *2015\~2017 → 2023\~2025 +554\%* 증가했다는 발견(결과 5.7)은, $w_t / w_q$ 비율의 시간 증가가 진행 중임을 의미한다. 정책 점검은 *최근 3년 자료*에 가중되어야 하며, 11년 평균 지표는 강화 추세를 희석한다.
 
@@ -866,7 +884,7 @@
 
   $w_t / w_q$ 비율의 시간 증가(국가재정법·국가회계제도 시행 + 코로나 확장재정 + 출연기관 비중 증가)가 plausible 동인이며, 인건비형의 변화 없음이 측정 도구의 신뢰성을 보강한다.
 
-  *기여 5 — 정책 처방의 모형적 도출*: 정책 권고를 *임의 나열*이 아닌 모형의 비교정역학 ($(partial e_t^*) / (partial w_t) > 0$ 등)에서 직접 도출했다. 5가지 핵심 권고 — 다년도 회계, 출연기관 평가 지표 전환, 정산 시점 분산, 데이터 인프라, 자동 flagging — 은 각각 모형의 한 레버 ($w_t, w_q$, 또는 $(partial^2 c) / (partial e_t^2)$)에 대응한다. 동시에 Holmstrom-Milgrom impossibility의 한계 — 측정성 격차의 본질적 제약 — 를 *완전 해결 약속하지 않음*으로 정직하게 명시한다.
+  *기여 5 — 정책 처방의 모형적 도출*: 정책 권고를 *임의 나열*이 아닌 모형의 비교정역학 ($(partial e_t^*) / (partial w_t) > 0$ 등)에서 직접 도출했다. 5가지 핵심 권고 — 다년도 회계, 출연기관 평가 지표 전환, 정산 시점 분산, 데이터 인프라, 자동 flagging — 은 각각 모형의 한 레버 ($w_t, w_q$, 또는 $c_(t t)$)에 대응한다. 동시에 Holmstrom-Milgrom impossibility의 한계 — 측정성 격차의 본질적 제약 — 를 *완전 해결 약속하지 않음*으로 정직하게 명시한다.
 
   *방법론 트라이앵귤레이션과 정직한 한계 보고*: FFT·STL·NeuralProphet·Wavelet 4-도구 시간 해상도 spectrum + UMAP·HDBSCAN·Mapper·PH 위상 다중 검증 + RDD·매개분석·CPI 통제 인과 식별이 모두 일관된 *원형별 균형 패턴*으로 수렴한다. STL 후 사회복지 신호 소멸은 자기 비판적으로 명시하며, P-A 모형의 calibration 미시도와 dynamic 균형 미반영을 향후 자연 실험·국제 비교 연구의 출발점으로 제시한다. 모든 코드·데이터·결과는 GitHub repository(`bluethestyle/goodhart-korea`)와 Zenodo에 공개되어 *재현 가능한 연구*를 지향한다.
 
