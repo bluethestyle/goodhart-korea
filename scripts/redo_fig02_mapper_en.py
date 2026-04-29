@@ -50,6 +50,7 @@ CLU_LABEL = {0: 'Personnel (n=129)', 1: 'Capital-Acq. (n=99)',
 # English field name mapping
 FIELD_EN = {
     '사회복지': 'Social Welfare',
+    '문화및관광': 'Culture & Tourism',
     '보건': 'Health',
     '과학기술': 'S&T',
     '산업·중소기업및에너지': 'Industry/SMEs',

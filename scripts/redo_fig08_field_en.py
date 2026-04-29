@@ -49,6 +49,7 @@ SHORT_EN = {
     '보건': 'Health',
     '교육': 'Education',
     '농림수산식품': 'Agriculture',
+    '농림수산': 'Agriculture',
     '환경': 'Environment',
     '통신': 'ICT',
     '국방': 'Defense',
