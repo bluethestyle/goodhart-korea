@@ -72,11 +72,13 @@
     // 맨 위 바깥선
     top: if y == 0 { 0.8pt + black } else { 0pt },
     // 헤더와 본문 사이 = 진한 선, 본문 행 사이·표 하단 = 얇은 회색 구분선
-    bottom: if y == 0 { 0.4pt + black } else { 0.3pt + rgb("#bbb") },
+    bottom: if y == 0 { 0.7pt + black } else { 0.3pt + rgb("#bbb") },
   ),
   fill: none,
-  inset: (x: 6pt, y: 4pt),
+  inset: (x: 6pt, y: 2.5pt),
 )
+// 헤더 행(첫 행) 굵게
+#show table.cell.where(y: 0): set text(weight: "bold")
 
 // =============================================================
 // 표지
