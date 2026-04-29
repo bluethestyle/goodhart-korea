@@ -65,18 +65,19 @@ texts = []
 for _, row in df.iterrows():
     t = ax1.text(row['corr_raw'], row['corr_resid_CPI'],
                  str(row['fld_short']),
-                 fontsize=9, alpha=0.9)
+                 fontsize=13, alpha=0.95, weight='medium')
     texts.append(t)
 try:
     from adjustText import adjust_text
     adjust_text(
         texts, ax=ax1,
-        arrowprops=dict(arrowstyle='-', color='#777', lw=0.6),
-        expand_points=(2.0, 2.0),
-        expand_text=(1.6, 1.6),
-        force_text=(0.8, 1.0),
-        force_points=(0.6, 0.8),
+        arrowprops=dict(arrowstyle='-', color='#666', lw=0.7),
+        expand_points=(3.0, 3.0),
+        expand_text=(2.5, 2.5),
+        force_text=(1.5, 1.8),
+        force_points=(1.2, 1.4),
         only_move={'points': 'y', 'text': 'xy'},
+        lim=200,
     )
 except ImportError:
     pass
@@ -99,7 +100,7 @@ ax2.barh(y - 0.2, df_sorted['corr_raw'], height=0.4,
 ax2.barh(y + 0.2, df_sorted['corr_resid_CPI'], height=0.4,
          label='CPI-residual 상관', color='#a85454', alpha=0.85)
 ax2.set_yticks(y)
-ax2.set_yticklabels(df_sorted['fld'], fontsize=9)
+ax2.set_yticklabels(df_sorted['fld'], fontsize=12)
 ax2.axvline(0, color='gray', lw=0.6)
 ax2.set_xlabel('상관계수')
 ax2.legend(loc='lower right')
