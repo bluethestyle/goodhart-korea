@@ -1002,11 +1002,10 @@
 연구 재현 자료(코드, 결과 CSV, 시각화)는 GitHub repository와 Zenodo에 공개한다.
 
 - GitHub: #link("https://github.com/bluethestyle/goodhart-korea")[github.com/bluethestyle/goodhart-korea]
-- Zenodo DOI: (DOI 발급 예정)
 - 인터랙티브 시각화: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")[bluethestyle.github.io/goodhart-korea/interactive]
 - 분석 여정 (전체 H1\~H24): #link("https://bluethestyle.github.io/goodhart-korea/analysis/JOURNEY/")[bluethestyle.github.io/goodhart-korea/analysis/JOURNEY]
 
-*라이선스 및 배포*: 본 논문 본문은 #link("https://creativecommons.org/licenses/by/4.0/")[CC BY 4.0] 하에 배포된다. 분석 코드는 #link("https://github.com/bluethestyle/goodhart-korea")[GitHub repository]에 MIT 라이선스로 공개되며, 분석 산출물(CSV·PNG)은 CC BY 4.0이다. 인용 시 출처(GitHub repository + Zenodo DOI)를 표기해 주시기 바란다.
+*라이선스 및 배포*: 본 논문 본문은 #link("https://creativecommons.org/licenses/by/4.0/")[CC BY 4.0] 하에 배포된다. 분석 코드는 #link("https://github.com/bluethestyle/goodhart-korea")[GitHub repository]에 MIT 라이선스로 공개되며, 분석 산출물(CSV·PNG)은 CC BY 4.0이다.
 
 #set par(first-line-indent: 1em)
 

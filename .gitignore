@@ -61,3 +61,6 @@ paper/.typst-cache/
 # OS
 .DS_Store
 Thumbs.db
+
+# Paper EN figures preview (intermediate)
+paper/figures_en/_preview/

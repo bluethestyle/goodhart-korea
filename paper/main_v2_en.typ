@@ -14,7 +14,7 @@
 
 // English academic font stack: Times New Roman primary, Linux Libertine / Latin Modern Roman fallback
 #set text(
-  font: ("Times New Roman", "Linux Libertine", "Latin Modern Roman"),
+  font: ("Times New Roman", "Libertinus Serif", "New Computer Modern"),
   size: 10.5pt,
   lang: "en",
 )
@@ -33,7 +33,7 @@
 #show heading.where(level: 1): it => [
   #v(1.0em)
   #text(
-    font: ("Helvetica", "Arial", "Latin Modern Sans"),
+    font: ("Arial", "New Computer Modern"),
     size: 13pt, weight: "bold",
     it
   )
@@ -42,7 +42,7 @@
 #show heading.where(level: 2): it => [
   #v(0.7em)
   #text(
-    font: ("Helvetica", "Arial", "Latin Modern Sans"),
+    font: ("Arial", "New Computer Modern"),
     size: 11.5pt, weight: "bold",
     it
   )
@@ -51,7 +51,7 @@
 #show heading.where(level: 3): it => [
   #v(0.5em)
   #text(
-    font: ("Helvetica", "Arial", "Latin Modern Sans"),
+    font: ("Arial", "New Computer Modern"),
     size: 10.8pt, weight: "bold",
     it
   )
@@ -82,7 +82,7 @@
 // Header row: force bold with a non-variable font stack
 #show table.cell.where(y: 0): set text(
   weight: "bold",
-  font: ("Helvetica", "Arial", "Times New Roman"),
+  font: ("Arial", "Times New Roman"),
 )
 
 // =============================================================
@@ -91,12 +91,12 @@
 #align(center)[
   #v(2em)
   #text(size: 18pt, weight: "bold",
-        font: ("Helvetica", "Arial", "Latin Modern Sans"))[
+        font: ("Arial", "New Computer Modern"))[
     Goodhart's Game in Korean Central Government Spending
   ]
   #v(0.6em)
   #text(size: 12.5pt,
-        font: ("Helvetica", "Arial", "Latin Modern Sans"))[
+        font: ("Arial", "New Computer Modern"))[
     A Principal-Agent Equilibrium Analysis with Multi-Method Validation and Model-Based Policy Prescriptions
   ]
   #v(2.5em)
@@ -132,12 +132,12 @@
 // =============================================================
 #align(center)[
   #text(weight: "bold", size: 12pt,
-        font: ("Helvetica", "Arial", "Latin Modern Sans"))[Abstract]
+        font: ("Arial", "New Computer Modern"))[Abstract]
 ]
 #v(0.4em)
 #align(center)[
   #text(weight: "bold", size: 11pt,
-        font: ("Helvetica", "Arial", "Latin Modern Sans"))[
+        font: ("Arial", "New Computer Modern"))[
     Goodhart's Game in Korean Central Government Spending: \
     A Principal-Agent Equilibrium Analysis with Multi-Method \
     Validation and Model-Based Policy Prescriptions
@@ -621,33 +621,33 @@
   All three tools (UMAP+HDBSCAN, Mapper, PH) consistently support the conclusion that *project type is a stronger unit of analysis than field*.
 
 #figure(
-  image("figures/h3_umap.png", width: 100%),
+  image("figures_en/h3_umap.png", width: 100%),
   caption: [\[H1 Validation\] Activity-embedding UMAP — 4 project archetypes (1,557 activities × 12 features)],
 ) <fig-umap>
 
 #figure(
-  image("figures/h4_mapper_amp.png", width: 70%),
+  image("figures_en/h4_mapper_amp.png", width: 70%),
   caption: [\[H1.b Validation\] Mapper graph — colored by mean amp_12m_norm. \ 32 nodes / 38 edges / 10 components / 7 loops. Node size proportional to number of activities.],
 ) <fig-mapper-amp>
 
 #figure(
-  image("figures/h4_mapper_cluster.png", width: 70%),
+  image("figures_en/h4_mapper_cluster.png", width: 70%),
   caption: [\[H1.b Validation\] Mapper graph — same graph, colored by HDBSCAN project archetype (4 archetypes).\ Confirms topological separation of 4 archetypes.],
 ) <fig-mapper-cluster>
 
 #figure(
-  image("figures/h9_pd.png", width: 100%),
+  image("figures_en/h9_pd.png", width: 100%),
   caption: [\[H1.b Validation\] Persistence Diagram — Vietoris-Rips, N=300, max thresh=8.0.\ H0 (blue) · H1 (red) birth-death pairs.],
 ) <fig-ph-pd>
 
 #figure(
-  image("figures/h9_barcode.png", width: 100%),
+  image("figures_en/h9_barcode.png", width: 100%),
   caption: [\[H1.b Validation\] H1 Barcode — birth-death bars for the 30 longest-persisting loops.\ max persistence = 0.671.],
 ) <fig-ph-barcode>
 
 
 #figure(
-  image("figures/h9_bootstrap.png", width: 100%),
+  image("figures_en/h9_bootstrap.png", width: 100%),
   caption: [\[H1.b Validation\] Bootstrap PH 50 iterations (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ Sample stability verified against 5-year reference (median 0.65).],
 ) <fig-ph-bootstrap>
 
@@ -669,17 +669,17 @@
   *Model Validation (H2)*: This finding directly demonstrates that *archetype-specific differences in the cost function $c(e_t, e_q; theta)$* in the P-A model manifest as *differences in the temporal structure of the equilibrium $e_t^*$*. For capital-acquisition type, $c(e_t)$ *drops sharply* immediately after December 1 — the arbitrary point at which both progress-billing and fiscal-year deadlines expire simultaneously — yielding the largest RDD jump (H2). Both equilibria reflect the *same FOC* $w_t = (partial c) / (partial e_t)$ of the model, expressing different temporal structures through *archetype-specific differences in the cost function*.
 
 #figure(
-  image("figures/h22_rdd_monthly.png", width: 100%),
+  image("figures_en/h22_rdd_monthly.png", width: 100%),
   caption: [\[H2 Validation\] Monthly average daily expenditure per activity (2015–2025) — color indicates fiscal year (purple 2015 → yellow 2025);\ thick black line is the 11-year average. December discontinuity visible in the Nov–Dec region (red).],
 ) <fig-rdd-monthly>
 
 #figure(
-  image("figures/h22_rdd_yearly.png", width: 80%),
+  image("figures_en/h22_rdd_yearly.png", width: 80%),
   caption: [\[H2 Validation\] Annual December jump (median log daily expenditure per activity: December − November).\ Overall RDD β=0.65 (1.91×, orange dashed), vs. #cite(<liebman2017>, form: "prose") U.S. 5× reference line (purple dashed).],
 ) <fig-rdd-yearly>
 
 #figure(
-  image("figures/h22_rdd_field.png", width: 100%),
+  image("figures_en/h22_rdd_field.png", width: 100%),
   caption: [\[H2 Validation\] December jump multiplier by field — Defense, Land Development, and Transport are largest; *capital-acquisition type 3.42× (strongest)*],
 ) <fig-rdd-field>
 
@@ -761,25 +761,25 @@ All three measures consistently show that *grant-transfer type is most strongly 
   *Model Validation (H1 reinforced) — compatibility of field trivial with Social Welfare redistribution*: "If fields are trivial (H1), how can a strong correlation in the Social Welfare field be possible?" The model separates two layers: (a) the *unit of the cost function $c(\cdot)$* is the project archetype (field trivial), (b) the *unit of outcome variable $Y$ alignment* is the field (coincidental alignment in Social Welfare). The two layers are *independent* and thus compatible.
 
 #figure(
-  image("figures/h6_robustness.png", width: 100%),
+  image("figures_en/h6_robustness.png", width: 100%),
   caption: [\[H5 Validation\] Robustness: (a) FE regression β + 95% CI (N=128). (b) Permutation forest 14 fields. Social Welfare obs = -0.762, p = 0.035, only significant field (fortuitous alignment).],
 ) <fig-h6>
 #pagebreak()
 #v(-2em)
 
 #figure(
-  image("figures/h6_lag_amp.png", width: 100%),
+  image("figures_en/h6_lag_amp.png", width: 100%),
   caption: [Robustness (continued) — (c) Lag/lead first-difference correlation heatmap (k=−2..+2).\ (d) Field-level amp_12m temporal coefficient of variation (amp_cv) — Social Welfare (red) shows low volatility\ but strong outcome correlation, supporting the KPI-pressure hypothesis over a natural cycle explanation.],
 ) <fig-h6-lag>
 #v(-0em)
 
 #figure(
-  image("figures/h10_cpi_control.png", width: 85%),
+  image("figures_en/h10_cpi_control.png", width: 85%),
   caption: [\[H5 Auxiliary\] CPI exogenous control — sign maintained in 14/14 fields, 70% of significance retained.\ Social Welfare r = −0.76 → −0.86 (strengthened), rejecting the natural business-cycle hypothesis.],
 ) <fig-h10>
 
 #figure(
-  image("figures/h8_panel.png", width: 100%),
+  image("figures_en/h8_panel.png", width: 100%),
   caption: [\[H1 Validation\] Test of field-label triviality — field FE alone: ΔR²=0.000;\ adding project archetype × Δamp: ΔR²=+0.025 (R²: 0.014 → 0.038)],
 ) <fig-h8>
 
@@ -817,7 +817,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
   *Implication — Korea's Goodhart's effect is ongoing*: This finding demonstrates that Korean fiscal gaming is *not a fixed pattern but a dynamic and ongoing amplification phenomenon*. Policy analysis should shift its temporal weighting toward *the most recent three fiscal years of data* (Recommendation 5), and 11-year average values from stationarity-assuming tools such as FFT amp_12m_norm *dilute the amplification trend* and require supplementation.
 
 #figure(
-  image("figures/h28_evolution.png", width: 80%),
+  image("figures_en/h28_evolution.png", width: 80%),
   caption: [\[H6 Validation\] Annual evolution of 12-month cycle amplitude — *grant-transfer type +554% amplification*, personnel-type unchanged (control). Policy change points annotated (2017: 10 years after National Finance Act; 2020: COVID fiscal expansion).],
 ) <fig-h28-evol-body>
 
@@ -836,12 +836,12 @@ All three measures consistently show that *grant-transfer type is most strongly 
   This study explicitly acknowledges this as a *limitation of decomposition assumption dependency*, and honestly reports that the Social Welfare finding rests not on *a single FFT amp_12m_norm indicator alone* but on *the partial consensus of multiple tools*.
 
 #figure(
-  image("figures/h24_stl_bars.png", width: 100%),
+  image("figures_en/h24_stl_bars.png", width: 100%),
   caption: [Field-level first-difference correlation — FFT amp_12m_norm vs. STL seasonal_strength comparison.\ Pink rows + red field names = sign reversal in 5/15 fields. Social Welfare: FFT −0.76 → STL +0.07, signal disappearance.],
 ) <fig-stl-bars>
 
 #figure(
-  image("figures/h24_stl_scatter.png", width: 100%),
+  image("figures_en/h24_stl_scatter.png", width: 100%),
   caption: [FFT vs. STL correlation scatter plot — pink region (quadrants 2 and 4) indicates sign reversal.\ Social Welfare (large black dot) lies within the sign-reversal region (upper left). Reference line y=x.],
 ) <fig-stl-scatter>
 
@@ -864,7 +864,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
   As an additional monitoring priority, 50 extreme gaming activities (sub05 classification) spanning all fields are identified. This study provides these 50 cases as a *data-driven priority list* that can be submitted directly to the Board of Audit and Inspection (BAI), parliamentary audit proceedings, and internal reviews by the Ministry of the Interior and Safety.
 
 #figure(
-  image("figures/h14_quadrant.png", width: 100%),
+  image("figures_en/h14_quadrant.png", width: 100%),
   caption: [Ministry-level Goodhart exposure × outcome quadrant — Q2 ministries represent the highest monitoring priority],
 ) <fig-quadrant>
 
@@ -977,11 +977,10 @@ Research questions, result interpretation, and policy implications were determin
 Reproducibility materials (code, result CSVs, visualizations) are publicly available on the GitHub repository and Zenodo.
 
 - GitHub: #link("https://github.com/bluethestyle/goodhart-korea")[github.com/bluethestyle/goodhart-korea]
-- Zenodo DOI: (DOI to be issued)
 - Interactive visualizations: #link("https://bluethestyle.github.io/goodhart-korea/interactive/")[bluethestyle.github.io/goodhart-korea/interactive]
 - Analysis log (full H1–H24): #link("https://bluethestyle.github.io/goodhart-korea/analysis/JOURNEY/")[bluethestyle.github.io/goodhart-korea/analysis/JOURNEY]
 
-*License and Distribution*: The text of this paper is distributed under #link("https://creativecommons.org/licenses/by/4.0/")[CC BY 4.0]. Analysis code is published under the MIT License on the #link("https://github.com/bluethestyle/goodhart-korea")[GitHub repository], and analysis outputs (CSV and PNG files) are released under CC BY 4.0. When citing this work, please attribute the source (GitHub repository + Zenodo DOI).
+*License and Distribution*: The text of this paper is distributed under #link("https://creativecommons.org/licenses/by/4.0/")[CC BY 4.0]. Analysis code is published under the MIT License on the #link("https://github.com/bluethestyle/goodhart-korea")[GitHub repository], and analysis outputs (CSV and PNG files) are released under CC BY 4.0.
 
 #set par(first-line-indent: 1em)
 
@@ -1303,7 +1302,7 @@ Each activity × year 12-vector is mean-centered and then processed with `np.fft
 )
 
 #figure(
-  image("figures/h27_psd.png", height: 7cm),
+  image("figures_en/h27_psd.png", height: 7cm),
   caption: [Mean PSD by archetype — Grant-transfer (green) shows amplitude dominance at 12m that is 2× higher than other archetypes],
 ) <fig-psd>
 
@@ -1317,7 +1316,7 @@ Each activity × year 12-vector is mean-centered and then processed with `np.fft
 The phase of the dominant 12-month sinusoid is extracted via $arg(hat(x)(k=1))$ and converted to the *peak month* of each activity. Polar histograms for the four archetypes (@fig-phase):
 
 #figure(
-  image("figures/h27_phase.png", width:90%),
+  image("figures_en/h27_phase.png", width:90%),
   caption: [12-month cycle phase distribution by archetype — Grant-transfer mode is October (one month earlier than other archetypes)],
 ) <fig-phase>
 
@@ -1348,7 +1347,7 @@ The 12-month frequency phase coherence $abs(chevron.l e^(i Delta phi) chevron.r)
 )
 
 #figure(
-  image("figures/h27_coherence.png", width:90%),
+  image("figures_en/h27_coherence.png", width:90%),
   caption: [Phase coherence heatmap by archetype — Grant-transfer's 12m synchronization is overwhelming],
 ) <fig-coh>
 
@@ -1370,12 +1369,12 @@ Because the FFT measures the average amplitude over the *entire time series*, it
 *Method*: CWT is applied to the *mean time series of all activities* within each project archetype (2015–2025, 132 months; normalized annually per activity, then averaged by archetype). Scales = 2–40 months; complex Morlet 1.5-1.0. The power at the 12-month scale is extracted as a time series and averaged annually to track evolution. Scalograms for the four archetypes (@fig-scaleogram) and annual amplitude evolution (@fig-h28-evol) are presented below.
 
 #figure(
-  image("figures/h28_scaleogram.png", width:100%),
+  image("figures_en/h28_scaleogram.png", width:100%),
   caption: [Wavelet scalograms for four project archetypes — brighter colors indicate stronger amplitude.\ The 12m signal of Grant-transfer becomes progressively more intense toward the later period (2020–2025).],
 ) <fig-scaleogram>
 
 #figure(
-  image("figures/h28_evolution.png", height: 7cm),
+  image("figures_en/h28_evolution.png", height: 7cm),
   caption: [Annual evolution of 12-month cycle amplitude — Grant-transfer amplified 5.5×, Normal 3.2×. Only Labor-cost shows no change.],
 ) <fig-h28-evol>
 
@@ -1423,7 +1422,7 @@ The results section of the main text summarizes the RDD results as *overall 1.91
 The capital-acquisition archetype shows the strongest RDD jump, whereas grant-transfer is weak in RDD but strongest in *annual cycle amplitude* (Appendix D). Both archetypes are bound to the exogenous accounting cycle but with *different temporal manifestation structures*: capital-acquisition produces a *discrete spike immediately after December 1*, while grant-transfer generates *distributed intensity spanning the annual cycle*. See the 'RDD vs spectral measures' paragraph in the main text results section.
 
 #figure(
-  image("figures/h22_rdd_appendix.png", height: 7cm),
+  image("figures_en/h22_rdd_appendix.png", height: 7cm),
   caption: [December jump forest plot by project archetype — Capital-acquisition 3.42× is strongest; Grant-transfer 1.10× does not reach statistical significance (gray) but is dominant in cycle intensity in Appendix D. For field-level forest plots, see @fig-rdd-field in the main text.],
 )
 
