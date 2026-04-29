@@ -1407,7 +1407,7 @@ $ D = c_(t t) (c_(q q) - w_q phi'') - c_(t q)^2 $
 따라서 $D > 0$ (Hessian 양정부호, second-order condition 충족).
 
 *Cramer's rule로 $(partial e_t^*) / (partial w_t)$ 도출*:
-$ (partial e_t^*) / (partial w_t) = det mat(1, c_(t q); 0, c_(q q) - w_q phi'') / D = (c_(q q) - w_q phi'') / D > 0 quad qed $
+$ (partial e_t^*) / (partial w_t) = det mat(1, c_(t q); 0, c_(q q) - w_q phi'') / D = (c_(q q) - w_q phi'') / D > 0 $
 
 분자 $> 0$, $D > 0$이므로 부호 *양*. 본문 명제와 일치.
 
@@ -1424,7 +1424,7 @@ Cramer's rule:
 $ (partial e_t^*) / (partial w_q) = det mat(0, c_(t q); phi', c_(q q) - w_q phi'') / D = -(c_(t q) phi') / D $
 
 부호는 $c_(t q)$의 부호에 의존하며, 본 연구의 한국 환경 가정 — *agent의 시점 조정과 품질 노력이 자원 경합 관계 (대체재, $c_(t q) > 0$)* — 에서:
-$ (partial e_t^*) / (partial w_q) < 0 quad ("품질 평가 가중 ↑ → 게임화 ↓") quad qed $
+$ (partial e_t^*) / (partial w_q) < 0 quad ("품질 평가 가중 ↑ → 게임화 ↓") $
 
 본문 §3.4 명제와 부호 일치. $c_(t q) = 0$ (독립적 노력) 시 영향 없음, $c_(t q) < 0$ (보완재) 시 부호 반전 가능성도 모형이 허용하지만, 한국 평가 환경에서는 자원 경합이 자연스럽다.
 
