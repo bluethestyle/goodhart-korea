@@ -599,6 +599,24 @@
     caption: [P-A 모형의 6 가설과 결과 절의 검증 매핑],
   )
 
+  본 연구는 11개 분석 도구를 가설별로 분담시킨다. 각 가설은 *1차 검증 도구*로 핵심 결과를 도출하고, *보조·견고성 도구*로 robust 여부를 점검하는 트라이앵귤레이션 구조다.
+
+  #figure(
+    table(
+      columns: (auto, 1.1fr, 1.1fr),
+      align: (center+horizon, left+horizon, left+horizon),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*가설*], [*1차 검증 도구*], [*보조·견고성 도구*],
+      [H1], [Pooled FE 회귀 ($Delta R^2 = 0.000$)], [UMAP+HDBSCAN, Mapper, Persistent Homology (PH 부트스트랩)],
+      [H2], [회귀불연속(RDD), 월 단위 11/12월 비교], [Permutation 1,000회·분야별·원형별 forest plot],
+      [H3], [FFT amp_12m + Welch PSD], [Phase coherence·Wavelet (부록 D)],
+      [H4], [Baron-Kenny + Sobel + Bootstrap 매개분석], [NeuralProphet cross-check (§6.5)],
+      [H5], [1차 차분 상관 ($r = -0.86$, $p < 0.01$)], [Permutation, Frisch-Waugh-Lovell CPI 외생 통제],
+      [H6], [Continuous Wavelet Transform (Morlet)], [STL 자기 비판 + NeuralProphet 중재 (§6.9)],
+    ),
+    caption: [가설 × 분석 도구 매트릭스 — 11개 도구의 가설별 분담 (1차 + 보조·견고성)],
+  )
+
 == H1 검증 — 분야 trivial, 사업원형이 진짜 분석 단위
 
   *왜 이 검증이 먼저인가*: 한국 행정학·재정학 연구는 통상 분야(사회복지, 교육, 국방 등) 단위로 분석을 수행하며, 분야 간 이질성을 결과 차이의 1차 설명으로 가정한다. 본 연구의 모든 후속 결과(사업원형 발견, 위상 분석, RDD 점프)는 이 가정이 *틀렸음*을 전제로 한다. 따라서 검증 순서상 가장 먼저 분야 라벨의 한계 설명력을 정량 평가한다.
