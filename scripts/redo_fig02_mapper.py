@@ -112,7 +112,7 @@ def save_resize(fig, fname):
         print(f'  preview: {fname} {w}x{h}')
 
 # ── 그림 2A: amp_12m 색상
-fig, ax = plt.subplots(figsize=(6.3, 4.7))
+fig, ax = plt.subplots(figsize=(7.3, 4.7))
 colors = np.array([node_meta[n]['mean_amp_12m'] for n in G.nodes()])
 nx.draw_networkx_edges(G, pos, alpha=0.3, width=0.6, ax=ax)
 sc = nx.draw_networkx_nodes(
@@ -136,7 +136,7 @@ plt.tight_layout()
 save_resize(fig, 'h4_mapper_amp.png')
 
 # ── 그림 2B: H3 클러스터 색상 + 분기점 분야 라벨
-fig, ax = plt.subplots(figsize=(6.3, 4.7))
+fig, ax = plt.subplots(figsize=(7.3, 4.7))
 palette = plt.get_cmap('tab10')
 clu_colors = [palette(node_meta[n]['cluster_dom'] % 10) for n in G.nodes()]
 nx.draw_networkx_edges(G, pos, alpha=0.3, width=0.6, ax=ax)

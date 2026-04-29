@@ -44,7 +44,7 @@ beta_labels = [
     'A3_normal: β=2.99',
 ]
 
-fig, ax = plt.subplots(figsize=(6.3, 4.4))
+fig, ax = plt.subplots(figsize=(7.3, 4.4))
 
 r2_vals = [decomp.loc[decomp['model'] == m, 'r2'].values[0]
            for m in ['A_base', 'B_field_FE', 'C_field_FE+archetype_xamp']]

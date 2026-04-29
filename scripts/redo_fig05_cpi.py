@@ -52,7 +52,7 @@ SHORT = {
 df = df.copy()
 df['fld_short'] = df['fld'].map(lambda x: SHORT.get(x, x))
 
-fig, axes = plt.subplots(2, 1, figsize=(6.3, 8.5),
+fig, axes = plt.subplots(2, 1, figsize=(9.5, 8.5),
                          gridspec_kw={'height_ratios': [1.4, 1]})
 
 # ── (a) 산포도 raw vs CPI-residual + 분야 라벨 (adjustText)

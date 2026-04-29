@@ -49,7 +49,7 @@ CLUSTER_KR = {-1: '노이즈', 0: '인건비형', 1: '자산취득형',
 df = pd.read_csv(H3_CSV)
 print(f'활동 N = {len(df):,}')
 
-fig, axes = plt.subplots(2, 1, figsize=(6.3, 7.5))
+fig, axes = plt.subplots(2, 1, figsize=(9.5, 7.5))
 
 # 패널 1: HDBSCAN 사업원형
 ax = axes[0]

@@ -43,7 +43,7 @@ ARCH_COLOR = {'C0_personnel': '#4C72B0',
               'C2_chooyeon': '#55A868',
               'C3_normal': '#C44E52'}
 
-fig, axes = plt.subplots(2, 2, figsize=(6.3, 6.3),
+fig, axes = plt.subplots(2, 2, figsize=(9.5, 6.3),
                          subplot_kw={'projection': 'polar'})
 
 for ax, arch in zip(axes.flat,
