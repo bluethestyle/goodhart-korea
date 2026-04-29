@@ -18,9 +18,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 11, 'axes.titlesize': 12, 'axes.labelsize': 11,
-    'xtick.labelsize': 10, 'ytick.labelsize': 10,
-    'legend.fontsize': 10,
+    'font.size': 13, 'axes.titlesize': 15, 'axes.labelsize': 13,
+    'xtick.labelsize': 12, 'ytick.labelsize': 12,
+    'legend.fontsize': 12,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -52,7 +52,7 @@ SHORT = {
 df = df.copy()
 df['fld_short'] = df['fld'].map(lambda x: SHORT.get(x, x))
 
-fig, axes = plt.subplots(2, 1, figsize=(11.2, 8.5),
+fig, axes = plt.subplots(2, 1, figsize=(8.5, 8.5),
                          gridspec_kw={'height_ratios': [1.4, 1]})
 
 # ── (a) 산포도 raw vs CPI-residual + 분야 라벨 (adjustText)
