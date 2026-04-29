@@ -1816,6 +1816,17 @@ docs/interactive/
 
 
 
+---
+
+## §22 세션 메타 작업 (2026-04-29)
+
+본 세션에서 완료한 후속 정비 작업:
+
+- **paper/main_v2.typ 수학 검증 · 결함 7건 수정**: FOC에 φ'(·) 보강, F.2 비교정역학 부호 정정, Career Concerns 동적 게임 effective weight 매개로 reformulate, Parseval L1/L2 해석 정정, RDD 극한 표기 정리, Hessian 대칭성 명시, 부호 분석 인과 표기 정리.
+- **본문 인용 → typst @cite 문법 변환**: 인라인 텍스트 인용을 typst 인용 키로 전환해 참고문헌 자동 생성. refs.bib 9건 추가 (Sobel 1982, Hyndman-Athanasopoulos 2021, Triebe 외 2021, Taylor-Letham 2018, Imai-Keele-Tingley 2010, Cabrales-Charness 2011, Morris-Shin 2002, Fourier 1822, Preacher-Hayes 2008) → 총 47건.
+- **폰트 정착 — paper/fonts/ 정적 OTF 7개 사전 배치**: Pretendard Regular/Bold/SemiBold + NotoSansKR Regular/Bold + NotoSerifKR Regular/Bold. 컴파일 명령 `typst compile --font-path paper/fonts paper/main_v2.typ paper/main_v2.pdf`로 변경 (시스템 폰트 가변 폰트 경고 해소).
+- **GitHub Pages 빌드 fix**: mkdocs.yml에 `exclude_docs` · `validation` 옵션 추가로 strict 빌드 통과. `.github/workflows/pages.yml`에 `data/figs` cp 단계 추가 (이미지 자산 포함). 사이트 활성화: https://bluethestyle.github.io/goodhart-korea/
+
 [1] Goodhart, C. A. E. (1975). "Problems of Monetary Management: The U.K. Experience"
 [2] Strathern, M. (1997). "Improving Ratings: Audit in the British University System"
 [3] Campbell, D. T. (1979). "Assessing the Impact of Planned Social Change"

@@ -118,7 +118,7 @@
 
 - 📄 [paper/main_v2.typ](../paper/main_v2.typ) — Principal-Agent 모형 + 6 가설로 정렬된 정식 논문 버전 ★
 - 📜 [전체 분석 여정 JOURNEY](analysis/JOURNEY.md) — H1~H28, ~1700+ lines
-- 📚 [참고문헌 REFERENCES](REFERENCES.md) — 39 references 9 categories
+- 📚 [참고문헌 REFERENCES](REFERENCES.md) — 47 references 9 categories
 - 🌐 [데이터 출처 SOURCES](../data/external/SOURCES.md) — 정합성 검증
 - 📊 [산출 CSV INDEX](../data/results/INDEX.md) — 49+ 결과 파일
 - 🖥️ [인터랙티브 시각화 (GitHub Pages)](https://bluethestyle.github.io/goodhart-korea/) — Sankey / heatmap / ministry network / RDD scatter / NeuralProphet

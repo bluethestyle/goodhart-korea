@@ -30,6 +30,12 @@ jobs:
       - name: Install MkDocs Material
         run: |
           pip install mkdocs-material pymdown-extensions
+      - name: Stage data assets into docs (figures referenced by findings.md etc.)
+        run: |
+          if [ -d data/figs ]; then
+            mkdir -p docs/data
+            cp -r data/figs docs/data/figs
+          fi
       - name: Build site
         run: mkdocs build --strict
       - uses: actions/upload-pages-artifact@v3

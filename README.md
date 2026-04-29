@@ -5,7 +5,7 @@
 [열린재정 정보](https://www.openfiscaldata.go.kr/) 월별 집행 11년치 + KOSIS·한은 ECOS·공공데이터포털·GIR 14분야 outcome을 통합해 한국 정부 재정 집행의 **Goodhart 효과**(측정 왜곡)를 다각도로 측정·검증한 분석 프로젝트.
 
 - 🗂 [docs/analysis/JOURNEY.md](docs/analysis/JOURNEY.md) — 전체 분석 여정 (H1~H28, ~1700 lines)
-- 📚 [docs/REFERENCES.md](docs/REFERENCES.md) — 39 참고문헌 9 카테고리 + [paper/refs.bib](paper/refs.bib) 38건 (P-A 이론 강화)
+- 📚 [docs/REFERENCES.md](docs/REFERENCES.md) — 47 참고문헌 9 카테고리 + [paper/refs.bib](paper/refs.bib) 47건 (P-A 이론 강화)
 - 🌐 [data/external/SOURCES.md](data/external/SOURCES.md) — 데이터 출처 정합성 검증 / [data/external/MANIFEST.md](data/external/MANIFEST.md) — fetch 명령 정리
 - 📊 [data/results/INDEX.md](data/results/INDEX.md) — 49+ 산출 CSV 인덱스
 
@@ -15,7 +15,7 @@
 
 - **[paper/main_v2.typ](paper/main_v2.typ)** — *active draft*. "한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석" (~1435 lines, 54p PDF). 형식 P-A 모형에서 H1~H6 6 가설을 직접 도출하고 본 분석으로 검증.
 - [paper/main.typ](paper/main.typ) — v1 (보존)
-- 컴파일: `typst compile paper/main_v2.typ paper/main_v2.pdf` (Noto Serif KR 본문 + Pretendard 헤딩, `paper/fonts/` 자동 다운로드)
+- 컴파일: `typst compile --font-path paper/fonts paper/main_v2.typ paper/main_v2.pdf` (Noto Serif KR 본문 + Pretendard 헤딩, `paper/fonts/` 정적 OTF 7개 사전 배치)
 - 🌐 인터랙티브 시각화: <https://bluethestyle.github.io/goodhart-korea/> (archetype Sankey / cluster×outcome heatmap / ministry network / RDD scatter / NeuralProphet components)
 
 ---
@@ -151,7 +151,7 @@ python scripts/h28_wavelet.py                  # 웨이블릿 변환 — FFT 정
 │       └── H{N}_*.csv
 │
 └── docs/
-    ├── REFERENCES.md             ★ 39 학술 참고문헌
+    ├── REFERENCES.md             ★ 47 학술 참고문헌
     └── analysis/
         └── JOURNEY.md            ★ 분석 여정 H1~H28 + paper v2
 ```

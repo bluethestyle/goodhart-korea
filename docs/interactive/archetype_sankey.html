@@ -489,13 +489,13 @@
     ];
 
     const ARCHETYPE_COLORS = {
-      'A_chooyeon':      '#6366f1',  // indigo
-      'A_chooyeon_sub0': '#6366f1',
-      'A_chooyeon_sub1': '#818cf8',
-      'A_direct_invest': '#0ea5e9',  // sky
-      'A_extreme_gaming':'#f59e0b',  // amber
-      'A_normal':        '#10b981',  // emerald
-      'A_personnel':     '#8b5cf6',  // violet
+      '출연금형':      '#6366f1',  // indigo
+      '출연금형 (sub0)': '#6366f1',
+      '출연금형 (sub1)': '#818cf8',
+      '자산취득형': '#0ea5e9',  // sky
+      '극단게임화':'#f59e0b',  // amber
+      '정상사업':        '#10b981',  // emerald
+      '인건비형':     '#8b5cf6',  // violet
     };
 
     const OUTCOME_COLORS = {
@@ -514,8 +514,8 @@
     }
 
     /* ── 4. 노드/링크 정규화 ── */
-    // JSON의 links는 sub-node(A_chooyeon_sub0 등)를 참조하는데,
-    // JSON의 nodes에는 "A_chooyeon"만 있음.
+    // JSON의 links는 sub-node(출연금형 (sub0) 등)를 참조하는데,
+    // JSON의 nodes에는 "출연금형"만 있음.
     // → 실제 링크에서 등장하는 모든 노드를 동적으로 수집한다.
 
     // 링크에 등장하는 모든 노드 이름 수집
@@ -759,12 +759,12 @@
 
     /* ── 9. 원형 Legend ── */
     const archetypeMeta = [
-      { key: 'A_chooyeon_sub0', label: 'chooyeon-α' },
-      { key: 'A_chooyeon_sub1', label: 'chooyeon-β' },
-      { key: 'A_direct_invest', label: 'direct_invest' },
-      { key: 'A_extreme_gaming', label: 'extreme_gaming' },
-      { key: 'A_normal',        label: 'normal' },
-      { key: 'A_personnel',     label: 'personnel' },
+      { key: '출연금형 (sub0)', label: 'chooyeon-α' },
+      { key: '출연금형 (sub1)', label: 'chooyeon-β' },
+      { key: '자산취득형', label: 'direct_invest' },
+      { key: '극단게임화', label: 'extreme_gaming' },
+      { key: '정상사업',        label: 'normal' },
+      { key: '인건비형',     label: 'personnel' },
     ].filter(m => archetypeNames.includes(m.key)); // 실제 데이터에 있는 것만
 
     const legendGroup = document.getElementById('archetypeLegend');
