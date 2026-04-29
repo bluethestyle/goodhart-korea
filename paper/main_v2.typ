@@ -12,11 +12,11 @@
   numbering: "1",
 )
 
-// 한국 학술지 표준 폰트: 신명조(HY) + Times New Roman 영문 + 한글 fallback Batang
-// HYSinMyeongJo는 한국재정학회·한국정책학회·한국행정학보 등 KCI 학술지 표준
+// 모던 KCI 학술지 폰트: 본문 명조 = Noto Serif KR (Google open-source, 2024+ 트렌드)
+// 영문은 Times New Roman, 한글 fallback HYSinMyeongJo·Batang
 #set text(
-  font: ("Times New Roman", "HYSinMyeongJo", "Batang", "Noto Serif KR"),
-  size: 11pt,
+  font: ("Times New Roman", "Noto Serif KR", "HYSinMyeongJo", "Batang"),
+  size: 10.5pt,
   lang: "ko",
 )
 
@@ -26,56 +26,48 @@
 
 #set heading(numbering: "1.1")
 
-// 제목은 sans-serif 고딕. 본문(11pt 명조)과 구분되도록 강화 — 색상 + 크기 + 하단 룰
+// KCI 학술지 표준 헤딩 — 본문(10.5pt 명조)과 자연 구분, sans-serif Pretendard
+// 색상은 검정, 외곽 룰 없음, 절제된 여백
 #show heading.where(level: 1): it => [
-  #v(1.8em)
-  #block(
-    above: 0pt, below: 0.3em,
-    stroke: (bottom: 1.2pt + rgb("#1a365d")),
-    inset: (bottom: 0.4em),
-    width: 100%,
-    text(
-      font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
-      size: 16pt, weight: "bold",
-      fill: rgb("#1a365d"),
-      it
-    )
-  )
-  #v(0.9em)
-]
-#show heading.where(level: 2): it => [
-  #v(1.4em)
-  #text(
-    font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
-    size: 13pt, weight: "bold",
-    fill: rgb("#2c5282"),
-    it
-  )
-  #v(0.6em)
-]
-#show heading.where(level: 3): it => [
   #v(1.0em)
   #text(
-    font: ("Times New Roman", "HYGothic", "Noto Sans KR"),
-    size: 11.5pt, weight: "bold",
-    fill: rgb("#2d3748"),
+    font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"),
+    size: 13pt, weight: "bold",
     it
   )
   #v(0.4em)
+]
+#show heading.where(level: 2): it => [
+  #v(0.7em)
+  #text(
+    font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"),
+    size: 11.5pt, weight: "bold",
+    it
+  )
+  #v(0.25em)
+]
+#show heading.where(level: 3): it => [
+  #v(0.5em)
+  #text(
+    font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"),
+    size: 10.8pt, weight: "bold",
+    it
+  )
+  #v(0.2em)
 ]
 
 // figure / table supplement 분리: image → 그림, table → 표
 #show figure.where(kind: image): set figure(supplement: [그림])
 #show figure.where(kind: table): set figure(supplement: [표])
 
-// 표 기본 디자인 — zebra 스트라이프 + header bold + 외곽 선
+// 표 디자인 — KCI 학술지 표준 (booktabs 스타일: 상하 가로선만)
 #set table(
   stroke: (x, y) => (
-    top: if y == 0 { 1.2pt + rgb("#1a365d") } else { 0pt },
-    bottom: if y == 0 { 0.6pt + rgb("#1a365d") } else { 0pt },
+    top: if y == 0 { 0.8pt + black } else { 0pt },
+    bottom: if y == 0 { 0.4pt + black } else { 0pt },
   ),
-  fill: (_, y) => if y == 0 { rgb("#edf2f7") } else if calc.odd(y) { rgb("#f7fafc") } else { white },
-  inset: (x: 7pt, y: 5pt),
+  fill: none,
+  inset: (x: 6pt, y: 4pt),
 )
 
 // =============================================================
@@ -84,12 +76,12 @@
 #align(center)[
   #v(2em)
   #text(size: 18pt, weight: "bold",
-        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[
+        font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[
     한국 정부 재정 집행의 굿하트 게임
   ]
   #v(0.6em)
   #text(size: 12.5pt,
-        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[
+        font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[
     Principal-Agent 균형 분석, 사업원형별 다중 검증, 정책 처방
   ]
   #v(2.5em)
@@ -121,7 +113,7 @@
 // =============================================================
 #align(center)[
   #text(weight: "bold", size: 12pt,
-        font: ("Times New Roman", "HYGothic", "Noto Sans KR"))[국문 초록]
+        font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[국문 초록]
 ]
 #v(0.6em)
 
