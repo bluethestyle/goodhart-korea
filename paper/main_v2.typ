@@ -69,16 +69,19 @@
 // 표 디자인 — KCI 학술지 표준 (헤더 강조 + 본문 행 사이 얇은 구분선 + 하단 마감선)
 #set table(
   stroke: (x, y) => (
-    // 맨 위 바깥선
-    top: if y == 0 { 0.8pt + black } else { 0pt },
+    // 맨 위 바깥선 (헤더 위)
+    top: if y == 0 { 1.0pt + black } else { 0pt },
     // 헤더와 본문 사이 = 진한 선, 본문 행 사이·표 하단 = 얇은 회색 구분선
-    bottom: if y == 0 { 0.7pt + black } else { 0.3pt + rgb("#bbb") },
+    bottom: if y == 0 { 1.0pt + black } else { 0.3pt + rgb("#bbb") },
   ),
   fill: none,
   inset: (x: 6pt, y: 2.5pt),
 )
-// 헤더 행(첫 행) 굵게
-#show table.cell.where(y: 0): set text(weight: "bold")
+// 헤더 행(첫 행)은 non-variable 폰트로 bold 강제 (Noto Serif KR이 variable font라 bold 미지원 회피)
+#show table.cell.where(y: 0): set text(
+  weight: "bold",
+  font: ("Times New Roman", "Malgun Gothic", "HYGothic", "Batang"),
+)
 
 // =============================================================
 // 표지
