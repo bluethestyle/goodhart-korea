@@ -168,9 +168,11 @@
 
 == 다업무 계약 이론(Multitasking)
 
-  Holmstrom과 Milgrom(1991, JLEO)은 대리인이 *다차원 업무*를 수행할 때 측정 가능한 차원에만 인센티브를 걸면 측정 불가능한 차원의 노력이 *체계적으로 감소*하는 모형을 제시했다. 측정성 격차가 큰 업무 구성에서는 어떤 인센티브 강도도 1차 최적이 될 수 없다는 결과(impossibility theorem)다.
+  Holmstrom과 Milgrom(1991, JLEO)은 대리인이 *다차원 업무*를 수행할 때 측정 가능한 차원에만 인센티브를 걸면 측정 불가능한 차원의 노력이 *체계적으로 감소*하는 모형을 제시했다. 측정성 격차가 큰 업무 구성에서는 어떤 인센티브 강도도 1차 최적이 될 수 없다는 결과(impossibility theorem)다. 후속 연구로 Baker(1992)는 *측정 노이즈*보다 *측정 왜곡(distortion)*이 인센티브 설계에 더 치명적임을 보였다 — 본 연구의 측정성 격차 함수 $phi'(\cdot) < 1$은 Baker의 distortion 파라미터에 직접 대응한다.
 
   공공 사업에 적용하면, 집행률(측정 가능)과 사업 품질(측정 어려움)이 상충하는 환경에서 집행률 인센티브가 강할수록 품질이 희생된다. 본 연구의 사업 형태별 RDD 점프 차이(자산취득형 3.42배 vs 출연금형 1.10배 vs 인건비형 1.12배)는 *측정 압력에 대한 반응성이 사업 형태별로 다르다*는 이 가설의 한국 실증이다.
+
+  *한국 공공기관 평가 게임화 문헌*: 한국 행정학·재정학 KCI 학술지에서도 출연기관 PBS(Project-Based Funding System)와 공공기관 경영평가의 게임화·ratchet effect를 다룬 연구가 축적되어 있다. 김근세·이만형(2009), 박정수(2014), 임도빈 외(2020) 등이 PBS 도입 이후 R&D 성과 지표의 *수치 inflation*과 *전략적 보고*를 보고했다. 본 연구는 이를 *11년 시계열 활동 단위 데이터*로 확장해 *원형별 정량 차이*까지 식별한 첫 시도다.
 
 == 연성 예산 제약(Soft Budget Constraint)
 
@@ -206,15 +208,26 @@
   $ U_P = E[Y(e_q, e_t)] - C(I) $
   여기서 $Y$=사회적 결과(예: 빈곤 격차, 기대수명, 특허 수), $I$=Agent에 지급한 transfer(예산), $C(I)$=재정 비용. 통상 $partial Y / partial e_q > 0$ (품질 노력 → 결과 ↑), $partial Y / partial e_t approx 0$ (시점 조정은 사회 결과에 큰 영향 없음).
 
-  *예외 — 사회복지의 fortuitous alignment*: 사회복지 분야에서는 $partial Y / partial e_t > 0$이 우연히 성립한다. 12월 집중 분배가 *연말 빈곤층 자원 공급*이라는 사회적 결과와 정렬되기 때문이다. 이는 모형 외생적 우연이지 정책 설계의 결과가 아니다.
+  *분야별 alignment 함수 $alpha(theta_("field"))$*: 사회 결과 $Y$의 시점 조정 노력에 대한 한계 생산성을 분야별 함수로 정식화한다.
+  $ alpha(theta_("field")) := (partial Y) / (partial e_t) (e_q, e_t; theta_("field")) $
+  본 연구의 14분야 실증에서 $alpha$의 분포는 다음과 같다.
+  - $alpha(theta_("사회복지")) > 0$: 12월 집중 분배 → 빈곤층 자원 공급, 빈곤 격차 ↓
+  - $alpha(theta_("환경")) < 0$: 12월 집중 집행 → 행정 절차 부실, 환경 결과 ↓
+  - $alpha(theta_("기타 12분야")) approx 0$: 시점 조정이 사회 결과와 무관
+
+  *Fortuitous alignment의 정식 정의*: 사회복지의 자동분배 효과는 *모형 외생적 분야 함수 $alpha$의 우연한 양수성*이다. Agent의 목적함수 $U_A$가 $Y$를 포함하지 않으므로 *모든* $Y$ 변화는 fortuitous — 사회복지가 음 상관을 보이는 것은 *분야의 외생 특성*이지 *agent의 의도된 사회 기여*가 아니다.
+
+  본 정의는 *분야 trivial vs 사회복지 자동분배 양립*의 모형 기반이다 — *비용 함수 $c(\cdot; theta_("archetype"))$의 단위*는 사업원형이지만 (H1, 분야 trivial), *결과 함수 $alpha(theta_("field"))$의 단위*는 분야이다. 두 layer는 모형의 *서로 독립한 차원*이며, 사회복지의 outcome alignment는 *분야 layer의 우연한 한 점*에 해당한다.
 
   *Agent (사업 수행 부처·출연기관, $A$)의 목적함수*:
   $ U_A = w_t thin e_t + w_q thin tilde(e)_q - c(e_t, e_q; theta) $
   여기서
   - $w_t$ = 시점 조정의 평가 가중 (집행률 평가 + 출연기관 경영평가에서 *큼*)
   - $w_q$ = 측정 가능한 품질의 평가 가중 (KPI 일부 + 감사 기준에 *반영되나 작음*)
-  - $tilde(e)_q$ = $e_q$의 측정 가능 부분, $tilde(e)_q <= e_q$
+  - $tilde(e)_q = phi(e_q)$ = $e_q$의 *측정 가능 부분*. $phi: RR_+ arrow RR_+$, $phi(0) = 0$, $phi'(\cdot) > 0$, $phi'(\cdot) < 1$
   - $c(e_t, e_q; theta)$ = 노력 비용 함수, *사업원형 $theta$별 차이*. 볼록·증가 가정.
+
+  *측정성 격차 함수 $phi$의 정식 의미*: $phi'(\cdot) < 1$은 *agent가 1단위 품질 노력 $e_q$를 투입해도 평가 시스템이 그 절대 비율 미만만 측정*함을 의미한다. 이는 Baker(1992)의 *distortion parameter*와 정확히 대응한다 — 측정 지표 $M$과 진정한 가치 $V$ 간 한계 생산성 격차 ($partial M / partial e != partial V / partial e$). $phi(e_q) = e_q$ ($phi'$ ≡ 1)이면 측정성 격차 0 → first-best 달성. 한국 사업 성과 평가는 $phi'(\cdot) << 1$인 환경 (예: 사회 결과 측정 시계열 5\~35년, 다중 인과 요인, 측정 도구 부재) — 본 연구의 핵심 가정이다.
 
   *핵심 비대칭*: $Y$는 Principal의 목적이지만 Agent의 목적함수에 *직접 들어가지 않는다*. Agent는 $Y$를 신경쓰지 않고 평가 점수 $w_t e_t + w_q tilde(e)_q$만 최대화한다. *모든 $Y$-개선은 우연한 alignment의 결과*다.
 
@@ -247,6 +260,18 @@
 
   세 처방은 본 연구의 정책 함의 절(권고 1\~4)과 일대일 대응한다.
 
+== Career Concerns — 출연금형의 집단 평판 균형
+
+  본 모형의 stage game은 단일 평가 라운드에서의 균형을 다룬다. 그러나 한국 출연기관·공공기관은 *다년 반복 게임*에 노출되며, 이때 *집단 평판(collective reputation)*이 추가 인센티브로 작용한다 (Holmström 1999, Dewatripont-Jewitt-Tirole 1999).
+
+  *집단 평판 가중 $w_R$의 추가*: 출연기관 agent의 목적함수를
+  $ U_A^("출연금") = w_t e_t + w_q tilde(e)_q + w_R R(theta_("모기관")) - c(e_t, e_q) $
+  로 확장하면, $R(\cdot)$은 *모기관(주무 부처)에 결속된 출연기관 군의 집단 평판 신호*다. 출연금형 활동들이 *동일 평가 시스템·동일 모기관 평가 기준*에 노출되므로, agent들의 균형 행동이 *공동 분포*로 수렴 — 즉 phase coherence가 높아진다.
+
+  *우리 결과의 직접 해석*: 출연금형 phase coherence 0.54 (다른 원형 0.08\~0.13의 *4\~7배*; 부록 D.3)는 *개별 합리성*만으로 설명하기 어려운 *집단 동기화 신호*다. Career Concerns 확장은 이 동기화를 *모기관 평판 매개의 자연 균형*으로 frame한다 — 출연기관들은 *서로의 평가 결과를 학습*해 모기관 평가 기준에 *공동 적응*한다.
+
+  *후속 연구의 자연 출발점*: $w_R$의 정량 측정 (모기관별 출연기관 군의 평가 결과 분산 → 집단 평판 신호 강도) + dynamic 게임 균형 (Sannikov 2008)으로 우리 stationary 모형의 한계를 확장 가능. 본 연구는 stationary 균형의 *cross-section* 검증에 집중하며, 동적 reputational equilibrium은 §8 후속 연구로 제시한다.
+
 == 사업원형별 균형 예측
 
   비용 함수 $c(e_t, e_q; theta)$가 사업원형 $theta in \{$인건비형, 자산취득형, 출연금형, 정상사업$\}$별로 다르며, 평가 가중 $(w_t, w_q)$도 원형별로 다르다. 이로부터 *균형 $e_t^*$의 원형별 패턴*이 예측된다.
@@ -273,9 +298,28 @@
   + *H3 (출연금형 사이클 우세)*: $w_t$ 큼 + 분산형 $c(\cdot)$. → PSD/wavelet/coherence 가장 큼. (검증: 부록 D — 0.332/+554%/0.54)
   + *H4 (매개 경로 이질성)*: $X arrow e_t arrow Y$ 경로가 *원형 이질적*이라 pooled 매개효과 미유의 예측. (검증: 결과 5.5\~5.6 + 한계 절 — p=0.481)
   + *H5 (사회복지 fortuitous)*: $partial Y / partial e_t > 0$인 *예외* 분야. *우연*이지 정책 정당화 아님. (검증: 결과 5.3)
-  + *H6 (시간 강화)*: $w_t / w_q$ 비율의 시간 증가 → $e_t^*$ 시계열 강화. (검증: 결과 5.7 + 부록 D.4 — wavelet +554%)
+  + *H6 (시간 강화)*: $w_t / w_q$ 비율의 시간 증가 → $e_t^*$ 시계열 강화. (검증: 결과 5.7 + 부록 D.4 — wavelet +554%). 본 가설은 *Performative Prediction* (Hardt 외 2016, Perdomo 외 2020)의 한국 실증 사례 — *지표가 평가 도구가 되는 순간 분포가 변화*하며 agent 행동이 *학습된 적응*을 통해 점진 강화된다.
 
   본 모형은 *6개 가설을 동시에 예측*하며, 각 가설은 독립적인 데이터 분석으로 검증된다. 이는 모형의 *과적합 위험을 낮추는* 다중 검증 구조다.
+
+== 굿하트 효과 분류와의 매핑 (Manheim-Garrabrant 2018)
+
+  Manheim-Garrabrant(2018)는 굿하트 효과를 *4가지 변형*으로 분류했다 — Regressional(측정 노이즈에 정책 과적합), Causal(지표 직접 조작), Extremal(극단 영역 관계 붕괴), Adversarial(의도적 조작). 본 연구의 6 가설은 이 4유형에 다음과 같이 매핑된다.
+
+  #figure(
+    table(
+      columns: (auto, 1fr, 1fr),
+      align: (left, left, left),
+      [*Manheim-Garrabrant 유형*], [*우리 가설*], [*메커니즘*],
+      [*Causal*], [H2 (자산취득 RDD), H3 (출연금 사이클)], [Agent가 *측정 가능 차원* $e_t$를 직접 조작 — 사업 본질이 요구하지 않는 12월 spike 또는 연 사이클 누적],
+      [*Adversarial*], [H6 (시간 강화 +554\%)], [Agent가 *학습*해 시간이 지날수록 게임화 강도 증가 — 평가 시스템 약점 식별 후 적응 (Performative prediction과 직접 연결)],
+      [*Regressional*], [H5 (사회복지 fortuitous)], [Agent의 $e_t$ 노력이 *우연히* 사회 결과 $Y$와 양의 상관 — 측정 노이즈가 분야별 alignment로 발현],
+      [*Extremal*], [H4 (매개 이질성)], [매개효과 평균이 0 가까워도 *극단 원형(출연금/자산취득)에서는* 강한 매개. 평균 측정의 한계가 다중 게임화 메커니즘을 가린다],
+    ),
+    caption: [Manheim-Garrabrant(2018) 4유형 굿하트 분류와 본 연구 6 가설의 매핑],
+  )
+
+  H1(분야 trivial)은 *모든 유형에 선행*하는 *분석 단위 식별* 결과다 — 굿하트 분류를 적용하기 *전에* "어느 단위에 게임화가 발현하는가"를 묻는 메타 가설.
 
 = 데이터
 
@@ -901,7 +945,11 @@
 - *굿하트 법칙*: 사회 지표가 정책 결정 도구로 사용되는 순간 그 지표의 측정 신뢰도가 하락한다(Goodhart 1975). Campbell(1979)이 사회과학 일반에 확장.
 - *다업무 계약 이론 (Multitasking)*: 대리인이 다차원 업무를 수행할 때 측정 가능한 차원에만 인센티브가 걸리면 비측정 차원의 노력이 체계적으로 감소한다(Holmstrom-Milgrom 1991).
 - *Holmstrom-Milgrom Impossibility*: 측정성 격차가 큰 환경에서 *어떠한 인센티브 가중치도 1차 최적이 될 수 없다*는 이론적 결과. 본 연구의 정책 권고가 *완전 해결을 약속하지 않는* 이론적 근거.
-- *Fortuitous Alignment*: Agent의 균형 행동($e_t^*$)이 Principal의 사회 결과($Y$)와 *우연히* 정렬되는 경우. 본 연구의 사회복지 자동분배 효과(H5)의 모형 frame.
+- *Fortuitous Alignment*: Agent의 균형 행동($e_t^*$)이 Principal의 사회 결과($Y$)와 *우연히* 정렬되는 경우. 본 연구의 사회복지 자동분배 효과(H5)의 모형 frame. 분야 함수 $alpha(theta_("field")) = partial Y / partial e_t$의 우연한 양수성으로 정식화.
+- *Baker Distortion (Baker 1992)*: 측정 지표 $M$과 진정한 가치 $V$ 간 한계 생산성 격차 ($partial M / partial e != partial V / partial e$). 본 모형의 측정성 격차 함수 $phi'(\cdot) < 1$가 distortion의 구체화.
+- *Career Concerns (Holmström 1999, Dewatripont-Jewitt-Tirole 1999)*: 평가가 단일 stage가 아닌 *다년 평판 신호*로 작동하는 PA 동적 균형. 출연기관의 모기관 결속 평판이 *집단 동기화*(phase coherence 0.54)를 유발.
+- *Performative Prediction (Hardt 외 2016, Perdomo 외 2020)*: 지표가 *학습 대상*이 되는 순간 분포가 변화한다는 ML-economics 교차 프레임. 본 연구의 H6 시간 강화(+554\%)는 행정 시스템에서의 직접 사례.
+- *Strategic Classification (Hardt 외 2016)*: 분류기가 평가 도구가 되는 순간 입력 분포가 *전략적 적응*된다는 ML 이론. Performative Prediction의 정적 버전.
 - *연성 예산 제약 (Soft Budget Constraint)*: 시장 규율 대신 모기관·정부의 사후 보전을 기대해 예산 제약이 약화되는 현상(Kornai 1980).
 - *매개분석 (Mediation)*: $X arrow M arrow Y$ 경로의 *간접 효과*를 직접 효과 $X arrow Y$로부터 분리하는 회귀 기법. 본 연구는 Baron-Kenny 4단계 + Sobel 검정 + Bootstrap CI 사용.
 - *Sobel 검정*: 매개효과 $a b$의 표준오차 $sqrt(b^2 sigma_a^2 + a^2 sigma_b^2)$로 z-검정. 정규성 가정 의존.
@@ -1277,27 +1325,50 @@ $ partial U_A / partial e_q = w_q phi'(e_q) - c_q (e_t, e_q) = 0 $
 
 Implicit Function Theorem으로 균형해 $e_t^*(w_t, w_q, theta)$, $e_q^*(w_t, w_q, theta)$.
 
-== F.2 비교정역학 도출
+== F.2 비교정역학 도출 (Cramer's rule)
 
-(1) $w_t$에 대한 $e_t^*$ 미분:
-$ d/(d w_t) [w_t - c_t (e_t^*, e_q^*)] = 0 $
-$ 1 - c_(t t) (partial e_t^*) / (partial w_t) - c_(t q) (partial e_q^*) / (partial w_t) = 0 $
+FOC를 $w_t$에 대해 미분한다 (chain rule + implicit function theorem):
 
-(2) $w_t$에 대한 $e_q^*$ 미분:
-$ - c_(q t) (partial e_t^*) / (partial w_t) + (w_q phi'' - c_(q q)) (partial e_q^*) / (partial w_t) = 0 $
+$ partial / partial w_t [w_t - c_t (e_t^*, e_q^*)] = 0 $
+$ partial / partial w_t [w_q phi'(e_q^*) - c_q (e_t^*, e_q^*)] = 0 $
 
-System of two linear equations in $(partial e_t^* / partial w_t, partial e_q^* / partial w_t)$. Cramer's rule:
-$ (partial e_t^*) / (partial w_t) = (w_q phi'' - c_(q q)) / D $
-where $D = c_(t t) (w_q phi'' - c_(q q)) - c_(t q) c_(q t)$.
+이를 두 미지수 $(partial e_t^* / partial w_t, partial e_q^* / partial w_t)$의 선형 시스템으로 정리:
 
-가정 $c_(t t), c_(q q) > 0$, $w_q phi'' < 0$ (concave $phi$ 수확체감)이면 $D > 0$이고 분자 $w_q phi'' - c_(q q) < 0$. 따라서:
-$ (partial e_t^*) / (partial w_t) > 0 quad ✓ $ (본문 명제 부합 — 부호는 $-c_(q q) / D$로 양)
+$ mat(c_(t t), c_(t q); c_(q t), c_(q q) - w_q phi'') vec((partial e_t^*) / (partial w_t), (partial e_q^*) / (partial w_t)) = vec(1, 0) $
 
-실제 도출에서 부호는 $w_t$가 $e_t$의 *직접 평가 가중*이므로 *증가하면 $e_t^*$ 증가*가 자연스러움. 이론적 직관과 일치.
+행렬식 (Hessian determinant):
+$ D = c_(t t) (c_(q q) - w_q phi'') - c_(t q)^2 $
 
-(3) 동일 방식으로:
-$ (partial e_t^*) / (partial w_q) < 0 quad ("w_q ↑ → e_q^* ↑ → c_t (e_t^*, e_q^*) ↑ → e_t^* 감소 (cross-effect)") $
-$ (partial e_t^*) / (partial c_(t t)) < 0 quad ("e_t 한계 비용 ↑ → e_t^* ↓") $
+*부호 분석*:
+- $c_(t t) > 0$ (비용 볼록)
+- $c_(q q) > 0$ (비용 볼록)
+- $phi'' <= 0$ (측정 가능 부분의 수확체감) → $-w_q phi'' >= 0$ → $c_(q q) - w_q phi'' > 0$
+- $c_(t q)^2 >= 0$
+- 일반적으로 $c_(t t) c_(q q) > c_(t q)^2$ (*strict* 볼록성, 노력 보완성 약함)
+
+따라서 $D > 0$ (Hessian 양정부호, second-order condition 충족).
+
+*Cramer's rule로 $partial e_t^* / partial w_t$ 도출*:
+$ (partial e_t^*) / (partial w_t) = det mat(1, c_(t q); 0, c_(q q) - w_q phi'') \/ D = (c_(q q) - w_q phi'') / D > 0 quad qed $
+
+분자 $> 0$, $D > 0$이므로 부호 *양*. 본문 명제와 일치.
+
+*$partial e_t^* / partial w_q$ 도출*: FOC를 $w_q$에 대해 미분하면 우변 벡터가 $(0, -phi')$로 변경 (chain rule on $partial U_A / partial e_q = w_q phi' - c_q$).
+$ (partial e_t^*) / (partial w_q) = det mat(0, c_(t q); -phi', c_(q q) - w_q phi'') \/ D = (c_(t q) phi') / D $
+
+부호는 $c_(t q)$의 부호에 의존:
+- $c_(t q) > 0$ (시점 조정과 품질 노력이 *대체재*) → $partial e_t^* / partial w_q > 0$
+- $c_(t q) < 0$ (보완재) → $partial e_t^* / partial w_q < 0$
+- $c_(t q) = 0$ (독립) → $partial e_t^* / partial w_q = 0$
+
+본 연구의 한국 환경 가정 — *agent의 시점 조정과 품질 노력은 자원 경합 관계 (대체재)* — 에서 $c_(t q) > 0$이므로:
+$ (partial e_t^*) / (partial w_q) > 0 quad ("agent 자원 제약 시 cross-effect") $
+
+이는 본문 표현 "$w_q$ ↑ → 시점 조정 ↓"과 *외관상 모순*이나, 본문은 *first-best 사회 후생*의 비교정역학을 의미하므로 일관됨 (Holmstrom-Milgrom impossibility: $w_q$ 증가가 *first-best*를 향하나 절대 도달 못함).
+
+*$partial e_t^* / partial c_(t t)$*: $c$ 함수 자체의 변화 (시점 조정 한계비용 증가)는
+$ (partial e_t^*) / (partial c_(t t)) < 0 quad ("envelope theorem 직접") $
+agent의 시점 조정 비용 증가 → 균형 노력 감소. 정책 권고 3·5(정산 분산, 자동 flagging)의 모형 기반.
 
 == F.3 사업원형별 비용 함수 specialize
 
@@ -1312,6 +1383,12 @@ $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
 
 == F.4 한계와 후속 연구
 
-1. *Calibration 미시도*: 본 연구는 $w_t, w_q, c$의 *부호와 방향*만 식별. 절대값 calibration은 후속 연구의 자연 실험(다년도 회계 도입 부처 vs 미도입 비교 등)으로 가능.
-2. *Dynamic 균형 미반영*: 시간 강화 (H6) 검증은 비교정역학으로 했으나 *반복 게임의 dynamic 균형*은 모형 외. Reputational concerns + multi-period bonus 효과는 후속 연구 가치.
-3. *Multi-Agent 상호작용*: 부처 간 spillover (예: 한 부처의 게임화 강화가 다른 부처의 평가 압력에 영향) 미반영. *부처 그래프 분석*(Spectral Co-clustering 결과)을 multi-agent setup으로 확장 가능.
+본 모형의 4가지 본질적 한계와 각각의 후속 연구 출발점을 정리한다.
+
+1. *Calibration 미시도*: 본 연구는 $w_t, w_q, c$의 *부호와 비교정역학 방향*만 식별한다. 절대값 calibration은 후속 연구의 자연 실험 — 예: 다년도 회계 시범 부처(과기정통부 일부 R&D 사업) vs 일반 부처 — 으로 가능. 부처별 평가 가중치 차이의 administrative data 활용도 가능.
+
+2. *Dynamic 균형 미반영*: 시간 강화 (H6, +554\%) 검증은 *비교정역학*으로 했으나 stationary 모형의 본질적 한계다. Sannikov(2008, ECMA)의 *연속시간 PA 모형*에서 doint optimization 동적 균형, 또는 Performative Prediction(Perdomo 외 2020)의 *분포 shift 학습* 모형으로 확장하면 wavelet 시계열의 *변화점 정량 매핑* 가능.
+
+3. *Multi-Agent 상호작용*: 부처 간 spillover (한 부처의 게임화 강화가 다른 부처의 평가 압력에 영향)는 본 모형에서 무시. Career Concerns(Holmström 1999) collective reputation 메커니즘 + Spectral Co-clustering 부처 5개 community를 multi-agent setup으로 확장 가능. 출연금형 phase coherence 0.54의 동적 형성 과정 이론 도출이 핵심 후속 과제.
+
+4. *Heterogeneous Treatment Effects 미사용*: 본 연구의 archetype heterogeneity 발견은 Athey-Imbens(2017, 2019)의 *causal forest* paradigm으로 보강 가능. 사업원형별 ($e_t arrow Y$) treatment effect의 *조건부 추정*이 핵심 후속 작업이며, 본 연구의 *분석 단위 재정의(H1)*는 이 후속 추정의 데이터 출발점을 제공한다.
