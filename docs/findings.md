@@ -1,6 +1,6 @@
 # 핵심 결과
 
-본 페이지는 H1~H24 분석의 핵심 결과를 figure 중심으로 요약.
+본 페이지는 H1~H28 분석의 핵심 결과를 figure 중심으로 요약.
 
 ---
 
@@ -75,7 +75,7 @@
 
 ![H22 RDD main](../data/figs/h22/H22_rdd_main.png)
 
-12월 점프 1.91x (p<10⁻¹²⁴), 출연금형 **3.42x**
+12월 점프 1.91x (p<10⁻¹²⁴), **자산취득형 3.42x** ★ (이전 표기 "출연금형 3.42x"는 오기 정정 — 출연금형은 H27/H28 사이클 우세 archetype)
 
 ![H22 RDD by field](../data/figs/h22/H22_rdd_by_field.png)
 
@@ -96,3 +96,51 @@
 ![H24 STL vs FFT](../data/figs/h24/H24_seasonal_vs_amp12m.png)
 
 사회복지 FFT r=−0.762 → STL r=+0.003 → **trend 혼재 가능성** 자기 비판
+
+---
+
+## H26 — NeuralProphet 신경망 분해 (방법론 트라이앵귤레이션 셋째 축)
+
+![H26 NeuralProphet components](../data/figs/h26_neuralprophet.png)
+
+신경망 시계열 분해(trend / seasonality / residual)로 FFT·STL과 cross-check. 14분야 outcome 상관 재산출.
+
+- CSV: `data/results/H26_field_outcome_corr_np.csv`, `H26_neuralprophet_summary.csv`
+- 인터랙티브: [neuralprophet_components.html](interactive/neuralprophet_components.html)
+
+---
+
+## H27 — PSD · Phase · Coherence (출연금형 cycle 동기화) ★
+
+![H27 PSD](../data/figs/h27_psd_archetype.png)
+
+| archetype | 평균 PSD | 12개월 phase coherence |
+|---|---:|---:|
+| **출연금형** | **0.332** ★ | **0.54** ★ |
+
+출연금형 평균 PSD가 4 archetype 중 최대, 12개월 phase coherence 0.54로 사업 간 cycle *동기화* 입증 — Career Concerns 동적 게임 *Nash convergence* 실증.
+
+![H27 phase](../data/figs/h27_phase_polar.png)
+
+![H27 coherence](../data/figs/h27_coherence_heatmap.png)
+
+- CSV: `H27_psd_archetype_avg.csv`, `H27_phase_distribution.csv`, `H27_coherence_intra_archetype.csv`
+
+---
+
+## H28 — Wavelet (CWT) 시간 동적 강화 ★
+
+![H28 evolution](../data/figs/h28_12m_evolution.png)
+
+FFT의 *정상성* 가정 보완. 출연금형 12개월 cycle 진폭 시간 따라 *강화*:
+
+| 구간 | 출연금형 진폭 | 인건비형 (통제) |
+|---|---:|---:|
+| 2015~17 | (baseline) | (baseline) |
+| 2023~25 | **+554%** ★ | 변화 없음 |
+
+정책적으로 *최근 3년 자료에 가중 점검* 권고.
+
+![H28 scaleogram](../data/figs/h28_scaleogram.png)
+
+- CSV: `data/results/H28_wavelet_12m_evolution.csv`

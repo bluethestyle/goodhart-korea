@@ -10,42 +10,59 @@
 
 [열린재정 정보](https://www.openfiscaldata.go.kr/) 월별 집행 데이터 **11년치**(2015~2026)와 KOSIS·한은 ECOS·공공데이터포털·GIR **14분야 outcome**을 통합해 한국 정부 재정 집행의 **Goodhart 효과**를 다각도로 측정·검증.
 
-### 7가지 핵심 발견
+### 6가설 프레임 (Principal-Agent 모형)
 
-=== "1. 분야 라벨 trivial"
+=== "H1. 분야 라벨 trivial"
     `ΔR² = 0.000` (5y/11y/v3 일관)
 
     **"분야가 다르니 outcome도 다를 것"**이라는 직관 정량 반증. 분야 FE만으로는 outcome 변동을 설명 못함. 사업 형태가 진짜 단위.
 
-=== "2. 사업 형태가 진짜 단위"
-    **4 archetypes** (UMAP+HDBSCAN, Persistent Homology 30+15)
+=== "H2. 자산취득형 12월 RDD 점프 ★"
+    1.91x 전체, **자산취득형 3.42x** (H22 RDD)
 
-    인건비형 / 자산취득형 (신규) / 출연금형 / 정상사업. 위상 안정성 입증 (bootstrap 50회 95% CI).
+    **Liebman & Mahoney (2017, AER) 한국판**. 미국 5x 대비 한국 1.9x. 자산취득형이 회계연도 마감 압력에 가장 강하게 반응 — Multitasking 가설(Holmstrom-Milgrom 1991) 실증.
 
-=== "3. 사회복지 자동분배 효과 ★"
+=== "H3. 출연금형 사이클 우세 ★ (NEW)"
+    PSD 평균 **0.332** (4 archetype 중 최대) / phase coherence **0.54**
+
+    출연금형은 사업 간 12개월 cycle이 *동기화* — Career Concerns 동적 게임의 *Nash convergence* 실증. (H27 PSD·Phase·Coherence)
+
+=== "H4. 매개 경로 이질성"
+    농림수산 Sobel `z=−2.90, p=0.004` / Pooled FE `p=0.481`
+
+    분야별 매개 경로 상이. 단일 메커니즘 가정 기각.
+
+=== "H5. 사회복지 fortuitous alignment ★"
     `r = −0.762, p = 0.035` / CPI 통제 후 `−0.86, p = 0.007`
 
     사회복지 정상사업 게임화↑ → 빈곤격차↓. **굿하트 도식과 정반대 방향**의 직관 반대 발견.
 
-=== "4. 회계연도 12월 점프 (인과 식별)"
-    1.91x 전체, **출연금형 3.42x** (H22 RDD)
+=== "H6. 시간 동적 강화 ★ (NEW)"
+    Wavelet: 출연금형 12개월 진폭 **2015~17 → 2023~25 +554%**
 
-    **Liebman & Mahoney (2017, AER) 한국판**. 미국 5x 대비 한국 1.9x. 출연금형이 Multitasking 가설(Holmstrom-Milgrom 1991) 실증.
+    FFT 정상성 가정 보완. 인건비형은 변화 없음 (통제군). 정책적으로 *최근 3년 자료에 가중 점검* 권고. (H28 CWT)
 
-=== "5. 부호 반전 클러스터"
+### 부가 발견
+
+=== "사업 형태가 진짜 단위"
+    **4 archetypes** (UMAP+HDBSCAN, Persistent Homology 30+15)
+
+    인건비형 / 자산취득형 / 출연금형 / 정상사업. 위상 안정성 입증 (bootstrap 50회 95% CI).
+
+=== "부호 반전 클러스터"
     사회복지 chooyeon `+0.53` vs normal `−0.55`
 
     같은 분야 안 사업 형태별 정반대 부호 → **회계 cycle 가설 기각**.
 
-=== "6. CPI 통제 견고성"
+=== "CPI 통제 견고성"
     **14/14 부호+70% 유지 (100%)**
 
     한은 ECOS CPI 외생 통제 후에도 모든 분야 부호 일관 → 자연 cycle 가설 완전 기각.
 
-=== "7. STL trend 한계 명시 (자기 비판)"
-    사회복지 신호 STL 후 `r=+0.003, p=0.991`로 소멸
+=== "방법론 트라이앵귤레이션"
+    FFT + STL + **NeuralProphet** (H26)
 
-    **메인 결과의 trend 혼재 가능성** 자기 비판. 정직한 한계 명시.
+    14분야 outcome 상관 세 방법론 cross-check. STL trend 한계 (사회복지 `r=+0.003`) 자기 비판 + NeuralProphet 신경망 분해로 보완.
 
 ---
 
@@ -62,7 +79,13 @@
 
 - **출연금형 + 극단 게임화 sub05** (50개 활동) = **1차 점검 우선**
 - **사회복지 정상사업** = 자동분배 효과 (게임화 유지 OK)
-- **인프라 공사형 (자산취득)** = 12월 점프 큼, 단순 노이즈일 수도
+- **자산취득형 (인프라 공사형)** = 12월 점프 3.42x, RDD 인과 식별 — 회계 마감 압력 점검
+
+### 시간 가중 점검 (H6 wavelet 권고 ★)
+
+- 출연금형 12개월 cycle 진폭이 **2015~17 → 2023~25 +554%** 강화 → **최근 3년 자료에 가중치**
+- 인건비형 통제군은 변화 없음 → cycle 강화는 *출연금형 고유 동학*
+- 시간 정상성 가정에 의존하는 FFT/회귀 결과는 *최근 시기 sub-sample* 재검증 권고
 
 ---
 
@@ -93,10 +116,12 @@
 
 ## 관련 문서
 
-- 📜 [전체 분석 여정 JOURNEY](analysis/JOURNEY.md) — H1~H24, ~1700 lines
+- 📄 [paper/main_v2.typ](../paper/main_v2.typ) — Principal-Agent 모형 + 6 가설로 정렬된 정식 논문 버전 ★
+- 📜 [전체 분석 여정 JOURNEY](analysis/JOURNEY.md) — H1~H28, ~1700+ lines
 - 📚 [참고문헌 REFERENCES](REFERENCES.md) — 39 references 9 categories
 - 🌐 [데이터 출처 SOURCES](../data/external/SOURCES.md) — 정합성 검증
 - 📊 [산출 CSV INDEX](../data/results/INDEX.md) — 49+ 결과 파일
+- 🖥️ [인터랙티브 시각화 (GitHub Pages)](https://bluethestyle.github.io/goodhart-korea/) — Sankey / heatmap / ministry network / RDD scatter / NeuralProphet
 
 ---
 
@@ -104,8 +129,8 @@
 
 ```bibtex
 @misc{korea_goodhart_2026,
-  title  = {Goodhart's Law in Korean Public Spending: A Multi-Method
-            Robustness Analysis with Heterogeneous Effects},
+  title  = {Goodhart's Law in Korean Public Spending:
+            A Principal-Agent Analysis with Multi-Method Robustness},
   year   = {2026},
   url    = {https://github.com/bluethestyle/goodhart-korea},
   doi    = {10.5281/zenodo.{TBD}}

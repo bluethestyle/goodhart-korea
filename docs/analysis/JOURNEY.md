@@ -1426,7 +1426,7 @@ H4/H6/H8/H10/H14를 *교체 outcome*으로 재계산:
 - 교육 1.13x (ns) / 사회복지 1.35x (가장 약함)
 
 **사업 형태별** (H3 클러스터):
-- **출연금형 3.42x** (가장 강) — Holmstrom-Milgrom Multitasking 실증
+- **자산취득형 3.42x** (가장 강) — Holmstrom-Milgrom Multitasking 실증 ★ (v2 정정: 이전 표기 "출연금형 3.42x"는 클러스터 라벨 오기)
 - 일반 사업형 2.24x
 - 인건비형 1.12x / 직접투자형 1.10x (ns)
 
@@ -1468,7 +1468,7 @@ H4/H6/H8/H10/H14를 *교체 outcome*으로 재계산:
 
 ### 17.18 통합 학술 명제 (sub-agent 8종 v3+H22+H23+H24)
 
-1. **Liebman-Mahoney 한국판 RDD 입증**: 12월 점프 1.9x, 출연금형 3.4x (★ 인과 식별)
+1. **Liebman-Mahoney 한국판 RDD 입증**: 12월 점프 1.9x, 자산취득형 3.4x (★ 인과 식별 — v2에서 클러스터 라벨 오기 정정)
 2. **Holmstrom-Milgrom Multitasking 실증**: 사업 형태(다차원 vs 단일차원) × 게임화 차이
 3. **Goodhart-Campbell 측정 왜곡 부분 입증**: 4 클러스터 × 15 outcome 부호 반전
 4. **시스템 평균 효과 미유의 + 분야 이질성 강건**: Mediation pooled p=0.48 / 분야별 1개만 유의
@@ -1490,7 +1490,7 @@ Title: "Goodhart's Law in Korean Public Spending:
 5. Results
    5.1 Field-level decoupling (H6/H10)
    5.2 Activity archetype × outcome heterogeneity (H4/H8)
-   5.3 Year-end RDD (H22) 1.9x / 출연금형 3.4x
+   5.3 Year-end RDD (H22) 1.9x / 자산취득형 3.4x
    5.4 Mediation (H23) 분야 이질성 입증
    5.5 Topology robustness (H9 PH)
    5.6 Critical robustness (H24 STL trend 한계)
@@ -1660,7 +1660,161 @@ H3_cluster2_subembedding_11y.csv  11y sub-embedding
 
 ---
 
-## 참고문헌 (보고서 인용 풀)
+## 20. H25~H28 — 트라이앵귤레이션 보강 + 시간 동적 강화 (2026-04-28~29)
+
+> H1~H24는 *cross-sectional* + *static frequency*에 머물렀다. H25~H28은 ① 결과를 외부에 공개 가능한 인터랙티브 자산으로 export하고, ② FFT/STL 외 *제3의 분해법(NeuralProphet)*과 ③ *PSD/coherence*, ④ *시간변동 wavelet*으로 핵심 발견을 다층 검증한다. 결정적 발견은 **출연금형 12m cycle 진폭이 11년에 걸쳐 +554%**로 강화되어 *Performative Prediction(Hardt 2016)*의 한국 실증을 제공한다는 점이다.
+
+### 20.1 H25 — Interactive viz JSON export
+
+목표: 정적 PNG로 갇혀있던 핵심 결과를 *브라우저에서 탐색 가능*하게 만든다. `scripts/h25_export_viz_json.py`가 기존 결과 CSV를 모아 D3-friendly JSON으로 변환한다.
+
+```
+scripts/h25_export_viz_json.py
+  → docs/interactive/data/archetype_sankey.json      (H4/H8 분야→원형→outcome flow)
+  → docs/interactive/data/cluster_outcome_heatmap.json (H4 클러스터 outcome 차분 상관)
+  → docs/interactive/data/ministry_network.json      (H3 부처 시그니처 그래프)
+  → docs/interactive/data/rdd_scatter.json           (H22 회계연도 경계 점프)
+```
+
+JSON 표준화 효과: GitHub Pages 배포 시 정적 호스팅으로 풀 인터랙션 가능 (§21.4).
+
+### 20.2 H26 — NeuralProphet 신경망 분해 (3rd triangulation axis)
+
+문제 제기 (재): H24에서 *STL trend 제거 시 사회복지 신호 소멸*을 확인했다. 그러나 STL 자체도 LOESS smoother 기반으로 *parametric 가정*에 의존한다. 진짜 견고한지 확인하려면 *비파라메트릭/하이브리드 신경망 분해*가 필요하다.
+
+**방법**: NeuralProphet (Triebe et al. 2021, *PyTorch + Prophet 하이브리드*) — Prophet의 trend/seasonal 분해에 AR 신경망 component를 추가. STL과 달리 *학습된 비선형 trend* 추정.
+
+```
+scripts/h26_neuralprophet_check.py        분야×원형 시계열 → NP 분해 → outcome 상관
+scripts/h26b_neuralprophet_plotly.py      4 archetype별 component plotly export
+```
+
+**산출**:
+- `data/results/H26_field_outcome_corr_np.csv` — NP-detrended seasonal vs outcome 상관
+- `data/results/H26_neuralprophet_summary.csv` — archetype × component 요약
+- `docs/interactive/neuralprophet_components.html` + `np_components_C0~C3.html` (4 archetype별)
+
+**핵심 결과**: NeuralProphet 분해 후에도 **분야별 상관 부호 일관 유지**. 사회복지 음 상관·환경 음 상관 *재확인*. → STL 결과(H24)가 신호 일부 소멸시킨 것은 *LOESS smoother의 자연 cycle 흡수*에 기인할 수 있으며, 신경망 trend는 *step-change 적응*을 trend가 아닌 seasonal 잔차로 보존. **삼중 triangulation (FFT / STL / NP) 중 2:1로 신호 존재 우세**.
+
+### 20.3 H27 — PSD / Phase / Coherence (출연금형 동기화 0.54)
+
+H6/H8까지의 amp_12m은 *진폭 단일 스칼라*. 진짜 *동기화*(여러 활동이 같은 phase에 KPI를 향해 일제히 움직이는가?)는 측정 안 됐다. H27은 Welch PSD + phase 분포 + magnitude-squared coherence로 보완.
+
+```
+scripts/h27_power_spectrum_coherence.py
+  → data/results/H27_psd_archetype_avg.csv          archetype별 평균 PSD (peak_freq, peak_power)
+  → data/results/H27_phase_distribution.csv         12m peak에서의 phase 분포 (concentration index)
+  → data/results/H27_coherence_intra_archetype.csv  같은 archetype 내 활동 pair coherence
+```
+
+**핵심 결과**:
+| Archetype | 평균 PSD (12m peak) | Intra-coherence (12m) |
+|---|---:|---:|
+| **출연금형 (C0)** | **0.332** ★ (4 archetype 중 최대) | **0.54** ★ (Nash 동기화) |
+| 자산취득형 (C1) | 0.218 | 0.31 |
+| 인건비형 (C2) | 0.094 | 0.12 (저 동기화 = 자연) |
+| 운영형 (C3) | 0.156 | 0.22 |
+
+**해석**: 출연금형 활동들의 *cycle phase가 함께 잠겨 있다*. → Career Concerns (Holmstrom 1999) 정태 균형의 동적 게임 *Nash convergence* 실증. 인건비형은 0.12로 *통제 archetype* 역할 확정 (자연 = 비동기).
+
+### 20.4 H28 — Wavelet 시간 동적 강화 (★ +554%)
+
+문제 제기 (최종): FFT/PSD는 *전체 시계열에 대한 정상성 가정*. 그러나 KPI 평가 압력은 *시간 따라 강화*될 수 있다. 신호가 11년 평균이 아니라 *시점에 따라 진폭이 변하는지* 측정해야 한다.
+
+**방법**: Continuous Wavelet Transform (Morlet, $\omega_0=6$). 12개월 scale band에 해당하는 진폭을 *월별로 추출* → 11년 진폭 곡선.
+
+```
+scripts/h28_wavelet.py
+  → data/results/H28_wavelet_12m_evolution.csv   archetype × month → 12m amp
+  → data/figs/h28/H28_wavelet_archetype_evolution.png
+  → data/figs/h28/H28_wavelet_C0_heatmap.png      ★ 출연금형 단독 (시간×주기 heatmap)
+```
+
+**충격적 결과**:
+| Archetype | 12m 진폭 (2015~17 평균) | 12m 진폭 (2023~25 평균) | 변화율 |
+|---|---:|---:|---:|
+| **출연금형 (C0)** | 0.087 | 0.568 | **+554%** ★★★ |
+| 자산취득형 (C1) | 0.142 | 0.198 | +39% |
+| 인건비형 (C2) | 0.063 | 0.061 | **−3%** (통제 일치) |
+| 운영형 (C3) | 0.098 | 0.121 | +23% |
+
+→ **Performative Prediction (Hardt 2016, Perdomo 2020) 한국 실증**: *지표가 평가 도구가 되는 순간 분포가 변화*하며, agent 행동은 *학습된 적응을 통해 점진 강화*된다. 인건비형 통제군이 변화 없는 것이 결정적 — 이는 거시 trend가 아니라 *KPI sensitive activity의 능동 적응*임을 식별.
+
+---
+
+## 21. Paper v2 — Principal-Agent 모형 + 6 가설 통합 (2026-04-29)
+
+> v1 논문 (`paper/main.typ`)은 *데이터 발견 중심*이었다. v2 (`paper/main_v2.typ`, 1,435 lines, 54-page PDF)는 ① *명시적 P-A 이론 모형*에서 6 가설을 직접 도출, ② *클러스터 라벨 정정*(v1 일부 표기 오류), ③ *Manheim-Garrabrant 4-type 매핑*으로 학술적 위치를 명확히 했다.
+
+### 21.1 이론 모형 §3 도입 (P-A setup, 균형점, Career Concerns, Performative)
+
+**Setup**: Agent (사업 부서) 노력 벡터 $(e_t, e_q)$, $e_t$ = 측정 가능 (집행률·12월 spike), $e_q$ = 측정 어려운 품질. 비용 함수
+$$c(e_t, e_q;\theta) = \frac{1}{2}(e_t^2 + e_q^2) - \alpha(\theta) e_t e_q$$
+where $\theta \in \{$출연금형, 자산취득형, 인건비형, 운영형$\}$ = 사업원형, $\alpha(\theta)$ = 두 노력의 보완성 (출연금형 ≪ 인건비형).
+
+**1차 조건 + 비교정역학**: KPI 가중 $w_t$ 증가 → $e_t^* \uparrow$, $e_q^* \downarrow$ if $\alpha < 1$. → H2 (자산취득형 RDD 점프), H3 (출연금형 cycle 우세) 직접 도출.
+
+**Career Concerns (Holmstrom 1999) 동적 게임**: agent가 *시점 간 평판* 최대화 → Nash convergence에서 *phase 동기화*. → H3 PSD 0.332 / coherence 0.54 예측.
+
+**Performative Prediction (Hardt 2016, Perdomo 2020)**: 지표 $Y$의 분포가 평가 함수 $f(Y)$ 도입 후 *내생적으로 이동*. → H6 (시간 동적 강화 +554%) 예측.
+
+### 21.2 6 가설 H1~H6 (★ 클러스터 라벨 정정)
+
+| # | 가설 | 검증 방법 | 결과 |
+|---|---|---|---:|
+| H1 | 분야는 trivial (*조잡한* 기존 분류) | H8 R² 분해 | **ΔR² = 0.000** |
+| H2 | **자산취득형** RDD 점프 3.42x | H22 회계연도 경계 RDD | $\beta = 3.42$, $p < 0.01$ |
+| H3 | 출연금형 사이클 우세 | H27 PSD / coherence + H28 wavelet | PSD 0.332 / coh 0.54 / wavelet +554% |
+| H4 | 매개 경로 이질성 | H23 mediation by 분야 | pooled $p=0.481$, 환경/사회복지 강한 매개 |
+| H5 | 사회복지 fortuitous alignment | H6/H10 상관 | $r=-0.86, p=0.007$ |
+| H6 | 시간 동적 강화 | H28 wavelet | **+554%** (출연금형 vs 인건비형 −3%) |
+
+**★ 클러스터 라벨 정정**: v1 논문 일부 표기에서 H22 RDD 3.42x를 *"출연금형"*에 귀속시킨 부분이 있었으나, H22 원본 결과 (`data/results/H22_rdd_estimates.csv`, `H22_field_rdd.csv`)를 재확인한 결과 **자산취득형 (C1)** 점프임을 확정. v2에서 일괄 정정. 출연금형은 *cycle/PSD/wavelet*의 3중 강도 우위로 별도 차원에서 식별된다 (H3).
+
+### 21.3 5축 기여 + Manheim-Garrabrant 매핑
+
+**5축 기여**:
+1. **이론 모형**: 한국 NPM-굿하트 문헌에 P-A 비용 함수 + 동적 게임 통합 (Holmstrom-Milgrom 1991 multitasking 확장)
+2. **분석 단위 재정의**: *분야 → 사업원형 (archetype)*. ΔR² = 0.000 (분야) → 0.094 (+원형)으로 행정 분류 무용 입증
+3. **직관 반대 발견**: 사회복지 음 상관 ($r=-0.86$) — *fortuitous alignment* (Manheim-Garrabrant Regressional)
+4. **시간 동적 강화**: wavelet +554% — Performative Prediction 한국 실증 (선행 문헌 미관찰)
+5. **정책 처방의 모형적 도출**: $\alpha(\theta)$ 낮은 archetype에 *complementary 평가 지표 추가*가 1차 조건에서 도출
+
+**Manheim-Garrabrant (2018) 4-type 매핑**:
+| Type | 본 연구 발견 |
+|---|---|
+| **Causal** Goodhart | H2 (RDD), H3 (cycle synchrony) |
+| **Adversarial** Goodhart | H6 (wavelet 시간 강화 = 학습된 적응) |
+| **Regressional** Goodhart | H5 (사회복지 fortuitous alignment) |
+| **Extremal** Goodhart | H4 (매개 경로 분야 이질성 = tail effect) |
+
+### 21.4 인터랙티브 viz 4종 + GitHub Pages
+
+```
+docs/interactive/
+  archetype_sankey.html              ★ 분야 → archetype → outcome flow (H4/H8)
+  cluster_outcome_heatmap.html       ★ 클러스터 outcome 차분 상관 (H4)
+  ministry_network.html              ★ 부처 시그니처 그래프 (H3)
+  rdd_scatter.html                   ★ 회계연도 경계 점프 (H22)
+  neuralprophet_components.html      ★ NP 분해 4 archetype (H26)
+  np_components_C0.html ~ np_components_C3.html
+```
+
+→ 배포: **https://bluethestyle.github.io/goodhart-korea/**. GitHub Pages 정적 호스팅 + JSON fetch로 풀 인터랙션. 학술 reproducibility 강화.
+
+### 21.5 재현 가능성 (warehouse.duckdb 트랙)
+
+| 변경 | 이전 (v1) | 이후 (v2) |
+|---|---|---|
+| `data/warehouse.duckdb` (56 MB) | gitignored | **git tracked** |
+| `data/raw/` (OPEN API 캐시) | gitignored | gitignored (유지) |
+| 재현 절차 | API 인증키 + 5,208 호출 | `git clone` → 즉시 분석 |
+
+→ raw 데이터는 모두 gitignored 유지 (재현 시 fetch script로). 그러나 *분석 입력 single-file* (warehouse.duckdb)는 git LFS 없이 일반 트랙으로 전환 → 외부 연구자가 *clone만으로 즉시 H1~H28 재현*. 추가로 figure 일괄 업그레이드: scienceplots 스타일 + Arial Unicode MS + 한글 폰트 fallback chain. h6/h8/h14 split, h22/h27/h28 figsize 확대.
+
+---
+
+
 
 [1] Goodhart, C. A. E. (1975). "Problems of Monetary Management: The U.K. Experience"
 [2] Strathern, M. (1997). "Improving Ratings: Audit in the British University System"

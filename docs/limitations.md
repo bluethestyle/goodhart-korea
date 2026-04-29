@@ -21,7 +21,7 @@ H24 STL 분석 결과:
 
 **해석**: 사회복지 신호는 *trend (복지 확대 추세) × seasonal (12월 집중)* 결합 가능성.
 
-→ FFT와 STL 둘 다 보고. *어떤 metric이 진짜 게임화인가*는 추가 연구 필요.
+→ FFT와 STL 둘 다 보고. *어떤 metric이 진짜 게임화인가*는 추가 연구 필요. NeuralProphet (H26) 역시 비선형 분해이지만 trend/seasonal 분리는 ad-hoc 정의에 의존하므로 동일한 한계 공유.
 
 ---
 
@@ -79,3 +79,38 @@ H24 STL 분석 결과:
 - 비교 분석 없음
 - OECD COFOG는 *연간*만 → 게임화 측정 불가
 - → **다국가 비교는 향후 연구**
+
+---
+
+## 9. 이론 모형 한계
+
+- P-A 모형: Holmstrom-Milgrom (1987) **single-period static** + Holmstrom (1999) **multi-period career concerns** *하이브리드*
+- Sannikov (2008) **연속시간 동적 PA** 의 일부 동학 (HJB equation, optimal contract path) **미반영**
+- → 균형 비교정학 (1차 조건)은 robust하나, off-equilibrium 동학 검증은 추가 모형 필요
+
+---
+
+## 10. 주파수 분석 한계
+
+### Wavelet (H28) scale 민감도
+- Morlet wavelet의 시간-주파수 trade-off (**Heisenberg uncertainty**)
+- **+554% 추정치는 wavelet scale 선택에 민감**
+- → ricker / morlet 비교 robustness check 필요
+
+### PSD/Coherence (H27) 표본 크기
+- 활동 단위 phase coherence 추정에서 **cycle 수 ≤ 11** (11년 데이터)
+- → confidence interval 넓음
+- coherence **0.54** 는 의미 있으나 정확도는 제한적
+
+---
+
+## 11. Performative prediction 가설 한계 ★ 식별 불가
+
+H6 wavelet **+554% 시간 강화**의 두 가지 해석:
+
+| 해석 | 메커니즘 |
+|---|---|
+| Performative (이론) | agent가 KPI에 점진 학습 → 게임화 강화 |
+| 측정 도구 변화 | 회계 기준·보고 의무 변경으로 12월 집중 *기록*이 늘어남 |
+
+→ 두 메커니즘의 **식별 불가** (counterfactual: KPI 없는 정부). 시간 강화가 실재해도 인과는 약함.
