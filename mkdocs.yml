@@ -5,6 +5,22 @@ repo_url: "https://github.com/bluethestyle/goodhart-korea"
 repo_name: "bluethestyle/goodhart-korea"
 edit_uri: ""
 
+# README.md는 별도 데이터 명세서 — index.md와 별개. 사이트 빌드에서 제외.
+exclude_docs: |
+  README.md
+
+# strict 모드 유지하면서 docs/ 외부 참조 같은 노이즈 warning은 무시
+validation:
+  nav:
+    omitted_files: ignore        # nav에 안 적힌 docs/ 파일 (kodas/, openapi/ 등) 무시
+    not_found: ignore            # nav에서 가리키는 파일이 docs/ 외부일 때 무시
+    absolute_links: ignore
+  links:
+    not_found: ignore            # docs/ 외부 경로(../data/figs/...) 참조 무시
+    absolute_links: ignore
+    unrecognized_links: ignore
+    anchors: ignore              # 자동 ID와 미세한 차이 무시
+
 theme:
   name: material
   language: ko
@@ -86,6 +102,6 @@ nav:
   - 인터랙티브 시각화:
     - "Overview": interactive/index.md
   - 데이터:
-    - "출처 (SOURCES)": ../data/external/SOURCES.md
-    - "결과 CSV (INDEX)": ../data/results/INDEX.md
+    - "출처 (SOURCES)": https://github.com/bluethestyle/goodhart-korea/blob/main/data/external/SOURCES.md
+    - "결과 CSV (INDEX)": https://github.com/bluethestyle/goodhart-korea/blob/main/data/results/INDEX.md
   - 참고문헌: REFERENCES.md
