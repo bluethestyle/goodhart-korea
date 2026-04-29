@@ -64,3 +64,6 @@ Thumbs.db
 
 # Paper EN figures preview (intermediate)
 paper/figures_en/_preview/
+
+# Slides (작업 중, 별도 발표 자료)
+paper/slides/
