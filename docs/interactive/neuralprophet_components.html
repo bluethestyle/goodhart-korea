@@ -89,10 +89,46 @@
     </div>
   </div>
 
+  <h2>확장 NP — 분기 · 월 · 회계연도 마감 이벤트 분해</h2>
+  <div class="ctx">
+  <p><strong>맥락:</strong> 위 단순 NP는 cross-check 형평성을 위해 trend + yearly만 켜놓은 구성이다. 본 섹션은 NeuralProphet의 full mode (yearly + quarterly + monthly seasonality + 회계연도 마감 이벤트)로 <em>모든 component를 한꺼번에 분해</em>한 결과를 보여준다. n_changepoints=4, 분기(91.25일, Fourier order=6), 월(30.4일, Fourier order=4), fy_close 이벤트(매년 12월 1일). 본 논문 부록 D의 분기 주기·이벤트 분기 분석을 NP 단일 모형으로 통합한 후속 연구 방향.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>인건비형 (확장)</h3>
+      <span class="badge b-personnel">full NP</span>
+      <p style="font-size:0.85rem; color:#888;">중소벤처기업부 — 국립마이스터고인건비</p>
+      <p>trend + yearly + quarterly + monthly + fy_close 이벤트. 인건비형 특유의 평탄한 추세 위에서 분기·월 성분이 어떻게 표현되는지 확인.</p>
+      <a class="btn" href="np_full_C0_personnel.html">분해 보기 →</a>
+    </div>
+    <div class="card">
+      <h3>자산취득형 (확장)</h3>
+      <span class="badge b-asset">full NP</span>
+      <p style="font-size:0.85rem; color:#888;">대법원 — 등기소 확충</p>
+      <p>trend + yearly + quarterly + monthly + fy_close 이벤트. 공정률 기반 집행 패턴에서 분기·월 주기 성분의 기여도 확인.</p>
+      <a class="btn" href="np_full_C1_direct_invest.html">분해 보기 →</a>
+    </div>
+    <div class="card">
+      <h3>출연금형 (확장)</h3>
+      <span class="badge b-chooyeon">full NP</span>
+      <p style="font-size:0.85rem; color:#888;">국방부 — 한국국방연구원 운영</p>
+      <p>trend + yearly + quarterly + monthly + fy_close 이벤트. 12월 정산 압력이 yearly와 fy_close 이벤트 component에 어떻게 분리되는지 확인.</p>
+      <a class="btn" href="np_full_C2_chooyeon.html">분해 보기 →</a>
+    </div>
+    <div class="card">
+      <h3>정상사업 (확장)</h3>
+      <span class="badge b-normal">full NP</span>
+      <p style="font-size:0.85rem; color:#888;">행정안전부 — 과학수사활동지원</p>
+      <p>trend + yearly + quarterly + monthly + fy_close 이벤트. 일반 사업의 평균적 집행 패턴을 full component로 분해.</p>
+      <a class="btn" href="np_full_C3_normal.html">분해 보기 →</a>
+    </div>
+  </div>
+
   <h2>분석 도구 정보</h2>
   <p style="font-size: 0.9rem; color: #666;">
     NeuralProphet 0.9 / PyTorch Lightning, n_lags=0 (자기회귀 차단), n_changepoints=2, yearly_seasonality=True (Fourier order=6), epochs=50.
     상세 모형식과 본 연구에서 AR을 끈 이유는 <a href="https://github.com/bluethestyle/goodhart-korea">논문 부록 C.3</a> 참조.
+    확장 NP (본 페이지 하단 섹션): n_changepoints=4, quarterly(91.25d, order=6) + monthly(30.4d, order=4) + fy_close events 추가.
   </p>
 
 </body>
