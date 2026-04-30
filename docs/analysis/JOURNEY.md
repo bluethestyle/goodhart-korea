@@ -1839,3 +1839,41 @@ docs/interactive/
 [8] Chetty, R., Friedman, J. N., Olsen, T. & Pistaferri, L. (2011). "Adjustment Costs, Firm Responses, and Labor Supply Elasticity: Evidence from Danish Tax Records." *QJE*, 126(2), 749-804.
 [9] 감사원 (매년) 결산검사보고서
 [10] 기획재정부 (매년) 국가재정운용계획
+
+---
+
+## 23. 정합성 점검 + 학술 보강 (2026-04-30)
+
+### 23.1 4축 정합성 점검
+
+paper publication 직전 4축 점검 (방법론·수치·이론-실증·서사) 수행. 발견 이슈:
+- Critical 3건: H2 step function 역인과, H4 pooled 미유의 논리 결함, Sobel 분야 귀속 오류
+- Medium 10건: Bonferroni 미명시, NP seed 미고정, 하이퍼파라미터 paper 미기재 등
+- Low 6건: docs framing 일관성, 코드 정리 등
+
+종합 등급: A− → 정정 후 A (KCI/Zenodo 준비 완료)
+
+### 23.2 Critical 정정
+
+- H2 step function: paper §F.3, §6.3, §H3 (KR/EN) — 모형 가정이 아닌 데이터 관찰 형태로 재기술
+- H4 매개효과: paper §6.4 (KR/EN) — 농림수산 단일 분야 Sobel z=-2.897 (사회복지·환경 표기 정정)
+
+### 23.3 학술 보강
+
+- §8 Bonferroni: 14분야 동시 검정 보정 후 사회복지 p=0.035 통과 미달 정직 명시
+- §C.10.1 McCrary: RDD 식별 가정 3 근거 정당화 (행정 외생·활동 조작 불가·자기보고 부재)
+- §C.2~C.7: 하이퍼파라미터 모두 명시 (UMAP n_neighbors=30, HDBSCAN min_cluster_size=60 등)
+- §C.3: NeuralProphet random_seed=42 (재현성)
+- mccrary2008 reference 신규 (refs.bib + REFERENCES.md [E10])
+
+### 23.4 framing 정정
+
+- 트라이앵귤레이션: 만장일치 → 상호 보완 (모든 문서)
+- 정책 처방: 임의 나열 → 모형 레버 1:1 (README + paper)
+- 합리적 균형: §3 P-A 모형의 핵심 framing (JOURNEY §4 추가)
+
+### 23.5 분량 변화
+
+- paper KR: 54p → 59p (5.7MB)
+- paper EN: 72p → 73p (5.5MB)
+- 13개 트랙 파일 변경, commit 321d204

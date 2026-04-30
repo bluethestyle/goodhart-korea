@@ -1,6 +1,7 @@
 # 방법론
 
 본 연구는 Goodhart 효과의 robustness를 *triangulation* 으로 검증.
+도구 간 결과는 만장일치 수렴이 아닌 **상호 보완** 관계로 해석하며, 발산 사례는 자기 비판의 출발점으로 삼는다 (예: H5 FFT vs STL).
 
 ---
 
@@ -38,32 +39,33 @@
 - 활동×연도 단위로 산출
 
 ### STL 기반 (`seasonal_strength`) ★ 자기 비판
-- Cleveland (1990) STL decomposition
+- Cleveland (1990) STL decomposition; **period=12, robust=True**
 - `1 − Var(remainder)/Var(detrended)`
 - FFT와 비교: 사회복지 신호 trend 혼재 가능성 노출
 
 ### NeuralProphet (H26)
 - Triebe et al. (2021), PyTorch + Prophet 하이브리드
 - trend / seasonal / residual 신경망 분해
+- 하이퍼파라미터: **epochs=50, n_lags=0, random_seed=42**
 - pytorch-lightning 백엔드, *3번째 축*으로 FFT/STL 검증
 
 ---
 
 ## 2. 활동 임베딩
 
-- **UMAP** (McInnes 2018): 12 피처 → 2D
-- **HDBSCAN** (Campello 2013): 밀도 기반 클러스터
+- **UMAP** (McInnes 2018): 12 피처 → 2D; **n_neighbors=30, min_dist=0.05, metric='euclidean', random_state=42**
+- **HDBSCAN** (Campello 2013): 밀도 기반 클러스터; **min_cluster_size=60, min_samples=10**
 - **결과**: 1,557 활동 → 4 archetypes (인건비/자산취득/출연금/정상)
 
 ---
 
 ## 3. 위상 (TDA)
 
-- **Mapper** (Singh-Mémoli-Carlsson 2007): UMAP 2D filter + DBSCAN
+- **Mapper** (Singh-Mémoli-Carlsson 2007): UMAP 2D filter + DBSCAN; **n_cubes=18, perc_overlap=0.5**
 - **Persistent Homology** (Edelsbrunner-Harer 2008, Tralie ripser):
-  - Vietoris-Rips, max thresh=8.0
+  - Vietoris-Rips, **max_thresh=8.0**
   - H0 30 강건 components / H1 15 강건 loops
-  - Bootstrap 50회 95% CI
+  - Bootstrap **n=200 × 50회** 95% CI
 
 ---
 
@@ -80,6 +82,7 @@
 - **FE Panel**: `Δoutcome ~ Δamp + 분야 FE + 연도 FE`
 - **Permutation test** (1000회): null distribution
 - **Lag/Lead** (k=−2..+2): 인과 방향 탐색
+- **다중 비교 한계**: 14분야 동시 검정에서 Bonferroni 보정(α=0.0036) 후 사회복지 p=0.035 통과 미달 — 결론은 부호 일관성·CPI 통제 강화로 robust하나 strict 기준에서는 '가설 수준' (paper §8)
 
 ---
 
@@ -90,11 +93,13 @@
 - Cutoff: 12월 1일 (회계연도 마지막 달)
 - Bandwidth: ±1month, ±2months
 - Sharp RDD with parametric local polynomial
+- **식별 가정 정당화**: 행정적 외생성·활동 단위 조작 불가성·자기보고 편향 부재 3 근거 (paper §C.10.1, McCrary 2008)
 
 ### Mediation Analysis (H23)
 - Baron-Kenny (1986) 4 단계
 - Sobel test + Bootstrap CI (5000회)
 - X = chooyeon_pct, M = amp_12m_norm, Y = outcome
+- **H4 결과**: 농림수산에서만 통계 유의 (Sobel z=−2.897, p=0.004); 사회복지·환경은 정성적 매개 (유의 미달)
 
 ---
 

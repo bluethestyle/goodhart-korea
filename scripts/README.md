@@ -1,6 +1,6 @@
 # Scripts 분류
 
-총 59개 스크립트, 4그룹.
+총 59개 스크립트 + 신규 18개(slides_figs_new.py, redo_fig*_en.py 16개, h26 2개 포함), 4그룹 + 재현성/신규 절.
 
 ---
 
@@ -103,6 +103,12 @@
 | `h25_export_viz_json.py` | 인터랙티브 viz용 JSON export |
 | `plot_h2_results.py` | H2 plot (구) |
 
+### 시계열 예측 (H26)
+| 스크립트 | 역할 |
+|---|---|
+| `h26_neuralprophet_check.py` | NeuralProphet 연간 예측 (random_seed=42) ★ |
+| `h26b_neuralprophet_plotly.py` | NeuralProphet Plotly 인터랙티브 확장 (random_seed=42) ★ |
+
 ## 4. 사용 권장 워크플로우
 
 ### 새로 시작하는 경우
@@ -117,3 +123,36 @@
 
 ### ★ 표시 = 최신/권장 버전 (v3, v2 등)
 구 버전(`*_baseline`, `h3_activity_embedding`, `h4_mapper_outcome` 등)은 변경 추적·재현용으로 보존.
+
+---
+
+## 재현성 보강 (2026-04-30 정합성 점검 후)
+
+- `random_state=42` 일관 적용:
+  - UMAP+HDBSCAN: `h3_v2_11y.py`, `h5_v2_11y.py`
+  - Permutation: `h6_robustness.py`, `h6_v3_replaced.py`
+  - PH bootstrap: `h9_v2_11y.py`
+  - NeuralProphet: `h26_neuralprophet_check.py`, `h26b_neuralprophet_plotly.py` ★ 신규 추가
+- STL `s_window=13` 명시 주석: `goodhart_freq.py`, `h24_stl_decomp.py`
+- 코드 정리: `h10_macro_control.py` d_cpi 불필요 변수 주석 처리
+
+---
+
+## Slides + Paper EN figure 생성
+
+### slides_figs_new.py (신규)
+`paper/slides/SLIDE_PLAN.md`의 신규 figure 7개 생성 (`paper/slides/assets/figures/`):
+
+| figure ID | 내용 |
+|---|---|
+| `s2_dec_hook` | 12월 점프 hook |
+| `s4a_measurability_gap` | 측정성 격차 schema |
+| `s20_decompose_compare` | FFT/STL/NP 1×3 panel |
+| `s22a_rdd_assumption` | RDD 식별 가정 schema |
+| `s27_archetype_zscore` | 4 archetype z-score grouped bar |
+| `s33_baron_kenny` | 매개분석 DAG + forest |
+| `s41_q1_before_after` | Q1 BEFORE/AFTER |
+
+### redo_fig*_en.py (16개)
+영문판 paper용 차트 생성 (`paper/figures_en/`), 한국어 라벨 → 영문 변환.
+원본 `redo_fig*.py`(KR) 구조 그대로, `_en.py` 변형은 출력 경로만 변경.

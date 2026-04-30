@@ -1,8 +1,8 @@
 # 논문 (Typst)
 
-- `main_v2.typ` — *active*: P-A 모형 + 6 가설 검증, 54p
+- `main_v2.typ` — *active*: P-A 모형 + 6 가설 검증, 59p (정합성 점검 + 학술 보강 후)
 - `main.typ` — v1 preserved: 다각적 측정, 58p
-- `refs.bib` — 38 BibTeX entries
+- `refs.bib` — 39 BibTeX entries
 
 ## 컴파일
 
@@ -34,7 +34,7 @@ typst watch main_v2.typ main_v2.pdf
 paper/
 ├── main_v2.typ         논문 v2 (active draft, ~1435 lines)
 ├── main.typ            논문 v1 (preserved, ~1260 lines)
-├── refs.bib            38 BibTeX entries
+├── refs.bib            39 BibTeX entries
 ├── figures/            10+ core figures (h3_umap, h4_mapper, h22_rdd, h27_*, h28_* 등)
 ├── fonts/              Noto Serif KR + Pretendard (gitignored)
 ├── preview/            preview renders (gitignored)
@@ -61,6 +61,24 @@ paper/
 - [ ] KCI 학회용 축약 (한국행정학보 또는 한국정책학회보 양식)
 - [ ] 저자명·소속·이메일 입력
 - [ ] 한글 abstract + 영문 abstract pair (KCI 표준)
+
+## v2 학술 보강 (2026-04-30 정합성 점검 후)
+
+다음 학술 보강이 정합성 점검을 통해 추가됐다 (commit 321d204):
+
+### 이론 정정
+- H2 step function 역인과 해소 — 모형 가정이 아닌 데이터 관찰 형태로 재기술
+- H4 pooled 미유의 ≠ 이질성 증거 — 농림수산 단일 분야 통계 유의 (Sobel z=-2.897) 정정
+
+### 학술 보강 (Appendix C·§8)
+- Bonferroni 다중 비교 한계 명시 (§8)
+- McCrary RDD 식별 가정 정당화 (§C.10.1)
+- NeuralProphet random_seed=42 명시 (§C.3)
+- UMAP/HDBSCAN/Mapper/PH/STL 하이퍼파라미터 paper 본문 명시 (§C.2~C.7)
+
+### 분량
+- KR: 54p → 59p (5.7MB)
+- EN: 72p → 73p (5.5MB)
 
 ## AI 도구 사용
 
