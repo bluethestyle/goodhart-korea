@@ -415,7 +415,7 @@
       [*Causal*], [H2 (자산취득 RDD),\ H3 (출연금 사이클)], [Agent가 *측정 가능 차원* $e_t$를 직접 조작 — 사업 본질이 요구하지 않는 12월 spike 또는 연 사이클 누적],
       [*Adversarial*], [H6\ (시간 강화 +554\%)], [Agent가 *학습*해 시간이 지날수록 게임화 강도 증가 — 평가 시스템 약점 식별 후 적응 (Performative prediction과 직접 연결)],
       [*Regressional*], [H5\ (사회복지 fortuitous)], [Agent의 $e_t$ 노력이 *우연히* 사회 결과 $Y$와 양의 상관 — 측정 노이즈가 분야별 alignment로 발현],
-      [*Extremal*], [H4 (매개 이질성)], [매개효과 평균이 0 가까워도 *극단 원형(출연금/자산취득)에서는* 강한 매개. 평균 측정의 한계가 다중 게임화 메커니즘을 가린다],
+      [*Extremal*], [H4 (매개 이질성)], [매개효과 pooled 평균은 미유의($p=0.481$)이나, *농림수산 단일 분야*에서 강한 음의 매개(Sobel z=$-2.897$, $p=0.004$)가 통계 유의. 표본 크기 제약(사회복지 n=6, 환경 n=4)으로 다른 분야 검출 어려움],
     ),
     caption: [#cite(<manheim2018>, form: "prose") 4유형 굿하트 분류와 본 연구 6 가설의 매핑],
   )
@@ -693,6 +693,8 @@
 
   *모형 검증 (H2)*: 본 결과는 P-A 모형의 *사업원형별 비용 함수 $c(e_t, e_q; theta)$ 차이*가 균형 $e_t^*$의 *시간 구조 차이*로 발현됨을 직접 입증한다. 자산취득형은 $c(e_t)$가 12월 1일 직후 *급감*(공정률 마감과 회계 마감이 동시에 만료되는 임의 시점)하므로 RDD 점프 가장 큼(H2). 두 균형은 모형의 *동일 FOC* $w_t = (partial c) / (partial e_t)$가 *원형별 비용 함수의 차이*를 통해 다른 시간 구조로 발현된 것이다.
 
+  *해석 주의 — 모형 입력과 예측의 구별*: 자산취득형의 RDD 점프(3.42배)는 비용함수 $c(e_t)$가 12월 직전 낮은 한계비용을 갖는다는 *데이터 패턴*을 보여준다. 모형(부록 §F.3)은 이 패턴을 *입력 특성*으로 수용했으므로, RDD 점프의 존재 자체는 모형의 새로운 *예측*이라기보다 모형 입력 가정의 *직접 증거*에 해당한다. 진정한 모형 검증은 이 비용함수 형태 차이가 다른 원형과 얼마나 다른가 — 자산취득 3.42배 vs 출연금 1.10배 vs 인건비 1.12배 — 라는 *원형 간 비교*에 있다. 이 비교가 §F.3의 예측과 일치한다.
+
 #figure(
   image("figures/h22_rdd_monthly.png", width: 100%),
   caption: [\[H2 검증\] 월별 활동 평균 일집행액 (2015\~2025) — 색상은 연도(보라 2015 → 노랑 2025),\ 굵은 검정선은 11년 평균. 11~12월 영역(빨강)에서 12월 점프 가시화.],
@@ -721,7 +723,7 @@
 
 세 측도 모두 일관되게 *출연금형이 연 단위 게임화 사이클*에 가장 강하게 결속됨을 보여준다. 이는 *RDD 점프(이산적 spike)는 자산취득형이 강하지만, 사이클 진폭(연속적 강도)은 출연금형이 강함*이라는 사업원형별 시간 구조 차이를 입증한다.
 
-*모형 검증 (H3)*: 세 측도는 P-A 모형의 예측을 지지한다. 분산형 $c(e_t)$ → 균형 $e_t^*$가 연 사이클 전반에 걸쳐 분산 누적되는 패턴이 PSD/coherence/wavelet에서 모두 우세하게 확인되었다. 자산취득형의 step function $c(e_t)$(12월 1일 직후 한계비용 급감)와 대조적인 이 결과는 H3를 지지한다.
+*모형 검증 (H3)*: 세 측도는 P-A 모형의 예측을 지지한다. 분산형 $c(e_t)$ → 균형 $e_t^*$가 연 사이클 전반에 걸쳐 분산 누적되는 패턴이 PSD/coherence/wavelet에서 모두 우세하게 확인되었다. 자산취득형의 낮은 한계비용 구간(12월 직전 데이터에서 관찰된 패턴, §6.3)과 대조적인 이 결과는 H3를 지지한다.
 
 == 방법론 상보성 검증 — FFT·STL·NeuralProphet 측도 비교
 
@@ -763,17 +765,25 @@
 
   *방법*: #cite(<baron1986>, form: "prose") 4단계 + Sobel z-검정 + Bootstrap 95\% 신뢰구간(부록 C.11; 매개분석 방법론 일반은 @hayes2017 참조). 활동 단위 $X$ = 출연금 비중, $M$ = `amp_12m_norm`, $Y$ = 분야별 결과변수.
 
-  *결과 — pooled 매개효과 미유의*: 14분야 평균 매개효과 $a b$의 Sobel z-검정 $p = 0.481$로 미유의. 즉 *시스템 평균*으로는 매개 경로가 약함.
+  *결과 — pooled 매개효과 미유의*: 14분야 평균 매개효과 $a b$의 Sobel z-검정 $p = 0.481$로 미유의 — 귀무가설 기각 실패. *중요*: pooled 미유의 자체는 이질성의 직접 증거가 아니다. 귀무가설(매개 없음)을 기각하지 못했다는 것이지, 대립가설(이질성 존재)을 지지한다는 의미는 아니다.
 
-  *모형 검증 (H4) — pooled 미유의는 archetype 이질성의 직접 증거*: P-A 모형은 *비용 함수 $c(\cdot; theta)$가 사업원형 $theta$별로 다름*을 예측한다 (5.2 결과). 평균 매개효과는 *원형별 이질적 매개 강도*가 평균에서 상쇄되어 약화되는 것이 자연스럽다. 즉 $p = 0.481$은 모순이 아니라 *모형의 직접적 검증*이다.
+  *모형 검증 (H4) — 분야별 분해 결과가 이질성의 실제 증거*: P-A 모형은 *비용 함수 $c(\cdot; theta)$가 사업원형 $theta$별로 다름*을 예측한다. 이질성 증거는 pooled 통계가 아닌 *분야별 직접 분해 결과*에서 온다.
 
-  *분야별 매개 분해*: 사회복지 ($a b > 0$, 자동분배 채널) + 환경 ($a b < 0$, 직접 부정 채널)에서 매개 효과가 강하게 발현된다. 두 분야 모두 *$(partial Y) / (partial e_t) != 0$인 alignment 분야*다 (H5 fortuitous 명제와 일관). 다른 12개 분야는 매개효과가 작아 평균에서 희석된다.
+  *분야별 매개 분해* (출처: `data/results/H23_mediation_estimates.csv`):
+  - *농림수산*: Sobel z = $-2.897$, $p = 0.004$ — *14분야 중 유일하게* 통계적으로 유의한 강한 음의 매개. 출연금 비중 → 12개월 진폭 → 농가소득 outcome 매개 경로가 강건하게 식별된다.
+  - *사회복지*: 매개비율(mediation_ratio) = 57%로 분야 중 양호한 편이나, Sobel z = $+0.23$, $p = 0.82$로 통계 유의 미달 ($n = 6$ 표본 크기 제약).
+  - *환경*: 데이터 부족($n = 4$)으로 Sobel 추정 자체가 불가능(NaN). *환경에 강한 매개가 있다는 해석은 근거 없음*.
+  - *나머지 11개 분야*: Sobel $|z| < 1.5$, $a b$ 추정값 0 근처.
 
-  *해석*: 모형 가설 H4(매개 경로의 원형 이질성)는 검증되었다. 이는 정책 처방이 *원형별로 차별화*되어야 함을 시사한다 — 모든 사업에 동일한 평가 제도를 적용하면 처방의 효과가 평균적으로 희석된다.
+  *Manheim-Garrabrant Extremal 패턴과 한계*: pooled 평균 미유의 + 단일 분야 강한 발현이라는 분포는 #cite(<manheim2018>, form: "prose") Extremal 유형의 시그니처다. 그러나 본 표본에서는 *농림수산 단일 사례*에 의존하므로, 'Extremal 패턴'을 일반 명제로 주장하기보다 "농림수산에서의 강한 매개 + pooled 평균 미유의"로 보고하는 것이 정직하다.
+
+  *해석*: 정책 처방이 *원형별로 차별화*되어야 한다는 함의는 유지된다. 그러나 그 근거는 pooled p값이 아니라 분야별 분해 결과(농림수산 유일 유의)와 표본 크기 제약(사회복지 n=6, 환경 n=4)에서 찾아야 한다. 후속 연구에서 분야별 시계열 확장(>10년)이 검정력 확보의 핵심 과제다.
 
 == H5 검증 — 사회복지 자동분배 (Fortuitous Alignment)
 
   *직관 반대 발견*: 게임화는 부정적 측정 왜곡으로 통상 인식되지만, 본 연구는 사회복지 분야에서 *오히려 긍정적 결과*와 연결되는 사례를 발견한다. 사회복지 정상사업의 12월 집중 집행 강도가 클수록 *순자산 지니계수가 감소(불평등 완화)*하는 음의 상관이다. 이는 회계연도 마감 직전 사회복지 급여·보조금이 일괄 지급되면서 빈곤층에 자원이 자동 분배되는 메커니즘으로 해석된다.
+
+  *[데이터 버전 명시]* 본 연구의 permutation test는 5단계 outcome 변수 검증 후 v3 (`H6_permutation_pvals_v3.csv`)을 기준으로 사용한다. 교육 분야는 `imd_edu_rank`로 매핑 (v1 대비 `private_edu_hours` 제거, 국방 분야 `defense_op_margin` 추가로 총 15행).
 
   사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1,000회)로 14분야 중 유일하게 통계적으로 유의했다(@fig-h6). Lag/Lead 차분 상관(k=−2..+2)에서 동기 상관이 가장 강해 즉시적 자동분배 메커니즘을 지지하며, amp_cv 대안 지표에서도 방향이 일관된다(@fig-h6-lag). CPI 외생 통제 후 r=−0.86(p=0.007)로 *신호가 강화*되어, 자연 경기 cycle 가설을 기각하였다(@fig-h10).
 
@@ -947,6 +957,9 @@
 + *표본 제약*: 차분 후 분야별 $N = 8 \~ 12$ — permutation·Bootstrap 보완에도 점추정 신뢰구간 넓음.
 + *국방·예비비 결측*: 측정 가능 결과변수 부재 분야 제외 (제거 편향). 후속 연구는 보안 해제 가능 부분 데이터 활용.
 + *주별·일별 granularity 부재*: 월별 집행 자료 한계로 12월 *주(week) 단위* 점프 직접 관측 불가. 미국 5배 vs 한국 1.91배 차이의 일부는 자료 granularity.
++ *다중 비교 보정 한계 (정직 명시)*: H5 사회복지 *fortuitous alignment* 발견(1차 차분 상관 $r = -0.762$, $p = 0.035$)은 14개 분야 동시 permutation test 결과 중 하나다. 이를 *14개 가설에 대한 다중 비교*로 간주하면 Bonferroni 보정 임계값은 $0.05 / 14 = 0.0036$이 되며, 사회복지의 $p = 0.035$는 이 보정 후 임계값을 통과하지 못한다.
+
+  본 연구의 결론은 다음 보강을 통해 robustness를 확보했다고 판단한다: (a) *부호 일관성* — 14분야 모두 사회복지의 음 상관 방향이 유지됨(CPI 통제 후 강화 $r = -0.86$), (b) *사전 가설* — 사회복지의 자동분배 메커니즘이 *fortuitous alignment*를 예측한다는 사전적 추론, (c) *이론적 일관성* — 모형 §3에서 alignment 함수 $alpha$의 분야별 이질성을 사전에 인정. 그러나 *strict하게는* Bonferroni/FDR 보정 후 단일 분야 통계 유의를 주장할 수 없으며, 본 발견은 "후속 검증을 위한 가설 수준"으로 해석되어야 한다. 후속 연구에서 다른 국가의 사회복지 자동분배 환경에서 동일 패턴이 재현되는지 검증이 필요하다.
 
 == 후속 연구 방향
 
@@ -1141,6 +1154,8 @@ $ "amp_12m_norm"_(i,t) = (|hat(x)_(i,t)(k=1)|) / (sum_(k=1)^(N\/2) |hat(x)_(i,t)
 $ "seasonal_strength" = max(0, 1 - "Var"(R_t) / "Var"(D_t)) $
 @hyndman2021.
 
+*하이퍼파라미터*: 본 연구에서 사용한 STL 파라미터는 다음과 같다 — `period=12` (월별 시계열의 1년 주기), `robust=True` (outer-loop robustness weight 활성화로 outlier 영향 차단), `seasonal_smoother_deg=1` (`s_window` statsmodels 기본값 사용). 재현을 위한 Python 호출: `STL(series, period=12, robust=True).fit()`.
+
 *STL의 약점*: (a) LOESS 대역폭(span) 선택 민감 — 좁으면 점프를 추세로 흡수, 넓으면 추세 부족 추정, (b) 가법 모델만 지원, (c) 변화점 직전후 추세 추정 왜곡. NP의 명시적 changepoint 모델링이 보완.
 
 == C.3 NeuralProphet — 6항 모형·AR-Net·Prophet 차이·하이퍼파라미터
@@ -1165,6 +1180,7 @@ $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
 - `n_lags=0` → $A(t) equiv 0$ (cross-check 비교 형평성)
 - `n_future_regressors=0`, `n_lagged_regressors=0`, `events=None`
 - `n_changepoints=2`, `yearly_seasonality=True (N=6)`, `weekly/daily=False`
+- `random_seed=42` (재현성 고정)
 - 결과 적합 모형: $y_t = T(t) + S(t) + epsilon_t$
 
 *왜 AR을 끄는가*: AR이 활성화되면 NP는 단기 자기상관도 학습해 잔차에 들어갈 *순수 계절 신호*를 흡수한다. cross-check 메시지("도구가 달라도 같은 게임화를 본다")의 비교 형평성을 위해 끈다. 다만 AR을 켜면 *예측 정확도*가 향상되어 후속 연구의 활용 여지가 있다.
@@ -1185,6 +1201,8 @@ $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
 $ "loss" = sum_(i j) [a_(i j) log (a_(i j)) / (b_(i j)) + (1 - a_(i j)) log (1 - a_(i j)) / (1 - b_(i j))] $
 를 SGD로 최소화. $a_(i j) = exp(-(d(x_i, x_j) - rho_i)\/sigma_i)$ ($k$ 최근접 이웃 기반 이웃 확률), $b_(i j) = (1 + a' ||y_i - y_j||^(2 b'))^(-1)$ (저차원 student-t 유사 분포).
 
+*하이퍼파라미터*: 본 연구에서 사용한 UMAP 파라미터는 다음과 같다 — `n_neighbors=30` (국소 구조 보존 이웃 수; 클수록 전역 구조 강조), `min_dist=0.05` (저차원 최소 점간 거리; 작을수록 군집 밀도 강화), `metric='euclidean'` (고차원 거리 측도), `n_components=2` (2차원 임베딩), `random_state=42` (재현 가능 고정 시드). Python: `umap.UMAP(n_neighbors=30, min_dist=0.05, metric='euclidean', n_components=2, random_state=42)`.
+
 *vs PCA*: 선형 투영이라 비선형 매니폴드(U자, 환상 구조) 망가뜨림.
 *vs t-SNE*: KL divergence 사용 — *전역 거리* 부정확 압축. UMAP은 fuzzy set 이론으로 전역 구조도 잘 보존 (@mcinnes2018, §3).
 *vs Autoencoder*: 학습 데이터 양·아키텍처 의존; UMAP은 결정론적(`random_state=42`)이고 작은 데이터에 안정.
@@ -1198,6 +1216,8 @@ $ d_("mreach")(x, y) = max(d_("core")(x), d_("core")(y), d(x,y)) $
 
 이를 가중치로 하는 *최소 신장 트리*(MST)를 구성하고, 가중치 임계값 $epsilon$을 변화시키며 단계적으로 끊어 *condensed cluster tree*를 만든다. 군집의 *안정성* 점수가 가장 높은 cluster를 최종 선택.
 
+*하이퍼파라미터*: 본 연구에서 사용한 HDBSCAN 파라미터는 다음과 같다 — `min_cluster_size=60` (최소 군집 크기; 이보다 작은 군집은 노이즈로 처리), `min_samples=10` (core point 판정을 위한 최소 이웃 수; 클수록 보수적 군집), `cluster_selection_method='eom'` (Excess of Mass — 안정성 최대화 기준으로 군집 선택), `prediction_data=True` (소프트 멤버십 확률 계산을 위한 예측 데이터 저장). Python: `hdbscan.HDBSCAN(min_cluster_size=60, min_samples=10, cluster_selection_method='eom', prediction_data=True)`.
+
 *vs K-means*: $k$ 사전 결정 + 구형 군집 가정 + 노이즈 처리 못함 — 본 연구의 *4개 군집·비구형·소수 outlier* 환경에 부적합.
 *vs DBSCAN*: 단일 밀도 임계값 $epsilon$ — 군집 밀도 차이 크면 실패. HDBSCAN은 모든 $epsilon$ 스펙트럼 통합 분석.
 *vs GMM*: 가우스 분포 가정 — 비선형 형태 군집 부적합.
@@ -1209,6 +1229,8 @@ $ "Mapper"(X, f, cal(U), "cluster") = "Nerve"({"cluster"(f^(-1)(U_i))}) $
 
 결과는 위상 불변량(connected components 수, loops 수, $beta_1$)으로 요약.
 
+*하이퍼파라미터*: 본 연구에서 사용한 Mapper 파라미터는 다음과 같다 — `n_cubes=18` (cover의 분할 수; 클수록 해상도 높음), `perc_overlap=0.5` (인접 cube 간 50% 겹침; 연속성 보장), 내부 군집: `DBSCAN(eps=0.45, min_samples=4)` (각 cube 내부 군집화에 사용), 필터 함수: PCA 첫 두 성분. Python (kmapper): `km.Cover(n_cubes=18, perc_overlap=0.5)` + `DBSCAN(eps=0.45, min_samples=4)`.
+
 *vs UMAP+HDBSCAN*: 임베딩+군집은 *위치* 정보, Mapper는 *연결성* 정보. 두 군집 사이 다리(bridge) 점 존재 여부 진단 — 연속체에서 임의 절단인지 진짜 분리인지.
 *vs DBSCAN*: 군집 식별만 수행, 연결성 못 봄.
 
@@ -1217,6 +1239,8 @@ $ "Mapper"(X, f, cal(U), "cluster") = "Nerve"({"cluster"(f^(-1)(U_i))}) $
 *수식 골자*: 점집합 $P$에 대해 반지름 $epsilon$의 *Vietoris-Rips complex* $V_epsilon(P)$ 구성 — 거리 $d(x,y) <= epsilon$ 인 점쌍을 엣지로, 모든 쌍이 가까운 $k+1$개 점을 $k$-simplex로 추가. $epsilon$을 0부터 키우면 *filtration* ${V_epsilon(P)}_(epsilon >= 0)$. 각 차원 $d$의 호몰로지 군 $H_d(V_epsilon)$를 따라가면 *birth-death 페어* $(b, d)$가 출현 — hole이 $epsilon = b$에 태어나 $epsilon = d$에 사라지는 것을 기록. 이 페어 집합이 *persistence diagram*이며 *persistence* $d - b$가 클수록 robust한 위상 특성.
 
 본 연구는 차원 0(연결성분 $beta_0$)·차원 1(loop $beta_1$) 분석. *부트스트랩 50회*로 $beta_0 = 30$, $beta_1 = 15$, max persistence 95% CI 산출.
+
+*하이퍼파라미터*: 본 연구에서 사용한 Persistent Homology 파라미터는 다음과 같다 — complex 유형: Vietoris-Rips, `thresh=8.0` (filtration 최대 반지름; 이 값을 초과하는 엣지는 추가하지 않음), `maxdim=1` (차원 0과 1의 호몰로지 계산), 부트스트랩: 50회 반복, 각 회 subsample $n = 200$, `random_state=42` (재현 가능 시드). Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
 
 *vs Mapper*: Mapper는 단일 스케일 graph, PH는 *모든 스케일 통합 분석*. PH 더 엄밀, Mapper 더 직관적.
 *vs silhouette/Calinski-Harabasz*: 후자는 스케일 의존적 단일 점수; PH는 *스케일-불변* 위상 특성.
@@ -1257,6 +1281,18 @@ $hat(tau)_("RDD") = hat(alpha)_+ - hat(alpha)_-$. 본 연구는 *비율형 점�
 *vs DID*: 통제군 필요 — 한국 단일 정부에 외부 통제군 없음. RDD는 *자체 시간을 통제군으로* 사용.
 *vs IV*: 강한 도구변수 부재; cutoff 자체가 외생적이라 IV 불요.
 *vs month-of-year FE*: month FE는 *평균 점프*만 추정; RDD는 *cutoff 직근의 한계 효과* — 식별이 더 엄밀.
+
+=== C.10.1 RDD 식별 가정의 정당화 — 조작 불가성
+
+H2의 회귀불연속 설계가 인과 식별을 위해 요구하는 핵심 가정은 *cutoff 주변 조작 불가성*(no manipulation around cutoff)이다. 본 연구는 다음 세 근거로 이를 정당화한다.
+
+*1. 행정적 외생성*: 회계연도 12월 1일은 국가재정법(2007)에 의해 *모든 부처에 동시 적용*되는 외생적 결정 시점이다. 개별 부처·기관·활동이 이 cutoff 시점을 임의로 옮길 수 없다.
+
+*2. 활동 단위 조작 불가성*: 본 연구의 분석 단위는 활동(ACTV\_NM, $n=1{,}557$)이며, 활동 단위 담당자가 회계연도 마감 자체를 조작할 행정 권한이 없다. cutoff 주변 빈도의 비대칭은 단순한 회계 기간 정의의 결과이지 agent 행동의 산물이 아니다.
+
+*3. 자기 보고 편향 부재*: McCrary #cite(<mccrary2008>) density test의 본질은 agent가 *cutoff에 가까이 가도록 행동을 조정*하는지(예: 자기 보고 데이터에서의 클러스터링)다. 본 연구의 집행 데이터는 자기 보고가 아닌 회계 시스템 자동 기록이므로 이 우려가 약하다. 또한 회계연도 마감 시점을 agent가 사전에 인지하더라도 — 이는 정상이지만 — cutoff 자체의 조작과는 다르다.
+
+이 정성적 정당화는 공식적 McCrary 검정을 대체하는 것이 아니라, 한국 재정 데이터의 *자료 생성 과정*이 RDD 식별 가정을 자연스럽게 충족함을 명시하는 것이다. 공식 density test는 후속 연구에서 일별·주별 단위 데이터(권고 4)가 확보될 때 추가될 수 있다.
 
 == C.11 매개분석 — Baron-Kenny + Sobel + Bootstrap
 
@@ -1520,11 +1556,11 @@ agent의 시점 조정 한계비용 증가 → 균형 노력 감소. 정책 권�
 $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
 
 - *인건비형 (theta_0)*: $c_t = infinity$ for $e_t > 0$ — 시점 조정 자체 불가 ($e_t^* = 0$)
-- *자산취득형 (theta_1)*: $c_t (e_t)$가 12월 1일 직전 *step function* — $e_t in [0, e_t^max]$ 구간에서 $c_t = epsilon$ (작음), $e_t > e_t^max$에서 발산. 균형: 가능한 최대치까지 일거에 점프 → *이산적 RDD spike*
+- *자산취득형 (theta_1)*: $c_t (e_t)$가 *낮은 한계비용 구간*을 가지는 형태 — $e_t in [0, e_t^max]$ 구간에서 $c_t = epsilon$ (작음), $e_t > e_t^max$에서 발산. 균형: 가능한 최대치까지 일거에 점프 → *이산적 RDD spike*. *주의*: 이 낮은 한계비용 구간의 구체적 형태(step function에 가까운가, 연속 감소인가)는 *모형 가정이 아니라 데이터에서 추정되는 사항*이다. §6.3 RDD 결과(자산취득형 3.42×)가 이 형태의 직접 증거를 제공하며, 본 모형은 이를 *입력 특성*으로 수용해 다른 원형과의 비용함수 형태 차이를 비교한다.
 - *출연금형 (theta_2)*: $c_t (e_t)$가 *분산형* — 위탁기관별 정산 시점 다양해 한계 비용이 *연중 분산*. 균형: 연 사이클 전반에 걸친 점진 누적 → *spectral 진폭 우세*
 - *정상사업 (theta_3)*: 평균적인 $c_t$ — 두 패턴의 혼합
 
-본 specialization은 본문 H2, H3 가설의 모형 기반이다.
+본 specialization은 본문 H2, H3 가설의 모형 기반이다. 자산취득형의 비용함수 *형태*는 인프라·자산 구매 사업의 실무적 특성(연간 일괄 계약 처리 가능성)에 기인한다고 추론할 수 있으며, 구체적 형태는 데이터에서 추정된 것이지 선험적 가정이 아니다.
 
 == F.4 한계와 후속 연구
 

@@ -13,7 +13,7 @@
 
 ## 📄 논문
 
-- **[paper/main_v2.typ](paper/main_v2.typ)** — *active draft*. "한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석" (~1435 lines, 54p PDF). 형식 P-A 모형에서 H1~H6 6 가설을 직접 도출하고 본 분석으로 검증.
+- **[paper/main_v2.typ](paper/main_v2.typ)** — *active draft*. "한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석" (~1435 lines, 54p PDF). 형식 P-A 모형에서 H1~H6 6 가설을 직접 도출하고 본 분석으로 검증. **6개 정책 권고는 모형의 비교정역학 부분미분(시점 가중 $w_t$, 품질 가중 $w_q$, 시점 비용 곡률 $c_{tt}$)에 1:1 대응**하여 임의 나열이 아닌 모형 레버에서 직접 도출된다. 11개 분석 도구는 *상호 보완적*으로 활용 — 만장일치 합의가 아닌 *서로 다른 측면 비추기*가 원칙이며, 도구 간 발산(예: H5 FFT vs STL)은 자기 비판의 출발점.
 - [paper/main.typ](paper/main.typ) — v1 (보존)
 - 컴파일: `typst compile --font-path paper/fonts paper/main_v2.typ paper/main_v2.pdf` (Noto Serif KR 본문 + Pretendard 헤딩, `paper/fonts/` 정적 OTF 7개 사전 배치)
 - 🌐 인터랙티브 시각화: <https://bluethestyle.github.io/goodhart-korea/> (archetype Sankey / cluster×outcome heatmap / ministry network / RDD scatter / NeuralProphet components)

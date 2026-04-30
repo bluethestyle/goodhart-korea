@@ -157,6 +157,7 @@ for key, df in ts_data.items():
         epochs=50,
         learning_rate=0.1,
         batch_size=None,
+        random_seed=42,
         trainer_config={
             'enable_progress_bar': False,
             'enable_model_summary': False,

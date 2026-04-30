@@ -133,7 +133,7 @@ for fld, oc in OUTCOME_MAP.items():
     if len(sub) < 5: continue
     sub['d_amp'] = sub['amp_12m_norm'].diff()
     sub['d_oc']  = sub[oc].diff()
-    sub['d_cpi'] = sub['cpi_pct'].diff()  # CPI 변화의 변화 (가속도)
+    # sub['d_cpi'] = sub['cpi_pct'].diff()  # CPI 가속도 — 계획됐으나 후속 회귀에서 미사용 (cpi_pct 수준값만 사용)
     sub = sub.dropna()
 
     if len(sub) < 4: continue

@@ -390,7 +390,7 @@
       [*Causal*], [H2 (Capital-Acquisition RDD),\ H3 (Grant-Transfer Cycle)], [Agent directly manipulates the *measurable dimension* $e_t$ --- a December spike or annual-cycle accumulation not required by the program's intrinsic nature],
       [*Adversarial*], [H6\ (Temporal Intensification +554\%)], [Agent *learns* and progressively increases gaming intensity --- adaptive exploitation of evaluation-system weaknesses (directly linked to Performative Prediction)],
       [*Regressional*], [H5\ (Social Welfare Fortuitous)], [Agent's $e_t$ effort is *coincidentally* positively correlated with social outcome $Y$ --- measurement noise manifests as field-level alignment],
-      [*Extremal*], [H4 (Mediation Heterogeneity)], [Even when the average mediation effect is near zero, mediation is *strong in extreme archetypes (grant-transfer/capital-acquisition)*. The limits of average measurement conceal multiple gaming mechanisms],
+      [*Extremal*], [H4 (Mediation Heterogeneity)], [Pooled average non-significant ($p=0.481$), but *Agriculture-Forestry-Fisheries* shows strong negative mediation (Sobel z=$-2.897$, $p=0.004$) as the sole statistically significant field. Sample-size constraints (Social Welfare n=6, Environment n=4) impede detection in other fields],
     ),
     caption: [Mapping of this paper's six hypotheses onto the four-type Goodhart taxonomy of #cite(<manheim2018>, form: "prose")],
   )
@@ -696,7 +696,7 @@ This section reports key figures only; spectral decomposition procedures and fig
 
 All three measures consistently show that *grant-transfer type is most strongly locked to the annual Goodhart's game cycle*. This validates the archetype-level difference in temporal structure: *capital-acquisition type is strongest in RDD discontinuity (discrete spike), while grant-transfer type is strongest in cycle amplitude (continuous intensity)*.
 
-*Model Validation (H3)*: All three measures support the predictions of the P-A model. The distributed $c(e_t)$ → pattern of the equilibrium $e_t^*$ accumulating across the entire annual cycle is dominantly confirmed in PSD/coherence/wavelet. This result, contrasting with the step-function $c(e_t)$ of capital-acquisition type (marginal cost drops sharply after December 1), supports H3.
+*Model Validation (H3)*: All three measures support the predictions of the P-A model. The distributed $c(e_t)$ → pattern of the equilibrium $e_t^*$ accumulating across the entire annual cycle is dominantly confirmed in PSD/coherence/wavelet. This result, contrasting with the low marginal-cost pattern of capital-acquisition type (observed in data: §6.3), supports H3.
 
 == Methodological Complementarity: FFT/STL/NeuralProphet Measures
 
@@ -738,17 +738,25 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Method*: #cite(<baron1986>, form: "prose") four-step procedure + Sobel z-test + Bootstrap 95\% confidence interval (Appendix C.11; for mediation analysis methodology in general, see @hayes2017). Activity-level: $X$ = grant-transfer share, $M$ = `amp_12m_norm`, $Y$ = field-level outcome variable.
 
-  *Results — pooled mediation effect non-significant*: The Sobel z-test for the average mediation effect $a b$ across 14 fields yielded *p* = 0.481, non-significant. That is, at the *system average*, the mediation pathway is weak.
+  *Results — pooled mediation effect non-significant*: The Sobel z-test for the average mediation effect $a b$ across 14 fields yielded *p* = 0.481, non-significant — failure to reject the null hypothesis. *Important*: pooled non-significance is not itself direct evidence of heterogeneity. It means the null hypothesis (no mediation) cannot be rejected; it does not support the alternative hypothesis (heterogeneity exists).
 
-  *Model Validation (H4) — pooled non-significance as direct evidence of archetype heterogeneity*: The P-A model predicts that *the cost function $c(\cdot; theta)$ differs by project archetype $theta$* (§5.2 results). It is entirely natural for the average mediation effect to be attenuated by *the cancellation of heterogeneous mediation strengths across archetypes* in the pooled estimate. Thus *p* = 0.481 is not a contradiction but a *direct validation of the model*.
+  *Model Validation (H4) — field-level decomposition is the real evidence of heterogeneity*: The P-A model predicts that *the cost function $c(\cdot; theta)$ differs by project archetype $theta$*. Evidence for heterogeneity comes from *direct field-level decomposition*, not from the pooled statistic.
 
-  *Field-level mediation decomposition*: Strong mediation effects emerge in Social Welfare ($a b > 0$, automatic redistribution channel) and Environment ($a b < 0$, direct negative channel). Both fields are *alignment fields where $(partial Y) / (partial e_t) != 0$* (consistent with the H5 fortuitous alignment proposition). The remaining 12 fields show small mediation effects that dilute the pooled estimate.
+  *Field-level mediation decomposition* (source: `data/results/H23_mediation_estimates.csv`):
+  - *Agriculture-Forestry-Fisheries*: Sobel z = $-2.897$, $p = 0.004$ — *the only statistically significant* strong negative mediation among 14 fields. The pathway grant-transfer share → 12-month amplitude → agricultural income outcome is robustly identified.
+  - *Social Welfare*: mediation_ratio = 57% (relatively favorable), but Sobel z = $+0.23$, $p = 0.82$ — statistically non-significant due to sample-size constraint ($n = 6$).
+  - *Environment*: insufficient data ($n = 4$); Sobel estimation is impossible (NaN). *Claims of strong mediation in Environment are not supported by the data*.
+  - *Remaining 11 fields*: Sobel $|z| < 1.5$; $a b$ estimates near zero.
 
-  *Interpretation*: Model hypothesis H4 (archetype heterogeneity in mediation pathways) is validated. This implies that policy interventions *must be differentiated by archetype* — applying a uniform evaluation system to all projects dilutes the average efficacy of the intervention.
+  *Manheim-Garrabrant Extremal pattern and its limits*: The distribution of pooled non-significance combined with strong emergence in a single field is the signature of the Extremal type in #cite(<manheim2018>, form: "prose"). However, in the present sample this rests on a *single case (Agriculture-Forestry-Fisheries)*, so it is more honest to report "strong mediation in Agriculture-Forestry-Fisheries + pooled average non-significant" rather than asserting an Extremal pattern as a general proposition.
+
+  *Interpretation*: The implication that policy interventions *must be differentiated by archetype* is maintained. However, the basis lies in the field-level decomposition results (Agriculture-Forestry-Fisheries as the sole significant case) and the sample-size constraints (Social Welfare n=6, Environment n=4), not in the pooled p-value. Extending field-level time series (> 10 years) in future research is the key task for securing statistical power.
 
 == H5: Social Welfare Automatic Redistribution (Fortuitous Alignment)
 
   *Counter-intuitive finding*: The Goodhart's game is typically understood as a negative measurement distortion, but this study finds a case in which it is associated with *positive outcomes* in the Social Welfare field. A stronger December concentration of expenditure in Social Welfare normal projects correlates with a *decrease in the net-wealth Gini coefficient (reduced inequality)*. This is interpreted as a mechanism in which social welfare benefits and subsidies are disbursed en masse just before the fiscal year-end closes, automatically redistributing resources to lower-income populations.
+
+  *[Data version note]* This study uses v3 (`H6_permutation_pvals_v3.csv`) as the permutation test baseline, selected after a five-stage outcome variable validation. The Education field is mapped to `imd_edu_rank` (v3 removes `private_edu_hours` present in v1 and adds `defense_op_margin` for the Defense field, yielding 15 rows total).
 
   The first-difference correlation for the Social Welfare field was *r* = −0.762 (*p* = 0.035, permutation 1,000 iterations), the only statistically significant result among all 14 fields (@fig-h6). In the lag/lead first-difference correlation (k = −2..+2), the contemporaneous correlation was strongest, supporting the immediate automatic redistribution mechanism; the direction was consistent using the alternative `amp_cv` indicator as well (@fig-h6-lag). After CPI exogenous control, the signal *strengthened* to *r* = −0.86 (*p* = 0.007), rejecting the natural business-cycle hypothesis (@fig-h10).
 
@@ -922,6 +930,9 @@ All three measures consistently show that *grant-transfer type is most strongly 
 + *Sample size constraint*: After differencing, field-level *N* = 8–12 — even with permutation and bootstrap supplementation, point-estimate confidence intervals remain wide.
 + *Missing defense and reserve fund data*: Fields without measurable outcome variables were excluded (exclusion bias). Future research should exploit any declassifiable partial data.
 + *Absence of weekly/daily granularity*: Monthly expenditure data preclude direct observation of within-December week-level jumps. Part of the gap between the U.S. 5× and Korea's 1.91× figures may reflect data granularity rather than behavioral differences.
++ *Multiple comparison correction (honest disclosure)*: The H5 Social Welfare *fortuitous alignment* finding (first-differenced correlation $r = -0.762$, $p = 0.035$) is one result from a simultaneous permutation test across 14 fields. If treated as a *multiple comparison across 14 hypotheses*, the Bonferroni-corrected threshold is $0.05 / 14 = 0.0036$, and the Social Welfare $p = 0.035$ does not survive this correction.
+
+  The study's conclusions are reinforced by the following: (a) *sign consistency* — the negative correlation direction holds across all 14 fields (strengthened after CPI control to $r = -0.86$), (b) *prior hypothesis* — the social welfare automatic-distribution mechanism was predicted *a priori* to produce *fortuitous alignment*, (c) *theoretical consistency* — the model in §3 explicitly acknowledges field-level heterogeneity in the alignment function $alpha$ in advance. Strictly speaking, however, single-field statistical significance cannot be claimed after Bonferroni/FDR correction; this finding should be interpreted as *hypothesis-level evidence pending replication*. Future research should verify whether the same pattern replicates in social welfare automatic-distribution contexts in other countries.
 
 == Future Research Directions
 
@@ -1117,6 +1128,8 @@ Numerator: amplitude of the annual-cycle component; denominator: the *L1-sum* of
 $ "seasonal_strength" = max(0, 1 - "Var"(R_t) / "Var"(D_t)) $
 @hyndman2021.
 
+*Hyperparameters*: The STL parameters used in this study are as follows — `period=12` (annual cycle of the monthly time series), `robust=True` (activates outer-loop robustness weights to limit outlier influence), `seasonal_smoother_deg=1` (default `s_window` of statsmodels). Reproducible Python call: `STL(series, period=12, robust=True).fit()`.
+
 *Limitations of STL*: (a) Sensitivity to LOESS bandwidth (span) selection — a narrow span absorbs jumps into the trend; a wide span underestimates the trend; (b) additive model only; (c) distorted trend estimates immediately before and after change-points. NeuralProphet's explicit change-point modeling provides supplementary correction.
 
 == C.3 NeuralProphet — Six-Component Model, AR-Net, Differences from Prophet, and Hyperparameters
@@ -1141,6 +1154,7 @@ $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
 - `n_lags=0` → $A(t) equiv 0$ (cross-check comparability)
 - `n_future_regressors=0`, `n_lagged_regressors=0`, `events=None`
 - `n_changepoints=2`, `yearly_seasonality=True (N=6)`, `weekly/daily=False`
+- `random_seed=42` (reproducibility)
 - Resulting fitted model: $y_t = T(t) + S(t) + epsilon_t$
 
 *Why disable AR?*: When AR is active, NP learns short-term autocorrelations and absorbs the *pure seasonal signal* that would otherwise appear in the residuals. It is disabled to ensure comparability across tools (the cross-check message being "different tools observe the same gaming"). However, enabling AR improves forecast accuracy and may be useful in future research.
@@ -1161,6 +1175,8 @@ $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
 $ "loss" = sum_(i j) [a_(i j) log (a_(i j)) / (b_(i j)) + (1 - a_(i j)) log (1 - a_(i j)) / (1 - b_(i j))] $
 Minimized via SGD. $a_(i j) = exp(-(d(x_i, x_j) - rho_i)\/sigma_i)$ (neighborhood probability based on $k$ nearest neighbors); $b_(i j) = (1 + a' ||y_i - y_j||^(2 b'))^(-1)$ (low-dimensional Student-t-like distribution).
 
+*Hyperparameters*: The UMAP parameters used in this study are as follows — `n_neighbors=30` (number of nearest neighbors for local structure preservation; larger values emphasize global structure), `min_dist=0.05` (minimum distance between points in low-dimensional space; smaller values increase cluster density), `metric='euclidean'` (distance metric in high-dimensional space), `n_components=2` (2-dimensional embedding), `random_state=42` (fixed seed for reproducibility). Python: `umap.UMAP(n_neighbors=30, min_dist=0.05, metric='euclidean', n_components=2, random_state=42)`.
+
 *vs PCA*: Linear projection destroys nonlinear manifolds (U-shaped, ring-shaped structures).
 *vs t-SNE*: Uses KL divergence — compresses *global distances* inaccurately. UMAP preserves global structure as well using fuzzy set theory (@mcinnes2018, §3).
 *vs Autoencoder*: Dependent on training data volume and architecture; UMAP is deterministic (`random_state=42`) and stable on small datasets.
@@ -1174,6 +1190,8 @@ $ d_("mreach")(x, y) = max(d_("core")(x), d_("core")(y), d(x,y)) $
 
 A *minimum spanning tree* (MST) is constructed using these as edge weights, and a *condensed cluster tree* is built by progressively cutting the tree as the weight threshold $epsilon$ increases. The cluster with the highest *stability* score is selected as the final solution.
 
+*Hyperparameters*: The HDBSCAN parameters used in this study are as follows — `min_cluster_size=60` (minimum cluster size; groups smaller than this are treated as noise), `min_samples=10` (minimum number of neighbors for core point determination; larger values yield more conservative clusters), `cluster_selection_method='eom'` (Excess of Mass — selects clusters that maximize stability), `prediction_data=True` (stores data for computing soft membership probabilities). Python: `hdbscan.HDBSCAN(min_cluster_size=60, min_samples=10, cluster_selection_method='eom', prediction_data=True)`.
+
 *vs K-means*: Requires pre-specifying $k$ + assumes spherical clusters + cannot handle noise — unsuitable for this study's environment of *4 clusters, non-spherical shapes, and a small number of outliers*.
 *vs DBSCAN*: Single density threshold $epsilon$ — fails when cluster densities differ markedly. HDBSCAN integrates analysis across the full $epsilon$ spectrum.
 *vs GMM*: Gaussian distribution assumption — unsuitable for nonlinearly shaped clusters.
@@ -1185,6 +1203,8 @@ $ "Mapper"(X, f, cal(U), "cluster") = "Nerve"({"cluster"(f^(-1)(U_i))}) $
 
 The result is summarized as topological invariants (number of connected components, number of loops, $beta_1$).
 
+*Hyperparameters*: The Mapper parameters used in this study are as follows — `n_cubes=18` (number of cover intervals; higher values yield finer resolution), `perc_overlap=0.5` (50% overlap between adjacent cubes; ensures continuity), internal clustering: `DBSCAN(eps=0.45, min_samples=4)` (used to cluster points within each cube), filter function: first two PCA components. Python (kmapper): `km.Cover(n_cubes=18, perc_overlap=0.5)` + `DBSCAN(eps=0.45, min_samples=4)`.
+
 *vs UMAP+HDBSCAN*: Embedding+clustering provides *position* information; Mapper provides *connectivity* information. Useful for diagnosing whether bridge points exist between two clusters — distinguishing an arbitrary cut in a continuum from a genuine separation.
 *vs DBSCAN*: Identifies clusters only; cannot capture connectivity structure.
 
@@ -1193,6 +1213,8 @@ The result is summarized as topological invariants (number of connected componen
 *Mathematical outline*: For a point set $P$, construct the *Vietoris-Rips complex* $V_epsilon(P)$ at radius $epsilon$ — add pairs of points with distance $d(x,y) <= epsilon$ as edges, and $k+1$ mutually close points as $k$-simplices. Increasing $epsilon$ from 0 yields the *filtration* ${V_epsilon(P)}_(epsilon >= 0)$. Tracking the homology groups $H_d(V_epsilon)$ in each dimension $d$ reveals *birth-death pairs* $(b, d)$ — recording when a hole is born at $epsilon = b$ and dies at $epsilon = d$. The set of such pairs constitutes the *persistence diagram*; larger *persistence* $d - b$ indicates a more robust topological feature.
 
 This study analyzes dimension 0 (connected components $beta_0$) and dimension 1 (loops $beta_1$). *50 bootstrap resamples* yield $beta_0 = 30$, $beta_1 = 15$, and 95% CI for max persistence.
+
+*Hyperparameters*: The Persistent Homology parameters used in this study are as follows — complex type: Vietoris-Rips, `thresh=8.0` (maximum filtration radius; edges beyond this distance are not added), `maxdim=1` (computes homology in dimensions 0 and 1), bootstrap: 50 iterations, each with subsample $n = 200$, `random_state=42` (fixed seed for reproducibility). Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
 
 *vs Mapper*: Mapper operates at a single scale; PH integrates analysis across *all scales*. PH is more rigorous; Mapper is more intuitive.
 *vs silhouette/Calinski-Harabasz*: The latter are scale-dependent single scores; PH captures *scale-invariant* topological features.
@@ -1233,6 +1255,18 @@ $hat(tau)_("RDD") = hat(alpha)_+ - hat(alpha)_-$. This study reports results as 
 *vs DID*: Requires a control group — no external control group exists in Korea's unitary government. RDD uses *its own time series as the control*.
 *vs IV*: No strong instrument variable is available; the cutoff itself is exogenous, making IV unnecessary.
 *vs month-of-year FE*: Month FE estimates only the *average jump*; RDD estimates the *marginal effect immediately around the cutoff* — identification is more rigorous.
+
+=== C.10.1 Justification of the RDD No-Manipulation Assumption
+
+The central assumption required for causal identification in H2's regression discontinuity design is *no manipulation around the cutoff* #cite(<mccrary2008>). This study justifies this assumption on three grounds.
+
+*1. Administrative exogeneity*: The December 1 fiscal year boundary is an exogenously determined point that applies *simultaneously to all ministries* under the National Fiscal Act (2007). No individual ministry, agency, or activity can unilaterally shift this cutoff.
+
+*2. Activity-level non-manipulability*: The unit of analysis is the project activity (ACTV_NM, $n = 1{,}557$). Activity-level staff do not possess the administrative authority to manipulate the fiscal year closing date itself. Asymmetries in activity frequency around the cutoff reflect the structure of the accounting period definition, not the product of agent behavior.
+
+*3. Absence of self-reporting bias*: The essence of the McCrary #cite(<mccrary2008>) density test is whether agents *adjust their behavior to cluster near the cutoff* (as commonly observed in self-reported data). The execution data in this study are automatically recorded by the government accounting system rather than self-reported, greatly reducing this concern. Moreover, although agents know the fiscal year closing date in advance — which is normal — this foreknowledge is distinct from actual manipulation of the cutoff.
+
+This qualitative justification is not a substitute for a formal McCrary test; rather, it documents that the *data-generating process* of Korean fiscal data naturally satisfies the RDD identification assumption. A formal density test can be added in future research when daily or weekly granularity data (Recommendation 4) become available.
 
 == C.11 Mediation Analysis — Baron-Kenny + Sobel + Bootstrap
 
@@ -1497,11 +1531,11 @@ An increase in the agent's marginal cost of timing adjustment leads to a decreas
 Specializing $c(e_t, e_q; theta)$ for each archetype $theta$:
 
 - *Labor-cost (theta_0)*: $c_t = infinity$ for $e_t > 0$ — timing adjustment is fundamentally infeasible ($e_t^* = 0$)
-- *Capital-acquisition (theta_1)*: $c_t (e_t)$ is a *step function* immediately before December 1 — $c_t = epsilon$ (small) for $e_t in [0, e_t^max]$, diverges for $e_t > e_t^max$. Equilibrium: a sudden jump to the maximum feasible level → *discrete RDD spike*
+- *Capital-acquisition (theta_1)*: $c_t (e_t)$ has a *low marginal-cost region* immediately before December 1 — $c_t = epsilon$ (small) for $e_t in [0, e_t^max]$, diverges for $e_t > e_t^max$. Equilibrium: a sudden jump to the maximum feasible level → *discrete RDD spike*. *Note*: whether this low marginal-cost region takes a step-function form or a continuous decline is *estimated from data, not assumed*. The RDD jump result in §6.3 (capital-acquisition 3.42×) constitutes the direct evidence for this pattern; the model accepts it as an *input characteristic* and compares cost-function shapes across archetypes.
 - *Grant-transfer (theta_2)*: $c_t (e_t)$ is *distributed* — marginal cost is *spread throughout the year* because settlement timing varies across commissioned institutions. Equilibrium: gradual accumulation throughout the annual cycle → *spectral amplitude dominance*
 - *Normal (theta_3)*: Average $c_t$ — a mixture of the two patterns
 
-This specialization is the model basis for Hypotheses H2 and H3 in the main text.
+This specialization is the model basis for Hypotheses H2 and H3 in the main text. The *shape* of the capital-acquisition cost function is attributed to the practical characteristics of infrastructure and asset-purchase projects (the possibility of annual bulk contract processing); the specific shape is estimated from data, not imposed as an a priori assumption.
 
 == F.4 Limitations and Future Research
 

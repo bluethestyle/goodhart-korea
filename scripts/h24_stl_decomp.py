@@ -168,6 +168,7 @@ for fld in FIELDS:
     ts_series = ts_series.fillna(ts_series.mean())
 
     try:
+        # s_window는 statsmodels 기본값 사용 (period+1=13); 명시하려면 s_window=13 추가
         stl_res = STL(ts_series, period=12, robust=True).fit()
     except Exception as e:
         print(f'  [STL ERROR] {fld}: {e}')

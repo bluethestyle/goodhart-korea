@@ -119,6 +119,8 @@ EITM_NM (편성세목)          국내여비/일반수용비/자산취득비/...
 
 ## 4. 이론적 토대 — 굿하트 법칙
 
+> **핵심 framing**: 본 연구의 출발점은 12월 예산 몰아쓰기가 *agent의 비합리성*이 아니라 *합리적 행위자의 균형 반응*이라는 인식이다. 측정 평가가 시점 차원에 가중되면, 합리적 부처·기관은 시점 차원으로 자원을 쏠리게 한다. 본 paper §3의 Principal-Agent 모형은 이 균형 명제를 형식적으로 도출한다.
+
 ### 4.1 학술적 정식화
 
 **Goodhart (1975)**: "Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes."

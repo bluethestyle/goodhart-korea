@@ -69,6 +69,7 @@ for fld in pivot_fld.columns:
     series = pivot_fld[fld]
     if (series > 0).sum() < 24: continue
     try:
+        # s_window는 statsmodels 기본값 사용 (period+1=13); 명시하려면 s_window=13 추가
         stl = STL(series.values, period=12, robust=True).fit()
         stl_results[fld] = {
             'trend': stl.trend, 'seasonal': stl.seasonal, 'resid': stl.resid,

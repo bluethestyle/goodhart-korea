@@ -84,6 +84,8 @@
 
 [E9] **Athey, S. & Imbens, G. W.** (2019). "Machine Learning Methods That Economists Should Know About." *Annual Review of Economics*, 11, 685-725. — 경제학자를 위한 ML 방법론 가이드.
 
+[E10] **McCrary, J.** (2008). "Manipulation of the Running Variable in the Regression Discontinuity Design: A Density Test." *Journal of Econometrics*, 142(2), 698-714. — RDD 조작 검정 (본 연구: 한국 회계 시스템 자동 기록이므로 self-report 편향 낮음; 후속 일별 데이터 확보 시 공식 검정 추가 예정).
+
 ---
 
 ## VI. 토폴로지 데이터 분석 (TDA) ★

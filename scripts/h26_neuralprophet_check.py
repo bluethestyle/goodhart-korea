@@ -262,6 +262,7 @@ for ki, key in enumerate(valid_keys):
                 epochs=EPOCHS,
                 learning_rate=LR,
                 batch_size=None,
+                random_seed=42,
                 trainer_config={'enable_progress_bar': False,
                                 'enable_model_summary': False,
                                 'logger': False,

@@ -59,7 +59,7 @@
 
 ![H8 panel](../data/figs/h8_v3/H8_within_field_panel_v3.png)
 
-분야 FE ΔR² = 0.000, +원형×Δamp ΔR² = +0.024
+분야 FE ΔR² = 0.000, +원형×Δamp ΔR² = +0.025
 
 ---
 

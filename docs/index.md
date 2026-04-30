@@ -62,6 +62,8 @@
 === "방법론 트라이앵귤레이션"
     FFT + STL + **NeuralProphet** (H26)
 
+    *만장일치 합의가 아닌 상호 보완* — 도구 간 발산은 자기 비판의 출발점 (예: H5 FFT vs STL)
+
     14분야 outcome 상관 세 방법론 cross-check. STL trend 한계 (사회복지 `r=+0.003`) 자기 비판 + NeuralProphet 신경망 분해로 보완.
 
 ---
