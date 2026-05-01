@@ -20,12 +20,12 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # A4 본문 폭(160mm ≈ 6.3 inch) 1:1 매핑 가이드라인
 plt.rcParams.update({
-    'font.size': 11,
-    'axes.titlesize': 12,
-    'axes.labelsize': 11,
-    'xtick.labelsize': 10,
-    'ytick.labelsize': 10,
-    'legend.fontsize': 10,
+    'font.size': 15,
+    'axes.titlesize': 17,
+    'axes.labelsize': 15,
+    'xtick.labelsize': 13,
+    'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'figure.titlesize': 13,
     'lines.linewidth': 1.4,
     'lines.markersize': 6,

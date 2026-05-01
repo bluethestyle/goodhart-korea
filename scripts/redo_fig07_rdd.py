@@ -18,9 +18,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 11, 'axes.titlesize': 12, 'axes.labelsize': 11,
-    'xtick.labelsize': 10, 'ytick.labelsize': 10,
-    'legend.fontsize': 10,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -115,7 +115,7 @@ sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
 sm.set_array([])
 cbar = fig.colorbar(sm, ax=ax, pad=0.015, shrink=0.85,
                     ticks=[2015, 2018, 2021, 2025])
-cbar.set_label('연도', fontsize=10)
+cbar.set_label('연도', fontsize=13)
 cbar.ax.tick_params(labelsize=9)
 plt.tight_layout()
 save_resize(fig, 'h22_rdd_monthly.png')

@@ -3,7 +3,7 @@
 
 #set document(
   title: "Goodhart's Game in Korean Central Government Spending: A Principal-Agent Equilibrium Analysis with Multi-Method Validation and Model-Based Policy Prescriptions",
-  author: ("Jeong Seongyu", "Sim Euncheol", "Kim Yeongchan"),
+  author: ("Jeong Seonkyu", "Sim Euncheol", "Kim Youngchan"),
 )
 
 #set page(
@@ -90,22 +90,23 @@
 // =============================================================
 #align(center)[
   #v(2em)
-  #text(size: 18pt, weight: "bold",
+  #text(size: 17pt, weight: "bold", tracking: -0.5pt, hyphenate: false,
         font: ("Arial", "New Computer Modern"))[
     Goodhart's Game in Korean Central Government Spending
   ]
   #v(0.6em)
-  #text(size: 12.5pt,
+  #text(size: 11pt, tracking: -0.7pt, hyphenate: false,
         font: ("Arial", "New Computer Modern"))[
     A Principal-Agent Equilibrium Analysis with Multi-Method Validation and Model-Based Policy Prescriptions
   ]
   #v(2.5em)
-  #text(size: 11pt)[Jeong Seongyu, Sim Euncheol, Kim Yeongchan]
+  #text(size: 11pt)[Jeong Seonkyu, Sim Euncheol, Kim Youngchan, Kim Jaeho]
   #v(0.35em)
   #text(size: 9pt, fill: rgb("#555"))[
-    Jeong Seongyu #h(0.5em) jsk320098\@gmail.com #h(1.5em)
+    Jeong Seonkyu #h(0.5em) jsk320098\@gmail.com #h(1.5em)
     Sim Euncheol #h(0.5em) simeunchul\@naver.com #h(1.5em)
-    Kim Yeongchan #h(0.5em) findurwind\@gmail.com
+    Kim Youngchan #h(0.5em) findurwind\@gmail.com #h(1.5em)
+    Kim Jaeho #h(0.5em) goldenline97\@gmail.com
   ]
   #linebreak()
   #v(0.3em)
@@ -151,7 +152,7 @@
 
   Korea's evaluation regime --- execution-rate audits, management assessments of government-affiliated institutions, and Board of Audit reviews --- creates a large measurability gap between the timing-adjustment weight $w_t$ (observable) and the quality weight $w_q$ (unobservable). Following #cite(<holmstrom1991>, form: "prose"), a rational agent's equilibrium response is to concentrate effort on the measurable dimension, yielding what the paper terms a Goodhart game: systematic near-year-end over-execution at the expense of project quality. The model maps onto all four Goodhart categories of Manheim and Garrabrant (2019).
 
-  Activity-level embeddings (UMAP + HDBSCAN) uncover four project archetypes --- personnel-cost, capital-acquisition, grant-transfer, and normal-operation --- with Mapper and Persistent Homology confirming topological stability (H1). Field labels add negligible explanatory power over gaming intensity ($Delta R^2 = 0.000$). Regression discontinuity at the December boundary shows capital-acquisition activities spike 3.42$times$ at fiscal year-end (H2); grant-transfer activities exhibit the strongest annual-cycle dominance in spectral and wavelet coherence analyses (H3). Social-welfare spending shows a fortuitous alignment effect from automatic-transfer mechanics ($r = -0.86$, strengthened after CPI controls; H5). Wavelet decomposition reveals that grant-transfer gaming intensity amplified by +554% in 12-month amplitude over the sample, extending #cite(<liebman2017>, form: "prose") qualitatively and dynamically to Korea (H6).
+  Activity-level embeddings (UMAP + HDBSCAN) uncover four project archetypes --- personnel-cost, capital-acquisition, grant-transfer, and normal-operation --- with Mapper and Persistent Homology confirming topological stability (H1). Field labels add negligible explanatory power over gaming intensity ($Delta R^2 = 0.000$). Regression discontinuity at the December boundary shows capital-acquisition activities spike 3.42$times$ at fiscal year-end vs the 1.91$times$ overall average (H2); grant-transfer activities exhibit the strongest annual-cycle dominance in spectral and wavelet coherence analyses (H3). Baron-Kenny + Sobel mediation analysis identifies a statistically significant indirect path from execution rate $arrow$ archetype $arrow$ farm income in the agriculture/forestry/fisheries sector ($z = -2.897$, $p = 0.004$; H4) --- a quantitative trace of Manheim-Garrabrant Type-3 Extremal Goodhart, where pooled-mean effects vanish but extreme sectors exhibit strong manifestation. Social-welfare spending shows a fortuitous alignment effect from automatic-transfer mechanics ($r = -0.86$, strengthened after CPI controls; H5). The H5 sign is further corroborated by Spearman/Kendall concordance measures and Leave-One-Out validation. Wavelet decomposition reveals that grant-transfer gaming intensity amplified by +554% in 12-month amplitude over the sample, extending #cite(<liebman2017>, form: "prose") qualitatively and dynamically to Korea (H6). Additional analysis reinterprets the +554% mechanism as a *cost-channel reduction combined with a COVID fiscal shock*, rather than a weight-channel increase.
 
   Six policy prescriptions follow directly from the model's comparative statics: multi-year appropriations, revised indicators for affiliated institutions, staggered settlement deadlines, data infrastructure, automated execution-pattern flagging, and time-weighted monitoring. Each maps one-to-one to a model lever. The analysis forthrightly acknowledges the fundamental limits imposed by Holmstrom--Milgrom impossibility.
 ]
@@ -198,11 +199,11 @@
 
   + *Contribution 1 --- Theoretical Model (§3)*: A Principal-Agent equilibrium analysis establishes *why* Goodhart's effect materializes in Korea. The agent's *rationality* --- not irrationality --- concentrates effort on timing adjustment in a measurability-gap environment. The model generates six falsifiable hypotheses (H1--H6).
 
-  + *Contribution 2 --- Redefining the Unit of Analysis (§6.1, H1)*: Field-level analysis, the standard unit in Korean administrative and fiscal studies, explains a *trivial* share of gaming-intensity variance ($Delta R^2 = 0.000$); the true unit is *project archetype*. This is demonstrated through multiple topological data analysis (TDA) methods.
+  + *Contribution 2 --- Redefining the Unit of Analysis (§6.1, H1)*: Field-level analysis, the standard unit in Korean administrative and fiscal studies, explains a *trivial* share of gaming-intensity variance ($Delta R^2 = 0.000$); the true unit is *project archetype*. This is demonstrated through multiple topological data analysis (TDA) methods. PH loop analysis additionally reveals internal sub-heterogeneity within Archetype 2 (grant-transfer), indicating the four-archetype classification is a starting point rather than a complete partition.
 
   + *Contribution 3 --- Counter-Intuitive Findings (§6.3--§6.7, H2/H3/H5)*: Gaming is not a uniform negative measurement distortion but a *field-heterogeneous and archetype-heterogeneous* phenomenon. The central findings are the capital-acquisition archetype's 3.42× RDD jump (H2), the grant-transfer archetype's cycle dominance (H3), and Social Welfare's automatic redistribution effect (H5) --- a fortuitous alignment, not a policy success.
 
-  + *Contribution 4 --- Temporal Intensification (§6.8, H6, new Wavelet result)*: Supplementing FFT (which assumes stationarity) with wavelet decomposition, this paper provides new evidence that *gaming intensity strengthens over time*. Grant-transfer 12-month cycle amplitude increased by *+554\%* from 2015--2017 to 2023--2025, with no corresponding change for the personnel-type archetype (control). Goodhart's effect in Korea is *a dynamic, ongoing phenomenon, not a fixed pattern*.
+  + *Contribution 4 --- Temporal Intensification (§6.8, H6, new Wavelet result)*: Supplementing FFT (which assumes stationarity) with wavelet decomposition, this paper provides new evidence that *gaming intensity strengthens over time*. Grant-transfer 12-month cycle amplitude increased by *+554\%* from 2015--2017 to 2023--2025 (with COVID-era qualifier: primarily a COVID-era fiscal-regime shock amplifying a pre-existing gradual trend, followed by an elevated plateau rather than return to baseline), with no corresponding change for the personnel-type archetype (control). Goodhart's effect in Korea is *a dynamic, ongoing phenomenon, not a fixed pattern*.
 
   + *Contribution 5 --- Model-Derived Policy Prescriptions (§7)*: Policy recommendations are derived *directly* from the model's comparative statics ($(partial e_t^*) / (partial w_t) > 0$, etc.) rather than listed ad hoc. Six prescriptions --- multi-year appropriations, revised performance indicators for quasi-governmental agencies, staggered settlement deadlines, data infrastructure, automated flagging, and time-weighted monitoring --- correspond one-to-one to model levers ($w_t, w_q$, $c_(t t)$). The analysis honestly acknowledges the fundamental limits of Holmstrom--Milgrom impossibility.
 
@@ -373,7 +374,7 @@
   + *H5 (Social Welfare Fortuitous Alignment)*: The *exceptional* field in which $(partial Y) / (partial e_t) > 0$. Fortuitous, not a policy justification. (Validated: §6.7)
   + *H6 (Temporal Intensification)*: Rising $w_t / w_q$ ratio over time → $e_t^*$ time-series intensification. (Validated: §6.8 --- wavelet +554%)
 
-  *Theoretical connection to Performative Prediction*: H6 constitutes a Korean fiscal-data instantiation of the Performative Prediction framework of #cite(<hardt2016strategic>, form: "prose") and #cite(<perdomo2020performative>, form: "prose") --- the proposition that *the moment an indicator is adopted as an evaluation instrument, the distribution that indicator measures itself changes*. The mechanism is *adaptive behavior*: agents learn the structure of the evaluation system and progressively strengthen gaming intensity over time. This theoretical connection supports the empirical interpretation of H6; detailed results are reported in §6.8.
+  *Theoretical connection to Performative Prediction*: H6 constitutes a Korean fiscal-data instantiation of the Performative Prediction framework of #cite(<hardt2016strategic>, form: "prose") and #cite(<perdomo2020performative>, form: "prose") --- the proposition that *the moment an indicator is adopted as an evaluation instrument, the distribution that indicator measures itself changes*. The mechanism is *adaptive behavior*: agents learn the structure of the evaluation system and progressively strengthen gaming intensity over time. As shown in the §6.8 period-split analysis, however, the +554% amplification observed in the Korean sample is a *composite pattern* in which a gradual pre-COVID adaptation was sharply amplified by COVID-era fiscal expansion, and is not reducible to a purely monotonic learning trajectory. The theoretical connection remains valid, but the empirical interpretation must be applied alongside this period-split qualifier (see §6.8 for details).
 
   The model *simultaneously predicts all six hypotheses*, each of which is validated through independent data analysis. This multi-method validation structure *reduces the risk of model overfitting*.
 
@@ -570,6 +571,9 @@
       [H5], [Social Welfare fortuitous alignment ($(partial Y) / (partial e_t) > 0$)], [§6.7],
       [H6], [Time-dynamic strengthening ($w_t / w_q$ ratio increasing over time)], [§6.8],
       [Methodology], [STL self-criticism + NeuralProphet/Wavelet arbitration], [§6.9],
+      [Extension A], [Time-Evolution TDA --- spatial × temporal topology dual framework], [§6.10],
+      [Extension B], [$w_t/w_q$ calibration --- mechanism reinterpretation], [§6.11],
+      [Extension C], [Macro-outcome supplement --- ALIO partial collection], [§6.12],
     ),
     caption: [P-A model hypotheses and validation mapping across results sections],
   )
@@ -613,12 +617,13 @@
   - *C2 grant-transfer* (n=154): chooyeon +2.89, Goodhart's game amplitude +0.88 — outsourced to public bodies and grant-receiving institutions → concentration in December
   - *C3 normal projects* (n=1,175): near-average values — baseline
 
-  *Topological stability verification*: To confirm that the four UMAP+HDBSCAN clusters are not algorithmic artifacts, two topological tools are applied in parallel.
+  *Structural stability and discovery*: To confirm that the four UMAP+HDBSCAN clusters are not algorithmic artifacts, two topological tools are applied in parallel. TDA serves three complementary roles: (a) validating the stability of HDBSCAN's four-archetype solution, (b) showing that Mapper's *manifold connectivity* perspective and HDBSCAN's *density cluster* perspective are complementary rather than contradictory, and (c) discovering internal sub-heterogeneity within Archetype 2 through PH loop analysis.
 
-  - The *Mapper graph* (@fig-mapper-amp, @fig-mapper-cluster) confirmed topological separation of clusters with 32 nodes / 38 edges / 10 components / 7 loops.
-  - *Persistent Homology* reported 30 robust components and 15 robust loops (@fig-ph-pd, @fig-ph-barcode); across 50 bootstrap iterations, the H1 max persistence 95% CI [0.48, 1.19] rules out chance in the topological structure (@fig-ph-bootstrap).
+  - The *Mapper graph* (@fig-mapper-amp, @fig-mapper-cluster) confirmed topological separation of clusters with 32 nodes / 38 edges / 10 components / 7 loops. *Mapper sensitivity sweep*: across all 12 combinations of cover overlap (0.3--0.7) x n_intervals (6--18), the component count is stable at 9--10 (IQR [10, 10]) --- a property of manifold structure, not a parameter artifact. *Interpreting 10 components vs. 4 archetypes*: Mapper measures manifold connectivity while HDBSCAN measures density clusters --- these are complementary perspectives on the same data structure.
+  - *Persistent Homology* reported 30 robust components and 15 robust loops (@fig-ph-pd, @fig-ph-barcode). *Robustness re-validation*: the original max persistence 95% CI [0.48, 1.19] may be an artifact of extreme-value bootstrapping. Applying Wasserstein-2 distance to the full persistence diagram yields observed bootstrap mean $W_2 = 0.885$ (95% CI [0.780, 1.055]) vs. feature-shuffled null mean $W_2 = 1.524$ (95% CI [1.323, 1.695]), with one-sided $p < 0.0001$ --- confirming the entire PH diagram structure is significantly distinct from the null. This constitutes a more robust full-diagram validation than the max persistence CI alone (@fig-ph-bootstrap).
+  - *PH loop interpretation*: Analysis of the top-5 robust loops reveals that 4 are concentrated within Archetype 2 (grant-transfer --- irregular/high-volatility expenditure activities), tracking *sub-archetype heterogeneity within Archetype 2*, while only Loop 3 (2-vertex) is a confirmed inter-archetype boundary saddle (4x enrichment, p=0.004). This suggests the 4-archetype classification is a starting point rather than a complete partition: Archetype 2 contains additional classifiable sub-structure. This does not weaken the H1 conclusion ('archetype is the genuine unit'), but explicitly flags scope for *post-archetype further analysis*.
 
-  All three tools (UMAP+HDBSCAN, Mapper, PH) consistently support the conclusion that *project type is a stronger unit of analysis than field*.
+  All three tools (UMAP+HDBSCAN, Mapper, PH) consistently support the conclusion that *project type is a stronger unit of analysis than field*, with Mapper and PH additionally revealing complementary aspects of manifold connectivity and topological structure.
 
 #figure(
   image("figures_en/h3_umap.png", width: 100%),
@@ -648,7 +653,7 @@
 
 #figure(
   image("figures_en/h9_bootstrap.png", width: 100%),
-  caption: [\[H1.b Validation\] Bootstrap PH 50 iterations (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ Sample stability verified against 5-year reference (median 0.65).],
+  caption: [\[H1.b Validation\] Bootstrap PH 50 iterations (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ Full-diagram Wasserstein-2 robustness: observed mean $W_2 = 0.885$ vs null $1.524$ ($p < 0.0001$); confirms entire PH structure is non-null.],
 ) <fig-ph-bootstrap>
 
 == H2: Capital-Acquisition Type Year-End RDD Jump
@@ -664,13 +669,34 @@
 
   The difference between the U.S. 5× and Korea's 1.9× in absolute magnitude is explained by *measurement unit granularity* (U.S. weekly vs. Korea monthly — the December first-week signal is dispersed across the full month). The *ordering* of RDD jumps by project type demonstrates that the use-it-or-lose-it mechanism of #cite(<liebman2017>, form: "prose") operates most strongly in *progress-billing and capital-acquisition projects*.
 
+  *Robustness to measurement unit granularity*: To test whether the gap between the #cite(<liebman2017>, form: "prose") U.S. benchmark (5.0×) and Korea's estimate is *purely a product of weekly vs. monthly measurement*, four hypothetical weekly granularity scenarios were computed.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto),
+      align: (left, center, left),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*Scenario*], [*Korea estimated ratio*], [*Description*],
+      [S1 Monthly baseline (observed)], [1.91× \[1.81, 2.02\]], [Actual observed value in this study],
+      [S2 Hypothetical weekly, uniform], [1.85×], [December signal spread equally across 4 weeks],
+      [S3 Mild front-load], [2.87×], [December first 7 days = 35% assumption],
+      [S4 Heavy spike], [4.10× \[3.88, 4.32\]], [December first 7 days = 50% assumption],
+      [Liebman U.S. benchmark], [5.0×], [Directly observed from weekly data],
+    ),
+    caption: [\[H2 Granularity Robustness\] Hypothetical weekly granularity scenarios --- even under the most aggressive assumption (S4), Korea's estimated ratio (4.10×) falls below the U.S. 5.0×.],
+  )
+
+  Even under the most aggressive front-load assumption (S4, December first 7 days = 50%), Korea's estimated ratio is 4.10× --- below the U.S. 5.0×. The gap between the two countries is not merely a granularity artifact; *structural institutional differences* (procurement type, degree of fiscal decentralization) are the substantive drivers.
+
+  *Quarterly execution-management traces — visualizing a multi-cutoff system*: @fig-rdd-monthly's 11-year average shows secondary jumps not only in December but also in March, June, and September. These reflect the Ministry of Economy and Finance's *quarterly execution-management system* (execution rates are reviewed each quarter); December's jump dominates because three deadlines stack — *quarter close + fiscal-year close + carry-over cutoff*. Far from weakening H2, these quarterly secondary jumps strengthen it: administratively arbitrary cutoffs are not one but *four*, and gaming pressure operates across the *full density of KPI deadlines* in a multi-cutoff system, as the figure makes directly visible. This contrasts Korea's *quarterly + annual hybrid* with the single fiscal-year cutoff analyzed by #cite(<liebman2017>, form: "prose"), serving as a concrete *instance* of the granularity paragraph's conclusion that "structural institutional differences are the substantive drivers." This study reports the December RDD as the primary diagnostic and leaves a multi-cutoff extension (RDDs at March/June/September) to future work.
+
   *RDD vs. spectral measures — mechanism differences by project archetype*: While RDD measures a *discrete jump* immediately after December 1, FFT/STL/NeuralProphet/Wavelet measure *annual cycle amplitude*. Capital-acquisition type shows a stronger RDD jump (3.42×), whereas grant-transfer type shows stronger cycle intensity (PSD 0.332, phase coherence 0.54, wavelet +554\%; see §6.4 for details). Both archetypes are *locked to the exogenous fiscal cycle*, but capital-acquisition manifests as a *single spike right after the progress deadline*, while grant-transfer manifests as *multiple distributed settlements following trustee institution schedules, accumulating in December*. This archetype-level difference in gaming mechanism is directly reflected in this study's policy recommendations (Recommendations 1 and 2).
 
   *Model Validation (H2)*: This finding directly demonstrates that *archetype-specific differences in the cost function $c(e_t, e_q; theta)$* in the P-A model manifest as *differences in the temporal structure of the equilibrium $e_t^*$*. For capital-acquisition type, $c(e_t)$ *drops sharply* immediately after December 1 — the arbitrary point at which both progress-billing and fiscal-year deadlines expire simultaneously — yielding the largest RDD jump (H2). Both equilibria reflect the *same FOC* $w_t = (partial c) / (partial e_t)$ of the model, expressing different temporal structures through *archetype-specific differences in the cost function*.
 
 #figure(
   image("figures_en/h22_rdd_monthly.png", width: 100%),
-  caption: [\[H2 Validation\] Monthly average daily expenditure per activity (2015–2025) — color indicates fiscal year (purple 2015 → yellow 2025);\ thick black line is the 11-year average. December discontinuity visible in the Nov–Dec region (red).],
+  caption: [\[H2 Validation\] Monthly average daily expenditure per activity (2015–2025) — color indicates fiscal year (purple 2015 → yellow 2025);\ thick black line is the 11-year average. December discontinuity visible in the Nov–Dec region (red);\ secondary jumps at March, June, and September reflect Korea's quarterly execution-management cycle.],
 ) <fig-rdd-monthly>
 
 #figure(
@@ -742,7 +768,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Model Validation (H4) — field-level decomposition is the real evidence of heterogeneity*: The P-A model predicts that *the cost function $c(\cdot; theta)$ differs by project archetype $theta$*. Evidence for heterogeneity comes from *direct field-level decomposition*, not from the pooled statistic.
 
-  *Field-level mediation decomposition* (source: `data/results/H23_mediation_estimates.csv`):
+  *Field-level mediation decomposition*:
   - *Agriculture-Forestry-Fisheries*: Sobel z = $-2.897$, $p = 0.004$ — *the only statistically significant* strong negative mediation among 14 fields. The pathway grant-transfer share → 12-month amplitude → agricultural income outcome is robustly identified.
   - *Social Welfare*: mediation_ratio = 57% (relatively favorable), but Sobel z = $+0.23$, $p = 0.82$ — statistically non-significant due to sample-size constraint ($n = 6$).
   - *Environment*: insufficient data ($n = 4$); Sobel estimation is impossible (NaN). *Claims of strong mediation in Environment are not supported by the data*.
@@ -756,9 +782,11 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Counter-intuitive finding*: The Goodhart's game is typically understood as a negative measurement distortion, but this study finds a case in which it is associated with *positive outcomes* in the Social Welfare field. A stronger December concentration of expenditure in Social Welfare normal projects correlates with a *decrease in the net-wealth Gini coefficient (reduced inequality)*. This is interpreted as a mechanism in which social welfare benefits and subsidies are disbursed en masse just before the fiscal year-end closes, automatically redistributing resources to lower-income populations.
 
-  *[Data version note]* This study uses v3 (`H6_permutation_pvals_v3.csv`) as the permutation test baseline, selected after a five-stage outcome variable validation. The Education field is mapped to `imd_edu_rank` (v3 removes `private_edu_hours` present in v1 and adds `defense_op_margin` for the Defense field, yielding 15 rows total).
+  This study uses the current permutation test baseline, selected after a five-stage outcome variable validation. The Education field is mapped to `imd_edu_rank`; the Defense field uses `defense_op_margin`, yielding 15 rows total.
 
   The first-difference correlation for the Social Welfare field was *r* = −0.762 (*p* = 0.035, permutation 1,000 iterations), the only statistically significant result among all 14 fields (@fig-h6). In the lag/lead first-difference correlation (k = −2..+2), the contemporaneous correlation was strongest, supporting the immediate automatic redistribution mechanism; the direction was consistent using the alternative `amp_cv` indicator as well (@fig-h6-lag). After CPI exogenous control, the signal *strengthened* to *r* = −0.86 (*p* = 0.007), rejecting the natural business-cycle hypothesis (@fig-h10).
+
+  *Measure dependency --- important qualifier*: The H5 results reported here depend on the FFT mp_12m_norm measure. When this is replaced with the STL seasonal_strength measure, the signal *vanishes entirely* from *r* = −0.762 to +0.003 (see §6.9 for detail). This unresolved ambiguity may reflect either (a) FFT absorbing the continuously increasing Social Welfare budget trend to generate spurious periodicity, or (b) STL absorbing the genuine gaming jump into the trend component. This study reports both measures and does not attribute conclusions solely to either one. NeuralProphet (with explicit changepoint modeling) partially recovers the negative signal at the activity level (*r* = −0.24), supporting the FFT interpretation, but the STL--FFT discrepancy remains as an irreducible uncertainty arising from the choice of decomposition tool.
 
   *Why does the signal strengthen?*: Analyzing CPI residuals removes the portion explained by macroeconomic fluctuations (co-movement of inflation and unemployment). The signal strengthening rather than weakening suggests that the link between the Goodhart's game and the outcome variable is rooted in the *administrative mechanism itself* rather than the business cycle.
 
@@ -790,6 +818,34 @@ All three measures consistently show that *grant-transfer type is most strongly 
   image("figures_en/h8_panel.png", width: 100%),
   caption: [\[H1 Validation\] Test of field-label triviality — field FE alone: ΔR²=0.000;\ adding project archetype × Δamp: ΔR²=+0.025 (R²: 0.014 → 0.038)],
 ) <fig-h8>
+
+=== H5 Robustness Verification
+
+  *Sign consistency across three correlation measures*: To address the concern that relying on Pearson $r$ alone makes the result vulnerable to outliers, Spearman $rho$ and Kendall $tau$ are reported alongside.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*Measure*], [*Value*], [*Sign*], [*Interpretation*],
+      [Pearson $r$], [$-0.856$], [Negative], [Strong linear negative correlation],
+      [Spearman $rho$], [$-0.833$], [Negative], [Rank-based --- outlier robust],
+      [Kendall $tau$], [$-0.714$], [Negative], [Rank concordance --- non-parametric robust],
+    ),
+    caption: [\[H5 Robustness\] Social Welfare execution rate × wealth_gini first difference — all three measures yield consistent negative sign],
+  )
+
+  *Leave-One-Out stability*: Pearson $r$ was recomputed by dropping one year at a time across the eight available years. Sign is preserved in 8/8 iterations; the worst case (dropping 2025) weakens the result to $r = -0.539$ but retains a negative sign. All four 5-year rolling windows yield negative correlations; the post-2020 split ($n = 6$) gives $r = -0.708$. No single leverage point drives the finding.
+
+  *95% Bootstrap CI*: Pearson $[-0.988, -0.153]$. Zero is excluded, but the upper bound is near zero --- *the sign is robust; the magnitude reflects the limit of $n = 8$*. This study claims a robustly negative sign while explicitly acknowledging the sample-size limitation when reporting the precise magnitude ($-0.86$).
+
+
+
+#figure(
+  image("figures_en/h10_v3_robustness.png", width: 100%),
+  caption: [\[H5 Robustness\] Three-measure comparison (Pearson / Spearman / Kendall) and Leave-One-Out stability.\ Sign preserved in all 8 LOO iterations; worst case $r = -0.539$ (dropping 2025). Bootstrap 95% CI $[-0.988, -0.153]$.],
+) <fig-h10-v3-robust>
 
 == H6: Time-Dynamic Strengthening (Wavelet)
 
@@ -828,6 +884,95 @@ All three measures consistently show that *grant-transfer type is most strongly 
   image("figures_en/h28_evolution.png", width: 80%),
   caption: [\[H6 Validation\] Annual evolution of 12-month cycle amplitude — *grant-transfer type +554% amplification*, personnel-type unchanged (control). Policy change points annotated (2017: 10 years after National Finance Act; 2020: COVID fiscal expansion).],
 ) <fig-h28-evol-body>
+
+
+=== Period-Split Validation --- COVID Shock vs. Performative Prediction
+
+  The headline figure of *+554%* is derived from a comparison between the earliest and latest endpoints of the 2015--2025 full sample. To distinguish between simple monotonic learned adaptation (the Performative Prediction interpretation) and a regime shock driven by a specific period (COVID-era fiscal expansion), a three-period split analysis was conducted.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, left),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*Period*], [*Mean power*], [*Slope (per yr)*], [*Note*],
+      [Pre-COVID (2015--2018)], [0.265], [+0.068], [Gradual trend strengthening],
+      [COVID (2019--2021)], [1.049], [+0.246], [Sharp amplification],
+      [Post-COVID (2022--2025)], [1.375], [−0.215], [Plateau, mild decline],
+    ),
+    caption: [\[H6 Period-Split\] Grant-transfer 12-month wavelet power three-period decomposition — transition rates: Pre→COVID +295.8%, COVID→Post +31.1%],
+  )
+
+  *Interpretation --- qualifier required*: The +554% result reflects (a) a gradual trend strengthening in the 2015--2018 period (slope +0.068/yr) that was (b) sharply amplified by the COVID-era fiscal expansion shock in 2019--2021. In the post-COVID 2022--2025 period the series stabilized at an elevated plateau (slope −0.215/yr) but did not revert to its pre-COVID baseline. The Performative Prediction interpretation should therefore be qualified: rather than *monotonic learned adaptation across the full 11 years*, the pattern is better characterized as *gradual pre-COVID strengthening followed by an elevated plateau after the COVID shock*. The headline +554% is real and the elevation is persistent, but the bulk of the increase originates from the regime transition driven by COVID-era fiscal expansion (Pre→COVID +295.8%).
+
+  *H6 robustness preserved*: The period-split does not undermine the core finding. Across all archetypes and all sub-periods, the direction of the amplitude pattern is preserved --- capital-acquisition +175%, normal projects +317%, personnel-type −0.8% (control). The COVID shock amplified the *absolute magnitude* of the grant-transfer archetype, but the *cross-archetype ordering* is maintained, and that ordering is consistent with the P-A model's cost-function heterogeneity predictions.
+
+== Time-Evolution TDA --- Spatial Topology $times$ Temporal Topology Dual Framework
+
+  *Question*: H6 wavelet measures the temporal change in 12-month cycle amplitude (+554%). Does the *topological structure* of the activity space change in the same direction? That is, do TDA (spatial topology) and wavelet (temporal topology) measure the same signal or orthogonal signals?
+
+  *Method*: For each year 2015–2025, an activity embedding (3-year rolling window) is constructed and PH recomputed. Wasserstein-2 and bottleneck distances between each year's persistence diagram and the 2015 baseline are tracked as a time series and then correlated with the H6 wavelet power time series.
+
+  *Results*:
+  - PH structural drift: *No significant monotonic trend over 11 years* ($p = 0.34$, $r^2 = 0.10$). The topological structure of the activity space is *relatively stable*, rearranging year-to-year without directional drift.
+  - COVID topological break: In 2020, the bottleneck distance reaches 0.555, elevated compared with typical values (0.25–0.33). A *mild topological shock*, but not wholesale structural reorganization.
+  - TDA × wavelet correlation: Grant-transfer wavelet vs. $W_2$(year, 2015) Pearson $r = 0.242$ ($p = 0.473$) --- *weak, not statistically significant*. Capital-acquisition shows a comparatively stronger marginal correlation ($r = 0.534$, $p = 0.091$).
+
+  *Interpretation*: TDA and wavelet measure *different mechanisms*. Wavelet captures *cycle amplitude* (timing intensity); TDA captures *spatial form* (structural composition). Their orthogonality reinforces the dual-framework's rationale as *complementary perspectives rather than redundant measures* --- the archetype structure of H1 is stable over time, while the cycle amplitude of H6 evolves over time. These *two separated findings* are unified under the study's dual-topology framework.
+
+#figure(
+  image("figures_en/h9_v3_time_evo.png", width: 100%),
+  caption: [\[TDA Time Evolution\] Annual Wasserstein-2 distance time series (vs. 2015 baseline) against grant-transfer wavelet power.\ Weak correlation ($r = 0.242$, $p = 0.473$) confirms orthogonality of spatial topology (TDA) and temporal topology (wavelet).],
+) <fig-h9-v3-time-evo>
+
+== Partial Structural Calibration --- Externally-Estimated $w_t / w_q$ Ratios
+
+  *Why calibration?*: The model identifies *sign* only through comparative statics. Quantitative predictions about the *magnitude* of policy effects require a partial backed-out estimate of the evaluation weight ratio $w_t / w_q$. Weight structures were extracted from official evaluation guidelines to compute implied ratios by archetype.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*Source*], [*$w_t$ %*], [*$w_q$ %*], [*$w_t / w_q$*],
+      [Fiscal Project Self-Assessment (2005–present)], [30], [40], [0.75 (stable)],
+      [Management Evaluation Handbook — Commissioned (Major Projects, 2023)], [56.4], [43.6], [1.29],
+      [NST Grant Institutions — Research Projects], [30], [70], [0.43],
+    ),
+    caption: [\[Calibration\] Implied $w_t / w_q$ ratios extracted from official evaluation guidelines --- large cross-archetype variation confirmed],
+  )
+
+  *Cross-archetype prediction check*: The model predicts "archetypes with higher $w_t / w_q$ exhibit greater gaming intensity (amp_12m)." The ordering commissioned (1.29) > fiscal self-assessment (0.75) > grant research (0.43) is *directionally consistent* with the archetype-level amp_12m ordering (capital-acquisition / normal projects > normal operations > R&D grant components > personnel-type).
+
+  *H6 temporal intensification mechanism --- weight channel vs. cost channel*: The fiscal self-assessment ratio has been *stable at 0.75 since 2005*. The +554% amplitude intensification of H6 therefore cannot be explained by the *weight channel* ($w_t / w_q$ increase). Two alternative mechanisms:
+  - *Cost channel ($c_(t t)$ reduction)*: The 2018 transition to ministry self-evaluation weakened central oversight, reducing the cost of gaming
+  - *Exogenous shock (COVID fiscal expansion)*: The Pre→COVID +295.8% shock effect demonstrated in §6.8
+
+  This finding preserves the P-A model's *sign predictions* while indicating that the *size mechanism must be reinterpreted as cost-channel reduction plus exogenous shock* rather than a weight-channel shift. Future research can quantify this channel directly through measures of $c_(t t)$ (e.g., Board of Audit citation frequency, changes to execution-rate weighting in evaluation outcomes).
+
+
+
+#figure(
+  image("figures_en/v3_calibration.png", width: 85%),
+  caption: [\[Calibration\] Implied $w_t / w_q$ ratios from official evaluation guidelines vs. archetype-level observed amp_12m.\ Ordered: commissioned (1.29) > fiscal self-assessment (0.75) > grant research (0.43), directionally consistent with amp_12m ordering. Fiscal self-assessment ratio stable at 0.75 since 2005, rejecting weight-channel explanation for H6 +554%.],
+) <fig-v3-calibration>
+
+== Micro-Outcome Supplement --- ALIO Agency Evaluation Data
+
+  *Existing limitation*: The field-level outcome variables used in this study (wealth_gini, life_expectancy, etc.) are macro indicators with *weak signal-to-noise characteristics* and limited causal identification of gaming effects. This study attempts to supplement these with micro-level outcome data (ALIO public institution management evaluation grades).
+
+  *Collection results*: Evaluation grades (S/A/B/C/D/E) for 105 public corporations and quasi-governmental institutions in the ALIO database, covering 2022–2024. As of 2024, this covers 65 of 87 institutions (75%). Project-level self-evaluation data were recoverable for only 6 rows due to PDF/AJAX barriers (data limitation explicitly noted).
+
+  *Matching strategy*: Direct matching of ALIO institution names to 1,557 spending activities (ACTV_NM) yields 0% match (different units of abstraction). However, matching on *supervising ministry* (OFFC_NM) achieves 97% coverage, enabling correlation analysis between evaluation grades and H3 wavelet amp_12m at the *ministry level*.
+
+  *Prospective use*: Whether ministries with *lower* ALIO institution evaluation grades exhibit *higher* H3 amp_12m (ministry-level spurious correlation? archetype-mediated?) can be examined as an auxiliary analysis. This analysis is limited to data collection and matching infrastructure; substantive analysis is pending full access to machine-readable public data portal downloads (automated collection is currently blocked by PDF barriers).
+
+  *Data limitation disclosure*: Project-level self-evaluation grades are *officially published*, but are provided only in PDF or image format, making automated collection infeasible. This study treats the absence of machine-readable publication as a *reproducibility infrastructure gap*, and notes that future government provision of *machine-readable evaluation results* is a prerequisite for academic follow-on research.
+
+#figure(
+  image("figures_en/v3_alio_grades.png", width: 90%),
+  caption: [\[ALIO Evaluation Grade Distribution\] Grade distribution (S/A/B/C/D/E) for 105 public corporations and quasi-governmental institutions collected for 2022–2024.\ 97% match rate at supervising-ministry level. Substantive analysis pending future data access.],
+) <fig-v3-alio>
 
 == Methodological Robustness: STL Self-Criticism + NeuralProphet/Wavelet Arbitration
 
@@ -886,8 +1031,8 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   #figure(
     table(
-      columns: (auto, auto, 1fr),
-      align: (left, left, left),
+      columns: (auto, 1.4fr, 3fr),
+      align: (left+top, left+top, left+top),
       table.hline(y: 1, stroke: 0.5pt + black),
       [*Lever*], [*Expected Effect*], [*Candidate Administrative Actions*],
       [$w_t$ ↓], [$e_t^*$ ↓ (gaming reduced)], [Relaxing execution-rate evaluation criteria; multi-year accounting; strengthening MTEF; reducing the weight of execution-rate targets in performance evaluations of quasi-governmental agencies],
@@ -948,7 +1093,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Contribution 1 — Theoretical Model: Micro-Foundations of the Goodhart Game*: Through Principal-Agent equilibrium analysis, this study answers *why* the Goodhart effect materializes in Korea. It is theoretically derived that agent *rationality* — not irrationality — directs resources toward timing adjustment effort in environments characterized by a measurability gap @holmstrom1991. The model generates six testable hypotheses (H1–H6), of which *archetype-specific differences in equilibrium patterns* constitute the study's central prediction.
 
-  *Contribution 2 — Redefinition of the Unit of Analysis (H1 Verification)*: This study provides quantitative evidence ($Delta R^2 = 0.000$) that the *field-level analysis* standard in Korean public administration and fiscal research is *trivial* with respect to gaming phenomena, and demonstrates through topological data analysis (TDA) that the true unit of analysis is *project archetype* — confirmed by UMAP+HDBSCAN four-cluster solution, Mapper graph four components, and Persistent Homology 30 robust components. The finding that *administrative classification and the genuine unit of gaming differ* calls for a reconsideration of unit selection in future policy analyses.
+  *Contribution 2 — Redefinition of the Unit of Analysis (H1 Verification)*: This study provides quantitative evidence ($Delta R^2 = 0.000$) that the *field-level analysis* standard in Korean public administration and fiscal research is *trivial* with respect to gaming phenomena, and demonstrates through topological data analysis (TDA) that the true unit of analysis is *project archetype* — confirmed by UMAP+HDBSCAN four-cluster solution, Mapper graph four components, and Persistent Homology 30 robust components. PH loop analysis further identifies internal sub-heterogeneity within Archetype 2 (grant-transfer), indicating the four-archetype classification is a starting point with scope for post-archetype refinement. The finding that *administrative classification and the genuine unit of gaming differ* calls for a reconsideration of unit selection in future policy analyses.
 
   *Contribution 3 — Counterintuitive Findings (H2, H3, H5 Verification)*: Gaming is shown to be not merely negative measurement distortion but a *field-heterogeneous, temporally dynamic phenomenon*.
   - *Capital-acquisition-type RDD discontinuity 3.42×* (H2 verification): A discrete spike immediately after December 1 — extending the Korean case from #cite(<liebman2017>, form: "prose") for the United States.
@@ -956,7 +1101,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
   - *Social Welfare automatic redistribution effect (fortuitous, H5 proposition)*: Gaming ↔ poverty gap negative correlation (*r* = −0.86, strengthened after CPI control) — *fortuitous* outcome alignment, not policy justification.
   - *Field trivial result and Social Welfare automatic redistribution coexist*: The cost-function layer (archetype trivial) and the outcome layer (field fortuitous alignment) are independent layers of the model.
 
-  *Contribution 4 — Temporal Dynamic Intensification (H6 Verification, Novel Wavelet Analysis)*: By supplementing the FFT stationarity assumption with wavelet analysis, this study newly demonstrates that *gaming intensifies over time*.
+  *Contribution 4 — Temporal Dynamic Intensification (H6 Verification, Novel Wavelet Analysis)*: By supplementing the FFT stationarity assumption with wavelet analysis, this study newly demonstrates that *gaming intensifies over time*. A period-split analysis qualifies the Performative Prediction interpretation: the +554% headline figure is primarily a COVID-era fiscal-regime shock (Pre→COVID +295.8%) amplifying a pre-existing gradual trend, with the series stabilizing at an elevated plateau post-COVID rather than reverting to baseline.
   - *Grant-transfer type*: 12-month cycle amplitude *+554% from 2015–2017 to 2023–2025*
   - *Normal projects*: +316.7%; *capital-acquisition type*: +174.7%; *personnel type*: $-0.8%$ (control)
 
@@ -966,9 +1111,45 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Methodological Triangulation and Honest Limitation Reporting*: The FFT, STL, NeuralProphet, and Wavelet four-tool temporal resolution spectrum; the UMAP, HDBSCAN, Mapper, and PH topological multi-validation; and the RDD, mediation analysis, and CPI-control causal identification all converged on a consistent *archetype-specific equilibrium pattern*. The disappearance of the Social Welfare signal after STL was self-critically acknowledged, and the P-A model's lack of micro-calibration and dynamic equilibrium were presented as departure points for future natural experiment and international comparison research. All code, data, and results are publicly available on the GitHub repository and Zenodo in support of *reproducible research*.
 
+  *Robustness and Structural Decomposition (Addendum)*: Three additional analyses strengthen the core findings. First, the H5 result is confirmed with Spearman $rho = -0.833$, Kendall $tau = -0.714$, and sign preservation in all 8 Leave-One-Out iterations, establishing dual measure-and-sample robustness. Second, the orthogonality of time-evolution TDA and wavelet ($r = 0.242$, $p = 0.473$) demonstrates that the two tools capture complementary dimensions — spatial topology (structural composition) and temporal topology (cycle amplitude) — rather than redundant signals, strengthening the dual-framework rationale. Third, the $w_t / w_q$ ratio extracted from official evaluation guidelines has been stable at 0.75 since 2005, indicating that the H6 +554% amplification must be attributed to a *cost-channel reduction plus COVID fiscal shock* rather than a weight-channel increase.
+
   The finding that the Goodhart game in Korean fiscal expenditure is *not a fixed pattern but an ongoing dynamic phenomenon* can be interpreted as Korean empirical evidence for *Performative Prediction* (@hardt2016strategic; @perdomo2020performative) — the idea that evaluation systems themselves alter the distribution of the behaviors they measure. Future research, through international comparison (United States, Japan, EU) and natural experiments, may identify *under what institutional conditions this dynamic intensification can be suppressed*.
 
 
+
+// =============================================================
+= Author Contributions
+
+#set par(first-line-indent: 0pt)
+
+Author contributions are reported following the #link("https://credit.niso.org/")[CRediT (Contributor Roles Taxonomy)] standard.
+
+#figure(
+  table(
+    columns: (auto, 1.4fr, 1.1fr),
+    align: (left+horizon, left+top, left+top),
+    [*Author*], [*Primary Contribution*], [*CRediT Roles*],
+    [Jeong Seonkyu],
+    [Overall design and theoretical synthesis — Introduction of the Principal-Agent model, finalization of the six-hypothesis derivation structure, original-draft writing, and project coordination.],
+    [Conceptualization, Project administration, Writing — original draft, Supervision],
+    [Kim Youngchan],
+    [Model and mathematical verification — P-A equilibrium derivation (§3.3, Appendix F), Hessian and Cramer's-rule comparative-statics verification, first-order-condition consistency checks.],
+    [Methodology (model derivation), Formal analysis (mathematical), Validation (mathematical verification)],
+    [Sim Euncheol],
+    [Data curation and analytical-consistency validation — ETL of the 11-year time series, curation of 1,557 activity units, 14-field mapping, and reproduction checks across all hypotheses.],
+    [Data curation, Validation (analytical consistency), Investigation],
+    [Kim Jaeho],
+    [Supervision of advanced methodology — Review of UMAP / HDBSCAN / Mapper / Persistent Homology suitability, Wavelet (CWT-Morlet) application appropriateness, and academic-precision review of Appendices C and D.],
+    [Methodology (advanced — topological/spectral methods), Supervision (advanced methodology review), Writing — review & editing],
+  ),
+  caption: [Author contributions mapped to CRediT roles.],
+)
+
+All authors participated in review and editing of the manuscript and share academic responsibility for the final work.
+
+#set par(first-line-indent: 1em)
+
+#v(1em)
 
 // =============================================================
 = AI Tool Disclosure
@@ -1214,7 +1395,11 @@ The result is summarized as topological invariants (number of connected componen
 
 This study analyzes dimension 0 (connected components $beta_0$) and dimension 1 (loops $beta_1$). *50 bootstrap resamples* yield $beta_0 = 30$, $beta_1 = 15$, and 95% CI for max persistence.
 
-*Hyperparameters*: The Persistent Homology parameters used in this study are as follows — complex type: Vietoris-Rips, `thresh=8.0` (maximum filtration radius; edges beyond this distance are not added), `maxdim=1` (computes homology in dimensions 0 and 1), bootstrap: 50 iterations, each with subsample $n = 200$, `random_state=42` (fixed seed for reproducibility). Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
+*Hyperparameters*: The Persistent Homology parameters used in this study are as follows --- complex type: Vietoris-Rips, `thresh=8.0` (maximum filtration radius; edges beyond this distance are not added), `maxdim=1` (computes homology in dimensions 0 and 1), bootstrap (main results): 50 iterations, each with subsample $N = 200$, `random_state=42` (fixed seed for reproducibility). Distance metric: Euclidean distance on 12 standardized features. Main analysis subsample $N = 300$. Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
+
+*Wasserstein-2 robustness validation*: To assess the robustness of the entire persistence diagram rather than a single extreme-value CI, a Wasserstein-2 distance comparison against a feature-shuffled null distribution was performed. Observed bootstrap mean $W_2 = 0.885$ (95% CI [0.780, 1.055]); null mean $W_2 = 1.524$ (95% CI [1.323, 1.695]); one-sided $p < 0.0001$. This confirms the entire PH diagram structure is significantly distinct from the null, providing a more robust full-diagram validation than the max persistence CI alone.
+
+*Rolling-window time-evolution method (§6.10)*: The activity embedding is split into 3-year rolling windows (2015→avg(2015,2016,2017), ..., 2024→avg(2023,2024,2025)) and PH is recomputed for each window-year. Wasserstein-2 distance (`scipy.optimize.linear_sum_assignment`-based point-matching) and bottleneck distance between each year's persistence diagram and the 2015 baseline are tracked as time series. Used in the TDA × wavelet dual-framework validation.
 
 *vs Mapper*: Mapper operates at a single scale; PH integrates analysis across *all scales*. PH is more rigorous; Mapper is more intuitive.
 *vs silhouette/Calinski-Harabasz*: The latter are scale-dependent single scores; PH captures *scale-invariant* topological features.
@@ -1549,19 +1734,31 @@ Limitations and directions for future research on this model are discussed in §
 A one-to-one mapping between the core analysis scripts of this study and the hypothesis/results sections is presented below. Running the corresponding files in the `scripts/` directory of the GitHub repository (`bluethestyle/goodhart-korea`) reproduces the figures and CSV files cited in the main text.
 
 #figure(
-  table(
-    columns: (1.2fr, 1fr, 2fr),
-    [*Script*], [*Hypothesis / Results*], [*Role*],
-    [`scripts/h3_v2_11y.py`], [H1 / §6.1–§6.2], [UMAP + HDBSCAN: identification of 4 archetypes],
-    [`scripts/h4_v3_replaced.py`], [H1 supplement / §6.2], [Mapper graph + Persistent Homology],
-    [`scripts/h22_rdd_yearend.py`], [H2 / §6.3], [Fiscal year-end RDD jump estimation],
-    [`scripts/h27_power_spectrum_coherence.py`], [H3 / §6.4], [PSD, Phase, Coherence],
-    [`scripts/h26_neuralprophet_check.py`], [Methodology / §6.5], [NeuralProphet cross-check],
-    [`scripts/h23_mediation.py`], [H4 / §6.6], [Baron-Kenny + Sobel + Bootstrap],
-    [`scripts/h6_robustness.py`], [H5 / §6.7], [FE regression, Permutation, Lag/Lead],
-    [`scripts/h10_macro_control.py`], [H5 auxiliary / §6.7], [CPI exogenous control],
-    [`scripts/h28_wavelet.py`], [H6 / §6.8], [Wavelet temporal dynamic intensification],
-    [`scripts/h24_stl_decomp.py`], [Robustness / §6.9], [STL self-critique],
-  ),
-  caption: [Mapping of core analysis scripts to hypothesis and results sections — reproduction guide],
+  {
+    set text(size: 9pt)
+    table(
+      columns: (auto, auto, 1fr),
+      align: (left+top, left+top, left+top),
+      inset: (x: 6pt, y: 4pt),
+      [*Script*], [*Hypothesis / Results*], [*Role*],
+      [`h3_v2_11y.py`], [H1 / §6.1–§6.2], [UMAP + HDBSCAN: identification of 4 archetypes],
+      [`h4_v3_replaced.py`], [H1 supplement / §6.2], [Mapper graph + Persistent Homology],
+      [`h22_rdd_yearend.py`], [H2 / §6.3], [Fiscal year-end RDD jump estimation],
+      [`h27_power_spectrum_coherence.py`], [H3 / §6.4], [PSD, Phase, Coherence],
+      [`h26_neuralprophet_check.py`], [Methodology / §6.5], [NeuralProphet cross-check],
+      [`h23_mediation.py`], [H4 / §6.6], [Baron-Kenny + Sobel + Bootstrap],
+      [`h6_robustness.py`], [H5 / §6.7], [FE regression, Permutation, Lag/Lead],
+      [`h10_macro_control.py`], [H5 auxiliary / §6.7], [CPI exogenous control],
+      [`h28_wavelet.py`], [H6 / §6.8], [Wavelet temporal dynamic intensification],
+      [`h24_stl_decomp.py`], [Robustness / §6.9], [STL self-critique],
+      [`h9_v2_wasserstein.py`], [§6.2 (PH robustness)], [PH Wasserstein-2 null-shuffle comparison],
+      [`h9_v2_loop_ids.py`], [§6.2 (PH loop interpretation)], [Top-5 PH loop archetype attribution],
+      [`h22_v2_granularity.py`], [§6.3 (RDD granularity)], [RDD aggregation-unit bracket sensitivity],
+      [`h28_v2_period_split.py`], [§6.8.1 (H6 period-split)], [3-period (Pre/COVID/Post) wavelet decomposition],
+      [`h9_v3_time_evolution_tda.py`], [§6.10 (TDA time-evolution)], [Per-year PH computation + $W_2$ distance time series],
+      [`h10_v3_robustness.py`], [§6.7.1 (H5 robustness)], [Spearman/Kendall/LOO three-measure robustness],
+      [`generate_v3_charts.py`], [Utility], [Batch generation of 4 extension charts],
+    )
+  },
+  caption: [Mapping of core analysis scripts to hypothesis and results sections — reproduction guide (all scripts located in the `scripts/` directory)],
 )

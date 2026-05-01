@@ -19,9 +19,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 10, 'axes.titlesize': 11, 'axes.labelsize': 10,
-    'xtick.labelsize': 9, 'ytick.labelsize': 9,
-    'legend.fontsize': 9,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -94,13 +94,13 @@ for i, r in df.iterrows():
         tick_label.set_fontweight('bold')
 ax.axvline(0, color='black', lw=1.0, zorder=3)
 ax.set_xlabel('1차 차분 상관 (게임화 ↔ outcome)')
-ax.legend(loc='lower right', fontsize=10)
+ax.legend(loc='lower right', fontsize=13)
 ax.grid(alpha=0.3, axis='x')
 ax.text(0.02, 0.97,
         f'분홍 행 + 빨간 분야명 = 부호 반전\n'
         f'(FFT·STL이 서로 다른 부호)  '
         f'{int(df["sign_change"].sum())}/{len(df)}분야',
-        transform=ax.transAxes, va='top', fontsize=9,
+        transform=ax.transAxes, va='top', fontsize=13,
         bbox=dict(boxstyle='round,pad=0.4', fc='white',
                   ec='#bbb', alpha=0.92))
 plt.tight_layout()
@@ -113,11 +113,11 @@ ax.fill_between([-1.05, 0], 0, 1.05, color='#ffe0e0', alpha=0.55, zorder=0)
 # 4사분면 (FFT > 0, STL < 0)
 ax.fill_between([0, 1.05], -1.05, 0, color='#ffe0e0', alpha=0.55, zorder=0)
 # 사분면 라벨
-ax.text(-0.97, 0.45, '부호 반전\nFFT−, STL+', fontsize=8.5,
+ax.text(-0.97, 0.45, '부호 반전\nFFT−, STL+', fontsize=12.5,
         color='#a85454', va='center', ha='left', alpha=0.9,
         bbox=dict(boxstyle='round,pad=0.25', fc='white',
                   ec='#a85454', alpha=0.7))
-ax.text(0.97, -0.45, '부호 반전\nFFT+, STL−', fontsize=8.5,
+ax.text(0.97, -0.45, '부호 반전\nFFT+, STL−', fontsize=12.5,
         color='#a85454', va='center', ha='right', alpha=0.9,
         bbox=dict(boxstyle='round,pad=0.25', fc='white',
                   ec='#a85454', alpha=0.7))
@@ -135,7 +135,7 @@ try:
     from adjustText import adjust_text
     for _, row in df.iterrows():
         t = ax.text(row['corr_fft'], row['corr_stl'], row['fld_short'],
-                    fontsize=9, alpha=0.9)
+                    fontsize=13, alpha=0.9)
         texts.append(t)
     adjust_text(texts, ax=ax,
                 arrowprops=dict(arrowstyle='-', color='#888', lw=0.5),
@@ -145,7 +145,7 @@ except ImportError:
     for _, row in df.iterrows():
         ax.annotate(row['fld_short'], (row['corr_fft'], row['corr_stl']),
                     xytext=(4, 4), textcoords='offset points',
-                    fontsize=9, alpha=0.9)
+                    fontsize=13, alpha=0.9)
 
 # 사회복지 큰 점 강조
 sw = df[df['fld'].astype(str).str.contains('사회복지', na=False)]
@@ -162,7 +162,7 @@ ax.text(0.02, 0.97,
         f'분홍 영역 = 부호 반전\n'
         f'반전 분야: {int(df["sign_change"].sum())}/{len(df)}\n'
         f'사회복지: FFT −0.76 → STL 0.00 (신호 소멸)',
-        transform=ax.transAxes, va='top', fontsize=8.5,
+        transform=ax.transAxes, va='top', fontsize=12.5,
         bbox=dict(boxstyle='round,pad=0.4', fc='#fff8e1',
                   ec='#daa520', alpha=0.92))
 plt.tight_layout()

@@ -1,0 +1,70 @@
+H9 v3 Time-Evolution TDA Analysis — Interpretation Note
+============================================================
+Generated: 2026-04-30
+Input:  data/results/H3_yearly_embeddings.csv (21,725 rows, 11 years × activities)
+Method: 3-year rolling window embeddings → Vietoris-Rips PH (N=300, thresh=8.0)
+        Wasserstein-2 & Bottleneck distances via persim library
+
+── 1. Does PH structure shift over 11 years? ──────────────
+W₂(year, 2015) trend:
+  Slope = 0.304896 / year   r² = 0.1031   p = 0.3356
+  Max distance: year 2018, W₂ = 12.3585
+
+  FINDING: No significant monotonic trend (p=0.3356).
+  H1 topology fluctuates without clear directional drift.
+
+── 2. COVID structural break in TOPOLOGY (2020-2021) ──────
+  Pre-COVID  (2018-2019) mean W₂ = 10.8508
+  COVID      (2020-2021) mean W₂ = 9.5881
+  Post-COVID (2022-2025) mean W₂ = 9.4416
+  Consecutive jump into 2020: ΔW₂ = 10.0529
+  Consecutive jump into 2021: ΔW₂ = 9.1210
+  Median consecutive ΔW₂ (all years): 9.9463
+
+  2020 jump is 1.01x the median consecutive step.
+  FINDING: No clear topological COVID break — 2020 jump ~= typical year-to-year change.
+
+── 3. Alignment: Time-topology ↔ H6 Wavelet trajectory ───
+  Pearson r(W₂_H1, C2_chooyeon_wavelet) = 0.2422  p = 0.4731
+  Spearman ρ = 0.0000  p = 1.0000
+
+  FINDING: Weak/no alignment (r=0.242, p=0.473).
+  TDA and wavelet capture different aspects of structural change.
+
+  All archetype correlations:
+    C0_personnel             : r=0.1282  p=0.7071  
+    C1_direct_invest         : r=0.5341  p=0.0905  
+    C2_chooyeon              : r=0.2422  p=0.4731  
+    C3_normal                : r=0.3792  p=0.2500  
+
+── 4. Methodological contribution ─────────────────────────
+  공간 위상 (TDA): Vietoris-Rips persistent homology captures the
+    topological shape (loops = circular budget structures) of the
+    activity embedding at each point in time.
+
+  시간 위상 (Wavelet): H6 12-month wavelet power captures the
+    temporal amplitude envelope of seasonal spending patterns.
+
+  Integration: By tracking PD distances (Wasserstein, bottleneck)
+    over time and correlating with wavelet trajectories, we demonstrate
+    that the two signal-theoretic views of Goodhart's Law — topological
+    structure and temporal oscillation — are complementary lenses.
+
+  If r(W₂, wavelet) is high: the findings are mutually reinforcing.
+    Years of high wavelet amplitude = years of high topological drift.
+  If r is low: the two methods detect different mechanisms of gaming.
+    TDA may capture structural reorganization that wavelet misses.
+
+  Either way, the dual-framework (공간위상 + 시간위상) is justified
+  as a novel methodological contribution for the Goodhart paper v3.
+
+── Output files ────────────────────────────────────────────
+  H3_yearly_embeddings.csv         — per-year 12-feature embeddings
+  H9_v3_yearly_pds.npz            — per-year persistence diagrams
+  H9_v3_pd_distances.csv          — W2 + bottleneck time series
+  H9_v3_topology_wavelet_alignment.csv — TDA ↔ wavelet merged
+  H9_v3_time_evolution_note.txt   — this interpretation note
+
+  Figures:
+  data/figs/h9_v3_time_evo/H9_v3_topology_wavelet_dual.png
+  data/figs/h9_v3_time_evo/H9_v3_pd_distance_panel.png

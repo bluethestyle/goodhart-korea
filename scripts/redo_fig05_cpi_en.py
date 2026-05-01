@@ -15,9 +15,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 13, 'axes.titlesize': 15, 'axes.labelsize': 13,
-    'xtick.labelsize': 12, 'ytick.labelsize': 12,
-    'legend.fontsize': 12,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })

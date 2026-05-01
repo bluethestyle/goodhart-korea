@@ -1,0 +1,103 @@
+## URLs Accessed for v3 Micro Outcome Data Collection
+## Date: 2026-04-30
+## Purpose: Goodhart Paper v3 — micro outcome data for reviewer response
+
+### Target 1: 재정사업 자율평가 (Fiscal Project Self-Evaluation)
+
+1. https://www.data.go.kr/data/15047853/fileData.do
+   Status: Socket connection closed (unreachable from US WebFetch)
+   Description: 기획재정부 소관별 재정사업 자율평가 보고서 정보
+
+2. https://www.evaluation.go.kr/web/page.do?menu_id=125
+   Status: Fetched — shows evaluation system description only, no data tables
+   Content: System overview, grade distribution rules (우수 ≤20%, 보통 ~65%, 미흡 ≥15%)
+
+3. https://www.evaluation.go.kr/web/summary.do?menu_id=83&eval_se_cd=2
+   Status: Fetched — partial data for 2019 (data in PNG images, not extractable HTML)
+   Content: 2019 summary: 1,189 total projects, 230 우수, 770 보통, 189 미흡
+   Individual project rows visible as images not extractable text
+   Sample projects extracted: 6 rows (2019 R&D category)
+
+4. https://www.openfiscaldata.go.kr/op/ko/br/UOPKOBRA03
+   Status: Fetched — dynamic JS page, table loads via AJAX (no static data)
+
+5. https://www.mohw.go.kr/board.es?mid=a10107010202&bid=0037&act=list (보건복지부)
+   Status: Fetched — shows 2016-2024 annual reports available as PDF/HWPX
+   Files are PDF (binary compressed, not extractable by WebFetch)
+
+6. https://www.mohw.go.kr/boardDownload.es?bid=0037&list_no=1483906&seq=1
+   Status: Fetched — binary PDF (1MB), not text-extractable
+   File: "22.(보건복지부)2023회계연도 재정사업 자율평가 결과_열린재정.pdf"
+
+7. https://www.mpm.go.kr/board/file/bbs_0000000000000043/455/FILE_000000100006700/584f758bfe481d05c
+   Status: Fetched — binary PDF (740KB), not text-extractable
+
+### Target 2: 알리오 공공기관 경영평가 (ALIO Management Evaluation)
+
+8. https://www.moef.go.kr/nw/nes/detailNesDtaView.do?searchBbsId1=MOSFBBS_000000000028&searchNttId1=MOSF_000000000074194&menuNo=4010100
+   Status: Redirect to mofe.go.kr (socket closed)
+   Description: 2024년도 공공기관 경영실적 평가 결과 발표
+
+9. https://www.moef.go.kr/nw/nes/detailNesDtaView.do?searchBbsId1=MOSFBBS_000000000028&searchNttId1=MOSF_000000000069373&menuNo=4010100
+   Status: Redirect to mofe.go.kr (socket closed)
+   Description: 2023년도 공공기관 경영실적 평가 결과 발표
+
+10. https://mofe.go.kr/synapView/doc.html?fn=20250620110004_B77106B9-1D6C-49F7-D7DE-1150B57AF873.hwpx&rs=/upload/synap
+    Status: Fetched — viewer interface only (no data content)
+
+11. https://www.etoday.co.kr/news/view/2480582
+    Status: Fetched — 2024 A등급 공기업 5개 기관명 extracted
+
+12. https://www.etoday.co.kr/news/view/2480584
+    Status: Fetched — 2024 B등급 공기업 11개 기관명 extracted
+
+13. https://www.etoday.co.kr/news/view/2480586
+    Status: Fetched — 2024 C등급 공기업 9개 기관명 extracted
+
+14. https://www.etoday.co.kr/news/view/2480590
+    Status: Fetched — 2024 D등급 공기업 6개 기관명 extracted
+
+15. https://www.etoday.co.kr/news/view/2480592
+    Status: Fetched — 2024 E등급 공기업 (한국광해광업공단 1개) extracted
+
+16. https://www.etoday.co.kr/news/view/2480596
+    Status: Fetched — 2024 A등급 준정부기관 10개 기관명 extracted
+
+17. https://www.etoday.co.kr/news/view/2480598
+    Status: Fetched — 2024 B등급 준정부기관 17개 기관명 extracted
+
+18. https://www.etoday.co.kr/news/view/2480603
+    Status: Fetched — 2024 D등급 준정부기관 3개 기관명 extracted
+
+19. https://www.etoday.co.kr/news/view/2480604
+    Status: Fetched — 2024 E등급 준정부기관 3개 기관명 extracted
+
+20. https://www.etnews.com/20230616000152
+    Status: Fetched — 2022 경영평가 결과 partial data (11 institutions)
+
+21. https://www.khan.co.kr/article/202306161123001
+    Status: Fetched — 2022 경영평가 결과 (E/D 등급 기관 partial list)
+
+22. https://www.labortoday.co.kr/news/articleView.html?idxno=215669
+    Status: Fetched — 2022 경영평가 grade distribution summary
+
+23. https://m.fntimes.com/html/view.php?ud=2023061617384823275e6e69892f_18
+    Status: Fetched — 2022 경영평가 국토부 산하 기관 11개 (complete table)
+
+24. https://www.newsis.com/view/NISX20250620_0003221132
+    Status: Fetched — 2024 경영평가 summary article, partial grade listings
+
+25. https://www.news1.kr/economy/trend/5820402
+    Status: Fetched — 2024 경영평가 summary, partial institution list
+
+26. https://www.gasnews.com/news/articleView.html?idxno=115801
+    Status: Fetched — 2023 경영평가 result with partial institution data
+
+### Data Coverage Limits:
+- ALIO dataset: 2022-2024 partial (only prominently-reported institutions)
+- Full 2024 grade list for public enterprises (공기업) appears complete at 63 rows
+- Quasi-government agencies (준정부기관) 2024 partial: ~33/55 institutions captured
+- 2023: only 13 institutions (prominently reported only)
+- 2022: only 18 institutions (prominently reported only)
+- Pre-2022: not captured (PDFs only, not accessible via WebFetch)
+- 재정사업 자율평가: only 6 sample rows (2019 R&D); full data behind PDFs/dynamic JS

@@ -1,0 +1,5 @@
+﻿scenario,description,granularity,n_days_concentrated,w_nov_last7,w_dec_first7,conc_adjustment,beta,se,pval,point_est,lo95,hi95,liebman_5x_gap,pct_of_liebman
+S1_monthly_baseline,Monthly granularity (current paper),monthly,31,0.2333,0.2258,1.0,0.647673,0.027266,0.0,1.9111,1.8116,2.016,3.0889,38.2
+S2_weekly_uniform,Hypothetical weekly — uniform within-month distribution,weekly (hypothetical),7,0.2333,0.2258,0.9677,0.614883,0.027266,0.0,1.8494,1.7532,1.951,3.1506,37.0
+S3_weekly_mild_skew,Hypothetical weekly — mild front-loading: Dec first-7d = 35% of Dec total,weekly (hypothetical),7,0.2333,0.35,1.5,1.053138,0.027266,0.0,2.8666,2.7175,3.024,2.1334,57.3
+S4_weekly_heavy_spike,Hypothetical weekly — heavy front-loading: Dec first-7d = 50% of Dec total,weekly (hypothetical),7,0.2333,0.5,2.1429,1.409813,0.027266,0.0,4.0952,3.8821,4.32,0.9048,81.9

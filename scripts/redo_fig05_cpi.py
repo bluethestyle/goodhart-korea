@@ -18,9 +18,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 13, 'axes.titlesize': 15, 'axes.labelsize': 13,
-    'xtick.labelsize': 12, 'ytick.labelsize': 12,
-    'legend.fontsize': 12,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -65,7 +65,7 @@ texts = []
 for _, row in df.iterrows():
     t = ax1.text(row['corr_raw'], row['corr_resid_CPI'],
                  str(row['fld_short']),
-                 fontsize=13, alpha=0.95, weight='medium')
+                 fontsize=16, alpha=0.95, weight='medium')
     texts.append(t)
 try:
     from adjustText import adjust_text
@@ -100,7 +100,7 @@ ax2.barh(y - 0.2, df_sorted['corr_raw'], height=0.4,
 ax2.barh(y + 0.2, df_sorted['corr_resid_CPI'], height=0.4,
          label='CPI-residual 상관', color='#a85454', alpha=0.85)
 ax2.set_yticks(y)
-ax2.set_yticklabels(df_sorted['fld'], fontsize=12)
+ax2.set_yticklabels(df_sorted['fld'], fontsize=15)
 ax2.axvline(0, color='gray', lw=0.6)
 ax2.set_xlabel('상관계수')
 ax2.legend(loc='lower right')

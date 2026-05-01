@@ -14,9 +14,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 11, 'axes.titlesize': 12, 'axes.labelsize': 11,
-    'xtick.labelsize': 10, 'ytick.labelsize': 10,
-    'legend.fontsize': 10,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -43,7 +43,7 @@ ARCH_COLOR = {'C0_personnel': '#4C72B0',
               'C2_chooyeon': '#55A868',
               'C3_normal': '#C44E52'}
 
-fig, ax = plt.subplots(figsize=(6.3, 3.8))
+fig, ax = plt.subplots(figsize=(6.5, 4.0))
 freqs = list(range(7))
 labels_freq = ['DC (k=0)', '12m', '6m', '4m', '3m·분기', '2.4m', '2m']
 
@@ -59,14 +59,18 @@ ax.set_xticks(freqs[1:])
 ax.set_xticklabels(labels_freq[1:])
 ax.set_ylabel('정규화 PSD')
 ax.set_xlabel('주파수 빈 (주기)')
-ax.legend(loc='upper right', frameon=True)
 ax.grid(alpha=0.3)
 
-# 출연금형 12m 강조 — 좌상단
+# legend 차트 외부 하단 4-칼럼 가로 배치 → 데이터 가리지 않음
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
+          ncol=4, frameon=False, columnspacing=1.2, handletextpad=0.5,
+          fontsize=12)
+
+# 출연금형 12m 강조 — 좌상단 (legend가 외부로 빠져 충돌 없음)
 chooyeon_12m = float(psd_avg[psd_avg['archetype'] == 'C2_chooyeon']['psdnorm_k1'].values[0])
 ax.text(0.02, 0.96,
         f'출연금형 12m: {chooyeon_12m:.3f}\n(다른 원형 대비 ~2배)',
-        transform=ax.transAxes, ha='left', va='top', fontsize=9,
+        transform=ax.transAxes, ha='left', va='top', fontsize=12,
         bbox=dict(boxstyle='round,pad=0.4', fc='#fff8e1',
                   ec='#daa520', alpha=0.92))
 
@@ -87,3 +91,10 @@ if max(w, h) > MAX:
     print(f'preview: {w}x{h} -> {ns[0]}x{ns[1]}')
 else:
     print(f'preview: {w}x{h}')
+
+# production 경로에도 복사
+import shutil
+for dst in [os.path.join(ROOT, 'paper', 'figures', 'h27_psd.png'),
+            os.path.join(ROOT, 'paper', 'slides', 'assets', 'h27_psd.png')]:
+    shutil.copy2(out, dst)
+    print(f'  -> {dst}')

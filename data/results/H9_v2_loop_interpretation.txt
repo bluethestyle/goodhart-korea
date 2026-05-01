@@ -1,0 +1,29 @@
+H9 v2 — Loop Interpretation
+============================================================
+Subsample: N=300, seed=42
+H1 pairs found: 144 total, 144 finite
+Top-5 loops analyzed
+
+Per-loop classification:
+  Loop 1: persistence=0.6480, n_vertices=42, type=sub_archetype, boundary_ratio=1.33x, p_MW=0.0633
+  Loop 2: persistence=0.5556, n_vertices=5, type=sub_archetype, boundary_ratio=0.00x, p_MW=0.1242
+  Loop 3: persistence=0.5084, n_vertices=2, type=archetype_boundary, boundary_ratio=4.00x, p_MW=0.0035
+  Loop 4: persistence=0.4962, n_vertices=6, type=sub_archetype, boundary_ratio=0.00x, p_MW=0.9937
+  Loop 5: persistence=0.4928, n_vertices=14, type=sub_archetype, boundary_ratio=0.57x, p_MW=0.2174
+
+Summary:
+  Dominant loop type: (b) sub-archetypes — within-cluster heterogeneity / sub-groups
+
+Possible archetype distribution per loop:
+  Loop 1: {2: 31, 1: 11}
+  Loop 2: {2: 5}
+  Loop 3: {2: 2}
+  Loop 4: {2: 6}
+  Loop 5: {2: 14}
+
+Interpretation:
+  Loops appear to be: (b) sub-archetypes — within-cluster heterogeneity / sub-groups
+
+Note: cocycle carrier vertices = vertices incident to representative cocycle edges.
+These are not guaranteed to be the minimal cycle; they identify the "zone"
+in feature space where the topological loop lives.

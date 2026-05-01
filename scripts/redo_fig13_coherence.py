@@ -15,8 +15,8 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 10, 'axes.titlesize': 11, 'axes.labelsize': 10,
-    'xtick.labelsize': 9, 'ytick.labelsize': 9,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -57,7 +57,7 @@ ax.set_ylabel('')
 ax.tick_params(axis='y', rotation=0)
 ax.tick_params(axis='x', rotation=0)
 ax.set_title('원형 내(intra-archetype) 활동 간 12개월 동조',
-             fontsize=11, pad=8)
+             fontsize=14, pad=8)
 
 # 출연금형 12m 셀 (row 2, col 0) 검정 외곽선 강조
 import matplotlib.patches as mpatches
@@ -69,7 +69,7 @@ ax.add_patch(mpatches.Rectangle(
 # 상단 공간에 강조 텍스트
 ax.text(0.5, -0.55,
         '출연금형 12m phase coherence = 0.54  (다른 원형 0.08~0.13의 4~7배)',
-        transform=ax.transAxes, ha='center', va='top', fontsize=9,
+        transform=ax.transAxes, ha='center', va='top', fontsize=13,
         color='#a85454', fontweight='bold',
         bbox=dict(boxstyle='round,pad=0.4', fc='#fff8e1',
                   ec='#daa520', alpha=0.92))

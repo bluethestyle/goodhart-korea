@@ -26,9 +26,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 # A4 body width (~6.3 inches) 1:1 mapping. figsize/font unified.
 # Typst image width:100% → PNG displayed at 6.3 inches in PDF → font scale 1:1
 plt.rcParams.update({
-    'font.size': 11, 'axes.titlesize': 12, 'axes.labelsize': 11,
-    'xtick.labelsize': 10, 'ytick.labelsize': 10,
-    'legend.fontsize': 11,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })

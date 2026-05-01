@@ -17,8 +17,8 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 10, 'axes.titlesize': 10, 'axes.labelsize': 9,
-    'xtick.labelsize': 8, 'ytick.labelsize': 8,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -129,14 +129,14 @@ for ax, arch in zip(axes.flat, arch_order):
     ax.set_yscale('log')
     ax.axhline(12, color='cyan', lw=1.0, ls='--', alpha=0.85)
     ax.set_xticks(year_ticks)
-    ax.set_xticklabels(year_tick_labels, fontsize=8)
+    ax.set_xticklabels(year_tick_labels, fontsize=12)
     ax.set_title(f'{ARCH_NAME[arch]}  (max power={maxes[arch]:.2f})',
-                 fontsize=9.5, fontweight='bold')
+                 fontsize=13.5, fontweight='bold')
 
 for ax in axes[:, 0]:
-    ax.set_ylabel('주기 (개월)', fontsize=9)
+    ax.set_ylabel('주기 (개월)', fontsize=13)
 for ax in axes[-1, :]:
-    ax.set_xlabel('연도', fontsize=9)
+    ax.set_xlabel('연도', fontsize=13)
 
 fig.subplots_adjust(hspace=0.35, wspace=0.15)
 # 절대 비교는 title의 max power로, colorbar 생략 (패널별 정규화이므로)

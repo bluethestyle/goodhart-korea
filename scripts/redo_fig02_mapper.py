@@ -24,9 +24,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 # A4 본문 폭(약 6.3 인치)에 1:1 매핑되도록 figsize·폰트 통일.
 # Typst image width:100% 사용 시 PNG가 PDF에서 6.3 인치로 표시됨 → 폰트 스케일 1:1
 plt.rcParams.update({
-    'font.size': 11, 'axes.titlesize': 12, 'axes.labelsize': 11,
-    'xtick.labelsize': 10, 'ytick.labelsize': 10,
-    'legend.fontsize': 11,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })

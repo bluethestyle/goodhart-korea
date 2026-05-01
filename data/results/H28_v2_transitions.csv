@@ -1,0 +1,9 @@
+archetype,transition,from_mean,to_mean,pct_change,slope_change
+C0_personnel,pre_to_covid,0.006998,0.009185,31.244611,0.000725
+C0_personnel,covid_to_post,0.009185,0.007128,-22.390809,-0.002335
+C1_direct_invest,pre_to_covid,0.067519,0.189792,181.094137,0.002467
+C1_direct_invest,covid_to_post,0.189792,0.158521,-16.476533,-0.045974
+C2_chooyeon,pre_to_covid,0.264996,1.048956,295.838083,0.177489
+C2_chooyeon,covid_to_post,1.048956,1.375435,31.124115,-0.461132
+C3_normal,pre_to_covid,0.069241,0.153776,122.089265,-0.000050
+C3_normal,covid_to_post,0.153776,0.229808,49.443528,-0.032703

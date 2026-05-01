@@ -17,9 +17,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 10, 'axes.titlesize': 11, 'axes.labelsize': 10,
-    'xtick.labelsize': 9, 'ytick.labelsize': 9,
-    'legend.fontsize': 9,
+    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
+    'xtick.labelsize': 13, 'ytick.labelsize': 13,
+    'legend.fontsize': 13,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -186,7 +186,7 @@ try:
             nm = nm[:15] + '…'
         weight = 'bold' if row['quadrant'] == 'Q2' else 'normal'
         t = ax.text(row['exposure_score'], row['w_corr_diff'], nm,
-                    fontsize=8.5, alpha=0.95, fontweight=weight,
+                    fontsize=12.5, alpha=0.95, fontweight=weight,
                     color='#222')
         texts.append(t)
     # bkg 상위: 옅은 회색 작게
@@ -195,7 +195,7 @@ try:
         if len(nm) > 14:
             nm = nm[:13] + '…'
         t = ax.text(row['exposure_score'], row['w_corr_diff'], nm,
-                    fontsize=7.5, alpha=0.7, color='#666')
+                    fontsize=11.5, alpha=0.7, color='#666')
         texts.append(t)
     adjust_text(texts, ax=ax,
                 arrowprops=dict(arrowstyle='-', color='#aaa', lw=0.35),
@@ -208,31 +208,37 @@ except ImportError:
             nm = nm[:13] + '…'
         ax.annotate(nm, (row['exposure_score'], row['w_corr_diff']),
                     xytext=(4, 4), textcoords='offset points',
-                    fontsize=8.5, alpha=0.95)
+                    fontsize=12.5, alpha=0.95)
     for _, row in bkg_top.iterrows():
         nm = str(row['OFFC_NM'])
         if len(nm) > 14:
             nm = nm[:13] + '…'
         ax.annotate(nm, (row['exposure_score'], row['w_corr_diff']),
                     xytext=(3, 3), textcoords='offset points',
-                    fontsize=7.5, alpha=0.7, color='#666')
+                    fontsize=11.5, alpha=0.7, color='#666')
 
-# 4분면 텍스트 라벨
-qkw = dict(fontsize=9, alpha=0.6, ha='center', va='center')
-ax.text((EXPO_THRESH + x1) / 2, y1_lim * 0.85,
-        'Q2 위험\n(점검 필요)', color='#c0392b', **qkw)
-ax.text((EXPO_THRESH + x1) / 2, y0_lim * 0.85,
-        'Q1 자동분배', color='#c05000', **qkw)
-ax.text(EXPO_THRESH * 0.5, y1_lim * 0.85,
-        'Q4 안전 (양 상관)', color='#1a6fa0', **qkw)
-ax.text(EXPO_THRESH * 0.5, y0_lim * 0.85,
-        'Q3 안전 (음 상관)', color='#1a7a4a', **qkw)
+# 4분면 텍스트 라벨 — 데이터 라벨과 겹치지 않도록 코너 정렬
+# (이전: 각 사분면 중앙 → 산업통상자원부 등 부처 라벨과 충돌)
+qkw = dict(fontsize=12.5, alpha=0.7, fontweight='bold',
+           transform=ax.transAxes,
+           bbox=dict(boxstyle='round,pad=0.25', fc='white',
+                     ec='none', alpha=0.55))
+ax.text(0.985, 0.985, 'Q2 위험\n(점검 필요)', color='#c0392b',
+        ha='right', va='top', **qkw)
+ax.text(0.015, 0.985, 'Q4 안전\n(양 상관)', color='#1a6fa0',
+        ha='left', va='top', **qkw)
+ax.text(0.015, 0.015, 'Q3 안전\n(음 상관)', color='#1a7a4a',
+        ha='left', va='bottom', **qkw)
+# Q1 라벨은 legend(lower right)와 충돌하므로 분면 상단(0선 바로 아래)에 둔다
+q1_y = abs(y0_lim) / (y1_lim - y0_lim) - 0.02   # 0선에서 약간 아래 (axes fraction)
+ax.text(0.985, q1_y, 'Q1 자동분배', color='#c05000',
+        ha='right', va='top', **qkw)
 
 ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
 ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)')
 ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)')
-ax.legend(loc='lower right', fontsize=8.5, ncol=1)
+ax.legend(loc='lower right', fontsize=12.5, ncol=1)
 ax.grid(alpha=0.2)
 
 plt.tight_layout()
@@ -252,3 +258,10 @@ if max(w, h) > MAX:
     print(f'preview: {w}x{h} -> {ns[0]}x{ns[1]}')
 else:
     print(f'preview: {w}x{h}')
+
+# 슬라이드/논문 production 경로에도 복사
+import shutil
+for dst in [os.path.join(ROOT, 'paper', 'figures', 'h14_quadrant.png'),
+            os.path.join(ROOT, 'paper', 'slides', 'assets', 'h14_quadrant.png')]:
+    shutil.copy2(out, dst)
+    print(f'  -> {dst}')

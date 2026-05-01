@@ -1,9 +1,9 @@
-// 한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석 논문 (v2)
+﻿// 한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석 논문 (v2)
 // Typst 컴파일: typst compile paper/main_v2.typ paper/main_v2.pdf
 
 #set document(
   title: "한국 정부 재정 집행의 굿하트 게임 — Principal-Agent 균형 분석, 사업원형별 다중 검증, 정책 처방",
-  author: ("정선규", "심은철", "김영찬"),
+  author: ("정선규", "심은철", "김영찬", "김재호"),
 )
 
 #set page(
@@ -104,12 +104,13 @@
     Principal-Agent 균형 분석, 사업원형별 다중 검증, 정책 처방
   ]
   #v(2.5em)
-  #text(size: 11pt)[정선규, 심은철, 김영찬]
+  #text(size: 11pt)[정선규, 심은철, 김영찬, 김재호]
   #v(0.35em)
   #text(size: 9pt, fill: rgb("#555"))[
     정선규 #h(0.5em) jsk320098\@gmail.com #h(1.5em)
     심은철 #h(0.5em) simeunchul\@naver.com #h(1.5em)
-    김영찬 #h(0.5em) findurwind\@gmail.com
+    김영찬 #h(0.5em) findurwind\@gmail.com #h(1.5em)
+    김재호 #h(0.5em) goldenline97\@gmail.com
   ]
   #linebreak()
   #v(0.3em)
@@ -146,7 +147,7 @@
 
   *이론*: 평가 가중 $w_t$(시점 조정, 측정 가능)와 $w_q$(사업 품질, 측정 어려움)의 *측정성 격차*가 큰 한국 평가 제도(집행률 평가·출연기관 경영평가·감사) 환경에서 *합리적 행위자*의 균형 행동이 *시점 조정 노력 $e_t$로 자원이 쏠리는 굿하트 게임*임을 도출한다 — #cite(<holmstrom1991>, form: "prose")의 한국 적용.
 
-  *실증*: 활동 단위 임베딩(UMAP+HDBSCAN)으로 *4개 사업원형*(인건비형·자산취득형·출연금형·정상사업)을 발견하고, Mapper·Persistent Homology로 위상 안정성을 입증한다(H1). 분야 라벨은 게임화 강도 분산에 *trivial한 추가 설명력*에 그치는 반면, 사업원형×지출진동 상호작용은 유의한 추가 설명력을 가진다. 회계연도 12월 RDD 분석에서 *자산취득형이 여타 사업원형 대비 가장 강한 연말 집중 점프*를 보이며(H2), 출연금형은 여타 원형 대비 현저히 강한 *연간 사이클 우세* 패턴을 나타낸다(H3). 사회복지 분야는 자동분배 특성에 의한 *fortuitous alignment* 효과를 보이며($r = -0.86$, CPI 통제 후 강화), 이는 모형의 분야 alignment 함수로 명시적으로 포착된다(H5). 웨이블릿 분석은 *출연금형 게임화 강도가 표본 기간 내 시간에 따라 강화*됨을 새롭게 보인다(H6) — #cite(<liebman2017>, form: "prose") 미국 결과의 *질적·동적* 한국 확장.
+  *실증*: 활동 단위 임베딩(UMAP+HDBSCAN)으로 *4개 사업원형*(인건비형·자산취득형·출연금형·정상사업)을 발견하고, Mapper·Persistent Homology로 위상 안정성을 입증한다(H1). 분야 라벨은 게임화 강도 분산에 *trivial한 추가 설명력*에 그치는 반면, 사업원형×지출진동 상호작용은 유의한 추가 설명력을 가진다. 회계연도 12월 RDD 분석에서 *자산취득형이 여타 사업원형 대비 가장 강한 연말 집중 점프*를 보이며(H2, 자산취득형 3.42$times$ vs 전체 평균 1.91$times$), 출연금형은 여타 원형 대비 현저히 강한 *연간 사이클 우세* 패턴을 나타낸다(H3). Baron-Kenny + Sobel 매개분석은 *농림수산 분야에서 집행률 → archetype → 농가소득 매개 경로가 통계적으로 유의*함을 식별한다($z = -2.897$, $p = 0.004$, H4) — 거시 outcome 평균이 0에 수렴해도 *극단 분야에서 강한 발현*을 보이는 Manheim-Garrabrant Type 3 Extremal 굿하트의 정량 흔적. 사회복지 분야는 자동분배 특성에 의한 *fortuitous alignment* 효과를 보이며($r = -0.86$, CPI 통제 후 강화), 이는 모형의 분야 alignment 함수로 명시적으로 포착된다(H5). H5 결과는 Spearman/Kendall과 Leave-One-Out 검증으로 부호 견고성을 추가 입증한다. 웨이블릿 분석은 *출연금형 게임화 강도가 표본 기간 내 시간에 따라 강화*됨을 새롭게 보인다(H6, $+554%$) — #cite(<liebman2017>, form: "prose") 미국 결과의 *질적·동적* 한국 확장. +554%는 가중 채널이 아닌 *비용 채널 + COVID 충격* 합성으로 메커니즘적으로 재해석된다.
 
   *정책*: 모형의 비교정역학에서 6개 정책 권고를 *직접 도출*한다 — 집행률 평가 가중 완화 방향의 다년도 회계, 출연기관 평가 지표 전환, 정산 시점 분산, 데이터 인프라, 자동 flagging, 시간 가중 점검. 각 권고는 모형 레버와 1:1 대응하며, Holmstrom-Milgrom impossibility의 본질적 한계를 정직하게 명시한다.
 ]
@@ -160,41 +161,22 @@
 
 #v(2em)
 
+// 영문 abstract는 별도 영문판(main_v2_en.typ)에 존재 — KR 본 파일에서는 제거
+
+#pagebreak()
+
 // =============================================================
-// 영문 초록 (English Abstract) — Zenodo DOI 메타데이터·국제 검색 노출용
+// 목차
 // =============================================================
-#align(center)[
-  #text(weight: "bold", size: 12pt,
-        font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[Abstract]
-]
-#v(0.4em)
-#align(center)[
-  #text(weight: "bold", size: 11pt,
-        font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[
-    Goodhart's Game in Korean Central Government Spending: \
-    A Principal-Agent Equilibrium Analysis with Multi-Method \
-    Validation and Model-Based Policy Prescriptions
-  ]
-]
-#v(0.6em)
-
-#[
-  #set par(first-line-indent: 0pt, leading: 0.95em)
-  This paper derives the micro-mechanism through which Goodhart's effect #cite(<goodhart1975>) manifests in Korean central government budget execution via a Principal-Agent equilibrium model, then validates six falsifiable hypotheses (H1--H6) using 11-year monthly data, 14 expenditure fields, 1,557 spending activities, and 11 analytical methods.
-
-  Korea's evaluation regime --- execution-rate audits, management assessments of government-affiliated institutions, and Board of Audit reviews --- creates a large measurability gap between the timing-adjustment weight $w_t$ (observable) and the quality weight $w_q$ (unobservable). Following #cite(<holmstrom1991>, form: "prose"), a rational agent's equilibrium response is to concentrate effort on the measurable dimension, yielding what the paper terms a Goodhart game: systematic near-year-end over-execution at the expense of project quality. The model maps onto all four Goodhart categories of Manheim and Garrabrant (2019).
-
-  Activity-level embeddings (UMAP + HDBSCAN) uncover four project archetypes --- personnel-cost, capital-acquisition, grant-transfer, and normal-operation --- with Mapper and Persistent Homology confirming topological stability (H1). Field labels add negligible explanatory power over gaming intensity ($Delta R^2 = 0.000$). Regression discontinuity at the December boundary shows capital-acquisition activities spike 3.42$times$ at fiscal year-end (H2); grant-transfer activities exhibit the strongest annual-cycle dominance in spectral and wavelet coherence analyses (H3). Social-welfare spending shows a fortuitous alignment effect from automatic-transfer mechanics ($r = -0.86$, strengthened after CPI controls; H5). Wavelet decomposition reveals that grant-transfer gaming intensity amplified by +554% in 12-month amplitude over the sample, extending #cite(<liebman2017>, form: "prose") qualitatively and dynamically to Korea (H6).
-
-  Six policy prescriptions follow directly from the model's comparative statics: multi-year appropriations, revised indicators for affiliated institutions, staggered settlement deadlines, data infrastructure, automated execution-pattern flagging, and time-weighted monitoring. Each maps one-to-one to a model lever. The analysis forthrightly acknowledges the fundamental limits imposed by Holmstrom--Milgrom impossibility.
-]
-
-#v(1em)
-
-#[
-  #set par(first-line-indent: 0pt)
-  #text(weight: "bold")[Keywords:] Goodhart's Law, Principal-Agent Model, Multitasking Contract, Public Finance, Project Archetype, Regression Discontinuity, Wavelet Analysis, Topological Data Analysis, Korea
-]
+#show outline.entry.where(level: 1): it => {
+  v(0.7em, weak: true)
+  strong(it)
+}
+#outline(
+  title: [목차],
+  indent: auto,
+  depth: 3,
+)
 
 #pagebreak()
 
@@ -223,11 +205,11 @@
 
   + *기여 1 — 이론 모형 (§3)*: Principal-Agent 균형 분석을 통해 *왜* 한국에서 굿하트 효과가 발현하는가에 답한다. Agent의 *비합리성*이 아닌 *합리성*이 측정성 격차 환경에서 시점 조정 노력으로 자원이 쏠리도록 유도한다. 모형은 6개 검증 가능 가설(H1\~H6)을 산출.
 
-  + *기여 2 — 분석 단위 재정의 (§6.1, H1)*: 한국 행정학·재정학이 표준으로 사용해온 *분야 단위 분석*이 게임화에 대해 *trivial*($Delta R^2 = 0.000$)이고, 진짜 단위는 *사업 형태(archetype)*임을 위상 데이터 분석으로 다중 입증.
+  + *기여 2 — 분析 단위 재정의 (§6.1, H1)*: 한국 행정학·재정학이 표준으로 사용해온 *분야 단위 분析*이 게임화에 대해 *trivial*($Delta R^2 = 0.000$)이고, 진짜 단위는 *사업 형태(archetype)*임을 위상 데이터 분析으로 다중 입증.. TDA Loop 분析: 출연금형(Archetype 2) 내부 sub-heterogeneity 발견 — 4-archetype 분류가 완전한 분류 종점이 아니며 Archetype 2 내부 추가 sub-structure가 존재함을 PH loop가 시사.
 
   + *기여 3 — 직관 반대 발견 (§6.3\~§6.7, H2/H3/H5)*: 게임화는 단순한 부정적 측정 왜곡이 아니라 *분야 이질적·사업원형 이질적* 현상이다. 자산취득형 RDD 점프 3.42배(H2), 출연금형 사이클 우세(H3), 사회복지 *fortuitous alignment*에 의한 자동분배 효과(H5)가 핵심.
 
-  + *기여 4 — 시간 동적 강화 (§6.8, H6, Wavelet 신규)*: FFT 정상성 가정의 한계를 웨이블릿으로 보완해 *게임화가 시간이 갈수록 강화*됨을 새롭게 입증. 출연금형 12개월 cycle 진폭 *2015\~2017 → 2023\~2025로 +554\%* 증가, 인건비형 변화 없음(통제). 한국 굿하트 효과는 *고정 패턴이 아닌 진행 중인 동적 현상*.
+  + *기여 4 — 시간 동적 강화 (§6.8, H6, Wavelet 신규)*: FFT 정상성 가정의 한계를 웨이블릿으로 보완해 *게임화가 시간이 갈수록 강화*됨을 새롭게 입증. 출연금형 12개월 cycle 진폭 *2015\~2017 → 2023\~2025로 +554\%* 증가 (COVID qualifier 포함: Pre-COVID 완만한 강화 +0.068/yr → COVID 충격 증폭 → elevated plateau 유지), 인건비형 변화 없음(통제). 한국 굿하트 효과는 *고정 패턴이 아닌 진행 중인 동적 현상*.
 
   + *기여 5 — 정책 처방의 모형적 도출 (§7)*: 정책 권고를 *임의 나열*이 아닌 모형의 비교정역학 ($(partial e_t^*) / (partial w_t) > 0$ 등)에서 *직접 도출*. 6대 권고 — 다년도 회계, 출연기관 평가 지표 전환, 정산 분산, 데이터 인프라, 자동 flagging, 시간 가중 점검 — 은 모형 레버 ($w_t, w_q$, $c_(t t)$)와 1:1 대응. Holmstrom-Milgrom impossibility의 본질적 한계를 정직 명시.
 
@@ -398,7 +380,7 @@
   + *H5 (사회복지 fortuitous)*: $(partial Y) / (partial e_t) > 0$인 *예외* 분야. *우연*이지 정책 정당화 아님. (검증: §6.7)
   + *H6 (시간 강화)*: $w_t / w_q$ 비율의 시간 증가 → $e_t^*$ 시계열 강화. (검증: §6.8 — wavelet +554%)
 
-  *Performative Prediction과의 이론적 연결*: H6는 #cite(<hardt2016strategic>, form: "prose")과 #cite(<perdomo2020performative>, form: "prose")의 Performative Prediction — *지표가 평가 도구로 채택되는 순간 그 지표가 측정하는 분포 자체가 변화한다* — 의 한국 재정 데이터 실증 사례에 해당한다. Agent가 평가 시스템의 구조를 학습해 시간이 지날수록 게임화 강도를 점진적으로 강화하는 *적응적 행동*이 그 메커니즘이다. 이 이론적 연결은 H6의 실증 해석을 뒷받침하며, 상세한 분석 결과는 §6.8에서 보고한다.
+  *Performative Prediction과의 이론적 연결*: H6는 #cite(<hardt2016strategic>, form: "prose")과 #cite(<perdomo2020performative>, form: "prose")의 Performative Prediction — *지표가 평가 도구로 채택되는 순간 그 지표가 측정하는 분포 자체가 변화한다* — 의 한국 재정 데이터 실증 사례에 해당한다. Agent가 평가 시스템의 구조를 학습해 시간이 지날수록 게임화 강도를 *점진적으로 강화*하는 적응적 행동이 그 메커니즘이다. 다만 §6.8 시기 분할 검증에서 보이듯, 한국 표본의 +554% 증폭은 *Pre-COVID 완만한 학습 적응이 COVID 확장재정으로 급격히 증폭된 합성 패턴*이며, 순수 monotonic 학습으로 환원되지 않는다. 이론적 연결은 유효하나 실증 해석에는 시기 분할 qualifier가 함께 적용된다(상세는 §6.8).
 
   본 모형은 *6개 가설을 동시에 예측*하며, 각 가설은 독립적인 데이터 분석으로 검증된다. 이는 모형의 *과적합 위험을 낮추는* 다중 검증 구조다.
 
@@ -595,6 +577,9 @@
       [H5], [사회복지 fortuitous alignment ($(partial Y) / (partial e_t) > 0$)], [§6.7],
       [H6], [시간 동적 강화 ($w_t / w_q$ 비율 증가)], [§6.8],
       [방법론], [STL 자기 비판 + NeuralProphet·Wavelet 중재], [§6.9],
+      [확장 A], [시간 진화 TDA — 위상 + wavelet dual framework], [§6.10],
+      [확장 B], [$w_t/w_q$ calibration — 메커니즘 재해석], [§6.11],
+      [확장 C], [거시 outcome 보완 — ALIO 부분 수집], [§6.12],
     ),
     caption: [P-A 모형의 6 가설과 결과 절의 검증 매핑],
   )
@@ -638,12 +623,15 @@
   - *C2 출연금형* (n=154): chooyeon +2.89, 게임화 진폭 +0.88 — 공공·출연기관 위탁 → 12월 몰림
   - *C3 정상사업* (n=1,175): 평균 부근 — 베이스라인
 
-  *위상 안정성 검증*: UMAP+HDBSCAN의 4개 군집이 알고리즘 우연이 아닌지 확인하기 위해 두 가지 위상 도구를 병행 적용한다.
+  *구조 안정성 + 발견*: UMAP+HDBSCAN의 4개 군집이 알고리즘 우연이 아닌지 확인하기 위해 두 가지 위상 도구를 병행 적용한다. TDA는 (a) HDBSCAN 4-archetype 안정성 검증, (b) Mapper의 *manifold connectivity* 측면(점들이 어떻게 연결되어 있는가)과 HDBSCAN의 *density cluster* 측면(점들이 어디에 밀집하는가)이 *상보적* 측정임을 명시, (c) PH가 Archetype 2 내부 sub-heterogeneity를 발견하는 역할을 수행한다.
 
-  - *Mapper 그래프* (@fig-mapper-amp, @fig-mapper-cluster)에서 32 노드 / 38 엣지 / 10 components / 7 loops로 군집 구분이 위상적으로 분리되어 있음이 확인되었다.
-  - *Persistent Homology*는 30개 강건 component와 15개 강건 loop를 보고하였으며(@fig-ph-pd, @fig-ph-barcode), 50회 부트스트랩에서 H1 max persistence 95% CI [0.48, 1.19]로 위상 구조의 우연성을 배제하였다(@fig-ph-bootstrap).
+  - *Mapper 그래프* (@fig-mapper-amp, @fig-mapper-cluster)에서 32 노드 / 38 엣지 / 10 components / 7 loops로 군집 구분이 위상적으로 분리되어 있음이 확인되었다. *10 components의 매개변수 강건성*: cover overlap (0.3\~0.7) × n_intervals (6\~18) 12개 조합 전체에서 components 수가 9\~10으로 안정(IQR [10, 10]) — 매개변수 artifact가 아닌 manifold 구조 특성이다. *10 components vs 4 archetypes의 해석*: Mapper는 manifold connectivity를, HDBSCAN은 density cluster를 측정하므로 두 값은 모순이 아니라 상보적 측면을 반영한다.
 
-  세 도구(UMAP+HDBSCAN, Mapper, PH)가 일관되게 *사업 형태가 분야보다 강한 단위*임을 지지한다.
+  - *Persistent Homology*는 30개 강건 component와 15개 강건 loop를 보고하였으며(@fig-ph-pd, @fig-ph-barcode). *강건성 재검증*: 기존 max persistence 95% CI [0.48, 1.19]는 극값 부트스트랩의 artifact일 수 있다. 전체 persistence diagram에 Wasserstein-2 거리를 적용하면 관측 mean 0.885 vs null(feature-shuffled) mean 1.524로, $p < 0.0001$에서 전체 PH 구조가 귀무가설과 유의하게 다름이 확인되었다. 이는 max persistence CI보다 강건한 전체-diagram 검증이다(@fig-ph-bootstrap).
+
+  - *PH Loop 해석*: 상위 5개 robust loop 분석 결과, 4개는 Archetype 2(출연금형 — 불규칙·고변동 지출 활동) 내부 sub-heterogeneity를 추적하며, 1개(Loop 3, 2-vertex)만 archetype 경계 saddle로 확인된다(4× enrichment, p=0.004). *해석*: 이는 4-archetype 분류가 완벽한 partitioning이 아니라 Archetype 2(출연금형) 내부에 추가 분류 가능한 sub-structure가 있음을 시사한다. H1 결론('archetype이 진짜 단위')을 약화하지 않으나 *post-archetype 추가 분석 여지*를 명시한다.
+
+  세 도구(UMAP+HDBSCAN, Mapper, PH)가 일관되게 *사업 형태가 분야보다 강한 단위*임을 지지하며, Mapper와 PH는 각각 manifold 연결성·위상 구조의 독립적 측면을 추가로 드러낸다.
 
 #figure(
   image("figures/h3_umap.png", width: 100%),
@@ -673,7 +661,7 @@
 
 #figure(
   image("figures/h9_bootstrap.png", width: 100%),
-  caption: [\[H1.b 검증\] Bootstrap PH 50회 (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ 5y 참조(median 0.65) 대비 표본 안정성 검증.],
+  caption: [\[H1.b 검증\] Bootstrap PH 50회 (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ null(feature-shuffled) 분포 대비 Wasserstein-2 검증(관측 mean 0.885 vs null 1.524, $p < 0.0001$)으로 전체 diagram 강건성 입증.],
 ) <fig-ph-bootstrap>
 
 == H2 검증 — 자산취득형 회계연도 12월 RDD 점프
@@ -689,6 +677,27 @@
 
   미국 5배 대비 한국 1.9배의 절대값 차이는 *측정 단위 granularity* 차이로 설명된다(미국 주 단위 vs 한국 월 단위 — 12월 첫째 주의 신호가 12월 전체로 분산). 사업 형태별 RDD 점프의 *순서*는 #cite(<liebman2017>, form: "prose")의 use-it-or-lose-it 메커니즘이 *공정률·자산취득 사업*에서 가장 강하게 작동함을 보여준다.
 
+  *측정 단위 granularity에 대한 강건성*: #cite(<liebman2017>, form: "prose") 결과(5.0×)와의 차이가 *월 vs 주 단위 측정 차이의 산물*인지 검증하기 위해 가상 주별 시나리오 4개를 계산했다.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto),
+      align: (left, center, left),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*시나리오*], [*한국 추정 비율*], [*설명*],
+      [S1 월별 baseline (실측)], [1.91× \[1.81, 2.02\]], [본 연구 실제값],
+      [S2 가상 주별 균등], [1.85×], [12월 신호를 4주에 균등 배분 가정],
+      [S3 mild front-load], [2.87×], [12월 첫 7일 = 35% 가정],
+      [S4 heavy spike], [4.10× \[3.88, 4.32\]], [12월 첫 7일 = 50% 가정],
+      [Liebman 미국 benchmark], [5.0×], [주별 자료 직접 관측],
+    ),
+    caption: [\[H2 granularity 강건성\] 가상 주별 시나리오 — 가장 적극적 가정(S4)에서도 한국 4.10×로 미국 5.0× 미달],
+  )
+
+  가장 적극적인 front-load 가정(S4, 12월 첫 7일 = 50\%) 하에서도 한국 추정 비율은 4.10×로 미국 5.0×에 미달한다. 양국 차이는 단순 granularity 산물이 아니며 — *제도 구조적 차이*(조달 유형, 회계 분권화 정도)가 본질적 요인이다.
+
+  *분기말 집행관리 사이클의 흔적 — multi-cutoff 시스템의 가시화*: @fig-rdd-monthly 의 11년 평균 시계열은 12월뿐 아니라 3월·6월·9월에도 부수 점프를 보인다. 이는 기획재정부 *분기별 집행관리제도*(분기마다 집행률 점검)의 직접적 흔적이며, 12월 점프가 압도적으로 큰 이유는 *분기 마감 + 회계연도 마감 + 차년도 이월 차단*의 3중 deadline이 12월에 중첩되기 때문이다. 분기말 부수 점프의 존재는 H2 결론을 약화하지 않고 오히려 강화한다 — 행정적 임의 절단점이 1개가 아닌 *4개*이며, 게임화 압력이 *KPI deadline 밀도 전반*에서 작동하는 multi-cutoff 시스템임이 그림에 직접 가시화된 것이다. 이는 #cite(<liebman2017>, form: "prose")의 단일 fiscal-year cutoff 분석과 한국 *분기 + 연 hybrid* 시스템 간의 *제도 구조 차이*를 시사하는 추가 단서로, 앞 단락 granularity 결론("제도 구조적 차이가 본질")의 *구체적 instance*에 해당한다. 본 연구는 12월 RDD를 일차 검증 도구로 보고하되, 분기말 RDD를 포함한 multi-cutoff 확장은 향후 분석 과제로 남긴다.
+
   *RDD vs 스펙트럼 측도 — 사업원형별 메커니즘 차이*: RDD가 12월 1일 직후 *이산적 점프*를 측정하는 반면, FFT/STL/NeuralProphet/Wavelet은 *연 단위 사이클 진폭*을 측정한다. 자산취득형은 RDD 점프가 강하고(3.42배), 출연금형은 사이클 강도가 강하다(PSD 0.332, phase coherence 0.54, wavelet +554\%; 상세는 §6.4). 두 사업원형 모두 *외생 회계 cycle에 결속*되어 있으나, 자산취득형은 *공정률 마감 직후 단발적 spike*로, 출연금형은 *위탁기관 정산 일정에 따른 다회 분산 + 12월 누적*으로 발현된다. 게임화 메커니즘이 사업원형별로 다르다는 점은 본 연구의 정책 함의(권고 1·2)에 직접 반영된다.
 
   *모형 검증 (H2)*: 본 결과는 P-A 모형의 *사업원형별 비용 함수 $c(e_t, e_q; theta)$ 차이*가 균형 $e_t^*$의 *시간 구조 차이*로 발현됨을 직접 입증한다. 자산취득형은 $c(e_t)$가 12월 1일 직후 *급감*(공정률 마감과 회계 마감이 동시에 만료되는 임의 시점)하므로 RDD 점프 가장 큼(H2). 두 균형은 모형의 *동일 FOC* $w_t = (partial c) / (partial e_t)$가 *원형별 비용 함수의 차이*를 통해 다른 시간 구조로 발현된 것이다.
@@ -697,7 +706,7 @@
 
 #figure(
   image("figures/h22_rdd_monthly.png", width: 100%),
-  caption: [\[H2 검증\] 월별 활동 평균 일집행액 (2015\~2025) — 색상은 연도(보라 2015 → 노랑 2025),\ 굵은 검정선은 11년 평균. 11~12월 영역(빨강)에서 12월 점프 가시화.],
+  caption: [\[H2 검증\] 월별 활동 평균 일집행액 (2015\~2025) — 색상은 연도(보라 2015 → 노랑 2025),\ 굵은 검정선은 11년 평균. 11~12월 영역(빨강)에서 12월 점프 가시화\ (3월·6월·9월에도 분기말 집행관리 사이클로 인한 부수 점프 관찰).],
 ) <fig-rdd-monthly>
 
 #figure(
@@ -769,7 +778,7 @@
 
   *모형 검증 (H4) — 분야별 분해 결과가 이질성의 실제 증거*: P-A 모형은 *비용 함수 $c(\cdot; theta)$가 사업원형 $theta$별로 다름*을 예측한다. 이질성 증거는 pooled 통계가 아닌 *분야별 직접 분해 결과*에서 온다.
 
-  *분야별 매개 분해* (출처: `data/results/H23_mediation_estimates.csv`):
+  *분야별 매개 분해*:
   - *농림수산*: Sobel z = $-2.897$, $p = 0.004$ — *14분야 중 유일하게* 통계적으로 유의한 강한 음의 매개. 출연금 비중 → 12개월 진폭 → 농가소득 outcome 매개 경로가 강건하게 식별된다.
   - *사회복지*: 매개비율(mediation_ratio) = 57%로 분야 중 양호한 편이나, Sobel z = $+0.23$, $p = 0.82$로 통계 유의 미달 ($n = 6$ 표본 크기 제약).
   - *환경*: 데이터 부족($n = 4$)으로 Sobel 추정 자체가 불가능(NaN). *환경에 강한 매개가 있다는 해석은 근거 없음*.
@@ -783,9 +792,11 @@
 
   *직관 반대 발견*: 게임화는 부정적 측정 왜곡으로 통상 인식되지만, 본 연구는 사회복지 분야에서 *오히려 긍정적 결과*와 연결되는 사례를 발견한다. 사회복지 정상사업의 12월 집중 집행 강도가 클수록 *순자산 지니계수가 감소(불평등 완화)*하는 음의 상관이다. 이는 회계연도 마감 직전 사회복지 급여·보조금이 일괄 지급되면서 빈곤층에 자원이 자동 분배되는 메커니즘으로 해석된다.
 
-  *[데이터 버전 명시]* 본 연구의 permutation test는 5단계 outcome 변수 검증 후 v3 (`H6_permutation_pvals_v3.csv`)을 기준으로 사용한다. 교육 분야는 `imd_edu_rank`로 매핑 (v1 대비 `private_edu_hours` 제거, 국방 분야 `defense_op_margin` 추가로 총 15행).
+  본 연구의 permutation test는 5단계 outcome 변수 검증 후 확정된 변수를 기준으로 사용한다. 교육 분야는 `imd_edu_rank`로 매핑하며, 국방 분야를 포함해 총 15개 분야를 대상으로 한다.
 
   사회복지 분야의 1차 차분 상관은 r=−0.762(p=0.035, permutation 1,000회)로 14분야 중 유일하게 통계적으로 유의했다(@fig-h6). Lag/Lead 차분 상관(k=−2..+2)에서 동기 상관이 가장 강해 즉시적 자동분배 메커니즘을 지지하며, amp_cv 대안 지표에서도 방향이 일관된다(@fig-h6-lag). CPI 외생 통제 후 r=−0.86(p=0.007)로 *신호가 강화*되어, 자연 경기 cycle 가설을 기각하였다(@fig-h10).
+
+  *측도 의존성 — 중요 qualifier*: 본 H5 결과는 FFT amp_12m_norm 측도에 의존한다. STL seasonal_strength 측도로 전환 시 r=−0.762 → +0.003으로 신호가 완전히 소멸한다(§6.9 상세). 이는 (a) FFT가 사회복지의 지속 증가 추세를 흡수하여 가짜 주기성이 생성된 것이거나, (b) STL이 진짜 게임화 점프를 추세로 흡수하여 신호를 놓친 것이거나의 미해결 ambiguity를 의미한다. 본 연구는 두 측도를 모두 보고하며 결론을 단일 측도에 귀속하지 않는다. NeuralProphet(changepoint 명시 모델링)의 활동-단위 결과는 r=−0.24로 음 신호를 부분 회복하여 FFT 해석을 지지하나, STL-FFT 불일치는 *측정 도구 선택에 따른 본질적 불확실성*으로 남는다.
 
   *왜 강화되는가*: CPI 잔차로 분석하면 거시 경기 변동(인플레이션·실업률 동조)으로 설명되는 부분이 제거된다. 신호가 약해지지 않고 강해진다는 것은 게임화-결과변수 연결이 경기 cycle보다 *행정 메커니즘 자체*에 뿌리가 있음을 시사한다.
 
@@ -818,6 +829,34 @@
   caption: [\[H1 검증\] 분야 라벨 trivial 검정 — 분야 FE 단독 ΔR²=0.000,\ 사업원형×Δamp 추가 ΔR²=+0.025 (R²: 0.014 → 0.038)],
 ) <fig-h8>
 
+=== H5 강건성 검증
+
+  *3개 상관 측도의 부호 일관성*: Pearson $r$ 단독에 의존하면 외값에 취약하다는 우려에 대해, Spearman $rho$와 Kendall $tau$를 함께 보고한다.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*측도*], [*값*], [*부호*], [*해석*],
+      [Pearson $r$], [$-0.856$], [음], [선형 강한 음의 상관],
+      [Spearman $rho$], [$-0.833$], [음], [순위 기반 — 외값 robust],
+      [Kendall $tau$], [$-0.714$], [음], [순위 일치도 — 비모수 robust],
+    ),
+    caption: [\[H5 강건성\] 사회복지 집행률 × wealth_gini 1차 차분 — 3개 측도 모두 음 부호 일관],
+  )
+
+  *Leave-One-Out 안정성*: 8개 연도에서 각각 1년씩 제거하며 Pearson을 재계산. 8/8 iterations에서 부호 보존, 최악의 경우(2025 제거 시) $r = -0.539$로 약화되나 부호는 음 유지. 5년 rolling window 4개 모두 음 상관, post-2020 split ($n = 6$) $r = -0.708$. 단일 leverage point가 결과를 주도하지 않음.
+
+  *95% Bootstrap CI*: Pearson $[-0.988, -0.153]$. 0을 배제하나 상한이 0에 근접 — *부호는 강건, 크기는 $n = 8$의 표본 한계*. 본 연구는 부호의 robust한 음을 주장하되 정확한 강도($-0.86$)는 표본 한계를 명시하며 보고한다.
+
+
+
+#figure(
+  image("figures/h10_v3_robustness.png", width: 100%),
+  caption: [\[H5 강건성\] Pearson / Spearman / Kendall 3-측도 비교 + Leave-One-Out 안정성.\ 모든 측도에서 음 부호 유지, LOO 최악 $r = -0.539$ (2025 제거). 95% Bootstrap CI $[-0.988, -0.153]$.],
+) <fig-h10-v3-robust>
+
 == H6 검증 — 시간 동적 강화 (Wavelet)
 
   *왜 시간 분석인가*: FFT amp_12m_norm은 11년 시계열의 *고정 평균* 진폭을 측정하므로 *시간에 따른 변화*를 볼 수 없다. 정상성 가정이 본 연구 환경(2007 국가재정법, 2014 회계제도 개편, 2020 코로나 확장재정 등 정책 변화점 다수)에서 부적합할 가능성을 검증하기 위해 Continuous Wavelet Transform(CWT, complex Morlet)을 적용했다(상세는 부록 D.4).
@@ -849,12 +888,100 @@
 
   *통제 사례 — 인건비형 변화 없음*: 인건비형은 구조상 매월 균등 지급이라 *$e_t$ 조정 자체가 불가능*($(partial c) / (partial e_t) = infinity$). 모형은 이 원형에서는 시간 강화가 발현되지 않을 것으로 예측 — 결과 −0.8\%로 *예측 정확*. 이는 측정 도구(wavelet)가 진짜 동적 신호만 잡아내며 noise가 아님을 보강한다.
 
-  *함의 — 한국 굿하트 효과는 진행형*: 본 결과는 한국 게임화가 *고정 패턴이 아니라 진행 중인 동적 강화 현상*임을 입증한다. 정책 분석의 시간 가중치는 *최근 3년 자료*로 옮겨가야 하며(권고 5), FFT amp_12m_norm 같은 정상성 가정 도구의 11년 평균값은 *증폭 추세를 희석*하므로 보완이 필요하다.
+  *함의 — 한국 굿하트 효과는 진행형*: 본 결과는 한국 게임화가 *고정 패턴이 아니라 진행 중인 동적 강화 현상*임을 입증한다. 정책 분析의 시간 가중치는 *최근 3년 자료*로 옮겨가야 하며(권고 5), FFT amp_12m_norm 같은 정상성 가정 도구의 11년 평균값은 *증폭 추세를 희석*하므로 보완이 필요하다.
 
 #figure(
   image("figures/h28_evolution.png", width: 80%),
   caption: [\[H6 검증\] 12개월 cycle 진폭의 연도별 진화 — *출연금형 +554% 강화*, 인건비형 변화 없음(통제). 정책 변화점 (2017 국가재정법 시행 후 10년, 2020 COVID 확장재정) annotate.],
 ) <fig-h28-evol-body>
+
+=== 시기 분할 검증 — COVID 충격 vs Performative Prediction
+
+  헤드라인 수치 *+554\%*는 2015\~2025년 전체 평균 대비 종점 비교에서 산출된 것이다. 단순 선형 monotonic 학습 적응(Performative Prediction 해석)인지, 아니면 특정 시기의 체제 충격(COVID 확장재정)이 결과를 주도하는지를 구분하기 위해 세 구간 분할 검증을 실시하였다.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*구간*], [*평균 power*], [*slope (per yr)*], [*비고*],
+      [Pre-COVID (2015–2018)], [0.265], [+0.068], [완만한 추세적 강화],
+      [COVID (2019–2021)], [1.049], [+0.246], [급격 증폭],
+      [Post-COVID (2022–2025)], [1.375], [−0.215], [plateau, 완만 하강],
+    ),
+    caption: [\[H6 시기 분할\] 출연금형 12개월 wavelet power 3구간 분해 — 전환율: Pre→COVID +295.8%, COVID→Post +31.1%],
+  )
+
+  *해석 — qualifier 추가*: +554\% 결과는 (a) 2015\~2018 기간의 완만한 추세적 강화 (slope +0.068/yr)가 (b) 2019\~2021 COVID 확장재정 충격으로 급격히 증폭된 결과이다. 2022\~2025 post-COVID 구간에서는 plateau로 안정화되었으나 (slope −0.215/yr) 사전 baseline으로 회귀하지 않았다. Performative Prediction 해석은 *전체 11년에 걸친 monotonic 학습 적응*이 아니라 *COVID 이전의 완만한 강화 + COVID 충격 후 elevated plateau*로 qualifier가 필요하다. 헤드라인 +554\%는 실제이며 elevation도 지속적이지만, 증가량의 대부분은 COVID기 확장재정이 만들어낸 체제 전환(Pre→COVID +295.8\%)에서 기인한다.
+
+  *H6 강건성 보존*: 시기 분할로 주요 발견이 약화되지 않는다. 사업원형별 어느 시기로 잘라보아도 양의 진폭 패턴이 보존된다 — 자산취득형 +175\%, 정상사업 +317\%, 인건비형 −0.8\%(통제). COVID 충격은 출연금형의 *전체 크기*를 증폭시켰으나 *원형 간 순서*는 유지되며, 이 순서가 P-A 모형의 비용 함수 이질성 예측과 일치한다.
+
+== 시간 진화 TDA — 공간 위상 × 시간 위상 dual framework
+
+  *질문*: H6 wavelet은 12개월 cycle 진폭의 시간 변화(+554%)를 측정한다. 활동 공간의 *위상 구조*도 같은 방향으로 변화하는가? 즉 TDA(공간 위상)와 wavelet(시간 위상)이 같은 신호를 측정하는가, 직교 신호를 측정하는가?
+
+  *방법*: 2015–2025 각 연도별로 활동 임베딩(3년 rolling window)을 구축하고 PH를 재계산. 각 연도의 persistence diagram과 2015 baseline 사이의 Wasserstein-2 + bottleneck 거리를 시계열로 추적. H6 wavelet power 시계열과 상관 계산.
+
+  *결과*:
+  - PH 구조 drift: 11년 간 *유의한 monotonic 추세 없음* ($p = 0.34$, $r^2 = 0.10$). 활동 공간의 위상 구조는 *상대적으로 안정*적이고 연도별로 재배열되나 방향성 drift는 없다.
+  - COVID 위상 break: 2020년 bottleneck 거리가 0.555로 평년(0.25\~0.33)보다 elevated. *완만한 위상적 충격*이나 wholesale 구조 재편은 아님.
+  - TDA × wavelet 상관: 출연금형 wavelet과 $W_2$(year, 2015) Pearson $r = 0.242$ ($p = 0.473$) — *약한, 통계 비유의*. 자산취득형이 상대적으로 강한 marginal 상관($r = 0.534$, $p = 0.091$).
+
+  *해석*: TDA와 wavelet은 *서로 다른 메커니즘*을 측정한다. Wavelet은 *주기 진폭*(timing intensity)을, TDA는 *공간 형태*(structural composition)를 잡는다. 두 측도가 직교한다는 사실은 *중복 측정이 아닌 상보적 관점*이라는 framework의 정당성을 강화한다 — H1의 archetype 구조는 시간에 안정적이고, H6의 cycle 진폭은 시간에 변화한다는 *분리된 두 발견*이 본 연구의 dual-위상 framework로 통합된다.
+
+#figure(
+  image("figures/h9_v3_time_evo.png", width: 100%),
+  caption: [\[TDA 시간 진화\] 연도별 Wasserstein-2 거리 시계열 (2015 baseline 대비) vs 출연금형 wavelet power.\ 두 시계열의 약한 상관($r = 0.242$, $p = 0.473$)이 TDA(공간 위상)와 wavelet(시간 위상)의 직교성을 확인.],
+) <fig-h9-v3-time-evo>
+
+== 부분 structural calibration — $w_t / w_q$ 비율 외부 추정
+
+  *왜 calibration인가*: 본 모형은 비교정역학으로 *부호*만 식별한다. 정책 효과의 *크기*에 대한 정량 예측을 위해서는 평가 가중 비율 $w_t / w_q$의 부분 backed-out이 필요하다. 공식 평가편람·자율평가지침에서 weight 구조를 추출하여 archetype별 implied ratio를 계산했다.
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
+      table.hline(y: 1, stroke: 1.0pt + black),
+      [*출처*], [*$w_t$ %*], [*$w_q$ %*], [*$w_t / w_q$*],
+      [재정사업자율평가 (2005–현재)], [30], [40], [0.75 (안정)],
+      [경영평가편람 위탁(주요사업, 2023)], [56.4], [43.6], [1.29],
+      [NST 출연기관 연구사업], [30], [70], [0.43],
+    ),
+    caption: [\[Calibration\] 공식 평가편람에서 추출한 implied $w_t / w_q$ 비율 — archetype별 큰 격차 확인],
+  )
+
+  *Cross-archetype 예측 검증*: 모형 예측은 "$w_t / w_q$ 큰 archetype에서 게임화 강도(amp_12m) 큼." 위탁(1.29) > 재정사업(0.75) > 출연 연구(0.43) 순서가 archetype별 amp_12m 순서와 *방향 일치* (자산취득형·일반사업 > 정상사업 > 출연 R&D 일부 > 인건비형).
+
+  *H6 시간 강화 메커니즘 — 가중 채널 vs 비용 채널*: 재정사업자율평가의 비율은 2005년 이래 *stable 0.75*다. 따라서 H6의 +554% 진폭 강화는 *가중 채널*($w_t / w_q$ 상승)으로 설명되지 않는다. 두 가지 대안 메커니즘:
+  - *비용 채널 ($c_(t t)$ 감소)*: 2018년 부처 자체평가 전환으로 중앙 oversight 약화 → 게임화 비용 절감
+  - *외생 충격 (COVID 확장재정)*: §6.8에서 입증한 Pre→COVID +295.8% 충격 효과
+
+  본 결과는 P-A 모형의 *부호 예측은 보존*하되, *크기 메커니즘은 weight 채널이 아닌 비용 채널 + 외생 충격*으로 재해석되어야 함을 시사한다. 후속 연구는 $c_(t t)$의 직접 측정(예: 감사원 지적 빈도, 평가 결과 집행률 가중치 변화)으로 이 채널을 정량화할 수 있다.
+
+
+
+#figure(
+  image("figures/v3_calibration.png", width: 85%),
+  caption: [\[Calibration\] 공식 평가편람 추출 implied $w_t / w_q$ 비율과 archetype별 실측 amp_12m 비교.\ 위탁(1.29) > 재정사업(0.75) > 출연 연구(0.43) 순서가 amp_12m 순서와 방향 일치. 재정사업 비율은 2005년 이래 stable 0.75 — H6 +554%의 weight 채널 기여를 기각.],
+) <fig-v3-calibration>
+
+== 거시 outcome 보완 — ALIO 공공기관 경영평가
+
+  *기존 한계*: 본 연구의 분야별 outcome 변수(wealth_gini, life_expectancy 등)는 거시 지표로 *signal-to-noise 약함* + 게임화 효과의 인과 식별이 약함. 본 연구는 미시 outcome (ALIO 공공기관 경영평가 등급) 보완 수집을 시도했다.
+
+  *수집 결과*: 2022–2024년 ALIO 공기업·준정부기관 105개 기관에 대한 평가 등급 (S/A/B/C/D/E). 2024년 기준 87개 기관 중 65개(75%) 커버. 자율평가 사업 단위 데이터는 PDF/AJAX 장벽으로 6개 row만 수집(데이터 한계 명시).
+
+  *매칭 전략*: ALIO 기관명 → 1,557개 활동(ACTV_NM)과 직접 매칭은 0% (다른 추상 단위). 그러나 *주관 부처*(OFFC_NM) 기준 매칭 97% — *부처 단위*에서 평가 등급과 H3 wavelet amp_12m 간 상관 분석 가능.
+
+  *향후 활용*: ALIO 기관 수준 평가 등급이 *낮은 부처*가 H3 amp_12m이 *높은가* (부처 단위 spurious correlation? mediation through archetype?)를 검증하는 보조 분석을 별도 절에 추가할 수 있다. 본 분석은 데이터 수집 + 매칭 인프라까지로 한정하며, 본격 분석은 *공공데이터포털 다운로드 권한 확보 후* 추가 분석 예정이다 (현재 PDF 장벽으로 자동 수집 한계).
+
+  *데이터 한계 명시*: 자율평가 결과의 사업 단위 등급은 *공식 공개*되어 있으나 PDF/이미지 형태로만 제공되어 자동 수집이 어렵다. 본 연구는 이를 *재현 가능성 인프라 부재*로 간주하며, 향후 정부의 *기계 가독 결과 공개*가 학술 후속 연구의 전제 조건임을 명시한다.
+
+#figure(
+  image("figures/v3_alio_grades.png", width: 90%),
+  caption: [\[ALIO 경영평가 등급 분포\] 2022–2024년 수집된 105개 공기업·준정부기관의 등급(S/A/B/C/D/E) 분포.\ 주관 부처 기준 97% 매칭. 본격 분석은 데이터 접근 확보 후 추가 분석 예정.],
+) <fig-v3-alio>
 
 == 방법론 Robustness — STL 자기 비판 + NeuralProphet·Wavelet 중재
 
@@ -913,8 +1040,8 @@
 
   #figure(
     table(
-      columns: (auto, auto, 1fr),
-      align: (left, left, left),
+      columns: (auto, 1.4fr, 3fr),
+      align: (left+top, left+top, left+top),
       table.hline(y: 1, stroke: 0.5pt + black),
       [*레버*], [*기대 효과*], [*행정 액션 후보*],
       [$w_t$ ↓], [$e_t^*$ ↓ (게임화 완화)], [집행률 평가 완화·다년도 회계·MTEF 강화·출연기관 경영평가에서 집행률 비중 축소],
@@ -977,14 +1104,14 @@
 
   *기여 2 — 분석 단위 재정의 (모형 H1 검증)*: 한국 행정학·재정학 연구가 표준으로 사용해온 *분야 단위 분석*이 게임화 현상에 대해 *trivial*하다는 정량 증거($Delta R^2 = 0.000$)를 제시하고, 진짜 분석 단위는 *사업 형태(archetype)*임을 위상 데이터 분석으로 입증했다 — UMAP+HDBSCAN 4개 군집, Mapper graph 4 components, Persistent Homology 30 강건 components로 다중 검증. *행정 분류와 게임화의 진짜 단위가 다르다*는 본 발견은 후속 정책 분석의 단위 선택 기준을 재고하게 한다.
 
-  *기여 3 — 직관 반대 발견 (모형 H2, H3, H5 검증)*: 게임화는 단순히 부정적 측정 왜곡이 아닌 *분야 이질적·시간 동적 현상*임을 보였다.
+  *기여 3 — 직관 반대 발견 (모형 H2, H3, 추가로, PH loop 분析 결과 Archetype 2(출연금형) 내부에 sub-heterogeneity가 존재함이 발견되어 4-archetype 분류의 post-archetype 추가 분析 여지를 명시한다. H5 검증)*: 게임화는 단순히 부정적 측정 왜곡이 아닌 *분야 이질적·시간 동적 현상*임을 보였다.
   - *자산취득형 RDD 점프 3.42배* (H2 검증): 12월 1일 직후 *이산적 spike* — #cite(<liebman2017>, form: "prose") 미국 결과의 한국 확장.
   - *출연금형 사이클 우세* (H3 검증): PSD 0.332 + phase coherence 0.54 + wavelet +554\% — 다른 메커니즘으로 동일 회계 cycle에 결속.
   - *사회복지 자동분배 효과 (fortuitous, H5 명제)*: 게임화 ↔ 빈곤 격차 음 상관 ($r = -0.86$, CPI 통제 후 강화) — *우연한* outcome alignment, 정책 정당화 아님.
   - *분야 trivial vs 사회복지 자동분배 양립*: 비용 함수 layer(원형 trivial)와 outcome layer(분야 우연 alignment)는 모형의 독립 layer.
 
   *기여 4 — 시간 동적 강화 (모형 H6 검증, Wavelet 신규)*: FFT 정상성 가정의 한계를 웨이블릿으로 보완해 *게임화가 시간이 갈수록 강화*되고 있음을 새롭게 입증했다.
-  - *출연금형*: 12개월 cycle 진폭 *2015\~2017 → 2023\~2025로 +554\%*
+  - *출연금형*: 12개월 cycle 진폭 *2015\~2017 → 2023\~2025로 +554\%* (COVID qualifier: Pre-COVID 완만한 강화 +0.068/yr → COVID 충격 증폭 → elevated plateau 유지, baseline 미회귀)
   - *정상사업*: +316.7\%, *자산취득형*: +174.7\%, *인건비형*: $-0.8\%$ (통제)
 
   $w_t / w_q$ 비율의 시간 증가(국가재정법·국가회계제도 시행 + 코로나 확장재정 + 출연기관 비중 증가)가 plausible 동인이며, 인건비형의 변화 없음이 측정 도구의 신뢰성을 보강한다.
@@ -993,9 +1120,45 @@
 
   *방법론 트라이앵귤레이션과 정직한 한계 보고*: FFT·STL·NeuralProphet·Wavelet 4-도구 시간 해상도 spectrum + UMAP·HDBSCAN·Mapper·PH 위상 다중 검증 + RDD·매개분석·CPI 통제 인과 식별이 모두 일관된 *원형별 균형 패턴*으로 수렴했다. STL 후 사회복지 신호 소멸은 자기 비판적으로 명시했으며, P-A 모형의 calibration 미시도와 dynamic 균형 미반영은 향후 자연 실험·국제 비교 연구의 출발점으로 제시했다. 모든 코드·데이터·결과는 GitHub repository(`bluethestyle/goodhart-korea`)와 Zenodo에 공개되어 *재현 가능한 연구*를 지향한다.
 
+  *추가 강건성·구조 분해·calibration 기여*: 추가 분석은 본 연구의 핵심 발견을 세 방향으로 보강한다. 첫째, H5 결과는 Spearman $rho = -0.833$, Kendall $tau = -0.714$, 8회 Leave-One-Out 전 부호 보존으로 측도·표본 이중 강건성을 확인했다. 둘째, 시간 진화 TDA(PH)와 wavelet의 직교성($r = 0.242$, $p = 0.473$)은 두 도구가 중복이 아닌 상보적 차원 — 공간 위상(구조) vs 시간 위상(주기) — 을 측정함을 입증한다. 셋째, 공식 평가편람에서 추출한 $w_t / w_q$ 비율이 2005년 이래 stable 0.75임을 확인, H6의 +554% 진폭 강화가 *가중 채널이 아닌 비용 채널 + COVID 충격*으로 메커니즘적으로 재해석되었다.
+
   한국 재정 집행의 굿하트 게임이 *고정 패턴이 아닌 진행 중인 동적 현상*이라는 본 발견은, 평가 제도 자체가 측정 대상 행동의 분포를 변화시킨다는 *Performative Prediction* (@hardt2016strategic; @perdomo2020performative)의 한국 실증으로 해석될 수 있다. 후속 연구는 국제 비교(미국·일본·EU)와 자연 실험을 통해 *어떤 제도 조건에서 이 동적 강화가 억제되는가*를 밝힐 수 있을 것이다.
 
 
+
+// =============================================================
+= 저자 기여도
+
+#set par(first-line-indent: 0pt)
+
+본 연구의 저자 기여는 #link("https://credit.niso.org/")[CRediT(Contributor Roles Taxonomy)] 표준 분류 체계에 따라 다음과 같이 명시한다.
+
+#figure(
+  table(
+    columns: (auto, 1.4fr, 1.1fr),
+    align: (left+horizon, left+top, left+top),
+    [*저자*], [*주요 기여*], [*CRediT 역할*],
+    [정선규],
+    [총괄 설계 및 이론 정리 — Principal-Agent 모형 도입 결정, 6 가설 도출 구조 확정, 본문 초안 작성, 프로젝트 일정 조율.],
+    [Conceptualization, Project administration, Writing — original draft, Supervision],
+    [김영찬],
+    [모델 및 수학 검증 — P-A 균형 도출(§3.3, 부록 F), 비교정역학 Hessian · Cramer's rule 검증, 1차 조건 일관성 점검.],
+    [Methodology (model derivation), Formal analysis (mathematical), Validation (mathematical verification)],
+    [심은철],
+    [데이터 정비 및 분석 정합성 검증 — 11년 시계열 raw 데이터 ETL, 활동 단위 1,557건 정비, 14분야 매핑, 가설별 결과 reproduction 점검.],
+    [Data curation, Validation (analytical consistency), Investigation],
+    [김재호],
+    [TDA 등 고수준 방법론 감수 — UMAP · HDBSCAN · Mapper · Persistent Homology 적정성 감수, Wavelet(CWT-Morlet) 적용 적정성 검토, 부록 C·D 학술 정밀성 감수.],
+    [Methodology (advanced — topological/spectral methods), Supervision (advanced methodology review), Writing — review & editing],
+  ),
+  caption: [저자별 CRediT 기여 매핑.],
+)
+
+모든 저자는 본문 초안에 대한 review & editing에 참여했으며, 최종 원고에 대한 학술적 책임을 공유한다.
+
+#set par(first-line-indent: 1em)
+
+#v(1em)
 
 // =============================================================
 = AI 도구 사용 명시
@@ -1240,7 +1403,11 @@ $ "Mapper"(X, f, cal(U), "cluster") = "Nerve"({"cluster"(f^(-1)(U_i))}) $
 
 본 연구는 차원 0(연결성분 $beta_0$)·차원 1(loop $beta_1$) 분석. *부트스트랩 50회*로 $beta_0 = 30$, $beta_1 = 15$, max persistence 95% CI 산출.
 
-*하이퍼파라미터*: 본 연구에서 사용한 Persistent Homology 파라미터는 다음과 같다 — complex 유형: Vietoris-Rips, `thresh=8.0` (filtration 최대 반지름; 이 값을 초과하는 엣지는 추가하지 않음), `maxdim=1` (차원 0과 1의 호몰로지 계산), 부트스트랩: 50회 반복, 각 회 subsample $n = 200$, `random_state=42` (재현 가능 시드). Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
+*하이퍼파라미터*: 본 연구에서 사용한 Persistent Homology 파라미터는 다음과 같다 — complex 유형: Vietoris-Rips, `thresh=8.0` (filtration 최대 반지름; 이 값을 초과하는 엣지는 추가하지 않음), `maxdim=1` (차원 0과 1의 호몰로지 계산), 부트스트랩 (본문 결과): 50회 반복, 각 회 subsample $n = 200$, `random_state=42` (재현 가능 시드). 거리 측도: 12개 표준화 피처에 대한 유클리드 거리. 주요 분析 subsample $n = 300$. Python (ripser): `ripser(X, maxdim=1, thresh=8.0)`.
+
+*Wasserstein-2 강건성 검증*: max persistence 단일 극값 CI보다 전체 persistence diagram의 강건성을 측정하기 위해 Wasserstein-2 거리를 사용한 null-shuffle 비교를 추가로 수행했다. 관측 bootstrap mean $W_2 = 0.885$ (95% CI [0.780, 1.055]); feature-shuffled null mean $W_2 = 1.524$ (95% CI [1.323, 1.695]); one-sided $p < 0.0001$. 전체 PH diagram 구조가 귀무 분포와 유의하게 다름을 확인, 기존 max persistence CI 대비 더 강건한 전체-diagram 강건성 증거를 제공한다.
+
+*Rolling-window 시간 진화 방법 (§6.10)*: 활동 임베딩을 3년 rolling window로 분할(2015→avg(2015,2016,2017), …, 2024→avg(2023,2024,2025))하여 연도별 PH를 계산. 각 연도 persistence diagram과 baseline(2015) 간 Wasserstein-2 거리(`scipy.optimize.linear_sum_assignment` 기반 점-매칭)와 bottleneck 거리를 시계열로 추적. TDA × wavelet dual-framework 검증.
 
 *vs Mapper*: Mapper는 단일 스케일 graph, PH는 *모든 스케일 통합 분석*. PH 더 엄밀, Mapper 더 직관적.
 *vs silhouette/Calinski-Harabasz*: 후자는 스케일 의존적 단일 점수; PH는 *스케일-불변* 위상 특성.
@@ -1574,19 +1741,31 @@ $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
 본 연구의 핵심 분석 스크립트와 가설·결과 절의 1:1 매핑을 제시한다. GitHub repository(`bluethestyle/goodhart-korea`)의 `scripts/` 디렉토리 내 해당 파일을 실행하면 본문 그림·CSV를 재현할 수 있다.
 
 #figure(
-  table(
-    columns: (1.2fr, 1fr, 2fr),
-    [*스크립트*], [*가설/결과*], [*역할*],
-    [`scripts/h3_v2_11y.py`], [H1 / §6.1·§6.2], [UMAP + HDBSCAN 4 archetype 발견],
-    [`scripts/h4_v3_replaced.py`], [H1 보강 / §6.2], [Mapper graph + Persistent Homology],
-    [`scripts/h22_rdd_yearend.py`], [H2 / §6.3], [회계연도 RDD 점프 추정],
-    [`scripts/h27_power_spectrum_coherence.py`], [H3 / §6.4], [PSD·Phase·Coherence],
-    [`scripts/h26_neuralprophet_check.py`], [방법론 / §6.5], [NeuralProphet cross-check],
-    [`scripts/h23_mediation.py`], [H4 / §6.6], [Baron-Kenny + Sobel + Bootstrap],
-    [`scripts/h6_robustness.py`], [H5 / §6.7], [FE 회귀·Permutation·Lag/Lead],
-    [`scripts/h10_macro_control.py`], [H5 보조 / §6.7], [CPI 외생 통제],
-    [`scripts/h28_wavelet.py`], [H6 / §6.8], [Wavelet 시간 동적 강화],
-    [`scripts/h24_stl_decomp.py`], [Robustness / §6.9], [STL 자기 비판],
-  ),
-  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드],
+  {
+    set text(size: 9pt)
+    table(
+      columns: (auto, auto, 1fr),
+      align: (left+top, left+top, left+top),
+      inset: (x: 6pt, y: 4pt),
+      [*스크립트*], [*가설/결과*], [*역할*],
+      [`h3_v2_11y.py`], [H1 / §6.1·§6.2], [UMAP + HDBSCAN 4 archetype 발견],
+      [`h4_v3_replaced.py`], [H1 보강 / §6.2], [Mapper graph + Persistent Homology],
+      [`h22_rdd_yearend.py`], [H2 / §6.3], [회계연도 RDD 점프 추정],
+      [`h27_power_spectrum_coherence.py`], [H3 / §6.4], [PSD·Phase·Coherence],
+      [`h26_neuralprophet_check.py`], [방법론 / §6.5], [NeuralProphet cross-check],
+      [`h23_mediation.py`], [H4 / §6.6], [Baron-Kenny + Sobel + Bootstrap],
+      [`h6_robustness.py`], [H5 / §6.7], [FE 회귀·Permutation·Lag/Lead],
+      [`h10_macro_control.py`], [H5 보조 / §6.7], [CPI 외생 통제],
+      [`h28_wavelet.py`], [H6 / §6.8], [Wavelet 시간 동적 강화],
+      [`h24_stl_decomp.py`], [Robustness / §6.9], [STL 자기 비판],
+      [`h9_v2_wasserstein.py`], [§6.2 (PH 강건성)], [PH Wasserstein-2 null-shuffle 비교],
+      [`h9_v2_loop_ids.py`], [§6.2 (PH loop 해석)], [PH loop 상위 5개 archetype 귀속 분석],
+      [`h22_v2_granularity.py`], [§6.3 (RDD 세분성)], [RDD 집계 단위 bracket 감도 분석],
+      [`h28_v2_period_split.py`], [§6.8.1 (H6 시기 분할)], [3구간(Pre/COVID/Post) wavelet 분해],
+      [`h9_v3_time_evolution_tda.py`], [§6.10 (TDA 시간 진화)], [연도별 PH 계산 + $W_2$ 거리 시계열],
+      [`h10_v3_robustness.py`], [§6.7.1 (H5 강건성)], [Spearman/Kendall/LOO 3-측도 강건성],
+      [`generate_v3_charts.py`], [유틸리티], [확장 분석 4개 차트 일괄 생성],
+    )
+  },
+  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드 (모든 스크립트는 `scripts/` 디렉토리에 위치)],
 )

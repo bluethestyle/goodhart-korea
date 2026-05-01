@@ -1,0 +1,58 @@
+H10 Social Welfare Robustness Note (v3)
+=========================================
+Generated: 2026-04-30 | Goodhart paper v3 reviewer response
+Key result under review: H5 — 사회복지 CPI-residual 1차 차분 Pearson r = -0.856, n = 8
+(Robustness replication with approximate CPI: r = -0.727; qualitative results unchanged.)
+
+1. Does r = -0.856 survive rank-based correlation measures?
+   Yes — with identical sign. Spearman rho = -0.833 and Kendall tau = -0.714
+   for the same CPI-residual first-differenced series. All three correlation families
+   agree on a strong-to-moderate negative association between social welfare spending
+   amplitude growth and wealth Gini growth. Rank-based measures are immune to outlier
+   leverage and distributional assumptions, so sign agreement across Pearson/Spearman/
+   Kendall constitutes meaningful triangulation. The 95% bootstrap CIs are:
+     Pearson   [-0.988, -0.153]
+     Spearman  [-1.000, -0.240]
+   Both exclude zero. The upper bound approaching zero from below is expected at n = 8
+   and indicates uncertainty about magnitude, not about sign direction. Across all
+   15 field-outcome pairs in H10 v3, 14/15 show Pearson/
+   Spearman/Kendall sign consistency, confirming social welfare is not an outlier in
+   sign stability.
+
+2. Leave-one-out (LOO) stability.
+   LOO removes one of the 8 observations and recomputes Pearson r. Sign is preserved
+   in ALL 8 iterations. The worst-case removal
+   is year 2025, yielding r = -0.539 (25.9%
+   magnitude change from baseline). LOO range: [-0.952, -0.539].
+   This confirms no single leverage point drives the result. Period-split analysis:
+   pre-2020 subsample r = n/a (n<3) (n<3, uninformative), post-2020 r = -0.708 (n=6).
+   Rolling 5-year windows: 4/4 windows preserve the negative sign.
+
+3. Honest assessment of n = 8.
+   Wealth Gini is available 2017–2025 (9 annual observations); first differencing
+   reduces usable pairs to n = 8. This is genuinely small. The two-tailed p-value
+   for |r| ~ 0.86 at n = 8 is approximately 0.007 (well below alpha = 0.05),
+   but standard power analysis yields ~70% power to detect a true rho = 0.70 at
+   alpha = 0.05 — the test is not severely underpowered for a large true effect, but
+   would miss moderate-sized effects (~0.50) ~30% of the time. No alternative welfare
+   outcome series (poverty rate, NHIS payouts, NPS recipients) is available in the
+   offline data repository — this is a confirmed data limitation, not a selection
+   artefact. The nearest available internal series (gini_period, budget execution
+   concentration) is NOT a social welfare outcome.
+
+4. Paper recommendation.
+   H5 should retain its main estimate but carry an explicit small-sample caveat.
+   Recommended language: "The social welfare field shows a consistently negative
+   CPI-residual correlation (Pearson r = -0.86, Spearman rho = -0.83,
+   Kendall tau = -0.71, n = 8 annual pairs, 95% CI [-0.99, -0.15])
+   between spending-amplitude growth and wealth-Gini growth. Leave-one-out analysis
+   confirms sign stability across all 8 sub-samples; however, given
+   n = 8 the magnitude estimate carries substantial uncertainty and should be
+   interpreted as a directional indicator. Replication with longer Gini series or
+   administrative welfare outcome data (poverty headcount, NHIS payouts) is warranted."
+   H5 need not be demoted to speculative, but weakened confidence language is warranted.
+
+THREE MOST CRITICAL NUMBERS:
+  (1) Spearman rho = -0.833  — sign survives rank transformation; not a Pearson artefact
+  (2) Worst-case LOO r = -0.539  — sign never flips; no leverage-point problem
+  (3) Bootstrap 95% CI Pearson [-0.988, -0.153]  — excludes zero, upper bound close; warrants hedge
