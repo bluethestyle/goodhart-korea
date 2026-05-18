@@ -4,10 +4,22 @@
 
 [열린재정 정보](https://www.openfiscaldata.go.kr/) 월별 집행 11년치 + KOSIS·한은 ECOS·공공데이터포털·GIR 14분야 outcome을 통합해 한국 정부 재정 집행의 **Goodhart 효과**(측정 왜곡)를 다각도로 측정·검증한 분석 프로젝트.
 
+## 왜 시민이 신경 써야 하는가 — 일상 영향 4경로
+
+본 연구의 결과는 추상적 효율 손실이 아닌 *생활 체감 비용*으로 발현한다.
+
+1. **복지 수혜의 우연성** — 사회복지 12월 집중 분배가 빈곤 격차에 *우연히* 기여(r=−0.86). 이를 정책 성과로 오인하면 진짜 빈곤 정책 자원 배분이 왜곡됨
+2. **농가 실수령** — 농림수산은 14분야 중 *유일하게* 강한 매개 경로 (Sobel z=−2.897, p=0.004). 12월 쏠림이 농가 가계의 자금 흐름에 직접 영향
+3. **환경 결과 악화** — 12월 집중 집행 → 행정 절차 부실 → 환경 outcome 음의 부호. 기후 위기 시대 시민 생활환경 직접 비용
+4. **공공서비스 품질** — 4중 평가 체제가 시점 조정 노력에 자원을 쏠리게 하는 한, 사업 품질 노력은 측정성 격차만큼 체계적으로 희생됨 (Holmstrom-Milgrom impossibility)
+
+---
+
 - 🗂 [docs/analysis/JOURNEY.md](docs/analysis/JOURNEY.md) — 전체 분석 여정 (H1~H28, ~1700 lines)
 - 📚 [docs/REFERENCES.md](docs/REFERENCES.md) — 47 참고문헌 9 카테고리 + [paper/refs.bib](paper/refs.bib) 47건 (P-A 이론 강화)
 - 🌐 [data/external/SOURCES.md](data/external/SOURCES.md) — 데이터 출처 정합성 검증 / [data/external/MANIFEST.md](data/external/MANIFEST.md) — fetch 명령 정리
 - 📊 [data/results/INDEX.md](data/results/INDEX.md) — 49+ 산출 CSV 인덱스
+- 📦 [deliverables/](deliverables/) — 기관별 산출물 패키지 (감사원·예정처·기재부·행안부·KFI), Parquet 정본 + CSV 핸드오프
 
 ---
 

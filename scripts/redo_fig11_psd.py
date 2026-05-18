@@ -1,7 +1,10 @@
-"""그림 11 (h27_psd) — 4 archetype × 6 freq bin 평균 PSD.
+"""그림 11 (h27_psd) — paper용 — 4 archetype × 6 freq bin 평균 PSD.
 
 source: scripts/h27_power_spectrum_coherence.py 의 (A) PSD plot
 A4 본문 폭 6.3 inch 1:1, figsize=(6.3, 3.8), dpi=200
+
+paper 사양: legend 차트 안 우상단 (column 폭 제한). 슬라이드 변종은
+redo_slidefig_h27_psd.py 참조 (legend 외부 하단 4-칼럼).
 """
 import os, sys, io, warnings
 import numpy as np
@@ -43,7 +46,7 @@ ARCH_COLOR = {'C0_personnel': '#4C72B0',
               'C2_chooyeon': '#55A868',
               'C3_normal': '#C44E52'}
 
-fig, ax = plt.subplots(figsize=(6.5, 4.0))
+fig, ax = plt.subplots(figsize=(6.3, 3.8))
 freqs = list(range(7))
 labels_freq = ['DC (k=0)', '12m', '6m', '4m', '3m·분기', '2.4m', '2m']
 
@@ -59,18 +62,14 @@ ax.set_xticks(freqs[1:])
 ax.set_xticklabels(labels_freq[1:])
 ax.set_ylabel('정규화 PSD')
 ax.set_xlabel('주파수 빈 (주기)')
+ax.legend(loc='upper right', frameon=True)
 ax.grid(alpha=0.3)
 
-# legend 차트 외부 하단 4-칼럼 가로 배치 → 데이터 가리지 않음
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
-          ncol=4, frameon=False, columnspacing=1.2, handletextpad=0.5,
-          fontsize=12)
-
-# 출연금형 12m 강조 — 좌상단 (legend가 외부로 빠져 충돌 없음)
+# 출연금형 12m 강조 — 좌상단
 chooyeon_12m = float(psd_avg[psd_avg['archetype'] == 'C2_chooyeon']['psdnorm_k1'].values[0])
 ax.text(0.02, 0.96,
         f'출연금형 12m: {chooyeon_12m:.3f}\n(다른 원형 대비 ~2배)',
-        transform=ax.transAxes, ha='left', va='top', fontsize=12,
+        transform=ax.transAxes, ha='left', va='top', fontsize=13,
         bbox=dict(boxstyle='round,pad=0.4', fc='#fff8e1',
                   ec='#daa520', alpha=0.92))
 
@@ -92,9 +91,8 @@ if max(w, h) > MAX:
 else:
     print(f'preview: {w}x{h}')
 
-# production 경로에도 복사
+# paper figures/ 에 복사 (production)
 import shutil
-for dst in [os.path.join(ROOT, 'paper', 'figures', 'h27_psd.png'),
-            os.path.join(ROOT, 'paper', 'slides', 'assets', 'h27_psd.png')]:
-    shutil.copy2(out, dst)
-    print(f'  -> {dst}')
+dst = os.path.join(ROOT, 'paper', 'figures', 'h27_psd.png')
+shutil.copy2(out, dst)
+print(f'  -> {dst}')

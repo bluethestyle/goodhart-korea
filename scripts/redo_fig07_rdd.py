@@ -18,9 +18,9 @@ warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 plt.rcParams.update({
-    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
-    'xtick.labelsize': 13, 'ytick.labelsize': 13,
-    'legend.fontsize': 13,
+    'font.size': 10, 'axes.titlesize': 12, 'axes.labelsize': 10,
+    'xtick.labelsize': 9, 'ytick.labelsize': 9,
+    'legend.fontsize': 9,
     'mathtext.default': 'regular',
     'axes.unicode_minus': False,
 })
@@ -38,7 +38,7 @@ os.makedirs(PREVIEW, exist_ok=True)
 
 DAYS = {1:31, 2:28, 3:31, 4:30, 5:31, 6:30,
         7:31, 8:31, 9:30, 10:31, 11:30, 12:31}
-LM_MULT = 5.0
+LM_MULT = 4.9
 
 DPI = 200
 MAX = 1900
@@ -130,7 +130,7 @@ ax.axhline(0, color='black', lw=0.8)
 ax.axhline(beta_total, color='darkorange', lw=1.8, ls='--',
            label=f'전체 β = {beta_total:.2f}  ({mult_total:.2f}x)')
 ax.axhline(np.log(LM_MULT), color='purple', lw=1.5, ls=':',
-           label=f'L-M 5x 참조 (β≈{np.log(LM_MULT):.2f})')
+           label=f'L-M 4.9x 참조 (β≈{np.log(LM_MULT):.2f})')
 ax.set_xlabel('연도')
 ax.set_ylabel('log 점프\n(12월 − 11월, 활동 중앙값)')
 ax.set_xticks(yr_list)

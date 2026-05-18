@@ -49,3 +49,37 @@ width(또는 height) **2000px 이상이면 그대로 Read 금지**. 권장 작�
 ## 발표/슬라이드 작업 메모
 - 트라이앵귤레이션은 "만장일치 합의"가 아닌 **상호 보완** framing — 도구 간 발산은 자기 비판의 출발점.
 - 강한 매개 분야는 **농림수산** (사회복지 아님). 발표자료/문서에서 사회복지로 적힌 부분 발견 시 즉시 정정.
+
+## 분석보고서(paper/analysis_report.typ) 작성 가드레일
+
+### 자기 위치 — 학술 "연구"가 아니라 **미니프로젝트 분석**
+- 한국재정정보원 주최 *2026년 재정데이터 분석 미니프로젝트* 출품작.
+- 본문에서 "본 연구" 금지 → **"본 분석" / "본 보고서"**. 평가자가 학술 과대 포장으로 느낌.
+- 평가자 = 재정정보원 담당자·실무 공무원. "망가진다·게임화·왜곡·함정" 같은 공격 어휘는 자기 기관 비판으로 들려 금지. 대신 "측정 적응 / 격차 / 불일치 / 사이클".
+
+### 문체 — 사고 흐름형 (블로그 톤도, 결론-우선 학술 톤도 아님)
+- 흐름: **시각화 → 의문 → 다른 각도 → 확인 → 새 질문**. "본 패널의 가장 두드러진 관찰 결과는 ~이다" 같은 결론-우선 표현 금지.
+- 사고 동사 살리기: "그려본다 / 들여다보면 / 다른 각도로 본다 / 다음 질문이 떠오른다 / 그렇다면 ~".
+- 자기지시("본 패널/본 분석") 빈도 절제. 평이체·중립체 유지하되 캐주얼("어 진짜 그렇네?", "그냥", "큰 돈", "그 막대")은 금지.
+- 이전 수상작 톤 매칭: "OO 분석" · "OO에 대한 이해" · "OO은 어디에 ~하는가 : 데이터로 본 ~". 표지·헤딩에서 시적/도발적 카피 회피.
+
+### 학술 frame 등장 위치 — § 6에서만
+- § 5까지는 *일상 어휘만으로 서술*. 굿하트-캠벨·다업무 계약·연성 예산 같은 학술 frame은 § 6 통합 매칭 챕터에서 처음 등장.
+- 본문에서 학술 용어 막힌 독자는 부록 A 용어집으로.
+
+### typst 작성 함정 (반복 발견)
+1. **`~` 가 nbsp 처리됨**. 숫자 범위 "95~100%" → 화면에 "95 100%"로 깨짐. 해결: `–` (en dash) 사용 → `95–100%`.
+2. **한국어 조사 + dict 키 충돌**. `#meta.team이`를 typst 파서가 `team이` 키로 해석 → 에러. 해결: `#(meta.team)이`처럼 괄호 토큰 분리.
+3. **함수 + content block trailing 호출 충돌**. `term(name, en: none, body)` 같이 positional 인자를 named로 호출(`term(name: "X")[body]`)하면 trailing content가 `name` 자리에 바인딩되어 body missing. 해결: positional 호출 (`term("X", en: "Y")[body]`).
+4. **`counter(...).display("01")` padding이 n≥10에서 "010"으로 깨짐**. 해결: 직접 pad 함수 `let pad2 = (n) => if str(n).len() == 1 { "0" + str(n) } else { str(n) }` 정의 후 `counter.display((..ns) => pad2(ns.pos().first()))`.
+5. **`set heading(numbering: ...)` 없으면 카운터 자동 increment 안 됨** → 모든 헤딩 번호 "00". 해결: `#set heading(numbering: "1.")` 추가. show rule이 `it.body`만 가져오니 prefix는 본문에 안 보임.
+6. **FIG + caption + grid를 한 페이지에 묶으려면 통째 block(breakable: false)** — grid만 block 묶고 chart는 별도면 chart-slot이 작은 페이지로 떨어져 빈 페이지 발생. 셋 다 묶음.
+7. **§ N.M 헤딩 orphan** (페이지 끝에 헤딩만 떨어지고 본문은 다음 페이지). 해결: 헤딩까지 block(breakable: false) 안에 포함.
+8. **KPI 카드 디자인 패턴** — 단순 stroke top 1.2pt만으로는 카드 묶음 약함. `fill: ghost + stroke: (left: 2pt + accent, rest: 0.5pt + line-c) + radius: (right: 4pt) + inset: 14pt + spacing: 8pt`. 내부 v 압축 (label → v(4pt) → value → v(3pt) → sub).
+
+### 데이터·자산 위치
+- `data/warehouse.duckdb` → 표 `monthly_exec` (FSCL_YY × EXE_M × OFFC_NM × FLD_NM × ACTV_NM, **EP_AMT = 월별 집행액**, 2015–2026, 41만 행).
+- `paper/main_v2.typ` — 학술 논문 버전. 정확한 RDD 추정치 (전체 1.91배·자산취득형 3.42배 등) 인용 시 참조.
+- `paper/fonts/Pretendard-*.otf` — matplotlib에서 한국어 폰트 깨짐 방지하려면 `font_manager.fontManager.addfont(path)`로 직접 등록 후 `rcParams['font.family'] = 'Pretendard'`.
+- `paper/figures/eda/` — § 2 EDA 차트 저장 폴더. 차트는 dpi=140, figsize 7~11 inch로 width 1000~1600px.
+- 이전 미디어 인용은 §1.1 박스 + 부록 E (한국재정정보원·서울경제·머니투데이·전국뉴스 등).

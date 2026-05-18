@@ -1,0 +1,13 @@
+﻿archetype,period,year_range,mean_power,slope_per_year,n_years
+C0_personnel,pre_covid,2015-2018,0.006998,0.000315,4
+C0_personnel,covid,2019-2021,0.009185,0.001039,3
+C0_personnel,post_covid,2022-2025,0.007128,-0.001296,4
+C1_direct_invest,pre_covid,2015-2018,0.067519,0.034287,4
+C1_direct_invest,covid,2019-2021,0.189792,0.036754,3
+C1_direct_invest,post_covid,2022-2025,0.158521,-0.00922,4
+C2_chooyeon,pre_covid,2015-2018,0.264996,0.06838,4
+C2_chooyeon,covid,2019-2021,1.048956,0.245868,3
+C2_chooyeon,post_covid,2022-2025,1.375435,-0.215264,4
+C3_normal,pre_covid,2015-2018,0.069241,0.029779,4
+C3_normal,covid,2019-2021,0.153776,0.029729,3
+C3_normal,post_covid,2022-2025,0.229808,-0.002973,4

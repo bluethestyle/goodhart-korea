@@ -1,7 +1,10 @@
-"""그림 10 (h14_quadrant) — 부처×outcome 4분면 (전체 51개 부처 + 필터 필드 라벨).
+"""그림 10 (h14_quadrant) — paper용 — 부처×outcome 4분면.
 
 source: scripts/h14_v2_replaced.py 의 Figure 2 (4분면 위험 분류도)
 A4 본문 폭 6.3 inch 1:1, figsize=(6.3, 5.0), dpi=200
+
+paper 사양: 4분면 라벨 각 사분면 중앙 (작은 글씨, low alpha — 데이터 위 살짝 깔림).
+슬라이드 변종(redo_slidefig_h14_quadrant.py)은 코너 정렬로 데이터 라벨 충돌 회피.
 """
 import os, sys, io, warnings
 import numpy as np
@@ -217,22 +220,17 @@ except ImportError:
                     xytext=(3, 3), textcoords='offset points',
                     fontsize=11.5, alpha=0.7, color='#666')
 
-# 4분면 텍스트 라벨 — 데이터 라벨과 겹치지 않도록 코너 정렬
-# (이전: 각 사분면 중앙 → 산업통상자원부 등 부처 라벨과 충돌)
-qkw = dict(fontsize=12.5, alpha=0.7, fontweight='bold',
-           transform=ax.transAxes,
-           bbox=dict(boxstyle='round,pad=0.25', fc='white',
-                     ec='none', alpha=0.55))
-ax.text(0.985, 0.985, 'Q2 위험\n(점검 필요)', color='#c0392b',
-        ha='right', va='top', **qkw)
-ax.text(0.015, 0.985, 'Q4 안전\n(양 상관)', color='#1a6fa0',
-        ha='left', va='top', **qkw)
-ax.text(0.015, 0.015, 'Q3 안전\n(음 상관)', color='#1a7a4a',
-        ha='left', va='bottom', **qkw)
-# Q1 라벨은 legend(lower right)와 충돌하므로 분면 상단(0선 바로 아래)에 둔다
-q1_y = abs(y0_lim) / (y1_lim - y0_lim) - 0.02   # 0선에서 약간 아래 (axes fraction)
-ax.text(0.985, q1_y, 'Q1 자동분배', color='#c05000',
-        ha='right', va='top', **qkw)
+# 4분면 텍스트 라벨 — paper 사양: 각 사분면 중앙 (작은 글씨, low alpha)
+# 슬라이드 변종(redo_slidefig_h14_quadrant.py)은 코너 정렬 + bbox 처리
+qkw = dict(fontsize=13, alpha=0.6, ha='center', va='center')
+ax.text((EXPO_THRESH + x1) / 2, y1_lim * 0.85,
+        'Q2 위험\n(점검 필요)', color='#c0392b', **qkw)
+ax.text((EXPO_THRESH + x1) / 2, y0_lim * 0.85,
+        'Q1 자동분배', color='#c05000', **qkw)
+ax.text(EXPO_THRESH * 0.5, y1_lim * 0.85,
+        'Q4 안전 (양 상관)', color='#1a6fa0', **qkw)
+ax.text(EXPO_THRESH * 0.5, y0_lim * 0.85,
+        'Q3 안전 (음 상관)', color='#1a7a4a', **qkw)
 
 ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
@@ -259,9 +257,8 @@ if max(w, h) > MAX:
 else:
     print(f'preview: {w}x{h}')
 
-# 슬라이드/논문 production 경로에도 복사
+# paper figures/ 에 복사 (production)
 import shutil
-for dst in [os.path.join(ROOT, 'paper', 'figures', 'h14_quadrant.png'),
-            os.path.join(ROOT, 'paper', 'slides', 'assets', 'h14_quadrant.png')]:
-    shutil.copy2(out, dst)
-    print(f'  -> {dst}')
+dst = os.path.join(ROOT, 'paper', 'figures', 'h14_quadrant.png')
+shutil.copy2(out, dst)
+print(f'  -> {dst}')

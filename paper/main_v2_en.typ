@@ -152,7 +152,7 @@
 
   Korea's evaluation regime --- execution-rate audits, management assessments of government-affiliated institutions, and Board of Audit reviews --- creates a large measurability gap between the timing-adjustment weight $w_t$ (observable) and the quality weight $w_q$ (unobservable). Following #cite(<holmstrom1991>, form: "prose"), a rational agent's equilibrium response is to concentrate effort on the measurable dimension, yielding what the paper terms a Goodhart game: systematic near-year-end over-execution at the expense of project quality. The model maps onto all four Goodhart categories of Manheim and Garrabrant (2019).
 
-  Activity-level embeddings (UMAP + HDBSCAN) uncover four project archetypes --- personnel-cost, capital-acquisition, grant-transfer, and normal-operation --- with Mapper and Persistent Homology confirming topological stability (H1). Field labels add negligible explanatory power over gaming intensity ($Delta R^2 = 0.000$). Regression discontinuity at the December boundary shows capital-acquisition activities spike 3.42$times$ at fiscal year-end vs the 1.91$times$ overall average (H2); grant-transfer activities exhibit the strongest annual-cycle dominance in spectral and wavelet coherence analyses (H3). Baron-Kenny + Sobel mediation analysis identifies a statistically significant indirect path from execution rate $arrow$ archetype $arrow$ farm income in the agriculture/forestry/fisheries sector ($z = -2.897$, $p = 0.004$; H4) --- a quantitative trace of Manheim-Garrabrant Type-3 Extremal Goodhart, where pooled-mean effects vanish but extreme sectors exhibit strong manifestation. Social-welfare spending shows a fortuitous alignment effect from automatic-transfer mechanics ($r = -0.86$, strengthened after CPI controls; H5). The H5 sign is further corroborated by Spearman/Kendall concordance measures and Leave-One-Out validation. Wavelet decomposition reveals that grant-transfer gaming intensity amplified by +554% in 12-month amplitude over the sample, extending #cite(<liebman2017>, form: "prose") qualitatively and dynamically to Korea (H6). Additional analysis reinterprets the +554% mechanism as a *cost-channel reduction combined with a COVID fiscal shock*, rather than a weight-channel increase.
+  Activity-level embeddings (UMAP + HDBSCAN) uncover four project archetypes --- personnel-type, capital-acquisition, grant-transfer, and normal projects --- with Mapper and Persistent Homology confirming topological stability (H1). Field labels add negligible explanatory power over gaming intensity ($Delta R^2 = 0.000$). Regression discontinuity at the December boundary shows capital-acquisition activities spike 3.42$times$ at fiscal year-end vs the 1.91$times$ overall average (H2); grant-transfer activities exhibit the strongest annual-cycle dominance in spectral and wavelet coherence analyses (H3). Baron-Kenny + Sobel mediation analysis identifies a statistically significant indirect path from execution rate $arrow$ archetype $arrow$ farm income in the agriculture/forestry/fisheries sector ($z = -2.897$, $p = 0.004$; H4) --- a quantitative trace of Manheim-Garrabrant Type-3 Extremal Goodhart, where pooled-mean effects vanish but extreme sectors exhibit strong manifestation. Social-welfare spending shows a fortuitous alignment effect from automatic-transfer mechanics ($r = -0.86$, strengthened after CPI controls; H5). The H5 sign is further corroborated by Spearman/Kendall concordance measures and Leave-One-Out validation. Wavelet decomposition reveals that grant-transfer gaming intensity amplified by +554% in 12-month amplitude over the sample, extending #cite(<liebman2017>, form: "prose") qualitatively and dynamically to Korea (H6). Additional analysis reinterprets the +554% mechanism as a *cost-channel reduction combined with a COVID fiscal shock*, rather than a weight-channel increase.
 
   Six policy prescriptions follow directly from the model's comparative statics: multi-year appropriations, revised indicators for affiliated institutions, staggered settlement deadlines, data infrastructure, automated execution-pattern flagging, and time-weighted monitoring. Each maps one-to-one to a model lever. The analysis forthrightly acknowledges the fundamental limits imposed by Holmstrom--Milgrom impossibility.
 ]
@@ -183,15 +183,15 @@
 
 == Motivation: "What Gets Measured Gets Managed"
 
-  #cite(<bevan2006>, form: "prose") examined the UK National Health Service and, under the proposition that "what's measured is what matters," identified four patterns of performance-indicator gaming: threshold effects, ratchet effects, output distortion, and gaming. This is the public-administration instantiation of the proposition advanced separately by #cite(<goodhart1975>, form: "prose") for monetary policy and #cite(<campbell1979>, form: "prose") for social science in general --- that *the moment an indicator is adopted as a policy instrument, its reliability as a measure deteriorates*.
+  #cite(<bevan2006>, form: "prose") examined the English National Health Service and, under the proposition that "what's measured is what matters," identified three canonical patterns of performance-indicator gaming --- threshold effects, ratchet effects, and output distortion --- with "gaming" serving as the umbrella term that encompasses all three. This is the public-administration instantiation of the proposition advanced separately by #cite(<goodhart1975>, form: "prose") for monetary policy and #cite(<campbell1979>, form: "prose") for social science in general --- that *the moment an indicator is adopted as a policy instrument, its reliability as a measure deteriorates*.
 
   Does the same mechanism operate in Korean central government budget execution? Answering that question requires (a) defining gaming as a *measurable quantity*, (b) *isolating heterogeneity* across fields, agencies, and project types, and (c) *ruling out competing hypotheses* such as natural business cycles or trend effects. This paper combines 11 years of monthly data, 14 expenditure fields, and 1,557 spending activities through multiple methods to address these three tasks in sequence.
 
 == Extending the U.S. Evidence to Korea
 
-  #cite(<liebman2017>, form: "prose") (AER) used a regression discontinuity (RDD) design at the last week of November versus the first week of December in U.S. federal procurement to show that spending surges *5×* in the final week of the fiscal year while *quality scores simultaneously fall*. The finding is a benchmark causal identification of measurement distortion arising from a use-it-or-lose-it budget rule.
+  #cite(<liebman2017>, form: "prose") (AER) used a regression discontinuity (RDD) design at the last week of September versus the first week of October in U.S. federal procurement --- the U.S. federal fiscal year ends September 30 --- to show that spending surges *4.9×* in the final week of the fiscal year while *quality scores simultaneously fall*. The finding is a benchmark causal identification of measurement distortion arising from a use-it-or-lose-it budget rule.
 
-  This paper applies the same RDD design to an 11-year Korean time series. Because Korean data are available at monthly granularity, the study compares daily-average execution in November versus December, and examines whether the heterogeneity in jump magnitudes across project archetypes reflects qualitatively the same mechanism operating in the Korean context. Detailed estimation results are reported in §6.3.
+  This paper applies the same RDD design logic to an 11-year Korean time series. Because the Korean fiscal year ends December 31, the corresponding cutoff is November versus December, and Korean data are available at monthly granularity, so the study compares daily-average execution in November versus December. We examine whether the heterogeneity in jump magnitudes across project archetypes reflects qualitatively the same mechanism operating in the Korean context. Detailed estimation results are reported in §6.3.
 
 == Key Contributions
 
@@ -216,12 +216,12 @@
   #cite(<goodhart1975>, form: "prose") observed that after Bank of England monetary statistics were adopted as a policy instrument the relationship between those statistics and macroeconomic reality broke down, formalizing the proposition that *"any statistical regularity will tend to collapse once pressure is placed on it for control purposes."* #cite(<campbell1979>, form: "prose") extended the same principle to social science more broadly.
 
   #cite(<manheim2018>, form: "prose") classified Goodhart's effect into four variants:
-  - *Regressional*: policy over-fits to measurement noise
-  - *Causal*: the indicator is directly manipulated but via an inefficient causal pathway
+  - *Regressional*: selecting on a noisy proxy also selects on the noise
+  - *Causal*: the proxy and goal are linked *non-causally*, so intervening on the proxy fails to move the goal
   - *Extremal*: the indicator-target relationship breaks down in extreme regions
   - *Adversarial*: agents intentionally manipulate the indicator
 
-  The relationship between incentive structures and measurement distortion was posed early by #cite(<kerr1975>, form: "prose") through the classic proposition --- "the folly of rewarding A while hoping for B." Korea's execution-rate evaluation is a textbook instance of that folly. For empirical evidence on gaming responses to public incentive programs, see #cite(<courty2004>, form: "prose").
+  The relationship between incentive structures and measurement distortion was posed early by #cite(<kerr1975>, form: "prose") through the classic proposition --- "the folly of rewarding A while hoping for B." Korea's execution-rate evaluation is a textbook instance of that folly. A close empirical case study --- timing-based gaming of performance reporting under the U.S. Job Training Partnership Act (JTPA) --- is documented by #cite(<courty2004>, form: "prose").
 
   The December spending jump and grant-transfer gaming documented in this paper fall primarily under *Causal* (gaming the execution-rate indicator through timing adjustment) and *Adversarial* (deliberate year-end concentration to avoid carryover).
 
@@ -231,13 +231,13 @@
 
   Applied to public programs, in an environment where execution rate (observable) and project quality (hard to observe) trade off, stronger execution-rate incentives lead to greater sacrifice of quality. The cross-archetype differences in RDD jumps documented here --- capital-acquisition archetype 3.42×, grant-transfer 1.10×, personnel-type 1.12× --- constitute Korean evidence for the hypothesis that *responsiveness to measurement pressure differs by project type*.
 
-  Korean literature on gaming in quasi-governmental agency evaluations: KCI journals in Korean public administration and fiscal studies have also accumulated work on gaming and ratchet effects in quasi-governmental agency PBS (Project-Based Funding System) and public-institution management evaluations. @kim2009pbs, @park2014pbs, and @lim2020kpi, among others, document *numeric inflation* and *strategic reporting* of R&D performance indicators following PBS adoption.
+  Korean literature on gaming in quasi-governmental agency evaluations: KCI journals in Korean public administration and fiscal studies have accumulated work on gaming and ratchet effects in quasi-governmental agency PBS (Project-Based Funding System) and public-institution management evaluations. @kim2009pbs analyzes the multitasking problem in combined PBS-and-BSC evaluation, while @park2014pbs and @lim2020kpi empirically document *numeric inflation* and *strategic reporting* of R&D and KPI performance indicators following PBS adoption.
 
 == Soft Budget Constraint
 
-  #cite(<kornai1980>, form: "prose") theorized the *softening* of budget constraints in socialist-economy state-owned enterprises that anticipate government bailouts rather than facing market discipline. Quasi-governmental agencies and public institutions in market-economy public sectors are exposed to the same mechanism.
+  #cite(<kornai1980>, form: "prose") theorized the *softening* of budget constraints in socialist-economy state-owned enterprises that anticipate government bailouts rather than facing market discipline. Quasi-governmental agencies and public institutions in market-economy public sectors are exposed to the same mechanism (for the formal extension of soft-budget-constraint theory to market economies, see #cite(<kornaimaskin2003>, form: "prose")).
 
-  *Quasi-governmental agencies and grant-receiving institutions have greater freedom to adjust spending timing than direct public programs*. They can concentrate execution in December to meet settlement deadlines; even if the following fiscal year's budget is cut, the possibility of compensation from the parent organization weakens market discipline. The regression of grant share on gaming intensity (β = +0.375, *p* = .005), together with the grant-transfer archetype's PSD $k=1$ amplitude of 0.332 and phase coherence of 0.54 (2--6× that of other archetypes), constitutes quantitative evidence for this mechanism. The 3.42× December RDD jump is most pronounced in the *capital-acquisition archetype*, however, reflecting a distinct mechanism: construction and asset-acquisition projects combine a *physical-completion deadline* with a *fiscal-year deadline*, generating a discrete jump immediately after the December 1 cutoff.
+  *Quasi-governmental agencies and grant-receiving institutions have greater freedom to adjust spending timing than direct public programs*. They can concentrate execution in December to meet settlement deadlines; even if the following fiscal year's budget is cut, the possibility of compensation from the parent organization weakens market discipline. The regression of grant share on gaming intensity (β = +0.375, *p* = 0.005), together with the grant-transfer archetype's PSD $k=1$ amplitude of 0.332 and phase coherence of 0.54 (2--6× that of other archetypes), constitutes quantitative evidence for this mechanism. The 3.42× December RDD jump is most pronounced in the *capital-acquisition archetype*, however, reflecting a distinct mechanism: construction and asset-acquisition projects combine a *physical-completion deadline* with a *fiscal-year deadline*, generating a discrete jump immediately after the December 1 cutoff.
 
 = The Model: A Principal-Agent Goodhart Game
 
@@ -339,11 +339,11 @@
 
   Nash convergence (collective synchronization): when all activities are exposed to the *common* signal ${s_(j,t-1)}$ and $hat(mu)_(i,t)$ converges to a *similar distribution* (LLN), $tilde(w)_t (hat(mu)_(i,t))$ synchronizes across all $i$ --- via the FOC, $e_(i,t)^*$ also synchronizes:
   $ "phase"(e_(i,t)^*) approx "phase"(e_(j,t)^*) quad forall i, j in cal(I)_("parent-inst") $
-  This follows naturally from the *Bayesian-Nash equilibrium of similar games* (@morris2002, a Korean fiscal adaptation of coordination under public information).
+  This follows naturally as a Korean fiscal adaptation of coordination under a public information signal (@morris2002) --- though the original work also shows that increased precision of the public signal can *reduce* welfare via excessive coordination, an ambiguity our policy prescriptions about evaluation-system precision must acknowledge.
 
-  Precise empirical correspondence: the grant-transfer archetype's phase coherence of 0.54 (*4--7×* the 0.08--0.13 of other archetypes; Appendix D.3) is a *direct measurement of effective-weight synchronization* --- activities $i$ and $j$ *peak simultaneously via learned $hat(mu)$*. The personnel-type archetype's phase coherence of 0.41 (control) reflects natural synchronization from *structurally equal monthly disbursements*; capital-acquisition (0.08) and normal-operation (0.13) archetypes reflect environments where *peer-evaluation-signal learning is weak* --- i.e., the bond between parent and executing institution is weaker than in the grant-transfer archetype.
+  Precise empirical correspondence: the grant-transfer archetype's phase coherence of 0.54 (*4--7×* the 0.08--0.13 of other archetypes; Appendix D.3) is a *direct measurement of effective-weight synchronization* --- activities $i$ and $j$ *peak simultaneously via learned $hat(mu)$*. The personnel-type archetype's phase coherence of 0.41 (control) reflects natural synchronization from *structurally equal monthly disbursements*; capital-acquisition (0.08) and normal projects (0.13) archetypes reflect environments where *peer-evaluation-signal learning is weak* --- i.e., the bond between parent and executing institution is weaker than in the grant-transfer archetype.
 
-  Natural starting point for future research: quantitative verification of this dynamic mechanism is feasible via *annual evaluation-result panels* and *agent behavior lag analysis* (@sannikov2008 continuous-time PA; @cabrales2011 conformity learning). Quantitative measurement of $w_R$ --- variance in quasi-governmental agency evaluation outcomes across parent institutions as a proxy for collective reputation signal strength --- is also a key calibration target for natural experiments.
+  Natural starting point for future research: quantitative verification of this dynamic mechanism is feasible via *annual evaluation-result panels* and *agent behavior lag analysis* (@sannikov2008 continuous-time P-A extension). Quantitative measurement of $w_R$ --- variance in quasi-governmental agency evaluation outcomes across parent institutions as a proxy for collective reputation signal strength --- is also a key calibration target for natural experiments.
 
 == Equilibrium Predictions by Project Archetype
 
@@ -437,11 +437,11 @@
 
 = Methodology
 
-  To quantify the abstract concept of "gaming," this study combines signal processing, dimensionality reduction, topological data analysis, and causal inference in a sequential, integrated framework. Each method was selected to *compensate for the weaknesses of the others*: even if one method fails, the approach checks whether the remaining methods still support the same conclusion — a design this study terms *methodological triangulation*. This section focuses on *intuition* and *why each tool fits the subject*; formal derivations, algorithmic details, and comparisons with alternatives are collected in *Appendix C*.
+  To quantify the abstract concept of "gaming," this study combines signal processing, dimensionality reduction, topological data analysis, and causal inference in a sequential, integrated framework. Each method has *its own assumptions and failure modes*, so any single-tool result is assumption-dependent. This study employs tools with orthogonal assumptions to gain (a) *robustness via agreement* (when tools converge, assumption-dependence is weakened) and (b) *diagnostic information via disagreement* (when tools diverge, the disagreement points to which assumption is being stressed) — a design this study terms *complementary triangulation*. Convergence is sufficient but not necessary; H5 (§6.6) — where FFT and STL diverge on the social-welfare signal — illustrates that disagreement functions as a measurement-open-question diagnostic rather than as invalidation. This section focuses on *intuition* and *why each tool fits the subject*; formal derivations, algorithmic details, and comparisons with alternatives are collected in *Appendix C*.
 
 == Principles of Methodological Triangulation
 
-  Results from any single tool are trustworthy only when that tool's assumptions hold. Because each tool has *a distinct failure mode*, convergence across two or three tools with orthogonal assumptions provides *methodological robustness*. For gaming measurement, this study employs three tools: FFT (frequency domain, stationarity assumption), STL (time domain, additive decomposition), and NeuralProphet (neural additive model, changepoint modeling). The assumptions and weaknesses of each tool are summarized in Table 1.
+  Results from any single tool are trustworthy only when that tool's assumptions hold. Because each tool has *a distinct failure mode*, *agreement* across two or three tools with orthogonal assumptions strengthens robustness via assumption stress test. *Disagreement* is treated as a tractable diagnostic — pointing to which assumption is being stressed and identifying targets for measurement calibration (cf. H5 §6.6 on the FFT vs. STL trend-residual divergence). For gaming measurement, this study employs three tools: FFT (frequency domain, stationarity assumption), STL (time domain, additive decomposition), and NeuralProphet (neural additive model, changepoint modeling). The assumptions and weaknesses of each tool are summarized in Table 1.
 
   #figure(
     table(
@@ -508,7 +508,7 @@
 
 === Persistent Homology (PH, ripser)
 
-  *Intuition:* Persistent Homology measures the topological structure of point clouds *simultaneously across all scales*. Structures that appear briefly at small $epsilon$ and then disappear are noise; those that *persist* are genuine topological features @edelsbrunner2008. This study analyzes dimension 0 (connected components $beta_0$) and dimension 1 (loops $beta_1$). Robust results of $beta_0 = 30$, $beta_1 = 15$, and a 95% CI for maximum persistence stable across 50 bootstrap resamples establish the *sample stability* of the topological structure. Computations were performed using the ripser library #cite(<tralie2018>). Vietoris-Rips complex, filtration, persistence diagram definitions, and comparisons with Mapper and silhouette scores appear in Appendix C.7.
+  *Intuition:* Persistent Homology measures the topological structure of point clouds *simultaneously across all scales*. Structures that appear briefly at small $epsilon$ and then disappear are noise; those that *persist* are genuine topological features @edelsbrunner2008 (for the Wasserstein-2 stability theorem underlying our null-shuffle robustness check, see @cohenSteiner2007). This study analyzes dimension 0 (connected components $beta_0$) and dimension 1 (loops $beta_1$). Robust results of $beta_0 = 30$, $beta_1 = 15$, and a 95% CI for maximum persistence stable across 50 bootstrap resamples establish the *sample stability* of the topological structure. Computations were performed using the ripser library #cite(<tralie2018>). Vietoris-Rips complex, filtration, persistence diagram definitions, and comparisons with Mapper and silhouette scores appear in Appendix C.7.
 
   *Why this tool fits:* The study must demonstrate that the four project archetypes it discovers are robust to (a) variation in UMAP parameters and (b) sampling variability. Persistent Homology provides a *nonparametric, scale-invariant* test for both — making it nearly the only tool suited to this validation task.
 
@@ -516,7 +516,7 @@
 
   *Intuition:* If the intuition that "different fields yield different outcomes" is correct, adding field dummies to the model should produce a large increase in explanatory power R². Conversely, if ΔR² is near zero, field labels are *trivial* and the true variation originates elsewhere — in project archetypes, for instance. This study compares the increase in adjusted R² between a field-dummy model and a project-archetype × gaming interaction model. Regression equations and decision criteria appear in Appendix C.8.
 
-  *Why this tool fits:* South Korea's administrative budget classification carries (a) strong *historical inertia* (gradually expanded since the 1960s) and (b) *coexistence of heterogeneous project archetypes within a single field* (e.g., the Social Welfare field includes both the grant-transfer archetype of the Korea Social Security Information Service and the normal-project archetype of the National Basic Livelihood Security program). If field labels fail to explain gaming differences, this result directly supports the study's policy implication that the *unit of analysis should be redefined as the project archetype*. Field fixed effects are therefore the *direct test* of this hypothesis.
+  *Why this tool fits:* South Korea's administrative budget classification carries (a) strong *historical inertia* (gradually expanded since the 1960s) and (b) *coexistence of heterogeneous project archetypes within a single field* (e.g., the Social Welfare field includes both the grant-transfer archetype of the Korea Social Security Information Service and the normal projects archetype of the National Basic Livelihood Security program). If field labels fail to explain gaming differences, this result directly supports the study's policy implication that the *unit of analysis should be redefined as the project archetype*. Field fixed effects are therefore the *direct test* of this hypothesis.
 
 == Ministry-Archetype Bipartite Graph — Spectral Co-clustering
 
@@ -530,15 +530,15 @@
 
 === Regression Discontinuity Design (RDD)
 
-  *Intuition:* December 1 of the fiscal year is an administratively imposed boundary drawn across *continuous time*. If execution patterns jump sharply just before and just after this boundary regardless of a project's intrinsic needs, that jump can be attributed to the *exogenous accounting cycle* (@imbens2008; @lee2010). This study uses the ratio of daily-average execution in November versus December at the activity level and reports results as a *ratio-type jump multiplier*, directly comparable to the Liebman-Mahoney 5× benchmark from the United States. Identification assumptions, local linear estimator equations, and comparisons with DiD, IV, and month fixed effects appear in Appendix C.10.
+  *Intuition:* December 1 of the fiscal year is an administratively imposed boundary drawn across *continuous time*. If execution patterns jump sharply just before and just after this boundary regardless of a project's intrinsic needs, that jump can be attributed to the *exogenous accounting cycle* (@imbens2008; @lee2010). This study uses the ratio of daily-average execution in November versus December at the activity level and reports results as a *ratio-type jump multiplier*, directly comparable to the Liebman-Mahoney 4.9× benchmark from the United States. Identification assumptions, local linear estimator equations, and comparisons with DiD, IV, and month fixed effects appear in Appendix C.10.
 
-  *Why this tool fits:* Korea's fiscal-year cutoff (a) has been *unchanged since 1948*, (b) is applied *simultaneously* to all ministries, and (c) *cannot be manipulated* by individual activities — providing conditions that satisfy all three core RDD identification assumptions, approximating an ideal natural experiment. The design that #cite(<liebman2017>, form: "prose") used in the United States to document a 5× jump and quality decline with a few-days cutoff difference can be *applied directly to Korea*, and the analysis confirms jumps of 1.91× (overall) and 3.42× (capital-acquisition archetype). Because the comparison involves the same activity just days apart, field, institutional, and project-specific characteristics are *automatically controlled* in this quasi-experiment.
+  *Why this tool fits:* Korea's fiscal-year cutoff (a) has been *unchanged since 1948*, (b) is applied *simultaneously* to all ministries, and (c) *cannot be manipulated* by individual activities — providing conditions that satisfy all three core RDD identification assumptions, approximating an ideal natural experiment. The design that #cite(<liebman2017>, form: "prose") used in the United States to document a 4.9× jump and quality decline with a few-days cutoff difference can be *applied in spirit to Korea* (with a fiscal-year cutoff at December 1 instead of October 1), and the analysis confirms jumps of 1.91× (overall) and 3.42× (capital-acquisition archetype). Because the comparison involves the same activity just days apart, field, institutional, and project-specific characteristics are *automatically controlled* in this quasi-experiment.
 
 === Mediation Analysis — Baron-Kenny + Sobel + Bootstrap
 
-  *Intuition:* Even if a positive correlation between grant-transfer share ($X$) and worse outcome ($Y$) is found, the mechanism must be distinguished — whether the pathway runs through "$X arrow$ gaming ($M$) $arrow Y$" as an *indirect effect* or directly as "$X arrow Y$" @baron1986. Four-step regression decomposes the total effect $c$, mediation path $a$, direct effect $c'$, and mediated effect $a b$; statistical significance is then assessed via Sobel z-test and 1,000-iteration bootstrap confidence intervals. The four-step equations, Sobel standard error formula, bootstrap procedure, and comparisons with SEM and causal mediation analysis appear in Appendix C.11.
+  *Intuition:* Even if a positive correlation between grant-transfer share ($X$) and worse outcome ($Y$) is found, the mechanism must be distinguished — whether the pathway runs through "$X arrow$ gaming ($M$) $arrow Y$" as an *indirect effect* or directly as "$X arrow Y$" @baron1986. Sequential regressions decompose the total effect $c$, mediation path $a$, direct effect $c'$, and mediated effect $a b$; statistical significance is then assessed via Sobel z-test and 1,000-iteration bootstrap confidence intervals. The regression equations, Sobel standard error formula, bootstrap procedure, and comparisons with SEM and causal mediation analysis appear in Appendix C.11.
 
-  *Why this tool fits:* The study's central hypothesis posits a *sequential causal path* of "grant-transfer → December gaming → outcome deterioration." If mediation holds, the policy response is to reform *gaming itself* (e.g., multi-year accounting, MTEF strengthening); if the effect is direct, the reform target is the *grant structure* (e.g., converting commissioned projects to in-house operations). Baron-Kenny provides this pathway separation in *interpretable regression coefficients*. Results show the system-wide average mediated effect is not significant (*p* = .481), but strong mediation is found in Social Welfare and Environment — supporting *field heterogeneity* in the gaming mechanism.
+  *Why this tool fits:* The study's central hypothesis posits a *sequential causal path* of "grant-transfer → December gaming → outcome deterioration." If mediation holds, the policy response is to reform *gaming itself* (e.g., multi-year accounting, MTEF strengthening); if the effect is direct, the reform target is the *grant structure* (e.g., converting commissioned projects to in-house operations). Baron-Kenny provides this pathway separation in *interpretable regression coefficients*. Results show the system-wide average mediated effect is not significant (*p* = 0.481), but strong mediation is found in Social Welfare and Environment — supporting *field heterogeneity* in the gaming mechanism.
 
 == Exogenous Controls — Rejecting the Natural Business-Cycle Hypothesis
 
@@ -658,7 +658,7 @@
 
 == H2: Capital-Acquisition Type Year-End RDD Jump
 
-  *Why RDD is decisive evidence*: To separate normal variation driven by project characteristics from fiscal year-end gaming, this study compares the daily average expenditure of the *last week of November vs. the first week of December* for the same activity. A few days' variation cannot be explained by project fundamentals; only the *administratively arbitrary cutoff of December 1* can account for it. This applies the design of #cite(<liebman2017>, form: "prose") (AER) — which reported a 5× jump in U.S. federal procurement — to the Korean context.
+  *Why RDD is decisive evidence*: To separate normal variation driven by project characteristics from fiscal year-end gaming, this study compares the daily average expenditure of the *last week of November vs. the first week of December* for the same activity. A few days' variation cannot be explained by project fundamentals; only the *administratively arbitrary cutoff of December 1* can account for it. This applies the design of #cite(<liebman2017>, form: "prose") (AER) — which reported a 4.9× jump in U.S. federal procurement at the September 30 cutoff — to the Korean December 31 cutoff.
 
   Estimating a regression discontinuity (RDD) of daily average activity-level expenditure across November–December, the December discontinuity averaged *1.91× overall* ($p < 10^(-124)$) (@fig-rdd-monthly, @fig-rdd-yearly). Decomposed by project type (@fig-rdd-field):
 
@@ -667,9 +667,9 @@
   - *Personnel-type: 1.12×* (n=129, structurally flat)
   - *Grant-transfer type: 1.10×* (n=154, below statistical threshold) — weak in the RDD but strongest in the *annual cycle*
 
-  The difference between the U.S. 5× and Korea's 1.9× in absolute magnitude is explained by *measurement unit granularity* (U.S. weekly vs. Korea monthly — the December first-week signal is dispersed across the full month). The *ordering* of RDD jumps by project type demonstrates that the use-it-or-lose-it mechanism of #cite(<liebman2017>, form: "prose") operates most strongly in *progress-billing and capital-acquisition projects*.
+  The difference between the U.S. 4.9× and Korea's 1.9× in absolute magnitude is explained by *measurement unit granularity* (U.S. weekly vs. Korea monthly — the December first-week signal is dispersed across the full month). The *ordering* of RDD jumps by project type demonstrates that the use-it-or-lose-it mechanism of #cite(<liebman2017>, form: "prose") operates most strongly in *progress-billing and capital-acquisition projects*.
 
-  *Robustness to measurement unit granularity*: To test whether the gap between the #cite(<liebman2017>, form: "prose") U.S. benchmark (5.0×) and Korea's estimate is *purely a product of weekly vs. monthly measurement*, four hypothetical weekly granularity scenarios were computed.
+  *Robustness to measurement unit granularity*: To test whether the gap between the #cite(<liebman2017>, form: "prose") U.S. benchmark (4.9×) and Korea's estimate is *purely a product of weekly vs. monthly measurement*, four hypothetical weekly granularity scenarios were computed.
 
   #figure(
     table(
@@ -681,12 +681,12 @@
       [S2 Hypothetical weekly, uniform], [1.85×], [December signal spread equally across 4 weeks],
       [S3 Mild front-load], [2.87×], [December first 7 days = 35% assumption],
       [S4 Heavy spike], [4.10× \[3.88, 4.32\]], [December first 7 days = 50% assumption],
-      [Liebman U.S. benchmark], [5.0×], [Directly observed from weekly data],
+      [Liebman U.S. benchmark], [4.9×], [Directly observed from weekly data],
     ),
-    caption: [\[H2 Granularity Robustness\] Hypothetical weekly granularity scenarios --- even under the most aggressive assumption (S4), Korea's estimated ratio (4.10×) falls below the U.S. 5.0×.],
+    caption: [\[H2 Granularity Robustness\] Hypothetical weekly granularity scenarios --- even under the most aggressive assumption (S4), Korea's estimated ratio (4.10×) falls below the U.S. 4.9×.],
   )
 
-  Even under the most aggressive front-load assumption (S4, December first 7 days = 50%), Korea's estimated ratio is 4.10× --- below the U.S. 5.0×. The gap between the two countries is not merely a granularity artifact; *structural institutional differences* (procurement type, degree of fiscal decentralization) are the substantive drivers.
+  Even under the most aggressive front-load assumption (S4, December first 7 days = 50%), Korea's estimated ratio is 4.10× --- below the U.S. 4.9×. The gap between the two countries is not merely a granularity artifact; *structural institutional differences* (procurement type, degree of fiscal decentralization) are the substantive drivers.
 
   *Quarterly execution-management traces — visualizing a multi-cutoff system*: @fig-rdd-monthly's 11-year average shows secondary jumps not only in December but also in March, June, and September. These reflect the Ministry of Economy and Finance's *quarterly execution-management system* (execution rates are reviewed each quarter); December's jump dominates because three deadlines stack — *quarter close + fiscal-year close + carry-over cutoff*. Far from weakening H2, these quarterly secondary jumps strengthen it: administratively arbitrary cutoffs are not one but *four*, and gaming pressure operates across the *full density of KPI deadlines* in a multi-cutoff system, as the figure makes directly visible. This contrasts Korea's *quarterly + annual hybrid* with the single fiscal-year cutoff analyzed by #cite(<liebman2017>, form: "prose"), serving as a concrete *instance* of the granularity paragraph's conclusion that "structural institutional differences are the substantive drivers." This study reports the December RDD as the primary diagnostic and leaves a multi-cutoff extension (RDDs at March/June/September) to future work.
 
@@ -701,7 +701,7 @@
 
 #figure(
   image("figures_en/h22_rdd_yearly.png", width: 80%),
-  caption: [\[H2 Validation\] Annual December jump (median log daily expenditure per activity: December − November).\ Overall RDD β=0.65 (1.91×, orange dashed), vs. #cite(<liebman2017>, form: "prose") U.S. 5× reference line (purple dashed).],
+  caption: [\[H2 Validation\] Annual December jump (median log daily expenditure per activity: December − November).\ Overall RDD β=0.65 (1.91×, orange dashed), vs. #cite(<liebman2017>, form: "prose") U.S. 4.9× reference line (purple dashed).],
 ) <fig-rdd-yearly>
 
 #figure(
@@ -726,7 +726,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
 == Methodological Complementarity: FFT/STL/NeuralProphet Measures
 
-  *Scope of this section*: This section examines the complementarity of three Goodhart's game measures (FFT, STL, NeuralProphet). Validation of H4 (archetype heterogeneity in mediation pathways) is conducted in §6.6. This study initially framed FFT, STL, and NeuralProphet as "cross-check tools that might yield different conclusions," but the actual results suggest that *the three tools are complementary lenses measuring different facets of the Goodhart's game*. FFT captures *the share of 12-month cycle amplitude in total frequency-domain variation*; STL captures *the ratio of seasonal variance to residual variance in time-domain trend-residual decomposition*; NeuralProphet captures *the fitted Fourier-basis amplitude after piecewise-linear trend and automatic changepoint adjustment*. Since all three are *orthogonal representations of the same signal*, their near-zero mutual correlations are not contradictions but rather quantify *the heterogeneity of the Goodhart's game dimension each tool captures*.
+  *Scope of this section*: This section examines the complementarity of three Goodhart's game measures (FFT, STL, NeuralProphet). Validation of H4 (archetype heterogeneity in mediation pathways) is conducted in §6.6. The results below quantitatively confirm the *complementary triangulation hypothesis* declared in §Methodology — this study initially framed FFT, STL, and NeuralProphet as "cross-check tools that might yield different conclusions," but the actual results suggest that *the three tools are complementary lenses measuring different facets of the Goodhart's game*. FFT captures *the share of 12-month cycle amplitude in total frequency-domain variation*; STL captures *the ratio of seasonal variance to residual variance in time-domain trend-residual decomposition*; NeuralProphet captures *the fitted Fourier-basis amplitude after piecewise-linear trend and automatic changepoint adjustment*. Since all three are *orthogonal representations of the same signal*, their near-zero mutual correlations are not contradictions but rather quantify *the heterogeneity of the Goodhart's game dimension each tool captures* — exactly as Table 1's "complementary tool" design intended.
 
   *Analytical design*: NeuralProphet was fitted at the activity-year level on a random sample of 200 activities (epochs=50, n_lags=0, n_changepoints=2), yielding approximately 1,051 fitted observations. After fitting, the yearly seasonality amplitude was normalized by the activity standard deviation and extracted as `np_seasonal_strength`.
 
@@ -762,7 +762,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Question*: This model posits a sequential causal pathway of *grant-transfer share ($X$) → timing-adjustment effort ($M = e_t$) → social outcome ($Y$)*. If the model is correct, mediation analysis should reveal *archetype-level heterogeneity* — the mediation pathway should be strong for grant-transfer and capital-acquisition types (high $w_t$) and weak for personnel-type (low $w_t$) and normal projects.
 
-  *Method*: #cite(<baron1986>, form: "prose") four-step procedure + Sobel z-test + Bootstrap 95\% confidence interval (Appendix C.11; for mediation analysis methodology in general, see @hayes2017). Activity-level: $X$ = grant-transfer share, $M$ = `amp_12m_norm`, $Y$ = field-level outcome variable.
+  *Method*: #cite(<baron1986>, form: "prose") regression procedure + Sobel z-test + Bootstrap 95\% confidence interval (Appendix C.11; for mediation analysis methodology in general, see @hayes2017). Activity-level: $X$ = grant-transfer share, $M$ = `amp_12m_norm`, $Y$ = field-level outcome variable.
 
   *Results — pooled mediation effect non-significant*: The Sobel z-test for the average mediation effect $a b$ across 14 fields yielded *p* = 0.481, non-significant — failure to reject the null hypothesis. *Important*: pooled non-significance is not itself direct evidence of heterogeneity. It means the null hypothesis (no mediation) cannot be rejected; it does not support the alternative hypothesis (heterogeneity exists).
 
@@ -1048,7 +1048,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 
   *Recommendation 3 — Staggered Settlement Timing ($c_(t t)$ ↑)*: Distributing settlement cycles across *quarterly or semi-annual* intervals for each delegated contract would raise the marginal cost of timing adjustment immediately following December 1 ($c_(t t)$ ↑), thereby dispersing $e_t^*$. If grant-transfer-type phase coherence shifts from 0.54 to a dispersed cycle structure, it becomes possible to identify additional effects beyond fortuitous alignment in outcome-gaming co-movement.
 
-  *Recommendation 4 — Data Infrastructure Strengthening (Prerequisite for $w_q$ ↑)*: Due to the limitations of monthly expenditure data (VWFOEM), this study was unable to directly observe *within-December week-level* jumps. #cite(<liebman2017>, form: "prose") reported 5× jumps using weekly data for the United States. Adding *weekly and daily granularity* to the Open Fiscal Data System (OFDS) API would not only improve RDD identification but also serve as primary data for the *program outcome measurement infrastructure* required to raise $w_q$.
+  *Recommendation 4 — Data Infrastructure Strengthening (Prerequisite for $w_q$ ↑)*: Due to the limitations of monthly expenditure data (VWFOEM), this study was unable to directly observe *within-December week-level* jumps. #cite(<liebman2017>, form: "prose") reported 4.9× jumps using weekly data for the United States. Adding *weekly and daily granularity* to the Open Fiscal Data System (OFDS) API would not only improve RDD identification but also serve as primary data for the *program outcome measurement infrastructure* required to raise $w_q$.
 
   *Recommendation 5 — Automated Flagging System ($c_(t t)$ ↑)*: Deploying the 50-case sub05 identification algorithm used in this study (top-ranked `amp_12m_norm` + RDD jump of 3× or greater) as an *always-on monitoring system* raises the probability of detection → increases $(partial c) / (partial e_t)$ → reduces $e_t^*$. A *real-time gaming monitoring dashboard* could be developed in collaboration with the Board of Audit and Inspection (BAI) and the National Assembly Budget Office.
 
@@ -1074,7 +1074,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 + *STL trend confounding*: The disappearance of the Social Welfare main signal after STL decomposition depends on the trend-seasonal separation hypothesis. While NeuralProphet mediation provides partial reinforcement, the short sample length of Korean data is a fundamental weakness.
 + *Sample size constraint*: After differencing, field-level *N* = 8–12 — even with permutation and bootstrap supplementation, point-estimate confidence intervals remain wide.
 + *Missing defense and reserve fund data*: Fields without measurable outcome variables were excluded (exclusion bias). Future research should exploit any declassifiable partial data.
-+ *Absence of weekly/daily granularity*: Monthly expenditure data preclude direct observation of within-December week-level jumps. Part of the gap between the U.S. 5× and Korea's 1.91× figures may reflect data granularity rather than behavioral differences.
++ *Absence of weekly/daily granularity*: Monthly expenditure data preclude direct observation of within-December week-level jumps. Part of the gap between the U.S. 4.9× and Korea's 1.91× figures may reflect data granularity rather than behavioral differences.
 + *Multiple comparison correction (honest disclosure)*: The H5 Social Welfare *fortuitous alignment* finding (first-differenced correlation $r = -0.762$, $p = 0.035$) is one result from a simultaneous permutation test across 14 fields. If treated as a *multiple comparison across 14 hypotheses*, the Bonferroni-corrected threshold is $0.05 / 14 = 0.0036$, and the Social Welfare $p = 0.035$ does not survive this correction.
 
   The study's conclusions are reinforced by the following: (a) *sign consistency* — the negative correlation direction holds across all 14 fields (strengthened after CPI control to $r = -0.86$), (b) *prior hypothesis* — the social welfare automatic-distribution mechanism was predicted *a priori* to produce *fortuitous alignment*, (c) *theoretical consistency* — the model in §3 explicitly acknowledges field-level heterogeneity in the alignment function $alpha$ in advance. Strictly speaking, however, single-field statistical significance cannot be claimed after Bonferroni/FDR correction; this finding should be interpreted as *hypothesis-level evidence pending replication*. Future research should verify whether the same pattern replicates in social welfare automatic-distribution contexts in other countries.
@@ -1084,7 +1084,7 @@ All three measures consistently show that *grant-transfer type is most strongly 
 + *Natural experiment calibration*: Direct calibration of the equilibrium effect of $w_t$ changes by comparing pilot multi-year-accounting ministries (e.g., select MSIT R&D programs) against conventional ministries.
 + *Multi-agent extension of the ministry graph*: Gaming spillover network analysis at the level of the five Spectral Co-clustering ministry communities.
 + *Wavelet change-point mapping*: Mapping the temporal intensification trend onto known policy change-points (2007 National Fiscal Act, 2014 National Accounting System reform, 2017 supplementary budget, 2020 COVID expansion) to quantitatively estimate equilibrium shifts at each change-point.
-+ *International comparison*: Comparing the U.S. 5× (#cite(<liebman2017>, form: "prose")), Korea's 1.91× (capital-acquisition 3.42×) from this study, and analogous analyses for Japan and the EU → measuring the equilibrium effect of differences in evaluation systems.
++ *International comparison*: Comparing the U.S. 4.9× (#cite(<liebman2017>, form: "prose")), Korea's 1.91× (capital-acquisition 3.42×) from this study, and analogous analyses for Japan and the EU → measuring the equilibrium effect of differences in evaluation systems.
 + *Archetype-level decomposition of mediation*: Disaggregating the pooled *p* = 0.481 mediation result into archetype-specific mediation analyses to quantify how the strength of the $e_t$ channel varies by project type.
 
 = Conclusion
@@ -1183,7 +1183,7 @@ Reproducibility materials (code, result CSVs, visualizations) are publicly avail
 
 #pagebreak()
 
-// 부록 섹션은 자동 numbering 비활성화 (제목에 "부록 A.", "부록 B." 등이 직접 표기됨)
+// Disable automatic numbering in appendix sections (each appendix title carries its own "Appendix A.", "Appendix B." prefix)
 #set heading(numbering: none)
 
 // =============================================================
@@ -1249,12 +1249,12 @@ This appendix provides definitions for statistical and computational terms appea
 - *Multitasking Contract Theory*: When an agent performs multidimensional tasks and incentives are tied only to measurable dimensions, effort in unmeasured dimensions systematically declines @holmstrom1991.
 - *Holmstrom-Milgrom Impossibility*: The theoretical result that in environments with large measurability gaps, *no incentive weighting can achieve the first-best outcome*. The theoretical basis for this study's policy recommendations explicitly not promising a complete solution.
 - *Fortuitous Alignment*: The case in which the agent's equilibrium behavior ($e_t^*$) fortuitously aligns with the principal's social outcome ($Y$). The model frame for this study's Social Welfare automatic redistribution effect (H5). Formalized as the accidental positivity of the field function $alpha(theta_("field")) = (partial Y) / (partial e_t)$.
-- *Baker Distortion @baker1992*: The marginal productivity gap between the measured indicator $M$ and the true value $V$ ($(partial M) / (partial e) != (partial V) / (partial e)$). Concretized in this model as the measurability gap function $phi'(\cdot) < 1$.
+- *Baker Distortion @baker1992*: The marginal productivity gap between the measured indicator $M$ and the true value $V$ ($(partial M) / (partial e) != (partial V) / (partial e)$). The measurability-gap function $phi'(\cdot) < 1$ in this model maps directly onto Baker's distortion dimension. (Baker also analyzes measurement noise; this model applies in an accounting-time-series setting where the noise channel is small and the distortion channel dominates.)
 - *Career Concerns* (@holmstrom1999; @dewatripont1999): PA dynamic equilibrium in which evaluation operates as a *multi-year reputational signal* rather than a single-stage event. The institutional reputation of quasi-governmental agencies with their parent organizations induces *collective synchronization* (phase coherence 0.54).
-- *Performative Prediction* (@hardt2016strategic; @perdomo2020performative): The ML-economics cross-framework in which the distribution shifts the moment an indicator becomes a learning target. The H6 temporal intensification (+554%) in this study is a direct instance in an administrative system.
+- *Performative Prediction* (@hardt2016strategic; @perdomo2020performative): The ML-economics cross-framework in which the distribution shifts the moment an indicator becomes a learning target. The H6 temporal intensification (+554%) in this study is an adjacent instance from an administrative system — though the original framework treats convergence to a stable equilibrium under distribution shift, while the +554% Korean amplification is reinterpreted in §6.8 as a composite of *learning adaptation plus a COVID fiscal shock* rather than a direct prediction of the framework.
 - *Strategic Classification* #cite(<hardt2016strategic>): The ML theory that once a classifier becomes an evaluation tool, the input distribution undergoes *strategic adaptation*. The static version of Performative Prediction.
 - *Soft Budget Constraint*: The phenomenon in which budget constraints weaken because agents anticipate post-hoc bailouts by parent organizations or the government rather than market discipline @kornai1980.
-- *Mediation Analysis*: A regression technique for separating the *indirect effect* along the $X arrow M arrow Y$ pathway from the direct effect $X arrow Y$. This study uses Baron-Kenny four-step + Sobel test + Bootstrap CI.
+- *Mediation Analysis*: A regression technique for separating the *indirect effect* along the $X arrow M arrow Y$ pathway from the direct effect $X arrow Y$. This study uses the Baron-Kenny regression procedure + Sobel test + Bootstrap CI.
 - *Sobel Test* #cite(<sobel1982>): z-test using the standard error of the mediation effect $a b$: $sqrt(b^2 sigma_a^2 + a^2 sigma_b^2)$. Depends on normality assumption.
 - *Spectral Co-clustering*: Algorithm that simultaneously clusters the frequency matrix of ministries (rows) and project archetypes (columns) via SVD to find a block-diagonal structure @dhillon2001.
 - *Permutation Test*: Generates the null distribution by randomly shuffling the outcome variable. Requires no normality or homoscedasticity assumptions.
@@ -1282,7 +1282,7 @@ This appendix provides definitions for statistical and computational terms appea
 
 #set par(first-line-indent: 1em)
 
-#pagebreak()
+#v(2em)
 
 // =============================================================
 = Appendix C. Methodology Details — Equations, Algorithms, and Alternatives
@@ -1455,7 +1455,7 @@ This qualitative justification is not a substitute for a formal McCrary test; ra
 
 == C.11 Mediation Analysis — Baron-Kenny + Sobel + Bootstrap
 
-*Four-step regression*:
+*Sequential regressions (Baron-Kenny)*:
 $ "Step 1": quad Y = i_1 + c X + epsilon_1 quad ("total effect " c) $
 $ "Step 2": quad M = i_2 + a X + epsilon_2 quad ("mediation path " a) $
 $ "Steps 3,4": quad Y = i_3 + c' X + b M + epsilon_3 quad ("direct " c', " mediated " a b) $
@@ -1465,7 +1465,7 @@ The mediation effect is $a b$ or equivalently $c - c'$ (the two coincide under O
 $ "SE"(a b) = sqrt(b^2 sigma_a^2 + a^2 sigma_b^2) $
 Tested as $z = (a b) / "SE"(a b)$. Relies on a normality assumption.
 
-*Bootstrap CI*: $B = 1000$ resamples with replacement → compute $hat(a)^((b)) hat(b)^((b))$ each time → use the 2.5–97.5\% quantiles of the distribution as the confidence interval. Robust to *asymmetric distributions* without a normality assumption @preacher2008.
+*Bootstrap CI*: $B = 1000$ resamples with replacement → compute $hat(a)^((b)) hat(b)^((b))$ each time → use the 2.5–97.5\% quantiles of the distribution as the confidence interval. Robust to *asymmetric distributions* without a normality assumption @preacher2008. With field-level samples of $N = 8$--$12$, $B = 1000$ provides sufficient stability for the 95\% CI and falls within the lower end of the Preacher-Hayes recommended range.
 
 *vs SEM*: Efficient via *simultaneous estimation* of $a b$, but requires latent variables and large $N$; field-level $N = 14$ is unsuitable for SEM.
 *vs Causal Mediation Analysis @imai2010*: Nonparametric identification under a potential-outcomes framework; the small field-level $N$ in this study yields insufficient nonparametric power → parametric Baron-Kenny is more practical.
@@ -1495,7 +1495,7 @@ $ p = (1) / (B) sum_(b=1)^(B) bb(1)[|hat(r)^((b))| >= |hat(r)|] $
 
 *amp_cv*: $"CV" = sigma\/mu$. Because it ignores frequency information, it also captures aperiodic variation that FFT cannot detect — convergence of the two indicators confirms measurement robustness.
 
-#pagebreak()
+#v(2em)
 
 // =============================================================
 = Appendix D. Spectral Analysis Details — Power Spectrum, Phase, and Cross-Coherence
@@ -1577,7 +1577,7 @@ The 12-month frequency phase coherence $abs(chevron.l e^(i Delta phi) chevron.r)
 - *STL*: Trend-residual separation; self-critical of trend absorption possibility
 - *NP*: Changepoint correction + additive decomposition (interactive viz)
 
-Because the three tools *decompose the same signal along orthogonal dimensions*, the core finding of "grant-transfer December gaming" is supported in a *consistent direction by all three tools* (FFT k=1 amplitude 33\%, NP yearly seasonality amplitude largest, STL post-trend residual signal also grant-transfer dominant). This constitutes robustness by definition of *methodological triangulation*.
+The three tools *decompose the same signal along orthogonal dimensions*. The fact that all three (despite their orthogonal assumptions) *identify the same archetype as a signal candidate* — FFT k=1 amplitude 33\%, NP yearly seasonality amplitude largest, STL post-trend residual signal also grant-transfer dominant — constitutes a successful assumption stress test. This is the robustness form of *complementary triangulation* (§Methodology), not a mechanical re-confirmation of any single tool: if one tool's assumption is stressed (e.g., STL absorbing the H5 signal into its trend, §6.6), the candidate identification by the others persists.
 
 == D.4 Wavelet Analysis — *Temporal Evolution* of Gaming Intensity
 
@@ -1630,7 +1630,7 @@ That Labor-cost shows *no change* reinforces the credibility of this analysis �
 
 The four tools become progressively more powerful along the *time-dimension resolution* axis; used together they cover *stationarity, trend, changepoints, and dynamic evolution*. This study's gaming measurement converges across this four-fold lens on the conclusion of *grant-transfer cycle dominance + temporal intensification* (capital-acquisition is separately dominant in RDD jumps — see Appendix E).
 
-#pagebreak()
+#v(2em)
 
 = Appendix E. Year-End RDD Supplementary Analysis — Forest Plots by Field and Project Archetype
 
@@ -1645,7 +1645,7 @@ The capital-acquisition archetype shows the strongest RDD jump, whereas grant-tr
   caption: [December jump forest plot by project archetype — Capital-acquisition 3.42× is strongest; Grant-transfer 1.10× does not reach statistical significance (gray) but is dominant in cycle intensity in Appendix D. For field-level forest plots, see @fig-rdd-field in the main text.],
 )
 
-#pagebreak()
+#v(2em)
 
 = Appendix F. P-A Model Derivations
 
@@ -1726,7 +1726,7 @@ This specialization is the model basis for Hypotheses H2 and H3 in the main text
 
 Limitations and directions for future research on this model are discussed in §8 of the main text. The formal specification of model-specific extensions (micro-level calibration, dynamic equilibrium, multi-agent interaction, application of causal forests) is deferred to separate future work.
 
-#pagebreak()
+#v(2em)
 
 // =============================================================
 = Appendix G. Script-Hypothesis Mapping — Reproduction Guide

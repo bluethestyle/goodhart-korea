@@ -1,10 +1,12 @@
-"""그림 15 (h28_evolution) — 12개월 cycle 진폭의 연도별 진화 (4 archetype line).
+"""그림 15 (h28_evolution) — paper용 — 12개월 cycle 진폭의 연도별 진화.
 
 source: scripts/h28_wavelet.py
 A4 본문 폭 6.3 inch 1:1, figsize=(6.3, 3.8), dpi=200
 
-레전드는 차트 밖(하단)에 배치하고, 변화율 박스는 제거 — 슬라이드/논문에서
-숫자 카드를 별도 컬럼으로 표시하므로 차트 안에 중복 텍스트를 남기지 않는다.
+paper 사양: legend 차트 안 (좌상단), 변화율 annotation 박스 (우상단).
+column 폭 제한 때문에 외부 legend 사용 불가 — 내부 배치 + ymax 헤드룸 1.40.
+
+슬라이드용 변종은 redo_slidefig_h28_evolution.py 참조.
 """
 import os, sys, io, warnings
 import numpy as np
@@ -32,6 +34,7 @@ for fname in ['Malgun Gothic', 'Arial Unicode MS', 'NanumGothic']:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, 'data', 'results')
 PREVIEW = os.path.join(ROOT, 'paper', 'figures', '_preview')
+FIGURES = os.path.join(ROOT, 'paper', 'figures')
 os.makedirs(PREVIEW, exist_ok=True)
 
 ARCH_NAME = {'C0_personnel': '인건비형 (n=129)',
@@ -46,7 +49,7 @@ ARCH_COLOR = {'C0_personnel': '#4C72B0',
 ev = pd.read_csv(os.path.join(RES, 'H28_wavelet_12m_evolution.csv'))
 print(ev.head())
 
-fig, ax = plt.subplots(figsize=(6.3, 4.0))
+fig, ax = plt.subplots(figsize=(6.3, 3.8))
 
 for arch in ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']:
     sub = ev[ev['archetype'] == arch].sort_values('year')
@@ -61,13 +64,22 @@ ax.set_xlabel('연도')
 ax.set_ylabel('12m cycle wavelet power')
 ax.grid(alpha=0.3)
 
-# 데이터 정점에 약간의 헤드룸만 — 빈 공간 박스가 사라졌으므로 1.40 → 1.10
+# 정점(출연금형 1.55) 위쪽 여유 확보 — 변화율 박스가 자리잡을 공간
 ymax_data = ev['power_12m'].max()
-ax.set_ylim(-0.05, ymax_data * 1.10)
+ax.set_ylim(-0.05, ymax_data * 1.40)
 
-# 레전드는 차트 외부 하단에 4-칼럼 가로 배치 → 데이터 영역 가리지 않음
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
-          ncol=4, frameon=False, columnspacing=1.4, handletextpad=0.5)
+ax.legend(loc='upper left', frameon=True, framealpha=0.95)
+
+# 변화율 박스 — 우상단, 정점 위 빈 공간
+ax.text(0.98, 0.97,
+        '2015~2017 → 2023~2025\n'
+        '출연금형  +554%\n'
+        '정상사업  +317%\n'
+        '자산취득형 +175%\n'
+        '인건비형  −0.8% (통제)',
+        transform=ax.transAxes, ha='right', va='top', fontsize=13,
+        bbox=dict(boxstyle='round,pad=0.45', fc='#fff8e1',
+                  ec='#daa520', alpha=0.95))
 
 plt.tight_layout()
 
@@ -87,9 +99,8 @@ if max(w, h) > MAX:
 else:
     print(f'preview: {w}x{h}')
 
-# 슬라이드/논문 production 경로에도 복사 (figures/ + paper/slides/assets/)
+# paper figures/ 에 복사 (production)
 import shutil
-for dst in [os.path.join(ROOT, 'paper', 'figures', 'h28_evolution.png'),
-            os.path.join(ROOT, 'paper', 'slides', 'assets', 'h28_evolution.png')]:
-    shutil.copy2(out_preview, dst)
-    print(f'  -> {dst}')
+dst = os.path.join(FIGURES, 'h28_evolution.png')
+shutil.copy2(out_preview, dst)
+print(f'  -> {dst}')
