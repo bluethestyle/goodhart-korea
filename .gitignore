@@ -67,3 +67,10 @@ paper/figures_en/_preview/
 
 # Slides (작업 중, 별도 발표 자료)
 paper/slides/
+paper/_pages/
+paper/_slide_pages/
+paper/figures/wireframes_preview/
+paper/*ppt/
+
+# Root PDFs (external documents)
+/*.pdf
