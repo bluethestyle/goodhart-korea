@@ -250,7 +250,7 @@
     text(font: mono, size: 14pt, fill: accent, weight: "semibold")[02],
     [
       #text(size: 18pt, weight: "semibold", tracking: -0.3pt)[
-        출연금형 사업은 *분기·반기 단위로 한꺼번에 정산*되며, 시간이 갈수록 강해진다.
+        출연금형 사업은 *분기말 정산 시점에 한꺼번에 집행*되며, 시간이 갈수록 강해진다.
       ]
       #v(2pt)
       #text(size: 12pt, fill: mid)[
@@ -312,7 +312,7 @@
       ]
       #v(6pt)
       #text(size: 11.5pt, fill: mid)[
-        출연금 비중이 큰 사업은 *분기·반기 정산 사이클*에 묶여 있어
+        출연금 비중이 큰 사업은 *분기말 정산 사이클*에 묶여 있어
         자율적 집행 규율이 약하다는 풍경.
         국회예산정책처 공식 지적 (2022).
       ]

@@ -11,6 +11,19 @@ lightning_logs/
 paper/preview/
 paper/figures/_preview/
 
+# Local Read 다운샘플 (1280px 이하 미리보기 — CLAUDE.md 가드레일)
+paper/figures/**/_v/
+
+# 실험 중간 산출물 (check / preview 변형)
+paper/figures/**/*_check.png
+paper/figures/**/*_preview.png
+
+# graphify 그래프 산출물 (regeneratable via `graphify update .`)
+graphify-out/
+
+# Model cache (regeneratable)
+data/results/*.pkl
+
 # Paper fonts (114MB, downloaded from Google Fonts — KoPubWorld + Noto KR)
 paper/fonts/
 

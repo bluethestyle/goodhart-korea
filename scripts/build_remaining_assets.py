@@ -25,18 +25,18 @@ out_dir.mkdir(exist_ok=True, parents=True)
 # Slide 16·17·18·19 — 4 archetype representative mini bar
 # ──────────────────────────────────────────────────────────────────────
 REPS = [
-    ('Slide 16', 'C0 인건비형 (비교군)', '노인일자리지원', '#888888',
+    ('Slide 16', 'C0 인건비형 (비교군)', '사회복무지원', '#888888',
      'fig_slide16_c0_rep.png',
      '매월 균등 — 시점 압력이 새겨질 자리가 없다'),
-    ('Slide 17', 'C3 정상사업 (비교군)', '우주발사체개발', '#9b9b9b',
+    ('Slide 17', 'C3 정상사업 (비교군)', '소속기관기본경비', '#9b9b9b',
      'fig_slide17_c3_rep.png',
      '평균 부근 — 시점 압력의 모집단 비교군'),
-    ('Slide 18', 'C1 자산취득형 (분석 대상)', '신공항건설', '#C0392B',
+    ('Slide 18', 'C1 자산취득형 (분석 대상)', '평택당진항 개발', '#C0392B',
      'fig_slide18_c1_rep.png',
-     '12월 절벽 + 집행률 38% — Act 3 RDD ×3.42 결정 사례'),
-    ('Slide 19', 'C2 출연금형 (분석 대상)', '고속도로건설', '#E67E22',
+     '12월 절벽 — Act 3 RDD가 정량 측정하는 결정 사례'),
+    ('Slide 19', 'C2 출연금형 (분석 대상)', '원자력연구개발사업', '#E67E22',
      'fig_slide19_c2_rep.png',
-     '분기말 사이클 — Act 4 Wavelet 사례'),
+     '분기말 cycle — Act 4 Wavelet이 사이클을 분해한다'),
 ]
 
 for slide, label, name, color, fname, msg in REPS:

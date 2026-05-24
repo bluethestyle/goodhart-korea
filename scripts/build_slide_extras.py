@@ -24,37 +24,95 @@ out_dir = Path('paper/figures/eda')
 out_dir.mkdir(exist_ok=True, parents=True)
 
 # ──────────────────────────────────────────────────────────────────────
-# Slide 22 — cutoff 4 막대
+# Slide 22 — archetype × cutoff 2x2 grid
+# (data/results/H22_quarterly_cutoffs.csv 동적 로드)
+# 추정 spec: log_daily ~ T + C(year), bw=1, cluster SE by ACTV_CD
 # ──────────────────────────────────────────────────────────────────────
-cutoffs = ['3월/2월', '6월/5월', '9월/8월', '12월/11월']
-betas = [0.17, 0.36, 0.22, 0.65]
-ratios = [1.18, 1.44, 1.24, 1.97]
-colors_22 = ['#888888', '#888888', '#888888', '#C0392B']
+q_csv = Path('data/results/H22_quarterly_cutoffs.csv')
+if not q_csv.exists():
+    raise FileNotFoundError(
+        f'{q_csv} 부재 — 먼저 `python scripts/h22_quarterly_cutoffs.py` 실행 필요')
+q_df = pd.read_csv(q_csv)
 
-fig, ax = plt.subplots(figsize=(7.5, 4.8), dpi=140)
-bars = ax.bar(cutoffs, ratios, color=colors_22, edgecolor='#444', linewidth=0.5)
-ax.axhline(1.0, color='#666', linewidth=0.8, linestyle=':')
-ax.text(3.4, 1.03, '× 1.0 (점프 없음)', fontsize=8.5, color='#666', ha='right')
-for bar, r, b in zip(bars, ratios, betas):
-    is_max = r > 1.5
-    ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.04,
-            f'× {r:.2f}\nβ={b:.2f}',
-            ha='center', fontsize=11,
-            weight='bold' if is_max else 'normal',
-            color='#C0392B' if is_max else '#333')
-ax.set_ylim(0, max(ratios) * 1.22)
-ax.set_ylabel('일평균 집행 점프 배율 (e^β)', fontsize=11)
-ax.set_xlabel('cutoff (전월 대비)', fontsize=11)
-ax.set_title('분기말 cutoff별 RDD 점프 — 12월이 최대 (n=18,348 활동×연도)',
-             fontsize=12, pad=10)
-for s in ['top', 'right']:
-    ax.spines[s].set_visible(False)
-ax.grid(True, axis='y', alpha=0.25, linestyle=':')
-plt.tight_layout()
+# 4 archetype 패널 정의 (좌상→우상→좌하→우하 = C0→C1→C2→C3)
+ARCHETYPE_PANELS = [
+    ('C0 인건비형',  '#888888', '비교군'),
+    ('C1 자산취득형', '#C0392B', '분석 대상'),
+    ('C2 출연금형',  '#E67E22', '분석 대상'),
+    ('C3 정상사업',  '#9b9b9b', '비교군'),
+]
+
+# 공통 y축 범위 (최대 ×배 + 여유)
+all_archetype_df = q_df[q_df['group'] != '전체']
+y_max = all_archetype_df['mult'].max() * 1.28
+
+fig, axes = plt.subplots(2, 2, figsize=(11, 7), dpi=140, sharey=True)
+axes_flat = axes.flatten()
+
+for i, (group_label, color, role) in enumerate(ARCHETYPE_PANELS):
+    ax = axes_flat[i]
+    sub = q_df[q_df['group'] == group_label].sort_values('cutoff_month').reset_index(drop=True)
+    cutoffs = sub['cutoff'].tolist()
+    betas   = sub['beta'].tolist()
+    ratios  = sub['mult'].tolist()
+    pvals   = sub['pval'].tolist()
+    n_acts  = sub['n_clusters'].tolist()
+
+    # 12월(cutoff_month=12)만 cluster color accent, 나머지는 연회색
+    colors = [color if cm == 12 else '#cccccc'
+              for cm in sub['cutoff_month']]
+    bars = ax.bar(cutoffs, ratios, color=colors,
+                  edgecolor='#444', linewidth=0.5)
+    ax.axhline(1.0, color='#666', linewidth=0.8, linestyle=':')
+
+    # 막대 위 라벨 (×배 + 유의성)
+    for bar, r, b, p in zip(bars, ratios, betas, pvals):
+        sig = ('***' if p<0.001 else '**' if p<0.01
+               else '*' if p<0.05 else 'ns')
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.06,
+                f'×{r:.2f}\n{sig}',
+                ha='center', fontsize=9.5,
+                weight='bold' if r > 1.5 else 'normal',
+                color=color if r > 1.5 else '#666')
+
+    # panel title: archetype + role + 12월 ×배
+    dec_row = sub[sub['cutoff_month']==12].iloc[0]
+    is_target = (role == '분석 대상')
+    ax.set_title(
+        f'{group_label}  ▸  {role}',
+        fontsize=12, color=color if is_target else '#444',
+        weight='bold' if is_target else 'normal', pad=8)
+
+    ax.set_ylim(0, y_max)
+    ax.tick_params(axis='x', labelsize=9.5)
+    if i % 2 == 0:
+        ax.set_ylabel('점프 배율 (e^β)', fontsize=10)
+    if i >= 2:
+        ax.set_xlabel('cutoff (전월 대비)', fontsize=10)
+    for s in ['top', 'right']:
+        ax.spines[s].set_visible(False)
+    ax.grid(True, axis='y', alpha=0.25, linestyle=':')
+
+# 전체 figure title
+fig.suptitle(
+    '분기말 cutoff별 RDD 점프 — archetype마다 다른 패턴\n'
+    'C1 자산취득형은 12월 ×3.42 폭발 · C2 출연금형은 모든 cutoff ns (점프 아닌 cycle)',
+    fontsize=12.5, y=1.00, weight='bold',
+    linespacing=1.4)
+
+# 하단 footnote
+n_obs_total = int(q_df[q_df['group']=='전체']['n_obs'].sum())
+fig.text(0.5, -0.01,
+         f'※ log_daily ~ T + C(year), bw=1 (cutoff 양쪽 두 달), '
+         f'cluster SE by ACTV_CD · '
+         f'H3 cluster 매칭 활동만 (전체 1,605 활동 중 약 935)',
+         ha='center', fontsize=8.5, color='#666', style='italic')
+
+plt.tight_layout(rect=[0, 0.02, 1, 0.94])
 out22 = out_dir / 'fig_slide22_cutoff_bars.png'
 plt.savefig(out22, dpi=140, bbox_inches='tight', facecolor='white')
 plt.close()
-print(f'[Slide 22] {out22}')
+print(f'[Slide 22] {out22} | 2x2 archetype grid')
 
 # ──────────────────────────────────────────────────────────────────────
 # Slide 33 — 매개 분석 다이어그램 (X → M → Y)

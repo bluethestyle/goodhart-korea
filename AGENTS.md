@@ -46,6 +46,47 @@ width(또는 height) **2000px 이상이면 그대로 Read 금지**. 권장 작�
 - `paper/slides/_audit_pages/` — 캡처 원본 (1280px 이하로 출력)
 - `paper/slides/_v/` — Read용 다운샘플 (1024~1280px)
 
+## graphify 그래프 사용 — Hard Rule
+
+`graphify-out/graph.json` (현재 1.1MB · 약 **236K tokens**) **절대 Read 금지**. 통째로 컨텍스트에 들어가면 단발에 보고서 4~5개 분량 소모.
+
+### 사용 트리거 — 사용자 질문 시 graphify를 우선 백엔드로
+사용자가 **이 프로젝트 내부 개념·가설·산출물·함수·연결 관계**에 대해 묻거나 설명을 요청하면 답하기 전에 graphify CLI를 먼저 호출해 부분 그래프를 받고, 그 결과 + 본인 추론을 합쳐 답한다. grep/Read보다 graphify가 우선.
+
+매핑:
+- "X가 뭐야 / X 설명해줘" → `graphify explain "X"`
+- "X 관련 코드·문서·자료 어디?" → `graphify query "X 관련 ..."`
+- "X와 Y 관계 / X에서 Y까지 어떻게 연결?" → `graphify path "X" "Y"`
+- 광범위 탐색: `graphify query "..." --budget 3000` 정도까지 허용
+
+예외:
+- 일반 코딩·문법·환경 질문 (이 프로젝트 맥락 아님) → 평소대로
+- 사용자가 명시적으로 빠른 답·메모리만 사용 요구 → graphify 우회
+- 그래프 stale 의심 (사용자가 *커밋 없이* 큰 수정 중) → 먼저 `graphify update .` 또는 사용자에게 stale 가능성 명시 후 진행. 평시엔 post-commit 훅이 자동 갱신하므로 신뢰 OK.
+- query 결과가 너무 얕거나 옛 코드 가리킬 때 → 그 노드의 source_file을 Read로 보강
+
+### 접근 방법 — CLI만 사용
+- 탐색: `graphify query "<질문>"` (기본 budget 2000 토큰, BFS 부분 그래프만 추출)
+- 두 노드 관계: `graphify path "A" "B"`
+- 단일 노드 평이 설명: `graphify explain "X"`
+- 추가 절감: `--budget 1000` 등 budget 강제로 깎기
+
+### Read해도 되는 산출물
+- `graphify-out/GRAPH_REPORT.md` (~14K tokens) — onboarding 시 **1회**만. 반복 Read 금지.
+- `graphify-out/graph.html` — 브라우저 전용, Read 자체 무의미
+
+### 갱신·extract 비용
+- **git post-commit/post-checkout 훅이 설치되어 있음** (`graphify hook install`). 모든 commit·branch 전환 직후 자동으로 `graphify update .`이 fire-and-forget으로 돌아감. 사용자도 Claude도 매뉴얼 update 불필요.
+- 훅 상태 확인: `graphify hook status`. clone한 새 머신에서는 다시 `graphify hook install` 필요 (.git/hooks는 trackable하지 않음).
+- 커밋 *없이* 작업 중인 큰 변경이 있고 그 와중에 query를 신뢰해야 할 때만 수동 `graphify update .` (LLM 0 호출, 수 초).
+- `graphify extract . --backend gemini/claude` (semantic 추출)는 **분기 1회 수준**. 매번 돌리면 빌드 자체에 수만~수십만 토큰.
+
+### Anti-pattern (즉시 멈출 것)
+- `Read graphify-out/graph.json` — 위반 1순위
+- `Grep` / `python -c "json.load(...)"`로 graph.json 전체 dump
+- 매 작업마다 `graphify extract` 재실행
+- stale 그래프 query 결과를 검증 없이 신뢰
+
 ## 발표/슬라이드 작업 메모
 - 트라이앵귤레이션은 "만장일치 합의"가 아닌 **상호 보완** framing — 도구 간 발산은 자기 비판의 출발점.
 - 강한 매개 분야는 **농림수산** (사회복지 아님). 발표자료/문서에서 사회복지로 적힌 부분 발견 시 즉시 정정.

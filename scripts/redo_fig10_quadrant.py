@@ -142,8 +142,10 @@ def quadrant(row):
     return 'Q3'
 filt['quadrant'] = filt.apply(quadrant, axis=1)
 
-# ── Figure
-fig, ax = plt.subplots(figsize=(6.3, 5.2))
+# ── Figure (Slide 38 통일 framework: 1280×800)
+fig, ax = plt.subplots(figsize=(12.8, 8.0), dpi=100,
+                       gridspec_kw={'left': 0.08, 'right': 0.96,
+                                    'top': 0.92, 'bottom': 0.18})
 
 # 4분면 배경
 x1 = max(merged['exposure_score'].max() + 0.05, 0.85)
@@ -220,45 +222,39 @@ except ImportError:
                     xytext=(3, 3), textcoords='offset points',
                     fontsize=11.5, alpha=0.7, color='#666')
 
-# 4분면 텍스트 라벨 — paper 사양: 각 사분면 중앙 (작은 글씨, low alpha)
-# 슬라이드 변종(redo_slidefig_h14_quadrant.py)은 코너 정렬 + bbox 처리
-qkw = dict(fontsize=13, alpha=0.6, ha='center', va='center')
-ax.text((EXPO_THRESH + x1) / 2, y1_lim * 0.85,
-        'Q2 위험\n(점검 필요)', color='#c0392b', **qkw)
-ax.text((EXPO_THRESH + x1) / 2, y0_lim * 0.85,
-        'Q1 자동분배', color='#c05000', **qkw)
-ax.text(EXPO_THRESH * 0.5, y1_lim * 0.85,
-        'Q4 안전 (양 상관)', color='#1a6fa0', **qkw)
-ax.text(EXPO_THRESH * 0.5, y0_lim * 0.85,
-        'Q3 안전 (음 상관)', color='#1a7a4a', **qkw)
+# 4분면 텍스트 라벨 — Slide 38 통일 (corner 박스, 부처명 라벨과 충돌 회피)
+qbox = dict(boxstyle='round,pad=0.4', fc='white', ec='#bbb', lw=0.8, alpha=0.92)
+ax.text(x1 - 0.01, y1_lim - 0.02, 'Q2 위험 (점검 필요)',
+        ha='right', va='top', fontsize=13, color='#c0392b',
+        fontweight='bold', bbox=qbox)
+ax.text(x1 - 0.01, y0_lim + 0.02, 'Q1 자동분배',
+        ha='right', va='bottom', fontsize=13, color='#c05000',
+        fontweight='bold', bbox=qbox)
+ax.text(0.005, y1_lim - 0.02, 'Q4 안전 (양 상관)',
+        ha='left', va='top', fontsize=13, color='#1a6fa0',
+        fontweight='bold', bbox=qbox)
+ax.text(0.005, y0_lim + 0.02, 'Q3 안전 (음 상관)',
+        ha='left', va='bottom', fontsize=13, color='#1a7a4a',
+        fontweight='bold', bbox=qbox)
 
 ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
-ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)')
-ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)')
-ax.legend(loc='lower right', fontsize=12.5, ncol=1)
+ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=13)
+ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=13)
+ax.set_title(f'부처 단위 정책 사분면 (n={len(merged)} 부처)  ·  도구 단위 layer',
+             fontsize=15, fontweight='bold', pad=12)
+ax.tick_params(labelsize=11)
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.10),
+          fontsize=10, framealpha=0.9, ncol=3, frameon=False)
 ax.grid(alpha=0.2)
+for spine in ['top', 'right']:
+    ax.spines[spine].set_visible(False)
 
-plt.tight_layout()
-
-DPI = 200
-MAX = 1900
-out = os.path.join(PREVIEW, 'h14_quadrant.png')
-fig.savefig(out, dpi=DPI, bbox_inches='tight')
+# Slide 38 통일 출력
+out = os.path.join(ROOT, 'paper', 'figures', 'eda', 'fig_slide38_ministry_quadrant.png')
+os.makedirs(os.path.dirname(out), exist_ok=True)
+fig.savefig(out, dpi=100, facecolor='white')
 plt.close()
+print(f'Saved: {out}')
 img = Image.open(out)
-w, h = img.size
-if max(w, h) > MAX:
-    s = MAX / max(w, h)
-    ns = (int(w * s), int(h * s))
-    img = img.resize(ns, Image.LANCZOS)
-    img.save(out, optimize=True)
-    print(f'preview: {w}x{h} -> {ns[0]}x{ns[1]}')
-else:
-    print(f'preview: {w}x{h}')
-
-# paper figures/ 에 복사 (production)
-import shutil
-dst = os.path.join(ROOT, 'paper', 'figures', 'h14_quadrant.png')
-shutil.copy2(out, dst)
-print(f'  -> {dst}')
+print(f'Size:  {img.size}')
