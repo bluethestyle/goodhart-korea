@@ -2,6 +2,8 @@
 
 > *"What's measured is what matters" — Bevan & Hood (2006)*
 
+> 📂 저장소 경로·파일 구조는 [STRUCTURE.md](STRUCTURE.md), 값 계보는 [data/PROVENANCE.md](data/PROVENANCE.md) 참조.
+
 [열린재정 정보](https://www.openfiscaldata.go.kr/) 월별 집행 11년치 + KOSIS·한은 ECOS·공공데이터포털·GIR 14분야 outcome을 통합해 한국 정부 재정 집행의 **Goodhart 효과**(측정 왜곡)를 다각도로 측정·검증한 분석 프로젝트.
 
 ## 왜 시민이 신경 써야 하는가 — 일상 영향 4경로

@@ -87,6 +87,12 @@ width(또는 height) **2000px 이상이면 그대로 Read 금지**. 권장 작�
 8. **KPI 카드 디자인 패턴** — 단순 stroke top 1.2pt만으로는 카드 묶음 약함. `fill: ghost + stroke: (left: 2pt + accent, rest: 0.5pt + line-c) + radius: (right: 4pt) + inset: 14pt + spacing: 8pt`. 내부 v 압축 (label → v(-10pt) → value → v(-10pt) → sub, 사용자 직접 음수 vstack 지정).
 9. **헤딩 부제 (메인/부제 2계층)** — "메인 — 부제" em dash 패턴은 사용자가 어색하다 지적. inline `linebreak + text(size: 18pt)`로 헤딩 본문에 부제 넣으면 *목차에 부제가 메인보다 크게 표시*되는 부작용. 해결: 부제를 헤딩 본문에서 분리하여 별도 block paragraph로. helper `h1sub/h2sub`는 `block(inset: (top: <음수>))`로 헤딩 show rule v 간격 흡수. 호출은 헤딩 다음 줄 별도 paragraph. 그러면 outline에는 메인만, 본문에는 두 줄 디자인.
 
+### 프로젝트 구조 — 경로 지도
+처음 보는 사람은 [STRUCTURE.md](STRUCTURE.md)부터. 최종 산출물은 **논문(`paper/main_v2.typ`)**과 **슬라이드(`figma_exports/` SVG)** 둘뿐이고, 나머지는 소스(`scripts/`)·데이터(`data/`)·생성물(`paper/figures/`)로 4계층 분리.
+- **값을 새로 인용·삽입할 땐 [data/PROVENANCE.md](data/PROVENANCE.md)에 원천을 먼저 확인/추가**한다. 37.2% 버그(원천 CSV 수정 뒤 다운스트림 문서에 옛값 잔존)의 재발 방지 장치. ⚠️ 하드코딩 빌더(figma SVG·일부 build_slide*)는 CSV가 바뀌어도 자동 갱신 안 되니 함께 수정.
+- 대체·폐기 스크립트는 `scripts/_archive/`(git 추적), 폐기 슬라이드·고아 산출물은 루트 `_archive/`(gitignore, 로컬 보관)로 격리됨.
+- 정본 그림은 `paper/figures/`(논문 참조 33개), 슬라이드 SVG는 `figma_exports/`에만 둔다.
+
 ### 데이터·자산 위치
 - `data/warehouse.duckdb` → 표 `monthly_exec` (FSCL_YY × EXE_M × OFFC_NM × FLD_NM × ACTV_NM, **EP_AMT = 월별 집행액**, 2015–2026, 41만 행).
 - `paper/main_v2.typ` — 학술 논문 버전. 정확한 RDD 추정치 (전체 1.91배·자산취득형 3.42배 등) 인용 시 참조.
