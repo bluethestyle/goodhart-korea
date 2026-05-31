@@ -86,8 +86,8 @@ figma_exports/_extracted_*.txt
 # 정리 격리 폴더 (루트만 — 로컬 보관, git 비추적). scripts/_archive/ 는 추적 유지(이력 보존)
 /_archive/
 
-# Paper EN figures preview (intermediate)
-paper/figures_en/_preview/
+# Paper EN figures — 국내 제출용으로 미사용 (스크립트가 만들어도 추적 안 함)
+paper/figures_en/
 
 # Slides (작업 중, 별도 발표 자료)
 paper/slides/

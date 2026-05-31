@@ -37,7 +37,7 @@ EXT     = os.path.join(ROOT, 'data', 'external')
 FIG_KR  = os.path.join(ROOT, 'paper', 'figures')
 FIG_EN  = os.path.join(ROOT, 'paper', 'figures_en')
 os.makedirs(FIG_KR, exist_ok=True)
-os.makedirs(FIG_EN, exist_ok=True)
+# FIG_EN(영문 그림)은 국내 제출용으로 미사용 — 디렉터리 생성/저장 안 함 (헬퍼에서 차단)
 
 # ── Font setup ─────────────────────────────────────────────────────────────────
 FONT_KR = 'DejaVu Sans'
@@ -82,6 +82,9 @@ def set_font(lang: str):
 
 def save_resize(fig, path: str):
     """Save figure, then resize if wider than MAX_W pixels."""
+    if 'figures_en' in path:  # EN 그림 미사용 (국내용) — figures_en 부활 방지
+        plt.close(fig)
+        return
     fig.savefig(path, dpi=DPI, bbox_inches='tight', facecolor='white')
     plt.close(fig)
     img = Image.open(path)
@@ -98,6 +101,8 @@ def save_resize(fig, path: str):
 
 def copy_resize(src: str, dst: str):
     """Copy PNG and resize to max MAX_W wide."""
+    if 'figures_en' in dst:  # EN 그림 미사용 (국내용) — figures_en 부활 방지
+        return
     shutil.copy2(src, dst)
     img = Image.open(dst)
     w, h = img.size
