@@ -12,7 +12,7 @@
 | `redo_fig*` | 논문 그림 재생성 (paper-style, A4 가이드) | `paper/figures/` (대개 `_preview/` 경유) |
 | `build_slide*` · `build_*` | 슬라이드/figma 자산 빌더 | `paper/figures/`, figma용 PNG·SVG |
 | `fetch_*` | 외부 지표 수집 (KOSIS·ECOS·GIR 등) | warehouse / `data/external/` |
-| `generate_v3_charts.py` · `build_report_figures.py` | 다중 그림 일괄 빌더 | `paper/figures/`, `paper/figures_en/` |
+| `generate_v3_charts.py` · `build_report_figures.py` | 다중 그림 일괄 빌더 | `paper/figures/` |
 
 generated charts → `paper/figures/`, slide SVG 정본 → `figma_exports/`.
 

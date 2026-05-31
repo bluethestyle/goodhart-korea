@@ -56,11 +56,11 @@ paper/
 - ✅ Modern KCI 폰트 (Noto Serif KR + Pretendard)
 - ✅ Booktabs 표 디자인 + 한국 학술지 표준 들여쓰기
 - ✅ 핵심 figure 10+ import 완료
-- [ ] 영문 변환 (Zenodo 영문 working paper)
+- ~~영문 변환 (Zenodo 영문 working paper)~~ — 국내 제출용 확정, 영문판 삭제 (2026-05-31)
 - [ ] DOI 발급 (Zenodo)
 - [ ] KCI 학회용 축약 (한국행정학보 또는 한국정책학회보 양식)
 - [ ] 저자명·소속·이메일 입력
-- [ ] 한글 abstract + 영문 abstract pair (KCI 표준)
+- [ ] 국문 abstract (국내 제출용 — 영문 abstract 불필요)
 
 ## v2 학술 보강 (2026-04-30 정합성 점검 후)
 

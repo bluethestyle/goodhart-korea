@@ -7,7 +7,7 @@
 
 | 산출물 | 위치 | 비고 |
 |---|---|---|
-| **논문** | [`paper/main_v2.typ`](paper/main_v2.typ) → `main_v2.pdf` | 정본. 영문판 `main_v2_en.typ`도 유지 |
+| **논문** | [`paper/main_v2.typ`](paper/main_v2.typ) → `main_v2.pdf` | 정본 (국내 제출용, 영문판 없음) |
 | **슬라이드** | [`figma_exports/`](figma_exports/) `*.svg` | Figma 기반 SVG가 정본. 발표 내러티브는 `paper/재정데이터 분석 ppt/` |
 
 나머지 모든 것은 이 둘을 만들기 위한 **소스 · 데이터 · 생성물**이다.
@@ -33,7 +33,6 @@
 │
 ├─ ③ 생성물 (코드가 만든 중간 자산)
 │  ├─ paper/figures/                # 논문 그림 (main_v2.typ 참조 33개 + 부록)
-│  ├─ paper/figures_en/             # 영문판 그림
 │  └─ graphify-out/                 # 코드 그래프 (post-commit 훅 자동 갱신, gitignore)
 │
 └─ ④ 정본 산출물 (위 표의 둘)
