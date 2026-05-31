@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"/>
+
+<text x="80" y="110" font-size="44" fill="#0F172A" font-weight="700">집행률 100%, 이 숫자는 무엇을 보장하는가?</text>
+<text x="80" y="154" font-size="22" fill="#64748B">회계 마감·평가 일정이 집행을 특정 월에 모은다.</text>
+<rect x="80" y="240" width="1100" height="540" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<text x="116" y="288" font-size="14" fill="#64748B" font-weight="600" font-family="monospace" letter-spacing="0.6">사업당 100% 정규화 후 월별 집행 분포</text>
+<line x1="140" y1="690" x2="1140" y2="690" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="157.5" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="181.66666666666666" y="718" font-size="14" fill="#64748B" text-anchor="middle">1월</text>
+<rect x="240.8" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="265.0" y="718" font-size="14" fill="#64748B" text-anchor="middle">2월</text>
+<rect x="324.2" y="647.0" width="48.3" height="43.0" fill="#CBD5E1" rx="3"/>
+<text x="348.3333333333333" y="718" font-size="14" fill="#64748B" text-anchor="middle">3월</text>
+<rect x="407.5" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="431.6666666666667" y="718" font-size="14" fill="#64748B" text-anchor="middle">4월</text>
+<rect x="490.8" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="515.0" y="718" font-size="14" fill="#64748B" text-anchor="middle">5월</text>
+<rect x="574.2" y="638.4" width="48.3" height="51.6" fill="#CBD5E1" rx="3"/>
+<text x="598.3333333333333" y="718" font-size="14" fill="#64748B" text-anchor="middle">6월</text>
+<rect x="657.5" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="681.6666666666666" y="718" font-size="14" fill="#64748B" text-anchor="middle">7월</text>
+<rect x="740.8" y="655.6" width="48.3" height="34.4" fill="#CBD5E1" rx="3"/>
+<text x="764.9999999999999" y="718" font-size="14" fill="#64748B" text-anchor="middle">8월</text>
+<rect x="824.2" y="647.0" width="48.3" height="43.0" fill="#CBD5E1" rx="3"/>
+<text x="848.3333333333333" y="718" font-size="14" fill="#64748B" text-anchor="middle">9월</text>
+<rect x="907.5" y="638.4" width="48.3" height="51.6" fill="#CBD5E1" rx="3"/>
+<text x="931.6666666666666" y="718" font-size="14" fill="#64748B" text-anchor="middle">10월</text>
+<rect x="990.8" y="537.7" width="48.3" height="152.3" fill="#CBD5E1" rx="3"/>
+<text x="1014.9999999999999" y="718" font-size="14" fill="#64748B" text-anchor="middle">11월</text>
+<text x="1014.9999999999999" y="523.741935483871" font-size="20" fill="#0F172A" font-weight="800" text-anchor="middle">17.7%</text>
+<rect x="1074.2" y="370.0" width="48.3" height="320.0" fill="#C0392B" rx="3"/>
+<text x="1098.3333333333333" y="718" font-size="14" fill="#64748B" text-anchor="middle">12월</text>
+<text x="1098.3333333333333" y="356.0" font-size="20" fill="#C0392B" font-weight="800" text-anchor="middle">37.2%</text>
+<text x="116" y="760" font-size="18" fill="#334155">11월 → 12월, 집행이 회계연도 끝에서 급등한다.</text>
+<rect x="1220" y="240" width="620" height="540" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<rect x="1220" y="240" width="4" height="540" fill="#C0392B"/>
+<text x="1252" y="312" font-size="38" fill="#0F172A" font-weight="800">집행률 100%</text>
+<text x="1252" y="348" font-size="18" fill="#64748B">한국 재정에서 가장 무거운 지표</text>
+<line x1="1252" y1="376" x2="1808" y2="376" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1252" y="432" font-size="21" fill="#334155">·  미달 시 다음 해 예산 감축</text>
+<text x="1252" y="480" font-size="21" fill="#334155">·  공공기관 경영평가의 지표명 그 자체</text>
+<text x="1252" y="528" font-size="21" fill="#334155">·  경영실적 부진 시 기관장 해임 건의</text>
+<line x1="1252" y1="560" x2="1808" y2="560" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1252" y="600" font-size="14" fill="#64748B" font-weight="600" font-family="monospace" letter-spacing="0.6">반복 제기되어 온 문제</text>
+<text x="1252" y="644" font-size="21" fill="#0F172A" font-weight="700" font-style="italic">“멀쩡한 길, 또 뜯는다? — 보도블록 공사”</text>
+<text x="1252" y="680" font-size="15" fill="#64748B">전국뉴스</text>
+<text x="960" y="860" font-size="26" fill="#0F172A" font-weight="700" text-anchor="middle">회계와 평가가 만든 12월 정점 — 집행률 100%가 모든 판단의 기준이 된다.</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">그렇다면, 이 숫자는 무엇을 못 보는가?  ↘</text>
+<text x="80" y="1050" font-size="14" fill="#64748B" font-family="monospace">02 / 40</text>
+
+</svg>

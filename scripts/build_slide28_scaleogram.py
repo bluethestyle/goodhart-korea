@@ -141,7 +141,7 @@ for ax in axes[-1, :]:
     ax.set_xlabel('연도', fontsize=10.5)
 
 fig.suptitle(
-    'Slide 28 (우). Wavelet scaleogram — 시간×주파수 동학\n'
+    'Wavelet scaleogram — 시간×주파수 동학\n'
     'C2 출연금형은 12m 라인(cyan)이 시간 따라 강화, C0 인건비형은 거의 무신호 (null)',
     fontsize=12, weight='bold', y=0.995, linespacing=1.4)
 

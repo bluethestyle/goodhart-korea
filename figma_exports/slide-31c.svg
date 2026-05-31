@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" font-weight="500" letter-spacing="0.65" font-family="JetBrains Mono, monospace" fill="#64748B">ACT 05 · Outcome 매핑</text>
+<text x="1840" y="58" font-size="14" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4" fill="#94A3B8">삽입 · 31 → 32 · 전환 3/3</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">분야별 결과지표(Outcome) 매핑</text>
+<text x="80" y="142" font-size="22" fill="#64748B">각 정책 분야에 어떤 결과지표를, 어디서 확보했는가 — 분야별 1개 대표 지표.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1"></line>
+<rect x="80" y="182" width="1180" height="710" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="104" y="214" font-size="18" fill="#0F172A" font-weight="700">분야 → 결과지표 → 출처 (실측 매핑)</text>
+<text x="1236" y="214" font-size="13" fill="#64748B" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">★ 매개 유의 · CPI(ECOS) 통제</text>
+<line x1="80" y1="226" x2="1260" y2="226" stroke="#334155" stroke-width="1.5"></line>
+<text x="100" y="250" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.4">분야</text>
+<text x="360" y="250" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.4">결과지표 (변수 · 설명)</text>
+<text x="1240" y="250" font-size="13" fill="#64748B" font-weight="700" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">통계표 · 지표 ID</text>
+<line x1="80" y1="262" x2="1260" y2="262" stroke="#CBD5E1" stroke-width="1"></line>
+<rect x="80" y="270" width="1180" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="291" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">KOSIS · 통계청</text>
+<text x="100" y="328" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">사회복지</text>
+<text x="360" y="328" font-size="17" fill="#334155">wealth_gini · 순자산 지니계수</text>
+<text x="1240" y="328" font-size="17" fill="#334155" text-anchor="end">DT_1HDAAD04</text>
+<line x1="80" y1="337" x2="1260" y2="337" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="363" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">보건</text>
+<text x="360" y="363" font-size="17" fill="#334155">life_expectancy · 0세 기대여명</text>
+<text x="1240" y="363" font-size="17" fill="#334155" text-anchor="end">DT_1B41</text>
+<line x1="80" y1="372" x2="1260" y2="372" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="398" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">산업·중기</text>
+<text x="360" y="398" font-size="17" fill="#334155">industry_production_index · 전산업생산지수</text>
+<text x="1240" y="398" font-size="17" fill="#334155" text-anchor="end">DT_1JH20201</text>
+<line x1="80" y1="407" x2="1260" y2="407" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="433" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">문화·관광</text>
+<text x="360" y="433" font-size="17" fill="#334155">foreign_tourists_total · 외래 관광객 수</text>
+<text x="1240" y="433" font-size="17" fill="#334155" text-anchor="end">DT_113_…</text>
+<line x1="80" y1="442" x2="1260" y2="442" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="468" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">교육</text>
+<text x="360" y="468" font-size="17" fill="#334155">private_edu_hours · 주당 사교육 시간</text>
+<text x="1240" y="468" font-size="17" fill="#334155" text-anchor="end">DT_1PE103</text>
+<line x1="80" y1="477" x2="1260" y2="477" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="503" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">국토·지역</text>
+<text x="360" y="503" font-size="17" fill="#334155">housing_supply · 주택보급률</text>
+<text x="1240" y="503" font-size="17" fill="#334155" text-anchor="end">DT_MLTM_2100</text>
+<line x1="80" y1="512" x2="1260" y2="512" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="514" width="1180" height="31" fill="#FBEEEC" rx="4"></rect>
+<rect x="80" y="514" width="4" height="31" fill="#C0392B" rx="2"></rect>
+<text x="100" y="538" font-size="16" fill="#C0392B" font-weight="700" font-family="JetBrains Mono, monospace">농림수산</text>
+<text x="360" y="538" font-size="17" fill="#334155">farm_income · 농가소득</text>
+<text x="1240" y="538" font-size="17" fill="#C0392B" font-weight="700" text-anchor="end">DT_1EA1501 ★</text>
+<line x1="80" y1="547" x2="1260" y2="547" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="549" width="1180" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="570" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">공공데이터포털 · 부처 · OECD</text>
+<text x="100" y="607" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">교통·물류</text>
+<text x="360" y="607" font-size="17" fill="#334155">traffic_deaths · 교통사고 사망자</text>
+<text x="1240" y="607" font-size="17" fill="#334155" text-anchor="end">도로교통공단</text>
+<line x1="80" y1="616" x2="1260" y2="616" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="642" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">일반·지방행정</text>
+<text x="360" y="642" font-size="17" fill="#334155">fiscal_indep_natl · 재정자립도</text>
+<text x="1240" y="642" font-size="17" fill="#334155" text-anchor="end">행정안전부</text>
+<line x1="80" y1="651" x2="1260" y2="651" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="677" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">과학기술</text>
+<text x="360" y="677" font-size="17" fill="#334155">patent_apps_total · 특허출원 건수</text>
+<text x="1240" y="677" font-size="17" fill="#334155" text-anchor="end">특허청</text>
+<line x1="80" y1="686" x2="1260" y2="686" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="712" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">통신</text>
+<text x="360" y="712" font-size="17" fill="#334155">broadband_per_100 · 100명당 초고속망</text>
+<text x="1240" y="712" font-size="17" fill="#334155" text-anchor="end">과기정통부</text>
+<line x1="80" y1="721" x2="1260" y2="721" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="723" width="1180" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="744" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">GIR · e-나라지표</text>
+<text x="100" y="781" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">환경</text>
+<text x="360" y="781" font-size="17" fill="#334155">ghg_total · 온실가스 총배출량</text>
+<text x="1240" y="781" font-size="17" fill="#334155" text-anchor="end">GIR 국가인벤토리</text>
+<line x1="80" y1="790" x2="1260" y2="790" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="816" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">통일·외교</text>
+<text x="360" y="816" font-size="17" fill="#334155">oda_total · ODA 원조규모</text>
+<text x="1240" y="816" font-size="17" fill="#334155" text-anchor="end">e-나라 idx 1687</text>
+<line x1="80" y1="825" x2="1260" y2="825" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="851" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">공공질서</text>
+<text x="360" y="851" font-size="17" fill="#334155">crime_occurrence · 총범죄 발생 건수</text>
+<text x="1240" y="851" font-size="17" fill="#334155" text-anchor="end">e-나라 idx 1606</text>
+<line x1="80" y1="860" x2="1260" y2="860" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="100" y="886" font-size="16" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">국방</text>
+<text x="360" y="886" font-size="17" fill="#334155">defense_op_margin · 방산업체 경영실태</text>
+<text x="1240" y="886" font-size="17" fill="#334155" text-anchor="end">e-나라 idx 1703</text>
+<line x1="80" y1="895" x2="1260" y2="895" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="1280" y="182" width="560" height="164" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="1312" y="226" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">확보</text>
+<text x="1312" y="294" font-size="60" fill="#0F172A" font-weight="800">15</text>
+<text x="1312" y="328" font-size="17" fill="#64748B">분야 결과지표 확보</text>
+<rect x="1280" y="364" width="560" height="164" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="1312" y="408" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">검정</text>
+<text x="1312" y="476" font-size="60" fill="#0F172A" font-weight="800">14</text>
+<text x="1312" y="510" font-size="17" fill="#64748B">매개 검정 분야</text>
+<rect x="1280" y="546" width="560" height="164" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="1312" y="590" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">출처</text>
+<text x="1312" y="658" font-size="60" fill="#0F172A" font-weight="800">5</text>
+<text x="1312" y="692" font-size="17" fill="#64748B">데이터 출처 (KOSIS·공공데이터·GIR)</text>
+<rect x="1280" y="728" width="560" height="164" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="1312" y="772" font-size="13" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">범위</text>
+<text x="1312" y="840" font-size="46" fill="#0F172A" font-weight="800">1990–2025</text>
+<text x="1312" y="874" font-size="17" fill="#64748B">지표 시계열 범위</text>
+<line x1="780" y1="916" x2="1140" y2="916" stroke="#CBD5E1"></line>
+<text x="960" y="952" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">15개 분야에 1개 대표 결과지표를 매핑해 확보, 그중 <tspan fill="#C0392B">14개 분야에서 매개효과를 검정</tspan>했다.</text>
+<text x="960" y="982" font-size="15" fill="#64748B" text-anchor="middle">분야별 보조지표·정확한 시계열·다운로드 링크는 부록 App-DATA / data/external/SOURCES.md.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">ACT 05 · 전환 3/3</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">다음 — 집행률과 결과의 분산 (Slide 32)  ↘</text>
+</svg>

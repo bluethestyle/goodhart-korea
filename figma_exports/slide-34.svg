@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" fill="#64748B" font-weight="500" font-family="JetBrains Mono, monospace" letter-spacing="0.65">ACT 05 · 소결 — 검증 공백</text>
+<text x="1840" y="58" font-size="14" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">ACT 5 재구성 · 34</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">결과를 검증할 수 없는 지표</text>
+<text x="80" y="142" font-size="22" fill="#64748B">측정되는 1곳마저 부트스트랩 미확증, 가장 강한 상관(사회복지)은 메커니즘 없어 기각 — 통계로 확증된 연관은 0건.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="80" y="212" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">분야별 매개 검정 (n=14)</text>
+<rect x="80" y="222" width="237" height="104" fill="#C0392B" rx="12"></rect>
+<text x="198.5" y="266" font-size="24" fill="#FFFFFF" text-anchor="middle">★</text>
+<text x="198.5" y="304" font-size="27" fill="#FFFFFF" font-weight="800" text-anchor="middle">농림수산</text>
+<rect x="333" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="451.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">사회복지</text>
+<rect x="586" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="704.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">산업·중기</text>
+<rect x="839" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="957.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">보건</text>
+<rect x="1092" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1210.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">통신</text>
+<rect x="1345" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1463.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">문화·관광</text>
+<rect x="1598" y="222" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1716.5" y="284" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">일반·지방행정</text>
+<rect x="80" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="198.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">과학기술</text>
+<rect x="333" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="451.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">통일·외교</text>
+<rect x="586" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="704.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">국방</text>
+<rect x="839" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="957.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">교육</text>
+<rect x="1092" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1210.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">교통·물류</text>
+<rect x="1345" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1463.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">공공질서</text>
+<rect x="1598" y="344" width="237" height="104" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="12"></rect>
+<text x="1716.5" y="406" font-size="26" fill="#475569" font-weight="600" text-anchor="middle">국토·지역</text>
+<rect x="80" y="472" width="28" height="28" fill="#C0392B" rx="6"></rect>
+<text x="120" y="494" font-size="22" fill="#334155">Sobel 유의 1</text>
+<rect x="280" y="472" width="28" height="28" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="6"></rect>
+<text x="320" y="494" font-size="22" fill="#334155">비유의 13</text>
+<text x="510" y="494" font-size="18" fill="#94A3B8" font-family="JetBrains Mono, monospace">· 농림수산도 부트스트랩 미확증 → 확증 0건 · 환경 제외</text>
+<rect x="80" y="526" width="860" height="196" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="80" y="526" width="4" height="196" fill="#64748B" rx="2"></rect>
+<text x="112" y="566" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">비유의 13분야 — 두 갈래</text>
+<line x1="112" y1="582" x2="908" y2="582" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="112" y="626" font-size="23" fill="#334155">(i) 효과 부재 — 결과가 집행 시점에 둔감한 분야</text>
+<text x="112" y="664" font-size="23" fill="#334155">(ii) 측정 한계 — 분야 집계 지표가 사업 단위 효과를 희석,</text>
+<text x="112" y="696" font-size="23" fill="#334155">      미시 결과(품질·단가)는 데이터 자체가 없음</text>
+<rect x="980" y="526" width="860" height="196" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="980" y="526" width="4" height="196" fill="#C0392B" rx="2"></rect>
+<text x="1012" y="566" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">규율 — 가장 강한 상관도 메커니즘 없으면 기각</text>
+<line x1="1012" y1="582" x2="1808" y2="582" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="1012" y="626" font-size="23" fill="#334155">사회복지 r = −0.86 (최강) — 그러나 기각.</text>
+<text x="1012" y="664" font-size="23" fill="#334155">기초연금 등 자동 소득이전이라 타이밍과 무관.</text>
+<text x="1012" y="696" font-size="23" fill="#C0392B" font-weight="700">상관 강도 ≠ 의미 — 메커니즘으로 거른다.</text>
+<line x1="780" y1="744" x2="1140" y2="744" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="960" y="1000" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">결과와의 연관을 통계로 확증할 수 없다 — 집행률엔 결과 피드백이 없다. 그래서 <tspan fill="#C0392B">대안·측정 보강이 필요하다</tspan>.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">ACT 05 · 소결</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">그래서 — 대안 지표를 어디에 둘 것인가  ↘</text>
+</svg>

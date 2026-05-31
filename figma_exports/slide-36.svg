@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" fill="#64748B" font-weight="500" font-family="JetBrains Mono, monospace" letter-spacing="0.65">EPILOGUE · 실무적 시사점 ①</text>
+<text x="1840" y="58" font-size="14" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">Slide 36 · Epilogue</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">평가는 사업 유형에 따라 다르다</text>
+<text x="80" y="142" font-size="22" fill="#64748B">데이터가 가리킨 곳에 집중하는 첫 갈래 — 적용은 평가·모니터링·정책도구 3 layer로.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="80" y="200" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">3 LAYER MAP</text>
+<rect x="80" y="222" width="573" height="208" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="80" y="222" width="4" height="208" fill="#C0392B" rx="2"></rect>
+<text x="108" y="268" font-size="20" fill="#C0392B" font-weight="800">① 평가  ·  지금</text>
+<text x="108" y="314" font-size="22" fill="#0F172A" font-weight="800">평가는 체질을 따른다.</text>
+<text x="108" y="348" font-size="17" fill="#334155">4 archetype이 시점 압력</text>
+<text x="108" y="378" font-size="17" fill="#334155">메커니즘이 모두 다르다.</text>
+<text x="108" y="408" font-size="15" fill="#C0392B" font-weight="700" font-family="JetBrains Mono, monospace">현재 슬라이드</text>
+<rect x="673" y="222" width="573" height="208" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="673" y="222" width="4" height="208" fill="#64748B" rx="2"></rect>
+<text x="701" y="268" font-size="20" fill="#334155" font-weight="800">② 모니터링</text>
+<text x="701" y="314" font-size="22" fill="#0F172A" font-weight="800">5종 지표 대시보드</text>
+<text x="701" y="348" font-size="17" fill="#334155">FIS 권고 자동화</text>
+<text x="701" y="378" font-size="17" fill="#334155">+ 11월 사전 신호</text>
+<text x="701" y="408" font-size="15" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace">Slide 37</text>
+<rect x="1266" y="222" width="573" height="208" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="1266" y="222" width="4" height="208" fill="#64748B" rx="2"></rect>
+<text x="1294" y="268" font-size="20" fill="#334155" font-weight="800">③ 정책 도구</text>
+<text x="1294" y="314" font-size="22" fill="#0F172A" font-weight="800">사업·부처 사분면 진단</text>
+<text x="1294" y="348" font-size="17" fill="#334155">Q2 위험 부처 사전 점검</text>
+<text x="1294" y="378" font-size="17" fill="#334155">(시점 집중 高)</text>
+<text x="1294" y="408" font-size="15" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace">Slide 38</text>
+<text x="80" y="478" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">시사점 ① · 본문</text>
+<text x="80" y="518" font-size="20" fill="#334155">분석이 식별한 4 체질은 시점 압력에 대한 응답이 모두 다르다 — 그래서 평가 기준도 체질별로:</text>
+<rect x="80" y="550" width="9" height="9" fill="#C0392B" rx="2"></rect>
+<text x="104" y="564" font-size="19" fill="#C0392B" font-weight="800">C1 자산취득형 (×3.42)</text>
+<text x="470" y="564" font-size="19" fill="#334155" font-weight="700">→  다년도 평균 집행률  (= 다년도 회계)</text>
+<rect x="80" y="588" width="9" height="9" fill="#B45309" rx="2"></rect>
+<text x="104" y="602" font-size="19" fill="#B45309" font-weight="800">C2 출연금형 (사이클)</text>
+<text x="470" y="602" font-size="19" fill="#334155" font-weight="700">→  분기 진행률  (= 정산 분산)</text>
+<rect x="80" y="626" width="9" height="9" fill="#64748B" rx="2"></rect>
+<text x="104" y="640" font-size="19" fill="#64748B" font-weight="800">C0·C3 (효과 없음)</text>
+<text x="470" y="640" font-size="19" fill="#334155" font-weight="700">→  현행 유지</text>
+<text x="80" y="700" font-size="19" fill="#334155">일괄 평가는 동일 효과를 만들지 못한다 — 조정 불가형(C0·C3)엔 무관, 조정 대상형(C1·C2)엔 압박.</text>
+<line x1="780" y1="778" x2="1140" y2="778" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="960" y="820" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">같은 평가표가 <tspan fill="#C0392B">같은 결과를 만들지 않는다</tspan>.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">EPILOGUE · 시사점 ①</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">다음 — ② 모니터링: 5종 지표 대시보드  ↘</text>
+</svg>

@@ -107,7 +107,7 @@ ax.set_ylabel('log 점프 (12월 − 11월, 활동 중앙값)', fontsize=11)
 
 # (a) 제목·부제
 ax.set_title(
-    'Slide 24. 매년 동일 점프 — 단일 연도 우연 아닌 제도적 패턴\n'
+    '매년 동일 점프 — 단일 연도 우연 아닌 제도적 패턴\n'
     f'11년 연속 ×{min_mult:.2f}–×{max_mult:.2f} 좁은 범위 '
     f'(평균 ×{np.exp(mean_jump):.2f}, sd ±{sd_jump:.3f}) · '
     f'공정률이 매년 12월에 함께 뛸 가능성은 0',

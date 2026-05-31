@@ -85,7 +85,7 @@ for i, row in arch.iterrows():
 ax.legend(loc='lower right', fontsize=10, framealpha=0.92)
 ax.set_xlabel('β (log 일평균 집행액 점프, 12월 cutoff · 95% CI)', fontsize=11)
 ax.set_title(
-    'Slide 23. 12월 cutoff RDD — 4 archetype 비교\n'
+    '12월 cutoff RDD — 4 archetype 비교\n'
     'C1 자산취득형 ×3.42 압도 · C2 출연금형 ns (점프 아닌 cycle) · '
     '한국 어느 archetype도 미국 5×에는 못 미친다',
     fontsize=12, pad=12, weight='bold', linespacing=1.4)

@@ -258,7 +258,7 @@ def main():
 
     # 전체 figure title (충분한 위 공간)
     fig.suptitle(
-        '4 체질의 NeuralProphet forecasting — 각 체질이 자기 박자를 다음 해에도 유지',
+        '4 체질의 NeuralProphet forecasting — 각 체질이 자기 주기를 다음 해에도 유지',
         fontsize=15, fontweight='bold', y=0.965,
     )
 

@@ -1,21 +1,20 @@
-"""Slide 30 트라이앵귤레이션 heatmap — 4 archetype × 3 도구.
+"""§6.5.3 트라이앵귤레이션 heatmap — 15분야 × 3도구 outcome 상관.
 
-Slide 27/28/29의 KPI를 한 표에 정렬:
-  FFT 12m PSD · Wavelet ×배 강화 · NeuralProphet seasonality strength
+각 정책 분야의 outcome과 게임화 측도(FFT·STL·NeuralProphet) 셋의 *부호 있는* 상관을
+15분야 × 3도구 매트릭스로 정리한다. 도구 간 *부호 일관* 분야와 *측도 의존* 분야가
+시각적으로 분리되어, '합의'가 아닌 '상보적' 트라이앵귤레이션을 보인다.
 
-각 도구 행 내에서 max=1 정규화 (색 강도). 셀 텍스트는 raw 측정값.
-출연금형 column이 일관 진한 색 → 트라이앵귤레이션 시각 증거.
-
-출력: paper/figures/h30_triangulation.png  (1280 × ~ 550)
+값은 `data/results/H26_field_outcome_corr_np.csv`에서 직접 읽는다 (하드코딩 없음).
+출력: paper/figures/h30_triangulation.png  (~1260 × ~1125)
 """
 import sys
 import io
 import numpy as np
+import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-from matplotlib.colors import LinearSegmentedColormap
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -27,112 +26,90 @@ if font_path.exists():
     plt.rcParams['font.family'] = 'Pretendard'
 plt.rcParams['axes.unicode_minus'] = False
 
+SRC = ROOT / 'data' / 'results' / 'H26_field_outcome_corr_np.csv'
 OUT_PATH = ROOT / 'paper' / 'figures' / 'h30_triangulation.png'
 
-# ── 데이터 (Slide 27/28/29 KPI 통합) ────────────────────────────────
-ARCHETYPES = ['C0\n인건비형', 'C1\n자산취득형', 'C2\n출연금형 ★', 'C3\n정상사업']
-TOOLS = [
-    'FFT\n12m PSD',
-    'Wavelet\n시간 강화 (×배)',
-    'NeuralProphet\nseasonality strength',
-]
-RAW = np.array([
-    [0.097,  0.172,  0.332,  0.115],   # FFT
-    [1.00,   2.75,   6.54,   4.17],    # Wavelet
-    [0.274,  0.281,  0.458,  0.390],   # NP
-])
+# 분야명 축약 (표시용)
+SHORT = {
+    '산업·중소기업및에너지': '산업·중기',
+    '국토및지역개발': '국토·지역',
+    '문화및관광': '문화·관광',
+    '공공질서및안전': '공공질서',
+    '교통및물류': '교통·물류',
+    '일반·지방행정': '일반·지방',
+    '통일·외교': '통일·외교',
+}
 
-# 셀 텍스트 형식
-FMT = [
-    '{:.3f}',     # FFT (소수 3)
-    '×{:.2f}',    # Wavelet (×배)
-    '{:.3f}',     # NP (소수 3)
-]
-
-# 각 행 max=1 정규화 → 색 강도
-NORM = RAW / RAW.max(axis=1, keepdims=True)
+TOOLS = ['FFT\n(amp 12m)', 'STL\n(계절강도)', 'NeuralProphet\n(seasonality)']
+COLS = ['corr_fft', 'corr_stl', 'corr_np']
 
 
-# ── 색 scale: 출연금형 주황 강조 ────────────────────────────────────
-cmap = LinearSegmentedColormap.from_list(
-    'tri_orange',
-    ['#FFFFFF', '#FCE9D2', '#F5BC78', '#E67E22', '#C0640F'],
-    N=256,
-)
-
-
-# ──────────────────────────────────────────────────────────────────────
 def main():
-    fig, ax = plt.subplots(figsize=(12.8, 5.5), dpi=100,
-                           gridspec_kw={'left': 0.18, 'right': 0.96,
-                                        'top': 0.84, 'bottom': 0.12})
+    df = pd.read_csv(SRC)
+    # FFT 상관 오름차순 정렬 (가장 강한 음 신호 = 측정 적응 위)
+    df = df.sort_values('corr_fft').reset_index(drop=True)
 
-    # heatmap
-    im = ax.imshow(NORM, aspect='auto', cmap=cmap, vmin=0, vmax=1)
+    fields = [SHORT.get(f, f) for f in df['fld']]
+    M = df[COLS].to_numpy(dtype=float)  # (15, 3)
 
-    # 셀 텍스트
-    for i in range(RAW.shape[0]):
-        for j in range(RAW.shape[1]):
-            v_raw = RAW[i, j]
-            v_norm = NORM[i, j]
-            text_color = '#FFFFFF' if v_norm > 0.55 else '#222222'
-            weight = 'bold' if j == 2 else 'normal'  # 출연금형 column 굵게
-            ax.text(j, i, FMT[i].format(v_raw),
-                    ha='center', va='center', fontsize=18,
-                    color=text_color, fontweight=weight)
+    n_row = len(fields)
+    fig, ax = plt.subplots(figsize=(8.4, 7.5), dpi=150,
+                           gridspec_kw={'left': 0.14, 'right': 0.97,
+                                        'top': 0.88, 'bottom': 0.10})
 
-    # 출연금형 column 강조 border
-    from matplotlib.patches import Rectangle
-    rect = Rectangle((1.5, -0.5), 1, 3, fill=False,
-                     edgecolor='#C0392B', linewidth=3.0, zorder=10)
-    ax.add_patch(rect)
+    # 발산 색지도: 음(파랑) ↔ 0(흰) ↔ 양(빨강), 0 중심
+    vlim = 0.8
+    im = ax.imshow(M, aspect='auto', cmap='RdBu_r', vmin=-vlim, vmax=vlim)
 
-    # 축 라벨
-    ax.set_xticks(range(len(ARCHETYPES)))
-    ax.set_xticklabels(ARCHETYPES, fontsize=13)
-    ax.set_yticks(range(len(TOOLS)))
-    ax.set_yticklabels(TOOLS, fontsize=12)
+    # 셀 값 annotation
+    for i in range(n_row):
+        for j in range(3):
+            v = M[i, j]
+            tc = '#ffffff' if abs(v) > 0.5 else '#1a1a1a'
+            ax.text(j, i, f'{v:+.2f}', ha='center', va='center',
+                    fontsize=11.5, color=tc)
 
-    # tick 스타일
-    ax.tick_params(axis='x', length=0, pad=10)
-    ax.tick_params(axis='y', length=0, pad=10)
+    # 축
+    ax.set_xticks(range(3))
+    ax.set_xticklabels(TOOLS, fontsize=11.5)
+    ax.set_yticks(range(n_row))
+    ax.set_yticklabels(fields, fontsize=11)
+    ax.tick_params(axis='x', length=0, pad=8)
+    ax.tick_params(axis='y', length=0, pad=6)
 
-    # 출연금형 x-tick label 색 강조
-    xtick_labels = ax.get_xticklabels()
-    xtick_labels[2].set_color('#C0392B')
-    xtick_labels[2].set_fontweight('bold')
-
-    # 격자
-    ax.set_xticks(np.arange(-0.5, len(ARCHETYPES), 1), minor=True)
-    ax.set_yticks(np.arange(-0.5, len(TOOLS), 1), minor=True)
-    ax.grid(which='minor', color='white', linewidth=3)
+    # 흰 격자
+    ax.set_xticks(np.arange(-0.5, 3, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, n_row, 1), minor=True)
+    ax.grid(which='minor', color='white', linewidth=2)
     ax.tick_params(which='minor', bottom=False, left=False)
-
-    # spines off
     for spine in ax.spines.values():
         spine.set_visible(False)
 
-    # title
-    fig.suptitle(
-        '세 도구가 4 체질에서 본 같은 박자 — 트라이앵귤레이션',
-        fontsize=16, fontweight='bold', y=0.95,
-    )
-    ax.text(0.5, 1.04, '각 도구 행 내 max=1 정규화 (색 강도) · 셀 값은 실측',
-            transform=ax.transAxes, ha='center', fontsize=10.5, color='#666')
+    # 컬러바
+    cbar = fig.colorbar(im, ax=ax, fraction=0.035, pad=0.03)
+    cbar.set_label('시점집중 ↔ outcome 상관 계수', fontsize=10)
+    cbar.ax.tick_params(labelsize=9)
+
+    fig.suptitle('세 도구가 본 분야별 outcome 상관 — 부호 일관 vs 측도 의존',
+                 fontsize=15, fontweight='bold', y=0.965)
+    ax.text(0.5, 1.025,
+            '음(파랑)=시점집중↔outcome 악화 · 도구 간 부호 갈림 = 측도 의존(상보적 트라이앵귤레이션)',
+            transform=ax.transAxes, ha='center', fontsize=9.5, color='#666')
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(OUT_PATH, dpi=100, facecolor='white')
+    plt.savefig(OUT_PATH, dpi=150, facecolor='white')
     plt.close()
 
     from PIL import Image
+    sz = Image.open(OUT_PATH).size
     print(f'Saved: {OUT_PATH}')
-    print(f'Size:  {Image.open(OUT_PATH).size}')
-
-    # KPI 요약 출력
-    print(f'\n=== KPI ===')
-    print(f'  FFT 12m PSD       — 출연금형 0.332 (최강, C0 인건비형 0.097의 ×3.4)')
-    print(f'  Wavelet 강화      — 출연금형 ×6.54 (최강, C0 ×1.00의 ×6.5)')
-    print(f'  NP seasonality    — 출연금형 0.458 (최강, C0 0.274의 ×1.67)')
+    print(f'Size:  {sz}')
+    print(f'분야 수: {n_row} (H26 CSV)')
+    # 검증 출력
+    for f in ['보건', '통신', '사회복지']:
+        r = df[df['fld'] == f]
+        if len(r):
+            print(f'  {f}: FFT {r.corr_fft.values[0]:+.2f} / STL {r.corr_stl.values[0]:+.2f} / NP {r.corr_np.values[0]:+.2f}')
 
 
 if __name__ == '__main__':

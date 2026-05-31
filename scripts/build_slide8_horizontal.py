@@ -74,7 +74,7 @@ n_above_10 = ((df_off['dec_pct'] > 10) & (df_off['dec_pct'] <= 15)).sum()
 n_below_10 = (df_off['dec_pct'] <= 10).sum()
 
 fig.suptitle(
-    f'Slide 8. 부처 {n_total}개 — 모든 부처에서 12월 봉우리\n'
+    f'부처 {n_total}개 — 모든 부처에서 12월 봉우리\n'
     f'빨강 > 15% ({n_above_15}개) · 주황 10~15% ({n_above_10}개) · 회색 ≤ 10% ({n_below_10}개)',
     fontsize=12, y=0.97)
 

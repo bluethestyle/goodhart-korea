@@ -83,7 +83,7 @@ ax.annotate(f'분기(3m) ≈ {qrt_max:.2f}\n— 4 archetype 공통 spike',
 
 # 차트 제목·부제
 ax.set_title(
-    'Slide 27. FFT — archetype마다 다른 맥박\n'
+    'FFT — archetype마다 다른 주기\n'
     '분기(3m) spike는 4 archetype 공통 · 연주기(12m) spike는 C2 출연금형에만',
     fontsize=12.5, pad=12, weight='bold', linespacing=1.4)
 ax.title.set_multialignment('center')

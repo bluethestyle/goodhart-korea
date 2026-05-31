@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif">
+<rect width="1920" height="1080" fill="#0A0E27"/>
+
+<text x="960" y="252" font-size="14" fill="#b8c0d8" font-weight="600" font-family="monospace" letter-spacing="0.6">본 분석의 주장</text>
+<line x1="908" y1="278" x2="1012" y2="278" stroke="#C0392B" stroke-width="3"/>
+<text x="960" y="436" font-size="54" font-weight="800" fill="#FFFFFF" text-anchor="middle">집행 패턴은 분야가 아니라 사업의 <tspan fill="#E67E22">형태</tspan>에서 갈린다.</text>
+<text x="960" y="512" font-size="54" fill="#FFFFFF" font-weight="800" text-anchor="middle">형태가 다르면, 측정과 관리도 형태별로 달라야 한다.</text>
+<rect x="660" y="568" width="600" height="74" fill="#1A2148" stroke="#2d3a5a" rx="10"/>
+<text x="960" y="616" font-size="30" fill="#E67E22" font-weight="800" text-anchor="middle">같은 12월, 점프 크기는 형태별로 1.1배 – 3.4배.</text>
+<text x="960" y="712" font-size="19" fill="#b8c0d8" text-anchor="middle">P-A 모형이 이 구조를 설명하지만, 공개 재정 패널 위 유형별 실증은 드물었다 — 본 분석이 그 간격을 데이터로 메운다.</text>
+<text x="960" y="750" font-size="19" fill="#b8c0d8" text-anchor="middle">그 결과는 유형별로 다른 접근의 이론적 토대이자 실증이 된다.</text>
+<text x="1840" y="1035" font-size="18" fill="#b8c0d8" text-anchor="end" font-style="italic">그럼, 어떻게 보았는가?  ↘</text>
+<text x="80" y="1050" font-size="14" fill="#b8c0d8" font-family="monospace">04 / 40</text>
+
+</svg>

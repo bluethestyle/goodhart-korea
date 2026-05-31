@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" fill="#64748B" font-weight="500" font-family="JetBrains Mono, monospace" letter-spacing="0.65">EPILOGUE · 진입 — 처방의 지도</text>
+<text x="1840" y="58" font-size="14" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">Slide 35 · Epilogue 진입</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">처방은 이미 있다 — 본 분석은 ‘어디에’를 댄다</text>
+<text x="80" y="142" font-size="22" fill="#64748B">Goodhart 대응책은 학계·해외에서 제시돼 왔다. 빠진 건 ‘어느 사업·체질에 적용하나’ — 그 타겟을 데이터로 채운다.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1" stroke-width="1"></line>
+<rect x="80" y="216" width="860" height="456" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="80" y="216" width="4" height="456" fill="#64748B" rx="2"></rect>
+<text x="112" y="256" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">① 이미 제시된 대응책 — 레퍼런스</text>
+<text x="112" y="308" font-size="21" fill="#0F172A" font-weight="800">결과중심 예산 · 다지표 평가</text>
+<text x="112" y="334" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">OECD 성과주의 예산</text>
+<text x="112" y="368" font-size="21" fill="#0F172A" font-weight="800">다년도 회계 — 단년 마감압력 제거</text>
+<text x="112" y="394" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">英 Capital DEL · 美 USACE</text>
+<text x="112" y="428" font-size="21" fill="#0F172A" font-weight="800">정산 시점 분산</text>
+<text x="112" y="454" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">獨 분기정산 · 日 IPA·NEDO</text>
+<text x="112" y="488" font-size="21" fill="#0F172A" font-weight="800">측정가능 업무에만 인센티브 금지</text>
+<text x="112" y="514" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">Holmström–Milgrom 1991</text>
+<text x="112" y="548" font-size="21" fill="#0F172A" font-weight="800">연말지출 상시 모니터링</text>
+<text x="112" y="574" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">美 GAO · 英 NAO</text>
+<text x="112" y="608" font-size="21" fill="#0F172A" font-weight="800">이론 토대 — ‘지표가 목표가 되면’</text>
+<text x="112" y="634" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">Goodhart 1975 · Campbell 1979</text>
+<rect x="980" y="216" width="860" height="456" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="980" y="216" width="4" height="456" fill="#C0392B" rx="2"></rect>
+<text x="1012" y="256" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">② 본 분석의 기여 — 적용 타겟 (데이터)</text>
+<text x="1012" y="310" font-size="19" fill="#C0392B" font-weight="800">C1 자산취득형</text>
+<text x="1012" y="334" font-size="14" fill="#64748B" font-family="JetBrains Mono, monospace">×3.42 · 12월 절벽</text>
+<path d="M1330 322 L1374 322" stroke="#C0392B" stroke-width="2.5"></path>
+<path d="M1374 322 l-11 -6 l0 12 z" fill="#C0392B"></path>
+<text x="1394" y="328" font-size="20" fill="#334155" font-weight="700">다년도 회계</text>
+<text x="1012" y="380" font-size="19" fill="#B45309" font-weight="800">C2 출연금형</text>
+<text x="1012" y="404" font-size="14" fill="#64748B" font-family="JetBrains Mono, monospace">+554% 사이클</text>
+<path d="M1330 392 L1374 392" stroke="#B45309" stroke-width="2.5"></path>
+<path d="M1374 392 l-11 -6 l0 12 z" fill="#B45309"></path>
+<text x="1394" y="398" font-size="20" fill="#334155" font-weight="700">정산 분산</text>
+<text x="1012" y="450" font-size="19" fill="#64748B" font-weight="800">C0 · C3</text>
+<text x="1012" y="474" font-size="14" fill="#64748B" font-family="JetBrains Mono, monospace">효과 없음 (null)</text>
+<path d="M1330 462 L1374 462" stroke="#64748B" stroke-width="2.5"></path>
+<path d="M1374 462 l-11 -6 l0 12 z" fill="#64748B"></path>
+<text x="1394" y="468" font-size="20" fill="#334155" font-weight="700">현행 유지</text>
+<text x="1012" y="520" font-size="19" fill="#C0392B" font-weight="800">고노출 부처 (Q2)</text>
+<text x="1012" y="544" font-size="14" fill="#64748B" font-family="JetBrains Mono, monospace">Exposure 高</text>
+<path d="M1330 532 L1374 532" stroke="#C0392B" stroke-width="2.5"></path>
+<path d="M1374 532 l-11 -6 l0 12 z" fill="#C0392B"></path>
+<text x="1394" y="538" font-size="20" fill="#334155" font-weight="700">우선 점검</text>
+<text x="1012" y="590" font-size="19" fill="#B45309" font-weight="800">측정 불가 분야</text>
+<text x="1012" y="614" font-size="14" fill="#64748B" font-family="JetBrains Mono, monospace">결과 미측정</text>
+<path d="M1330 602 L1374 602" stroke="#B45309" stroke-width="2.5"></path>
+<path d="M1374 602 l-11 -6 l0 12 z" fill="#B45309"></path>
+<text x="1394" y="608" font-size="20" fill="#334155" font-weight="700">측정 보강</text>
+<line x1="780" y1="710" x2="1140" y2="710" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="960" y="752" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">도구를 발명하지 않는다 — <tspan fill="#C0392B">검증된 처방을, 데이터가 가리키는 곳에 댄다</tspan>.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">EPILOGUE · 진입</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">이제 하나씩 적용한다 — ① 평가  ↘</text>
+</svg>

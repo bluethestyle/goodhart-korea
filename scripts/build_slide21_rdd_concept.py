@@ -96,7 +96,7 @@ ax.text(-0.3, ax.get_ylim()[1] if False else 1.95,
 ax.set_xlabel('시간 (cutoff 기준 일 · 회계연도 마감 = 12월 31일)', fontsize=11)
 ax.set_ylabel('log (일평균 집행액)', fontsize=11)
 ax.set_title(
-    'Slide 21. RDD 개념 — 외형은 연속, 절단은 제도가 만든다\n'
+    'RDD 개념 — 외형은 연속, 절단은 제도가 만든다\n'
     '11→12월 cutoff에서 같은 사업의 일평균 집행이 e^β = ×배로 점프 (한국 전체 β≈0.65)',
     fontsize=12.5, pad=12, weight='bold', linespacing=1.4)
 ax.title.set_multialignment('center')

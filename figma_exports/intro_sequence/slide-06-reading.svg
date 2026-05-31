@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"/>
+
+<text x="80" y="110" font-size="44" fill="#0F172A" font-weight="700">이 분석을 읽는 세 가지 기준</text>
+
+<rect x="80" y="240" width="500" height="500" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<rect x="80" y="240" width="4" height="500" fill="#C0392B"/>
+<text x="112" y="300" font-size="14" fill="#64748B" font-weight="600" font-family="monospace" letter-spacing="0.6">01 · 단위</text>
+<text x="112" y="364" font-size="27" fill="#0F172A" font-weight="700">분야가 아니라 사업 형태</text>
+<line x1="112" y1="396" x2="548" y2="396" stroke="#CBD5E1" stroke-width="1"/>
+<text x="112" y="452" font-size="20" fill="#334155">같은 분야 안에서도 시점</text>
+<text x="112" y="486" font-size="20" fill="#334155">행동이 갈린다. 형태를</text>
+<text x="112" y="520" font-size="20" fill="#334155">분석의 단위로 삼는다.</text>
+
+
+<rect x="710" y="240" width="500" height="500" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<rect x="710" y="240" width="4" height="500" fill="#C0392B"/>
+<text x="742" y="300" font-size="14" fill="#64748B" font-weight="600" font-family="monospace" letter-spacing="0.6">02 · 자세</text>
+<text x="742" y="364" font-size="27" fill="#0F172A" font-weight="700">판정이 아니라 점검 순서</text>
+<line x1="742" y1="396" x2="1178" y2="396" stroke="#CBD5E1" stroke-width="1"/>
+<text x="742" y="452" font-size="20" fill="#334155">결론은 부정·비위 단정이</text>
+<text x="742" y="486" font-size="20" fill="#334155">아니라 먼저 확인할</text>
+<text x="742" y="520" font-size="20" fill="#334155">우선 점검 순서다.</text>
+
+
+<rect x="1340" y="240" width="500" height="500" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<rect x="1340" y="240" width="4" height="500" fill="#C0392B"/>
+<text x="1372" y="300" font-size="14" fill="#64748B" font-weight="600" font-family="monospace" letter-spacing="0.6">03 · 도구</text>
+<text x="1372" y="364" font-size="27" fill="#0F172A" font-weight="700">차이는 오류가 아닌 보완</text>
+<line x1="1372" y1="396" x2="1808" y2="396" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1372" y="452" font-size="20" fill="#334155">도구 간 결과 차이는 한</text>
+<text x="1372" y="486" font-size="20" fill="#334155">현상을 여러 각도로 비춘</text>
+<text x="1372" y="520" font-size="20" fill="#334155">상호 보완으로 읽는다.</text>
+
+<text x="960" y="860" font-size="26" fill="#0F172A" font-weight="700" text-anchor="middle">형태를 단위로, 판정이 아닌 점검 순서로 읽는다.</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">그럼, 형태부터 본다.  ↘</text>
+<text x="80" y="1050" font-size="14" fill="#64748B" font-family="monospace">06 / 40</text>
+
+</svg>

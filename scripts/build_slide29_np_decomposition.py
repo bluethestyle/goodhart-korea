@@ -352,7 +352,7 @@ def build_main_chart(results_A, ts_data, idx):
                 ax.set_xticklabels(year_labels, fontsize=7.5)
 
     fig.suptitle(
-        'Slide 29. NeuralProphet 분해 — 추세 제거 후 archetype-specific 계절성\n'
+        'NeuralProphet 분해 — 추세 제거 후 archetype-specific 계절성\n'
         'AR-Net 제외 spec · seasonality strength (SS) + trend slope per archetype',
         fontsize=11.5, y=1.001, weight='bold'
     )

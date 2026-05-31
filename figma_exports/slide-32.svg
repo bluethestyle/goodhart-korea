@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" fill="#64748B" font-weight="500" font-family="JetBrains Mono, monospace" letter-spacing="0.65">ACT 05 · 진단 — Output vs Outcome</text>
+<text x="1840" y="58" font-size="14" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">ACT 5 재구성 · 32</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">집행률은 결과(outcome)를 설명하지 못한다</text>
+<text x="80" y="142" font-size="22" fill="#64748B">집행률은 분야 간 거의 같은데(90%+), 결과와의 상관은 0.02–0.73 — 약 31배 차이.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="110" y="212" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">분야별 outcome 상관 강도 |r| (분야 평균) — 0.02 ~ 0.73, 약 31배 차이</text>
+<text x="300" y="253" font-size="17" fill="#334155" text-anchor="end">사회복지</text>
+<rect x="320" y="234" width="547.5" height="22" fill="#C0392B" rx="4"></rect>
+<text x="879.5" y="253" font-size="16" fill="#C0392B" font-weight="700">0.73</text>
+<text x="300" y="289.5" font-size="17" fill="#334155" text-anchor="end">산업·중기</text>
+<rect x="320" y="270.5" width="457.5" height="22" fill="#C0392B" rx="4"></rect>
+<text x="789.5" y="289.5" font-size="16" fill="#C0392B" font-weight="700">0.61</text>
+<text x="300" y="326.0" font-size="17" fill="#334155" text-anchor="end">환경</text>
+<rect x="320" y="307.0" width="434.99999999999994" height="22" fill="#C0392B" rx="4"></rect>
+<text x="767.0" y="326.0" font-size="16" fill="#C0392B" font-weight="700">0.58</text>
+<text x="300" y="362.5" font-size="17" fill="#334155" text-anchor="end">보건</text>
+<rect x="320" y="343.5" width="434.99999999999994" height="22" fill="#C0392B" rx="4"></rect>
+<text x="767.0" y="362.5" font-size="16" fill="#C0392B" font-weight="700">0.58</text>
+<text x="300" y="399.0" font-size="17" fill="#334155" text-anchor="end">농림수산</text>
+<rect x="320" y="380.0" width="367.49999999999994" height="22" fill="#B45309" rx="4"></rect>
+<text x="699.5" y="399.0" font-size="16" fill="#B45309" font-weight="700">0.49</text>
+<text x="300" y="435.5" font-size="17" fill="#334155" text-anchor="end">국토·지역</text>
+<rect x="320" y="416.5" width="277.5" height="22" fill="#B45309" rx="4"></rect>
+<text x="609.5" y="435.5" font-size="16" fill="#B45309" font-weight="700">0.37</text>
+<text x="300" y="472.0" font-size="17" fill="#334155" text-anchor="end">공공질서</text>
+<rect x="320" y="453.0" width="217.49999999999997" height="22" fill="#64748B" rx="4"></rect>
+<text x="549.5" y="472.0" font-size="16" fill="#64748B" font-weight="700">0.29</text>
+<text x="300" y="508.5" font-size="17" fill="#334155" text-anchor="end">통신</text>
+<rect x="320" y="489.5" width="210.00000000000003" height="22" fill="#64748B" rx="4"></rect>
+<text x="542.0" y="508.5" font-size="16" fill="#64748B" font-weight="700">0.28</text>
+<text x="300" y="545.0" font-size="17" fill="#334155" text-anchor="end">교통·물류</text>
+<rect x="320" y="526.0" width="164.99999999999997" height="22" fill="#64748B" rx="4"></rect>
+<text x="497.0" y="545.0" font-size="16" fill="#64748B" font-weight="700">0.22</text>
+<text x="300" y="581.5" font-size="17" fill="#334155" text-anchor="end">교육</text>
+<rect x="320" y="562.5" width="150.0" height="22" fill="#64748B" rx="4"></rect>
+<text x="482.0" y="581.5" font-size="16" fill="#64748B" font-weight="700">0.20</text>
+<text x="300" y="618.0" font-size="17" fill="#334155" text-anchor="end">문화·관광</text>
+<rect x="320" y="599.0" width="142.5" height="22" fill="#64748B" rx="4"></rect>
+<text x="474.5" y="618.0" font-size="16" fill="#64748B" font-weight="700">0.19</text>
+<text x="300" y="654.5" font-size="17" fill="#334155" text-anchor="end">일반·지방행정</text>
+<rect x="320" y="635.5" width="75.0" height="22" fill="#64748B" rx="4"></rect>
+<text x="407.0" y="654.5" font-size="16" fill="#64748B" font-weight="700">0.10</text>
+<text x="300" y="691.0" font-size="17" fill="#334155" text-anchor="end">국방</text>
+<rect x="320" y="672.0" width="75.0" height="22" fill="#64748B" rx="4"></rect>
+<text x="407.0" y="691.0" font-size="16" fill="#64748B" font-weight="700">0.10</text>
+<text x="300" y="727.5" font-size="17" fill="#334155" text-anchor="end">과학기술</text>
+<rect x="320" y="708.5" width="29.999999999999996" height="22" fill="#64748B" rx="4"></rect>
+<text x="362.0" y="727.5" font-size="16" fill="#64748B" font-weight="700">0.04</text>
+<text x="300" y="764.0" font-size="17" fill="#334155" text-anchor="end">통일·외교</text>
+<rect x="320" y="745.0" width="14.999999999999998" height="22" fill="#64748B" rx="4"></rect>
+<text x="347.0" y="764.0" font-size="16" fill="#64748B" font-weight="700">0.02</text>
+<rect x="1180" y="206" width="660" height="156" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="1180" y="206" width="4" height="156" fill="#64748B" rx="2"></rect>
+<text x="1208" y="246" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">집행률이 보는 것 (OUTPUT)</text>
+<text x="1208" y="288" font-size="21" fill="#334155">· 결재 시점   · 집행 금액   · 집행률</text>
+<text x="1208" y="330" font-size="17" fill="#64748B">→ 평가지표에 직접 반영 (분야 간 거의 동일, 90%+)</text>
+<rect x="1180" y="378" width="660" height="188" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="1180" y="378" width="4" height="188" fill="#C0392B" rx="2"></rect>
+<text x="1208" y="418" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">보지 못하는 것 (OUTCOME)</text>
+<text x="1208" y="460" font-size="21" fill="#334155">· 사업 품질   · 목표 달성도</text>
+<text x="1208" y="494" font-size="21" fill="#334155">· 사회적 결과 (지니·기대수명·범죄율 등)</text>
+<text x="1208" y="536" font-size="17" fill="#C0392B">→ 평가지표에 미포함 · 분야 단위로만 측정</text>
+<rect x="1180" y="582" width="660" height="150" fill="#FEF6E4" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="1180" y="582" width="4" height="150" fill="#B45309" rx="2"></rect>
+<text x="1208" y="622" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">측정 단위의 한계</text>
+<text x="1208" y="660" font-size="19" fill="#334155">결과는 분야 단위로만 측정 — 사업 단위 미시결과</text>
+<text x="1208" y="690" font-size="19" fill="#334155">(품질·단가)는 데이터 자체가 없다.</text>
+<text x="1208" y="720" font-size="15" fill="#64748B" font-family="JetBrains Mono, monospace">검정 범위 상세 → 부록 App-MED</text>
+<line x1="780" y1="838" x2="1140" y2="838" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="960" y="880" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">집행률은 ‘썼는가’만 보는 output 지표 — <tspan fill="#C0392B">결과의 대리지표가 될 수 없다</tspan>.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">ACT 05 · 진단</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">다음 — 결과와 연결되는 한 틈을 본다  ↘</text>
+</svg>

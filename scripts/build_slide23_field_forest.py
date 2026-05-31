@@ -86,7 +86,7 @@ ns_str = ('전체 ***' if not ns_fields
           else f'{", ".join(ns_fields)}만 ns')
 
 ax.set_title(
-    'Slide 23. 12월 cutoff RDD — 분야별 점프 강도\n'
+    '12월 cutoff RDD — 분야별 점프 강도\n'
     f'{n_total}분야 중 {n_sig}개 *** 유의 ({ns_str}) · {above_str}이 한국 전체 평균 상회',
     fontsize=12.5, pad=12, weight='bold', linespacing=1.4)
 ax.title.set_multialignment('center')

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"/>
+
+<text x="80" y="110" font-size="44" fill="#0F172A" font-weight="700">측정 기준의 비대칭</text>
+<text x="80" y="154" font-size="22" fill="#64748B">집행률 기준이 놓치는 정보 구조</text>
+
+<rect x="80" y="240" width="850" height="540" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<text x="116" y="312" font-size="30" fill="#0F172A" font-weight="700">기록되는 것</text>
+<line x1="116" y1="344" x2="894" y2="344" stroke="#CBD5E1" stroke-width="1"/>
+<text x="116" y="392" font-size="24" fill="#334155">·  결재 시점</text>
+<text x="116" y="456" font-size="24" fill="#334155">·  집행 금액</text>
+<text x="116" y="520" font-size="24" fill="#334155">·  집행률 %</text>
+<text x="116" y="742" font-size="21" fill="#64748B" font-weight="700">→  평가에 직접 반영된다</text>
+
+
+<rect x="990" y="240" width="850" height="540" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"/>
+<rect x="990" y="240" width="4" height="540" fill="#C0392B"/>
+<text x="1026" y="312" font-size="30" fill="#0F172A" font-weight="700">기록되지 않는 것</text>
+<line x1="1026" y1="344" x2="1804" y2="344" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1026" y="392" font-size="24" fill="#334155">·  사업의 품질</text>
+<text x="1026" y="456" font-size="24" fill="#334155">·  정책 목표 달성도</text>
+<text x="1026" y="520" font-size="24" fill="#334155">·  사회적 결과(outcome)</text>
+<text x="1026" y="742" font-size="21" fill="#C0392B" font-weight="700">→  평가에 남지 않는다</text>
+
+<text x="960" y="860" font-size="26" fill="#0F172A" font-weight="700" text-anchor="middle">관측되는 것만 평가에 남고, 결과는 측정 밖에 머문다.</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">그렇다면, 무엇을 보면 가려진 것이 드러나는가?  ↘</text>
+<text x="80" y="1050" font-size="14" fill="#64748B" font-family="monospace">03 / 40</text>
+
+</svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+<text x="80" y="58" font-size="24" fill="#64748B" font-weight="500" font-family="JetBrains Mono, monospace" letter-spacing="0.65">ACT 05 · 한 사례 — 농림수산</text>
+<text x="1840" y="58" font-size="14" fill="#94A3B8" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">ACT 5 재구성 · 33</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">들여다본 한 틈 — 농림수산</text>
+<text x="80" y="142" font-size="22" fill="#64748B">결과가 측정되는 분야에서만 매개 검정이 가능하다. 농림수산만 Sobel 유의하나, 부트스트랩으로는 확증되지 않는다.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="110" y="212" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">매개 모형 — Sobel 간접효과 a·b</text>
+<rect x="110" y="234" width="440" height="96" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="110" y="234" width="4" height="96" fill="#C0392B" rx="2"></rect>
+<text x="330.0" y="276.0" font-size="26" fill="#C0392B" font-weight="800" text-anchor="middle">12월 집중도</text>
+<text x="330.0" y="306.0" font-size="16" fill="#64748B" text-anchor="middle" font-family="JetBrains Mono, monospace">원인 · X</text>
+<path d="M330.0 330 L330.0 362" stroke="#334155" stroke-width="2"></path>
+<path d="M330.0 374 L323.0 362 L337.0 362 Z" fill="#334155"></path>
+<text x="360.0" y="352.0" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" font-style="italic">a</text>
+<rect x="110" y="374" width="440" height="96" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="110" y="374" width="4" height="96" fill="#B45309" rx="2"></rect>
+<text x="330.0" y="416.0" font-size="26" fill="#0F172A" font-weight="800" text-anchor="middle">시점 압력</text>
+<text x="330.0" y="446.0" font-size="16" fill="#64748B" text-anchor="middle" font-family="JetBrains Mono, monospace">매개 · M</text>
+<path d="M330.0 470 L330.0 502" stroke="#334155" stroke-width="2"></path>
+<path d="M330.0 514 L323.0 502 L337.0 502 Z" fill="#334155"></path>
+<text x="360.0" y="492.0" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" font-style="italic">b</text>
+<rect x="110" y="514" width="440" height="96" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="110" y="514" width="4" height="96" fill="#64748B" rx="2"></rect>
+<text x="330.0" y="556.0" font-size="26" fill="#0F172A" font-weight="800" text-anchor="middle">농가소득</text>
+<text x="330.0" y="586.0" font-size="16" fill="#64748B" text-anchor="middle" font-family="JetBrains Mono, monospace">결과 · Y</text>
+<rect x="620" y="234" width="1220" height="232" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="620" y="234" width="4" height="232" fill="#C0392B" rx="2"></rect>
+<text x="652" y="276" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">검정 결과 — Sobel만 유의, 부트스트랩 미확증</text>
+<line x1="652" y1="292" x2="1808" y2="292" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="652" y="338" font-size="24" fill="#334155" font-family="JetBrains Mono, monospace">Sobel z = −2.897  (p = 0.004)   ·   표본 n = 5 (연 단위)</text>
+<text x="652" y="384" font-size="22" fill="#334155">부트스트랩 95% CI가 0을 포함 → 권장 검정 기준으로는 유의하지 않다.</text>
+<text x="652" y="430" font-size="22" fill="#334155">소표본에서 Sobel은 신뢰 낮음 — 통계 확증이 아닌 사례적 예시.</text>
+<rect x="620" y="482" width="1220" height="128" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="620" y="482" width="4" height="128" fill="#B45309" rx="2"></rect>
+<text x="652" y="522" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">그래도 보는 이유 — 메커니즘·raw 패턴 정합</text>
+<text x="652" y="560" font-size="21" fill="#334155">수확기·재해보험처럼 결과가 ‘집행 시점’에 민감한 구조.</text>
+<text x="652" y="592" font-size="21" fill="#334155">2023년 12월 집중 peak(11.8%) → 2024년 농가소득 −3.0% (raw 정합).</text>
+<line x1="780" y1="838" x2="1140" y2="838" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="960" y="880" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">들여다볼 수 있었던 한 사례마저 통계로 확증되지 않는다 — <tspan fill="#C0392B">결과를 검증할 데이터가 그만큼 얇다</tspan>.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">ACT 05 · 한 사례</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">다음 — 그렇다면 결과 검증 자체가 가능한가  ↘</text>
+</svg>

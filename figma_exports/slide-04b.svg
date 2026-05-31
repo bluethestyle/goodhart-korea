@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, -apple-system, sans-serif">
+<rect width="1920" height="1080" fill="#FAFAF7"></rect>
+
+<text x="80" y="58" font-size="24" font-weight="500" letter-spacing="0.65" font-family="JetBrains Mono, monospace" fill="#64748B">PROLOGUE · 재정 집행 데이터</text>
+<text x="1840" y="58" font-size="14" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4" fill="#94A3B8">삽입 · Slide 04 → 05</text>
+<text x="80" y="106" font-size="44" fill="#0F172A" font-weight="700" letter-spacing="-0.44">재정 집행 데이터 (monthly_exec)</text>
+<text x="80" y="142" font-size="22" fill="#64748B">열린재정/dBrain+ 월별 집행 패널, 2015–2025. 전반부 분석의 단일 원천 데이터.</text>
+<line x1="80" y1="168" x2="1840" y2="168" stroke="#CBD5E1"></line>
+<rect x="80.0" y="196" width="278.3333333333333" height="92" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<text x="219.16666666666666" y="246" font-size="34" fill="#0F172A" font-weight="800" text-anchor="middle">416,517</text>
+<text x="219.16666666666666" y="274" font-size="15" fill="#64748B" text-anchor="middle">활동×월 행</text>
+<rect x="376.3333333333333" y="196" width="278.3333333333333" height="92" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<rect x="376.3333333333333" y="196" width="4" height="92" fill="#C0392B" rx="2"></rect>
+<text x="515.5" y="246" font-size="34" fill="#C0392B" font-weight="800" text-anchor="middle">9</text>
+<text x="515.5" y="274" font-size="15" fill="#64748B" text-anchor="middle">분석 사용 컬럼 (수집 17)</text>
+<rect x="672.6666666666666" y="196" width="278.3333333333333" height="92" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<text x="811.8333333333333" y="246" font-size="34" fill="#0F172A" font-weight="800" text-anchor="middle">132</text>
+<text x="811.8333333333333" y="274" font-size="15" fill="#64748B" text-anchor="middle">개월 (2015–2025)</text>
+<rect x="969.0" y="196" width="278.3333333333333" height="92" fill="#FBEEEC" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<rect x="969.0" y="196" width="4" height="92" fill="#C0392B" rx="2"></rect>
+<text x="1108.1666666666667" y="246" font-size="34" fill="#C0392B" font-weight="800" text-anchor="middle">1,557</text>
+<text x="1108.1666666666667" y="274" font-size="15" fill="#64748B" text-anchor="middle">세부사업 (분석 공통)</text>
+<rect x="1265.3333333333333" y="196" width="278.3333333333333" height="92" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<text x="1404.5" y="246" font-size="34" fill="#0F172A" font-weight="800" text-anchor="middle">72</text>
+<text x="1404.5" y="274" font-size="15" fill="#64748B" text-anchor="middle">부처·기관</text>
+<rect x="1561.6666666666665" y="196" width="278.3333333333333" height="92" fill="#F4F1EA" stroke="#CBD5E1" stroke-width="1" rx="8"></rect>
+<text x="1700.8333333333333" y="246" font-size="34" fill="#0F172A" font-weight="800" text-anchor="middle">16</text>
+<text x="1700.8333333333333" y="274" font-size="15" fill="#64748B" text-anchor="middle">분야</text>
+<rect x="80" y="300" width="1080" height="640" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="104" y="334" font-size="20" fill="#0F172A" font-weight="700">테이블 스키마 — monthly_exec</text>
+<text x="1136" y="334" font-size="15" fill="#64748B" text-anchor="end" font-family="JetBrains Mono, monospace">수집 17컬럼 · 분석 9컬럼 (회계구분·부문 제외)</text>
+<line x1="80" y1="344" x2="1160" y2="344" stroke="#334155" stroke-width="1.5"></line>
+<text x="96.0" y="368" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.4">COLUMN</text>
+<text x="398.40000000000003" y="368" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.4">의미</text>
+<text x="1144.0" y="368" font-size="14" fill="#64748B" font-weight="700" text-anchor="end" font-family="JetBrains Mono, monospace" letter-spacing="0.4">값 · 비고</text>
+<line x1="80" y1="386" x2="1160" y2="386" stroke="#CBD5E1" stroke-width="1"></line>
+<rect x="80" y="390" width="1080" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="411" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">시점 식별</text>
+<text x="96.0" y="452" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">FSCL_YY</text>
+<text x="398.40000000000003" y="452" font-size="18" fill="#334155">회계연도</text>
+<text x="1144.0" y="452" font-size="18" fill="#334155" text-anchor="end">2015 – 2026</text>
+<line x1="80" y1="460" x2="1160" y2="460" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="490" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">EXE_M</text>
+<text x="398.40000000000003" y="490" font-size="18" fill="#334155">집행 월</text>
+<text x="1144.0" y="490" font-size="18" fill="#334155" text-anchor="end">1 – 12</text>
+<line x1="80" y1="498" x2="1160" y2="498" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="510" width="1080" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="531" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">조직·회계·분류 위계</text>
+<text x="96.0" y="572" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">OFFC_CD · NM</text>
+<text x="398.40000000000003" y="572" font-size="18" fill="#334155">부처·기관</text>
+<text x="1144.0" y="572" font-size="18" fill="#334155" text-anchor="end">72개</text>
+<line x1="80" y1="580" x2="1160" y2="580" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="610" font-size="17" fill="#AEB4BD" font-weight="700" font-family="JetBrains Mono, monospace" text-decoration="line-through" text-decoration-color="#64748B">FSCL_CD · NM</text>
+<text x="398.40000000000003" y="610" font-size="18" fill="#AEB4BD">회계·기금 구분</text>
+<text x="1144.0" y="610" font-size="18" fill="#AEB4BD" text-anchor="end">114개 회계·기금 · 분석 미사용</text>
+<line x1="80" y1="618" x2="1160" y2="618" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="648" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">FLD_CD · NM</text>
+<text x="398.40000000000003" y="648" font-size="18" fill="#334155">분야</text>
+<text x="1144.0" y="648" font-size="18" fill="#334155" text-anchor="end">16개</text>
+<line x1="80" y1="656" x2="1160" y2="656" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="686" font-size="17" fill="#AEB4BD" font-weight="700" font-family="JetBrains Mono, monospace" text-decoration="line-through" text-decoration-color="#64748B">SECT_CD · NM</text>
+<text x="398.40000000000003" y="686" font-size="18" fill="#AEB4BD">부문</text>
+<text x="1144.0" y="686" font-size="18" fill="#AEB4BD" text-anchor="end">분석 미사용 (보조)</text>
+<line x1="80" y1="694" x2="1160" y2="694" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="724" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">PGM_CD · NM</text>
+<text x="398.40000000000003" y="724" font-size="18" fill="#334155">프로그램</text>
+<text x="1144.0" y="724" font-size="18" fill="#334155" text-anchor="end">85개</text>
+<line x1="80" y1="732" x2="1160" y2="732" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="732" width="1080" height="38" fill="#FBEEEC" rx="4"></rect>
+<rect x="80" y="732" width="4" height="38" fill="#C0392B" rx="2"></rect>
+<text x="96.0" y="762" font-size="17" fill="#C0392B" font-weight="700" font-family="JetBrains Mono, monospace">ACTV_CD · NM</text>
+<text x="398.40000000000003" y="762" font-size="18" fill="#334155">세부사업 (분석 최소단위)</text>
+<text x="1144.0" y="762" font-size="18" fill="#334155" text-anchor="end">1,707 → 공통 1,557</text>
+<line x1="80" y1="770" x2="1160" y2="770" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="782" width="1080" height="30" fill="#F4F1EA" rx="4"></rect>
+<text x="96" y="803" font-size="14" fill="#334155" font-weight="800" letter-spacing="0.4">금액 (원)</text>
+<text x="96.0" y="844" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">ANEXP_BDG_CAMT</text>
+<text x="398.40000000000003" y="844" font-size="18" fill="#334155">예산현액</text>
+<text x="1144.0" y="844" font-size="18" fill="#334155" text-anchor="end">집행률 분모</text>
+<line x1="80" y1="852" x2="1160" y2="852" stroke="#E6E2D8" stroke-width="1"></line>
+<rect x="80" y="852" width="1080" height="38" fill="#FBEEEC" rx="4"></rect>
+<rect x="80" y="852" width="4" height="38" fill="#C0392B" rx="2"></rect>
+<text x="96.0" y="882" font-size="17" fill="#C0392B" font-weight="700" font-family="JetBrains Mono, monospace">EP_AMT</text>
+<text x="398.40000000000003" y="882" font-size="18" fill="#334155">월별 집행액</text>
+<text x="1144.0" y="882" font-size="18" fill="#334155" text-anchor="end">★ 분석 핵심 변수</text>
+<line x1="80" y1="890" x2="1160" y2="890" stroke="#E6E2D8" stroke-width="1"></line>
+<text x="96.0" y="920" font-size="17" fill="#0F172A" font-weight="700" font-family="JetBrains Mono, monospace">THISM_AGGR_EP_AMT</text>
+<text x="398.40000000000003" y="920" font-size="18" fill="#334155">당월 누계 집행</text>
+<text x="1144.0" y="920" font-size="18" fill="#334155" text-anchor="end">집행률 산출</text>
+<line x1="80" y1="928" x2="1160" y2="928" stroke="#E6E2D8" stroke-width="1"></line>
+
+<rect x="1230" y="290" width="610" height="250" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<rect x="1230" y="290" width="4" height="250" fill="#B45309" rx="2"></rect>
+<text x="1258" y="330" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">데이터 개요</text>
+<text x="1258" y="364" font-size="24" fill="#0F172A" font-weight="800">dBrain+ / 열린재정</text>
+<line x1="1258" y1="384" x2="1812" y2="384" stroke="#CBD5E1" stroke-width="1"></line>
+<text x="1258" y="420" font-size="16" fill="#334155">출처 · 열린재정 API (VWFOEM) · dBrain+ / KODAS</text>
+<text x="1258" y="446" font-size="16" fill="#334155">기간 · 2015–2025 · 월별 132개월 (원자료 ~2026)</text>
+<text x="1258" y="472" font-size="16" fill="#334155">대상 · 세부사업 1,557개 (11년 공통, 신설·폐지 제외)</text>
+<text x="1258" y="498" font-size="16" fill="#334155">위계 · 분야16 → 부문86 → 프로그램85 → 세부사업</text>
+<text x="1258" y="524" font-size="16" fill="#334155">갱신 · 매월 결산 후</text>
+<rect x="1230" y="556" width="610" height="384" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10"></rect>
+<text x="1258" y="596" font-size="14" fill="#64748B" font-weight="700" font-family="JetBrains Mono, monospace" letter-spacing="0.6">분류 항목 (실제 값)</text>
+<text x="1258" y="638" font-size="16" fill="#0F172A" font-weight="800">분야 16</text>
+<text x="1258" y="666" font-size="14" fill="#334155">사회복지·일반지방행정·산업중기·농림수산·교통물류·</text>
+<text x="1258" y="690" font-size="14" fill="#334155">보건·공공질서·문화관광·국방·과학기술·교육·환경·</text>
+<text x="1258" y="714" font-size="14" fill="#334155">통일외교·통신·국토지역개발 (+예비비)</text>
+<text x="1258" y="758" font-size="16" fill="#0F172A" font-weight="800">회계·기금 114</text>
+<text x="1258" y="786" font-size="14" fill="#334155">일반회계 · 국민연금기금 · 주택도시기금 ·</text>
+<text x="1258" y="810" font-size="14" fill="#334155">교통시설특별회계 · 고용보험기금 … 외 다수</text>
+<text x="1258" y="856" font-size="16" fill="#0F172A" font-weight="800">부처·기관 72</text>
+<text x="1258" y="884" font-size="14" fill="#334155">보건복지부 · 기획재정부 · 국토교통부 ·</text>
+<text x="1258" y="908" font-size="14" fill="#334155">교육부 · 행정안전부 · 국방부 … 외</text>
+
+<line x1="780" y1="956" x2="1140" y2="956" stroke="#CBD5E1"></line>
+<text x="960" y="994" font-size="24" fill="#0F172A" font-weight="700" text-anchor="middle">외부 지표 없이 <tspan fill="#C0392B">이 패널만으로</tspan> 집행 시점 분포·집행률·분류 단위 분석을 수행한다.</text>
+<text x="80" y="1035" font-size="20" fill="#64748B" font-family="JetBrains Mono, monospace" letter-spacing="0.55">PROLOGUE · 04 → 05</text>
+<text x="1840" y="1035" font-size="18" fill="#64748B" text-anchor="end" font-style="italic">다음 — 월별 집행 분포 (Slide 5)  ↘</text>
+
+</svg>

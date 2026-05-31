@@ -75,6 +75,17 @@ paper/.typst-cache/
 .DS_Store
 Thumbs.db
 
+# Local Claude session/config (machine-local)
+.claude/
+
+# figma_exports: SVG 정본은 추적, Read 다운샘플(_v_*.png)·추출 텍스트(_extracted_*)는 제외
+figma_exports/_v_*.png
+figma_exports/**/_extracted_*.txt
+figma_exports/_extracted_*.txt
+
+# 정리 격리 폴더 (로컬 보관, git 비추적)
+_archive/
+
 # Paper EN figures preview (intermediate)
 paper/figures_en/_preview/
 

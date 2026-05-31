@@ -76,7 +76,7 @@ ax.annotate(f'C2 출연금형\n11년 +554%',
             arrowprops=dict(arrowstyle='->', color='#E67E22', lw=1.6))
 
 ax.set_title(
-    'Slide 28 (좌). Wavelet 12m cycle 11년 진화 — C2 출연금형만 폭발적 강화\n'
+    'Wavelet 12m cycle 11년 진화 — C2 출연금형만 폭발적 강화\n'
     'C0 인건비형(통제) null = 거시 trend 아닌 archetype-specific 효과',
     fontsize=11.5, pad=12, weight='bold', linespacing=1.4)
 ax.title.set_multialignment('center')

@@ -76,7 +76,7 @@ for slide, label, name, color, fname, msg in REPS:
     ax.set_xticks(range(1, 13))
     ax.set_xlabel('월', fontsize=10)
     ax.set_ylabel('월별 집행 비중 (%)', fontsize=10)
-    ax.set_title(f'{slide}. {label} 대표: {name}', fontsize=11.5, pad=8)
+    ax.set_title(f'{label} 대표: {name}', fontsize=11.5, pad=8)
     ax.text(0.5, -0.30, msg, transform=ax.transAxes,
             ha='center', fontsize=9.5, color=color, style='italic')
     for s in ['top', 'right']:
@@ -126,7 +126,7 @@ ax.set_yticks(y)
 ax.set_yticklabels(df_off['OFFC_NM'].tolist(), fontsize=8)
 ax.invert_yaxis()
 ax.set_xlabel('연 평균 12월 집행 비중 (%)', fontsize=11)
-ax.set_title(f'Slide 8. 부처 {len(df_off)}개 — 모든 부처에서 12월 봉우리\n'
+ax.set_title(f'부처 {len(df_off)}개 — 모든 부처에서 12월 봉우리\n'
              f'(빨강 >15% · 주황 >10% · 회색 ≤10%) — '
              f'"부처를 떼어내도 패턴은 사라지지 않는다"',
              fontsize=12, pad=10)

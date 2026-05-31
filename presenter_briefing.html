@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>발표자 브리핑 | 재정데이터 분석 미니프로젝트</title>
+  <style>
+    :root {
+      --ink: #111111;
+      --muted: #5f6368;
+      --soft: #e5e7eb;
+      --paper: #ffffff;
+      --wash: #f7f8fa;
+      --blue: #2563eb;
+      --blue-wash: #eef4ff;
+      --red: #b91c1c;
+      --amber: #a16207;
+      --green: #15803d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+    main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 56px 28px 80px;
+    }
+    header {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .eyebrow {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      font-weight: 750;
+    }
+    .lead {
+      margin: 18px 0 0;
+      max-width: 820px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+    nav {
+      margin: 28px 0 42px;
+      padding: 16px 18px;
+      background: var(--wash);
+      border-left: 3px solid var(--blue);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 650;
+    }
+    section {
+      margin-top: 44px;
+      padding-top: 10px;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin: 28px 0 8px;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 12px; }
+    ul { margin: 8px 0 0 20px; padding: 0; }
+    li { margin: 6px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--soft);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--ink);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 18px 0 8px;
+    }
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 18px 0 8px;
+    }
+    .card {
+      background: var(--wash);
+      border-left: 3px solid var(--blue);
+      padding: 16px 16px 14px;
+    }
+    .card.red { border-left-color: var(--red); }
+    .card.amber { border-left-color: var(--amber); }
+    .card.green { border-left-color: var(--green); }
+    .kicker {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .metric {
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 760;
+      margin-bottom: 7px;
+    }
+    .note {
+      background: var(--blue-wash);
+      padding: 15px 16px;
+      border-left: 3px solid var(--blue);
+      margin: 18px 0;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left-color: var(--amber);
+    }
+    .script {
+      background: #111827;
+      color: #f9fafb;
+      padding: 18px 20px;
+      margin: 16px 0;
+      font-size: 16px;
+    }
+    .script strong { color: #bfdbfe; }
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    code {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      background: var(--wash);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: .92em;
+    }
+    @media (max-width: 820px) {
+      nav, .grid, .two { grid-template-columns: 1fr; }
+      main { padding: 34px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Presenter Briefing · 2026 재정데이터 분석 미니프로젝트</div>
+    <h1>지표가 채운 95%, 데이터가 찾은 격차</h1>
+    <p class="lead">
+      이 문서는 발표자가 발표자료보다 한 단계 더 이해하기 위한 압축 보고서다.
+      핵심은 “예산을 다 썼는가”라는 단일 지표 뒤에 숨어 있는
+      시점 조정, 사업 형태, 결과 격차를 공개 데이터로 분해했다는 점이다.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#one-line">1. 한 문장 이해</a>
+    <a href="#story">2. 발표 흐름</a>
+    <a href="#numbers">3. 안 틀릴 숫자</a>
+    <a href="#qa">4. 질문 대비</a>
+  </nav>
+
+  <section id="one-line">
+    <h2>1. 한 문장으로 이해하기</h2>
+    <div class="script">
+      <strong>발표자용 한 문장:</strong><br>
+      이 프로젝트는 한국 중앙정부 월별 집행 11년치와 외부 결과 지표를 결합해,
+      12월 몰아쓰기·출연기관 정산 사이클·집행률과 결과의 괴리를
+      사업 형태별로 진단하고 실무 점검 우선순위로 바꾼 분석입니다.
+    </div>
+    <p>
+      이 프로젝트는 “굿하트 효과”를 말하지만, 발표에서는 처음부터 학술 용어로 밀어붙이지 않는 편이 좋다.
+      먼저 실무자가 이미 아는 풍경을 잡는다. 12월에 집행이 몰린다. 출연기관 정산이 특정 시점에 한꺼번에 잡힌다.
+      집행률은 거의 100%인데 결과 지표는 제각각이다. 그 다음에 “이 세 풍경이 정말 데이터에 남는가?”로 들어간다.
+    </p>
+    <p>
+      분석의 목적은 비위 적발이 아니다. 공개 데이터만으로 반복 패턴을 찾아서
+      감사·평가·예산 협의에서 어디를 먼저 확인할지 좁히는 것이다.
+      발표 중 “문제 사업 명단”처럼 들리지 않게 계속 선을 그어야 한다.
+    </p>
+  </section>
+
+  <section id="story">
+    <h2>2. 발표 흐름은 이렇게 잡으면 된다</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="kicker">Step 1</div>
+        <div class="metric">풍경</div>
+        <p>원자료에서 12월 점프, 출연금형 일률 정산, 집행률 천장 압축을 먼저 보여준다.</p>
+      </div>
+      <div class="card amber">
+        <div class="kicker">Step 2</div>
+        <div class="metric">검증</div>
+        <p>RDD, 군집, PSD·coherence·wavelet로 같은 데이터를 서로 다른 방식으로 자른다.</p>
+      </div>
+      <div class="card green">
+        <div class="kicker">Step 3</div>
+        <div class="metric">활용</div>
+        <p>결과를 부처 4분면, 활동 Top-50, 자동 flagging 알고리즘으로 바꾼다.</p>
+      </div>
+    </div>
+
+    <h3>발표 시작부에서 해줄 말</h3>
+    <p>
+      “이 발표는 이론 증명부터 시작하지 않습니다. 먼저 공무원·감사원·국회에서 매년 말하는
+      세 가지 풍경이 실제 공개 데이터에 남는지 봅니다. 그 다음에 사업 형태별로 왜 다르게 나타나는지
+      확인하고, 마지막으로 이 결과를 현장 점검 도구로 어떻게 바꿀 수 있는지 보여드립니다.”
+    </p>
+
+    <h3>중간 전환 멘트</h3>
+    <p>
+      EDA 이후에는 “단순히 12월에 많이 썼다는 이야기가 아닙니다. 같은 회계 마감 압력이라도
+      어떤 사업은 튀고 어떤 사업은 평탄합니다. 그래서 다음 단계는 분야가 아니라 사업 형태를 보는 것입니다.”
+      정도로 이어가면 된다.
+    </p>
+
+    <h3>마무리 멘트</h3>
+    <p>
+      “결론은 더 많은 처벌이 아니라 더 똑똑한 점검입니다. 모든 사업에 집행률 100%라는 같은 잣대를
+      들이대기보다, 사업 형태별로 어떤 시점 패턴이 자연스럽고 어떤 패턴이 추가 확인이 필요한지
+      자동으로 좁히는 방향입니다.”
+    </p>
+  </section>
+
+  <section id="numbers">
+    <h2>3. 발표 중 절대 안 틀려야 할 숫자</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>숫자</th>
+          <th>뜻</th>
+          <th>말할 때 주의</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>분석 패널</td>
+          <td>2015-2025, 1,557개 활동, 132개월, 약 21만 셀</td>
+          <td>최종 분석에 쓰인 활동-월 패널</td>
+          <td>원자료 전체 행 수와 혼동하지 말 것. 원자료 DuckDB는 더 크다.</td>
+        </tr>
+        <tr>
+          <td>전체 12월 점프</td>
+          <td>1.91배</td>
+          <td>11월 대비 12월 경계에서 전체 활동 평균 집행이 튄다</td>
+          <td>미국 5배 결과보다 작다. 월 단위 공개자료 한계도 함께 언급.</td>
+        </tr>
+        <tr>
+          <td>가장 큰 RDD 점프</td>
+          <td>자산취득형 3.42배</td>
+          <td>공정률 마감·물품 구매·시설 사업에서 회계 마감 압력이 가장 크게 보인다</td>
+          <td>출연금형 3.42배가 아니다. 이건 가장 흔한 오답.</td>
+        </tr>
+        <tr>
+          <td>사업 형태</td>
+          <td>인건비 129, 자산취득 99, 출연금 154, 정상 1,175</td>
+          <td>지출 구성과 시점 특징으로 자동 분류한 4개 archetype</td>
+          <td>분야 라벨보다 사업 체질이 더 중요하다는 근거.</td>
+        </tr>
+        <tr>
+          <td>출연금형 연 사이클</td>
+          <td>PSD 0.332, coherence 0.54</td>
+          <td>출연금형 활동들이 12개월 주기로 강하게, 같은 시점에 움직인다</td>
+          <td>출연금형은 RDD 점프가 약하다. 대신 연중 누적 사이클이 강하다.</td>
+        </tr>
+        <tr>
+          <td>출연금형 시간 강화</td>
+          <td>+554%</td>
+          <td>2015-17 대비 2023-25의 12개월 cycle 진폭이 크게 증가</td>
+          <td>인과 단정 금지. 회계·보고 제도 변화 가능성도 한계로 인정.</td>
+        </tr>
+        <tr>
+          <td>매개 경로</td>
+          <td>농림수산 z=-2.897, p=0.004</td>
+          <td>14분야 중 강한 매개 경로가 가장 안정적으로 식별된 분야</td>
+          <td>강한 매개 분야는 사회복지가 아니라 농림수산.</td>
+        </tr>
+        <tr>
+          <td>사회복지</td>
+          <td>CPI 통제 r=-0.86</td>
+          <td>12월 집중과 빈곤 격차 완화 방향의 우연한 alignment 가능성</td>
+          <td>STL에서는 신호가 소멸한다. 확정 성과처럼 말하지 말 것.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="methods">
+    <h2>4. 방법론을 쉽게 설명하는 법</h2>
+    <div class="two">
+      <div>
+        <h3>RDD</h3>
+        <p>
+          달력 경계선 전후를 비교한다. 사업 본질이 며칠 사이 갑자기 바뀌기는 어렵지만,
+          회계연도 마감 압력은 12월 경계에서 갑자기 생긴다. 그래서 11월과 12월의 일평균 집행을 비교한다.
+        </p>
+      </div>
+      <div>
+        <h3>군집</h3>
+        <p>
+          사람이 “사회복지, 환경, 교육”으로 먼저 나누지 않고,
+          각 활동의 돈 쓰는 구성과 시점 패턴을 보고 기계가 비슷한 사업끼리 묶는다.
+          그렇게 나온 게 인건비형, 자산취득형, 출연금형, 정상사업이다.
+        </p>
+      </div>
+      <div>
+        <h3>PSD·Coherence</h3>
+        <p>
+          월별 집행 시계열에 12개월 주기가 얼마나 강한지, 그리고 같은 유형의 사업들이 같은 달에
+          함께 피크를 찍는지를 본다. 출연금형은 여기서 강하다.
+        </p>
+      </div>
+      <div>
+        <h3>Wavelet</h3>
+        <p>
+          FFT/PSD가 11년 평균 주기를 보는 도구라면, wavelet은 “그 주기가 어느 시기에 강해졌는가”를 본다.
+          그래서 출연금형 cycle이 최근으로 올수록 강해졌다는 이야기가 가능하다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pitfalls">
+    <h2>5. 발표자가 피해야 할 과잉 주장</h2>
+    <div class="note warn">
+      <strong>1. “출연금형이 12월에 3.42배 튄다”라고 말하지 않는다.</strong><br>
+      3.42배는 자산취득형 RDD 점프다. 출연금형은 RDD 1.10배로 약하고,
+      PSD·coherence·wavelet에서 강하다.
+    </div>
+    <div class="note warn">
+      <strong>2. “사회복지는 확실히 좋은 효과가 있다”라고 말하지 않는다.</strong><br>
+      사회복지의 음의 상관은 흥미로운 단서지만 측정 도구에 따라 사라진다.
+      발표에서는 “우연한 alignment 가능성” 또는 “후속 검증 가설”로 말하는 편이 안전하다.
+    </div>
+    <div class="note warn">
+      <strong>3. “KODAS 자율평가 점수까지 결합 완료”라고 말하지 않는다.</strong><br>
+      현재는 KODAS 공개 카탈로그 1,707건 메타가 준비된 상태이고,
+      자율평가 점수·결산 상세는 별도 신청 후 결합 예정이다.
+    </div>
+    <div class="note warn">
+      <strong>4. “이건 비위 적발 결과”라고 말하지 않는다.</strong><br>
+      Top-50과 4분면은 우선 점검 큐다. 사업 구조상 정상적인 연말 정산도 포함될 수 있다.
+    </div>
+  </section>
+
+  <section id="qa">
+    <h2>6. 예상 질문과 답변</h2>
+    <h3>Q. 그냥 연말에는 원래 돈을 많이 쓰는 것 아닌가?</h3>
+    <p>
+      맞다. 그래서 본 분석은 “12월 집행은 모두 문제”라고 말하지 않는다.
+      핵심은 모든 사업이 똑같이 튀는 것이 아니라 자산취득형은 3.42배, 인건비형은 1.12배처럼
+      사업 형태별로 응답이 크게 다르다는 점이다. 정상 운영분을 인정하되, 어느 유형이 회계 마감 압력에
+      더 민감한지를 좁힌다.
+    </p>
+
+    <h3>Q. 왜 분야가 아니라 사업 형태를 보나?</h3>
+    <p>
+      같은 사회복지·환경 같은 분야 안에도 인건비, 자산취득, 출연금, 일반 사업이 섞여 있다.
+      분야 라벨은 정책 목적을 설명하지만, 집행 시점 행동은 지출 구조가 더 직접적으로 설명한다.
+      그래서 발표의 핵심 단위는 14분야가 아니라 4개 사업 형태다.
+    </p>
+
+    <h3>Q. 출연금형은 왜 RDD에서는 약한데 중요하다고 하나?</h3>
+    <p>
+      RDD는 12월 초 특정 경계에서 갑자기 튀는지를 본다. 출연금형은 한 번에 튀는 사업이라기보다
+      위탁기관 정산 일정에 따라 연중 누적되는 사이클에 가깝다. 그래서 RDD보다 PSD, coherence,
+      wavelet에서 강하게 보인다.
+    </p>
+
+    <h3>Q. 인과 분석인가, 상관 분석인가?</h3>
+    <p>
+      12월 경계 점프는 RDD적 사고를 사용하지만, 단일 국가·월별 공개자료라는 한계가 있다.
+      결과 지표와의 연결은 대부분 상관·매개 분석이므로 인과 단정은 피해야 한다.
+      이 프로젝트의 강점은 여러 도구가 같은 구조를 가리키는지 보는 교차 검증이다.
+    </p>
+
+    <h3>Q. 정책 제언은 무엇인가?</h3>
+    <p>
+      첫째, 모든 사업에 집행률 100% 잣대를 일괄 적용하지 말고 사업 형태별 평가 기준을 다르게 둔다.
+      둘째, 출연기관 정산 시점을 분산하고 품질 지표 비중을 높인다.
+      셋째, 월별 공개를 넘어 주별·일별 데이터 granularity를 높여 자동 flagging 체계를 만든다.
+    </p>
+  </section>
+
+  <section id="slide-guide">
+    <h2>7. 새로 넣은 개요 슬라이드의 역할</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>슬라이드</th>
+          <th>역할</th>
+          <th>발표자가 할 말</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>02. 오늘 발표의 지도</td>
+          <td>전체 구조를 먼저 보여준다</td>
+          <td>“원자료 풍경 → 검증 → 활용 산출물 순서로 가겠습니다.”</td>
+        </tr>
+        <tr>
+          <td>03. 이 프로젝트는 무엇을 한 것인가</td>
+          <td>데이터·방법·산출물을 한 장에 압축한다</td>
+          <td>“공개 재정 데이터가 입력이고, 최종 출력은 점검 우선순위입니다.”</td>
+        </tr>
+        <tr>
+          <td>04. 기억할 네 가지</td>
+          <td>뒤에서 숫자가 많아질 때 혼동을 막는다</td>
+          <td>“특히 3.42배는 자산취득형, 출연금형은 사이클이라는 점만 잡고 가시면 됩니다.”</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sources">
+    <h2>8. 로컬에서 더 볼 파일</h2>
+    <ul>
+      <li><code>paper/slides.typ</code> · 실제 발표 슬라이드 원본</li>
+      <li><code>paper/analysis_report.typ</code> · 실무자 대상 분석보고서 본문</li>
+      <li><code>docs/limitations.md</code> · 한계와 과잉 주장 방지 포인트</li>
+      <li><code>deliverables/</code> · 기관별 산출물 패키지</li>
+      <li><code>paper/재정데이터 분석 ppt/Q&amp;A_카드.md</code> · 발표 질의응답 준비 자료</li>
+    </ul>
+    <p class="small">
+      작성 기준: 현재 저장소의 결과 CSV, 분석보고서, 발표자료, deliverables 문서.
+      발표 직전에는 Q2 부처 리스트와 KODAS 결합 상태가 최신 산출물과 맞는지 한 번 더 확인하는 것이 좋다.
+    </p>
+  </section>
+</main>
+</body>
+</html>
