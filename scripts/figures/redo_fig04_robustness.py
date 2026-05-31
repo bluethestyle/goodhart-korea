@@ -148,11 +148,11 @@ ax = axes[0]
 pv = lag.pivot_table(index='fld', columns='lag', values='corr_diff')
 sns.heatmap(pv, annot=True, fmt='.2f', cmap='RdBu_r', center=0, ax=ax,
             cbar_kws={'label': 'corr_diff'},
-            annot_kws={'size': 7}, linewidths=0.3, linecolor='white')
+            annot_kws={'size': 8.5}, linewidths=0.3, linecolor='white')
 ax.set_xlabel('lag (year)'); ax.set_ylabel('')
 ax.set_title('(c) Lag/Lead 차분 상관 heatmap')
-ax.tick_params(axis='y', labelsize=7.5)
-ax.tick_params(axis='x', labelsize=8)
+ax.tick_params(axis='y', labelsize=9.5)
+ax.tick_params(axis='x', labelsize=10)
 
 # ── (d) 분야별 amp_cv 수평 막대 (정렬, 사회복지 강조)
 ax = axes[1]
@@ -163,7 +163,7 @@ colors_bar = ['#a85454' if m else '#5475a8' for m in target_mask]
 ax.barh(range(len(nat_sorted)), nat_sorted['amp_cv'],
         color=colors_bar, alpha=0.85, edgecolor='black', linewidth=0.4)
 ax.set_yticks(range(len(nat_sorted)))
-ax.set_yticklabels(nat_sorted['fld'], fontsize=8)
+ax.set_yticklabels(nat_sorted['fld'], fontsize=10)
 ax.set_xlabel('amp_12m 시간 CV')
 ax.set_title('(d) 분야별 amp_cv (게임화 변동 vs 자연 주기)')
 ax.grid(alpha=0.3, axis='x')
