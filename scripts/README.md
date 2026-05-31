@@ -1,158 +1,38 @@
-# Scripts 분류
+# scripts/
 
-총 59개 스크립트 + 신규 18개(slides_figs_new.py, redo_fig*_en.py 16개, h26 2개 포함), 4그룹 + 재현성/신규 절.
+분석·시각화 스크립트 모음. 최종 산출물(`paper/main_v2.typ` 논문 · `figma_exports/` 슬라이드)을
+만드는 데 **현재 쓰이는** 스크립트만 이 폴더에 두고, 대체·폐기된 것은 `_archive/`로 격리한다.
+(현재 active 146개 · 격리 20개)
 
----
+## 명명 규칙
 
-## 1. 환경 / 데이터 수집 (`fetch_*`, `load_*`)
-
-| 스크립트 | 역할 | 키 |
+| 접두 | 역할 | 출력 |
 |---|---|---|
-| `_env.py` | `.env` 자동 로드 (의존성 없음) | — |
-| `fetch_specs.py` | 열린재정 OPEN API 명세 167건 | OPENFISCAL |
-| `fetch_kodas.py` | KODAS 카탈로그 1,707건 | OPENFISCAL |
-| `fetch_monthly_exec.py` | VWFOEM 월별집행 2020~2026 (★ 게임화 측정 입력) | OPENFISCAL |
-| `fetch_monthly_exec_2015_2019.py` | 2015~2019 확장 | OPENFISCAL |
-| `fetch_kosis_catalog.py` | KOSIS 통계표 트리 64,996 | KOSIS |
-| `fetch_kosis_outcomes.py` | KOSIS outcome 키워드 검색 | KOSIS |
-| `load_kosis_outcomes.py` | 보건/관광/산업 outcome 적재 | KOSIS |
-| `fetch_bok_macro.py` | 한은 ECOS CPI/ICT | BOK |
-| `fetch_data_go_kr.py` | 공공데이터포털 4 API 점검 | DATA_GO_KR |
-| `fetch_nara_g2b.py` | 나라장터 (보조) | — |
-| `fetch_monthly_exec.py` (재실행) | 동일 | — |
+| `h{N}_*` | 가설/분석 단위 | `data/results/*.csv` (warehouse 쿼리 → 분석값) |
+| `redo_fig*` | 논문 그림 재생성 (paper-style, A4 가이드) | `paper/figures/` (대개 `_preview/` 경유) |
+| `build_slide*` · `build_*` | 슬라이드/figma 자산 빌더 | `paper/figures/`, figma용 PNG·SVG |
+| `fetch_*` | 외부 지표 수집 (KOSIS·ECOS·GIR 등) | warehouse / `data/external/` |
+| `generate_v3_charts.py` · `build_report_figures.py`* | 다중 그림 일괄 빌더 | `paper/figures/`, `paper/figures_en/` |
 
-## 2. Warehouse / 도구 (`build_*`, `query_*`, `probe_*`)
+(*`build_report_figures.py`는 옛 `analysis_report.typ` 전용이라 `_archive/`로 이동됨.)
 
-| 스크립트 | 역할 |
-|---|---|
-| `build_warehouse.py` | DuckDB warehouse 빌드 |
-| `build_indicator_panel.py` | 분야×연도×지표 long-format |
-| `build_docs.py` | OPEN API 명세 마크다운 변환 |
-| `query_warehouse.py` | 임시 쿼리 도구 |
-| `probe_ai_spending.py`, `analyze_ai_item.py`, `deep_ai_analysis.py`, `plot_ai_breakdown.py`, `eda.py`, `eda_goodhart.sql`, `goodhart_freq.py` | 초기 EDA (Goodhart 가설 탐색) |
+## `_archive/` — 격리된 스크립트 (참고 보존, 재실행 대상 아님)
 
-## 3. 가설별 분석 (`h{N}_*`)
+대체·폐기됐지만 이력 보존을 위해 git에 남긴 20개. 2026-05-31 구조 정리에서 이동.
+판정 기준: **논문이 참조하는 33개 그림의 빌더·소스 사슬에 들지 않고**(워크플 provenance 역추적),
+더 새 버전이 존재하거나 어디서도 산출물이 안 쓰임 + active 스크립트가 import하지 않음(전수 확인).
 
-### 핵심 회귀 (H1~H2)
-| 스크립트 | 역할 |
-|---|---|
-| `h1_mechanism_full.py` | 출연금 → 게임화 회귀 (β=+0.375, p=0.005) |
-| `h2_decoupling_test.py` | 분야 단위 디커플링 |
+- **단계적 대체 (구버전 분석)** — `h1_mechanism_full`(→`h3_v2_11y`·`h6_robustness`) · `h13_ict_outcome`(→`h20_broadband_outcome`) · `goodhart_freq`(→`h27_power_spectrum_coherence`) · `load_kosis_outcomes`(→`h7_outcome_load`) · `plot_h2_results`(→`h6_robustness`)
+- **AI 지출 탐색 — Goodhart-RDD로 전환되며 폐기** — `analyze_ai_item` · `deep_ai_analysis` · `plot_ai_breakdown` · `probe_ai_spending`
+- **1회성/탐색·미연결** — `eda`(warehouse 탐색) · `build_dashboard_mockup`(목업 PNG, 논문 미참조) · `build_docs`(mkdocs 생성) · `fetch_data_go_kr`(placeholder API) · `fetch_nara_g2b`(키 필요, 미사용)
+- **폐기 슬라이드 덱 전용 빌더** — `build_wireframes`(→`build_overview_figma_slides`) · `build_ppt_assets`(→`build_slide_extras`) · `build_slide28_scaleogram_postprocess`(→`build_slide28_scaleogram`) · `build_slide29_34`(→`build_slide29_np_decomposition`·`build_slide34_*`) · `slides_figs_new`
+- **미사용 그림 변형** — `redo_fig01_umap_horizontal`(`h3_umap_h.png` 가로형 — 논문 미참조)
 
-### 활동 임베딩 (H3, H4)
-| 스크립트 | 역할 |
-|---|---|
-| `h3_activity_embedding.py` | UMAP+HDBSCAN 5y baseline (3 archetype) |
-| `h3_v2_11y.py` | 11y 재추출 (4 archetype 신규 분리) ★ |
-| `h4_mapper_outcome.py` | Mapper TDA 5y |
-| `h4_v2_11y.py` | Mapper 11y |
-| `h4_v3_replaced.py` | Mapper 11y + 교체 outcome ★ |
+> ⚠️ 주의: 파일명의 `_replaced` 접미는 **outcome 변수만 교체한 최종본** 표기이지 폐기가 아니다.
+> `h4_v3_replaced` · `h6_robustness`(구 `h6_v3_replaced` 후속) · `h8_v3_replaced` · `h10_v3_replaced` · `h14_v2_replaced`는
+> 모두 **active**이며 논문 부록 스크립트 표에 등재돼 있다. (그래서 `_archive`로 옮기지 않았다.)
 
-### 부처 그래프 (H5)
-| 스크립트 | 역할 |
-|---|---|
-| `h5_ministry_archetype.py` | Spectral Co-clustering 5y |
-| `h5_v2_11y.py` | 11y (CC4 자산취득 신규) ★ |
+## 값 계보(provenance)
 
-### 견고성 (H6, H8)
-| 스크립트 | 역할 |
-|---|---|
-| `h6_robustness.py` | FE/permutation/lag/cv ★ |
-| `h6_v3_replaced.py` | 교체 outcome 재실행 |
-| `h8_within_field.py` | 분야 trivial 검증 5y |
-| `h8_v2_11y.py` | 11y |
-| `h8_v3_replaced.py` | 11y + 교체 outcome ★ |
-
-### outcome 발굴 + 적재 (H7, H11~H21)
-| 스크립트 | 역할 |
-|---|---|
-| `h7_outcome_discovery.py` | KOSIS 카탈로그 outcome 후보 발굴 |
-| `h7_outcome_load.py` | 교육/국토/행정/농림 적재 |
-| `h11_traffic_outcome.py` | 도로교통공단 |
-| `h11_load_motor_csv.py` | 자동차등록 (보류) |
-| `h12_ghg_outcome.py` | GIR 온실가스 |
-| `h13_ict_outcome.py` | 한은 ICT |
-| `h14_exposure_outcome.py` | 부처 노출 × outcome 4분면 |
-| `h14_v2_replaced.py` | 교체 outcome ★ |
-| `h15_oda_outcome.py` | ODA |
-| `h16_crime_outcome.py` | 범죄 |
-| `h17_defense_outcome.py` | 방산경영 (보류) |
-| `h18_patent_outcome.py` | 특허 (과기 교체) ★ |
-| `h19_tourism_finance_outcome.py` | 관광/재정자립 (교체) ★ |
-| `h20_broadband_outcome.py` | 초고속인터넷 (통신 교체) ★ |
-| `h21_imd_defense_outcome.py` | IMD 교육 (교체) ★ |
-
-### TDA (H9), CPI 통제 (H10)
-| 스크립트 | 역할 |
-|---|---|
-| `h9_persistent_homology.py` | PH 5y |
-| `h9_v2_11y.py` | PH 11y ★ |
-| `h10_macro_control.py` | CPI 외생 통제 ★ |
-| `h10_v3_replaced.py` | 교체 outcome 재실행 |
-
-### 인과 식별 (H22~H24)
-| 스크립트 | 역할 |
-|---|---|
-| `h22_rdd_yearend.py` | 회계연도 RDD (한국판 Liebman-Mahoney) ★ |
-| `h23_mediation.py` | Baron-Kenny + Sobel 매개분석 ★ |
-| `h24_stl_decomp.py` | STL trend 자기 비판 ★ |
-
-### 시각화 (H25)
-| 스크립트 | 역할 |
-|---|---|
-| `h25_export_viz_json.py` | 인터랙티브 viz용 JSON export |
-| `plot_h2_results.py` | H2 plot (구) |
-
-### 시계열 예측 (H26)
-| 스크립트 | 역할 |
-|---|---|
-| `h26_neuralprophet_check.py` | NeuralProphet 연간 예측 (random_seed=42) ★ |
-| `h26b_neuralprophet_plotly.py` | NeuralProphet Plotly 인터랙티브 확장 (random_seed=42) ★ |
-
-## 4. 사용 권장 워크플로우
-
-### 새로 시작하는 경우
-```
-1) fetch_specs.py + fetch_kodas.py + fetch_monthly_exec*.py + load_kosis_outcomes.py + h{7,11~21}_*_outcome.py
-2) build_warehouse.py + build_indicator_panel.py
-3) h1, h2 (회귀)
-4) h3_v2_11y.py (★ 임베딩)
-5) h4_v3, h5_v2, h6, h8_v3, h9_v2, h10, h14_v2, h22, h23, h24 (분석)
-6) h25 (viz JSON export)
-```
-
-### ★ 표시 = 최신/권장 버전 (v3, v2 등)
-구 버전(`*_baseline`, `h3_activity_embedding`, `h4_mapper_outcome` 등)은 변경 추적·재현용으로 보존.
-
----
-
-## 재현성 보강 (2026-04-30 정합성 점검 후)
-
-- `random_state=42` 일관 적용:
-  - UMAP+HDBSCAN: `h3_v2_11y.py`, `h5_v2_11y.py`
-  - Permutation: `h6_robustness.py`, `h6_v3_replaced.py`
-  - PH bootstrap: `h9_v2_11y.py`
-  - NeuralProphet: `h26_neuralprophet_check.py`, `h26b_neuralprophet_plotly.py` ★ 신규 추가
-- STL `s_window=13` 명시 주석: `goodhart_freq.py`, `h24_stl_decomp.py`
-- 코드 정리: `h10_macro_control.py` d_cpi 불필요 변수 주석 처리
-
----
-
-## Slides + Paper EN figure 생성
-
-### slides_figs_new.py (신규)
-`paper/slides/SLIDE_PLAN.md`의 신규 figure 7개 생성 (`paper/slides/assets/figures/`):
-
-| figure ID | 내용 |
-|---|---|
-| `s2_dec_hook` | 12월 점프 hook |
-| `s4a_measurability_gap` | 측정성 격차 schema |
-| `s20_decompose_compare` | FFT/STL/NP 1×3 panel |
-| `s22a_rdd_assumption` | RDD 식별 가정 schema |
-| `s27_archetype_zscore` | 4 archetype z-score grouped bar |
-| `s33_baron_kenny` | 매개분석 DAG + forest |
-| `s41_q1_before_after` | Q1 BEFORE/AFTER |
-
-### redo_fig*_en.py (16개)
-영문판 paper용 차트 생성 (`paper/figures_en/`), 한국어 라벨 → 영문 변환.
-원본 `redo_fig*.py`(KR) 구조 그대로, `_en.py` 변형은 출력 경로만 변경.
+각 그림이 어느 빌더 → 어느 분석 스크립트 → 어느 CSV에서 나오는지는 [`../data/PROVENANCE.md`](../data/PROVENANCE.md) 참조.
+새 수치를 논문·슬라이드에 넣을 땐 그 표에 행을 추가하고 원천을 명시할 것.
