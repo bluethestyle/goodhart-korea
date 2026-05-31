@@ -61,7 +61,7 @@ CSV 경로는 별도 표기 없으면 `data/results/` 기준. `HC=⚠️`는 빌
 | `h27_coherence.png` | `build_report_figures.py` | h27_power_spectrum_coherence.py | H27_coherence_intra_archetype.csv | ⚠️ |
 | `h27_phase.png` | `redo_fig12_phase.py` | h27_power_spectrum_coherence.py | H27_phase_distribution.csv | ⚠️ |
 | `h27_psd.png` | `build_slide27_psd.py` | h27_power_spectrum_coherence.py | H27_psd_archetype_avg.csv | |
-| `h28_evolution.png` | `build_slide28_evolution.py` | h28_wavelet.py | H28_wavelet_12m_evolution.csv | |
+| `h28_evolution.png` | `redo_fig15_evolution.py`(논문) | h28_wavelet.py | H28_wavelet_12m_evolution.csv | |
 | `h28_scaleogram.png` | `build_slide28_scaleogram.py` | (h28 계열) | H3_activity_embedding_11y.csv (+ warehouse) | |
 | `h29_np_forecast.png` | `build_slide29_np_forecast.py` | (NeuralProphet) | H3_activity_embedding_11y.csv (+ warehouse) | ⚠️ |
 | `h30_triangulation.png` | `build_slide30_triangulation.py` | h26_neuralprophet_check.py | H26_field_outcome_corr_np.csv | ⚠️ |
@@ -79,6 +79,8 @@ CSV 경로는 별도 표기 없으면 `data/results/` 기준. `HC=⚠️`는 빌
 | `v3_calibration.png` | `generate_v3_charts.py` | — | v3_calibration_wt_wq_ratios.csv | ⚠️ |
 
 > 빌더 경로는 모두 `scripts/` 기준. `build_report_figures.py`는 옛 `analysis_report.typ` 전용이라 `scripts/_archive/`로 격리됨 — 위 그림(h22_rdd_field·h27_coherence·h8_panel·h3_umap)은 동일 데이터를 읽는 active 빌더(`redo_fig*`·`build_slide*`)가 `paper/figures/`의 정본을 생성한다. 자세한 중복 빌더 관계는 워크플 provenance 노트 참조.
+> **슬라이드용 H28 진화 차트는 별도**: `build_slide28_evolution.py` → `paper/figures/slides/h28_evolution.png` (발표 가독성용 가로형·외부 legend, Figma 플레이스홀더 자산). 논문용(`redo_fig15`)과 출력 경로·레이아웃 분리 — 서로 덮어쓰지 않는다.
+
 
 ---
 

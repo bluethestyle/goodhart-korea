@@ -57,9 +57,9 @@ ax.text(0.02, 0.97,
         '12m cycle power 강화  (2015–2017  →  2023–2025)\n'
         '\n'
         'C2 출연금형     +554%   ★ Act 4 결정\n'
-        'C3 정상사업     +317%\n'
-        'C1 자산취득형   +175%\n'
-        'C0 인건비형     −0.8%   (null 검증)',
+        'C3 정상사업     +314%\n'
+        'C1 자산취득형   +174%\n'
+        'C0 인건비형     −1.4%   (null 검증)',
         transform=ax.transAxes, ha='left', va='top', fontsize=10.5,
         bbox=dict(boxstyle='round,pad=0.55', fc='#fff8e1',
                   ec='#daa520', linewidth=1.2, alpha=0.95))
@@ -93,7 +93,11 @@ fig.text(0.5, -0.02,
          ha='center', fontsize=8.5, color='#666', style='italic')
 
 plt.tight_layout(rect=[0, 0.03, 1, 0.93])
-out = ROOT / 'paper' / 'figures' / 'h28_evolution.png'
+# 슬라이드용 차트는 paper/figures/slides/ 에 저장 — 논문용(redo_fig15 → paper/figures/h28_evolution.png)과 분리.
+# Figma 플레이스홀더에 끼워넣을 발표용 자산. 논문 그림을 덮어쓰지 않는다.
+out_dir = ROOT / 'paper' / 'figures' / 'slides'
+out_dir.mkdir(parents=True, exist_ok=True)
+out = out_dir / 'h28_evolution.png'
 plt.savefig(out, dpi=140, bbox_inches='tight', facecolor='white')
 plt.close()
 

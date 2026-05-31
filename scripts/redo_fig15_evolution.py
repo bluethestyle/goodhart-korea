@@ -74,9 +74,9 @@ ax.legend(loc='upper left', frameon=True, framealpha=0.95)
 ax.text(0.98, 0.97,
         '2015~2017 → 2023~2025\n'
         '출연금형  +554%\n'
-        '정상사업  +317%\n'
-        '자산취득형 +175%\n'
-        '인건비형  −0.8% (통제)',
+        '정상사업  +314%\n'
+        '자산취득형 +174%\n'
+        '인건비형  −1.4% (통제)',
         transform=ax.transAxes, ha='right', va='top', fontsize=13,
         bbox=dict(boxstyle='round,pad=0.45', fc='#fff8e1',
                   ec='#daa520', alpha=0.95))
