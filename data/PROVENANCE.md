@@ -113,8 +113,13 @@ matplotlib 차트 대부분은 CSV/warehouse를 읽어 계산값을 그리므로
 - **데이터 미연결(하드코딩) figma 빌더**: `build_overview_figma_slides.py` · `build_outcome_arc.py` · `build_app_wav_slides.py` · `build_data_spec_slides.py`.
 - **부분 하드코딩(폴백/라벨)**: §1 표의 ⚠️ 행. 대표적으로 `build_slide23/24_*`의 `korea_beta=0.6477` 폴백·`LM_MULT=5.0`·archetype n수 라벨.
 
-### ❗ 미해결 — `h30_triangulation.png` (논문 §6.5.3)
-1. **하드코딩 값 오류** (`build_slide30_triangulation.py`): FFT/PSD 행 `[0.097,0.172,0.332,0.115]` → 정본(`H27_psd_archetype_avg.csv`) `[0.097,0.155,0.332,0.172]`. wavelet 행도 미세 차.
-2. **그림-텍스트 불일치**: 본문은 "14분야×3도구 outcome 상관"을 말하나 그림은 "3도구×4 archetype 진폭". 어느 그림을 둘지 결정 필요(상세 [`../슬라이드_수정사항.md`](../슬라이드_수정사항.md) §P3).
+### 트라이앵귤레이션 — 두 종류 구분 (2026-05-31 정정)
+
+이전 메모가 **서로 다른 두 그림을 혼동**했음. 명확히 구분:
+
+1. **`h30_triangulation.png` (논문 §6.5.3)** — `build_slide30_triangulation.py`가 `H26_field_outcome_corr_np.csv`에서 읽는 **15분야 × 3도구 outcome 상관 heatmap**. CSV 기반·정상. (이전 메모의 "build_slide30이 `[0.097,0.172,…]` 하드코딩"은 오기 — 그 매트릭스는 아래 ②다.)
+2. **`paper/figures/slides/triangulation_archetype.png` (슬라이드 전용, 신규)** — `build_slide_triangulation_archetype.py`가 만드는 **3도구 × 4 archetype 매트릭스**(FFT 12m PSD · Wavelet 시간강화 · NP seasonality). FFT행=`H27_psd_archetype_avg.csv`(12m=`psdnorm_k1`), Wavelet행=`H28_wavelet_12m_evolution.csv` window 배율에서 **직접 읽어** 생성. 옛 figma 하드코딩 오류(FFT C1 0.172→**0.155**, C3 0.115→**0.172**)를 CSV 기반으로 정정. 정본: FFT `[0.097,0.155,0.332,0.172]` · Wavelet `[0.99,2.74,6.54,4.14]`. NP행 `[0.274,0.281,0.458,0.390]`만 추적 CSV 없어 하드코딩+주석 유지(C2 최댓값이라 메시지 보존). 세 행 모두 C2 출연금형 최강.
+
+> ⚠️ **figma 직접 수정 대기**: ②의 옛 하드코딩 값은 `build_app_wav_slides.py`의 App-WAV 부록 SVG 표·figma 슬라이드에도 남아 있다(스크립트가 CSV 미연결). before→after는 [`../슬라이드_수정사항.md`](../슬라이드_수정사항.md) 참조. 새 `triangulation_archetype.png`를 figma 플레이스홀더에 교체 투입하면 ②는 해소.
 
 > **근본 해결 방향**: 하드코딩 빌더를 *CSV에서 값을 읽도록* 리팩터. 그 전까지는 위 ⚠️ 값을 §2 정본 레퍼런스와 1:1 대조할 것.
