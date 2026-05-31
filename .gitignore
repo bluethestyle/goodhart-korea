@@ -83,8 +83,8 @@ figma_exports/_v_*.png
 figma_exports/**/_extracted_*.txt
 figma_exports/_extracted_*.txt
 
-# 정리 격리 폴더 (로컬 보관, git 비추적)
-_archive/
+# 정리 격리 폴더 (루트만 — 로컬 보관, git 비추적). scripts/_archive/ 는 추적 유지(이력 보존)
+/_archive/
 
 # Paper EN figures preview (intermediate)
 paper/figures_en/_preview/
