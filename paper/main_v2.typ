@@ -93,7 +93,7 @@
 // 표지
 // =============================================================
 #align(center)[
-  #v(2em)
+  #v(1.6em)
   #text(size: 18pt, weight: "bold",
         font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[
     한국 정부 재정 집행의 굿하트 게임
@@ -103,7 +103,7 @@
         font: ("Pretendard", "Times New Roman", "Noto Sans KR", "HYGothic"))[
     Principal-Agent 균형 분석, 사업원형별 다중 검증, 정책 처방
   ]
-  #v(2.5em)
+  #v(1.6em)
   #text(size: 11pt)[정선규, 심은철, 김영찬, 김재호]
   #v(0.35em)
   #text(size: 9pt, fill: rgb("#555"))[
@@ -116,7 +116,7 @@
   #v(0.3em)
   #text(size: 10pt, fill: rgb("#444"))[2026년 4월]
 
-  #v(2em)
+  #v(1.2em)
   #line(length: 40%, stroke: 0.6pt + rgb("#999"))
   #v(0.5em)
   #text(size: 9pt, fill: rgb("#555"))[
@@ -130,7 +130,7 @@
   #line(length: 40%, stroke: 0.6pt + rgb("#999"))
 ]
 
-#v(2.5em)
+#v(1.3em)
 
 // =============================================================
 // 초록
@@ -142,7 +142,7 @@
 #v(0.6em)
 
 #[
-  #set par(first-line-indent: 0pt, leading: 0.95em)
+  #set par(first-line-indent: 0pt, leading: 0.9em)
   본 연구는 한국 중앙정부 재정 집행에 *굿하트 효과* #cite(<goodhart1975>)가 발현하는 *미시적 기제*를 Principal-Agent 균형 분석으로 도출하고, 그로부터 파생되는 6개 검증 가능 가설(H1\~H6)을 11년 시계열·14분야·1,557개 활동·11개 방법론으로 다중 검증한다.
 
   *이론*: 평가 가중 $w_t$(시점 조정, 측정 가능)와 $w_q$(사업 품질, 측정 어려움)의 *측정성 격차*가 큰 한국 평가 제도(집행률 평가·출연기관 경영평가·감사) 환경에서 *합리적 행위자*의 균형 행동이 *시점 조정 노력 $e_t$로 자원이 쏠리는 굿하트 게임*임을 도출한다 — #cite(<holmstrom1991>, form: "prose")의 한국 적용.
@@ -152,7 +152,7 @@
   *정책*: 본 분석은 *처방을 새로 발명하지 않는다* — 다년도 회계·다지표 평가·정산 분산 같은 대응책은 이미 제시되어 있다. 본 분석의 기여는 모형과 실증이 가리키는 *적용 타겟*(어느 사업원형·부처에 무엇을)을 데이터로 대는 데 있다. 권고 1\~3은 모형의 세 레버($w_t$↓·$w_q$↑·$c_(t t)$↑)에서 직접 도출되고, 권고 4\~6은 실증 발견에서 파생된다(전제·운영·시간 차원). Holmstrom-Milgrom impossibility의 본질적 한계 — 완전 해결은 불가능 — 를 정직하게 명시한다.
 ]
 
-#v(1em)
+#v(0.6em)
 
 #[
   #set par(first-line-indent: 0pt)
@@ -856,10 +856,11 @@
   *해석*: cycle은 *과거 회고가 아니라 진행형 패턴*이다. Spec B는 (a) Spec A의 archetype 순서를 유지(C2 > C3 > C1 > C0), (b) 2026 미래로 외삽해도 *cycle이 사라지지 않음*을 시사. 단, AR-Net 예측은 *현행 평가 제도의 stationary 가정*에 의존하므로, 본 권고 1–3이 실현되면 forecast는 *반사실적*(counterfactual)으로 재산출되어야 한다. 본 결과는 H3 가설의 *시간 외삽 robustness*에 해당하며, 부록 D.5에 추가 robustness check를 정리한다.
 
   #figure(
-    image("figures/h29_np_forecast.png", width: 100%),
+    image("figures/h29_np_forecast.png", width: 85%),
     caption: [\[H3 forecast\] archetype별 12개월 ahead AR-Net 예측 — C2 출연금형 cycle이 2026년에도 재현됨을 시각화. shaded 영역은 95% prediction interval.],
   ) <fig-np-forecast>
 
+  #block(breakable: false)[
   === 3-tool × 15분야 outcome heatmap — 분야별 측도 발산 가시화
 
   분야 outcome과 게임화 측도(FFT·STL·NP) 셋의 상관을 *15분야 × 3도구* 매트릭스(@fig-triangulation)로 정리하면, 도구 간 *부호 일관* 분야와 *측도 의존* 분야가 시각적으로 분리된다 (`scripts/build_slide30_triangulation.py`가 `data/results/H26_field_outcome_corr_np.csv`에서 직접 산출 → `figures/h30_triangulation.png`).
@@ -868,6 +869,7 @@
     image("figures/h30_triangulation.png", width: 78%),
     caption: [\[§6.5\] 15분야 × 3도구(FFT·STL·NP) outcome 상관 heatmap — 음(파랑)=시점집중↔outcome 악화. FFT·NP가 음으로 일관해도 STL 부호가 갈리는 *측도 의존* 분야(예: 보건·농림수산)가 분리된다. *상보적* 트라이앵귤레이션의 가시화.],
   ) <fig-triangulation>
+  ]
 
   *FFT·NP 음 일관 분야 (STL은 측도 의존)*: 보건 (FFT $-0.55$ / STL $+0.20$ / NP $-0.71$), 통신 ($-0.15$ / $+0.05$ / $-0.75$) — FFT·NP는 음으로 일관하나 STL은 부호가 갈린다(STL이 추세를 흡수). 국방·교육·공공질서·안전을 포함해 *복수 도구에서* 시점 집중과 outcome 악화의 음 상관이 관찰되나, 측도에 따라 강도·부호가 달라 *단일 도구 결론은 피한다*.
 
