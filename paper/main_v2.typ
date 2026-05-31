@@ -695,18 +695,18 @@
 ) <fig-mapper-cluster>
 
 #figure(
-  image("figures/h9_pd.png", width: 100%),
+  image("figures/h9_pd.png", width: 80%),
   caption: [\[H1.b 검증\] Persistence Diagram — Vietoris-Rips, N=300, max thresh=8.0.\ H0(파랑)·H1(빨강) birth-death 쌍.],
 ) <fig-ph-pd>
 
 #figure(
-  image("figures/h9_barcode.png", width: 100%),
+  image("figures/h9_barcode.png", width: 78%),
   caption: [\[H1.b 검증\] H1 Barcode — 가장 오래 지속되는 30개 loop의 birth-death 막대.\ max persistence = 0.671.],
 ) <fig-ph-barcode>
 
 
 #figure(
-  image("figures/h9_bootstrap.png", width: 100%),
+  image("figures/h9_bootstrap.png", width: 78%),
   caption: [\[H1.b 검증\] Bootstrap PH 50회 (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ null(feature-shuffled) 분포 대비 Wasserstein-2 검증(관측 mean 0.885 vs null 1.524, $p < 0.0001$)으로 전체 diagram 강건성 입증.],
 ) <fig-ph-bootstrap>
 
@@ -1940,7 +1940,7 @@ $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
 // =============================================================
 = 부록 G. 스크립트-가설 매핑 — 재현 가이드
 
-본 연구의 핵심 분석 스크립트와 가설·결과 절의 1:1 매핑을 제시한다. GitHub repository(`bluethestyle/goodhart-korea`)의 `scripts/` 디렉토리 내 해당 파일을 실행하면 본문 그림·CSV를 재현할 수 있다.
+본 연구의 핵심 분석 스크립트와 가설·결과 절의 1:1 매핑을 제시한다. 스크립트는 `scripts/`의 *분석 단계별 하위 폴더*(`0_data`\~`8_robustness`·`figures`·`slides`)에 분류되어 있으며, 해당 파일을 실행하면 본문 그림·CSV를 재현할 수 있다. *전체 재현 색인은 저장소 루트의 `REPRODUCIBILITY.md`* 참조.
 
 #figure(
   {
@@ -1974,5 +1974,5 @@ $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
       [`build_app_wav_slides.py`], [부록 WAV 자산], [Wavelet/PSD/Coherence 부록 슬라이드 차트],
     )
   },
-  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드 (모든 스크립트는 `scripts/` 디렉토리에 위치). 본문 figure가 슬라이드로 재가공된 케이스는 `build_slide*` 스크립트로 1280×800 포맷 변환된다.],
+  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드 (스크립트는 `scripts/`의 테마별 하위 폴더에 분류 — 루트 `REPRODUCIBILITY.md`). 본문 figure가 슬라이드로 재가공된 케이스는 `build_slide*` 스크립트로 1280×800 포맷 변환된다.],
 )

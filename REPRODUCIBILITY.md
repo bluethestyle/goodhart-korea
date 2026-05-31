@@ -127,9 +127,9 @@ python scripts/redo_fig07_rdd.py         # → paper/figures/h22_rdd_monthly.png
 
 ---
 
-## 6. 제안 폴더 구조 (재배치)
+## 6. 폴더 구조 (적용 완료 — 2026-05-31)
 
-현재 `scripts/`는 평면(127개 .py). 분석 단계별 재배치 권장 (status별 격리 포함):
+`scripts/`를 **분석 단계별 하위 폴더로 재배치 완료**(128개 이동, branch `cleanup/scripts-reorg`). *경로만 봐도 어느 단계인지* 알 수 있다. 하위 폴더로 한 단계 깊어지며 깨지는 ROOT 경로(`dirname(dirname(...))`·`parents[1]`)는 89개 스크립트에서 +1 일괄 패치, `_env` import 4개는 `sys.path` shim 추가, `_env.py`만 공유 모듈로 `scripts/` 루트 유지. 논문은 `paper/figures/`(미이동)를 참조하므로 컴파일 영향 없음.
 
 ```
 scripts/
@@ -150,4 +150,4 @@ scripts/
 
 **`_archive/`로 격리할 superseded (14)**: `build_report_figures.py`(analysis_report 삭제), `h10_replot.py`, `h3_activity_embedding.py`(5y 구판), `redo_fig01_umap_horizontal.py`, `build_slide34_agri_dual.py`(농가소득 역설 폐기), `build_slide_extras.py`(분리 빌더로 대체), `redo_slidefig_h27_psd/h28_evolution.py`(빈 타겟 폴더), 이미 `scripts/_archive/`에 있는 build_slide29_34·build_wireframes·h4_mapper_outcome·h9_persistent_homology 등.
 
-> 재배치는 **파일 이동(git mv)**이므로 재현 명령 경로·`부록 G 스크립트-가설 매핑`·이 문서를 함께 갱신해야 한다. 단계별 진행 권장 (→ [프로젝트_경로정리_프롬프트.md](프로젝트_경로정리_프롬프트.md) §3-4).
+> 재현 명령 경로는 이제 `python scripts/<테마>/<script>.py` 형식이다(예: `python scripts/3_rdd/h22_rdd_yearend.py`). 검증: py_compile 전체 통과 + 샘플 figure(`redo_fig07_rdd.py`) end-to-end 실행 + 논문 컴파일 통과 + `_env` import 정상. 논문 부록 G·이 문서도 갱신됨.
