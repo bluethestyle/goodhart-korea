@@ -45,7 +45,7 @@ CSV 경로는 별도 표기 없으면 `data/results/` 기준. `HC=⚠️`는 빌
 | 그림 (`paper/figures/`) | 빌더 스크립트 | source 분석 | 읽는 CSV | HC |
 |---|---|---|---|---|
 | `eda/fig_slide22_cutoff_bars.png` | `build_slide_extras.py` | h22_quarterly_cutoffs.py | H22_quarterly_cutoffs.csv | |
-| `eda/fig_slide38_business_quadrant.png` | **NOT_FOUND (수동 생성)** | — | (warehouse) | ⚠️ |
+| `eda/fig_slide38_business_quadrant.png` | `redo_fig10b_business_quadrant.py` | h3/h5/h10 결합 | H3_activity_embedding_11y.csv · H5_ministry_exposure_11y.csv · H10_macro_control_corr_v3.csv | |
 | `eda/fig_slide38_ministry_quadrant.png` | `redo_fig10_quadrant.py` | h14_v2_replaced.py | H5_ministry_exposure_11y.csv · H3_activity_embedding_11y.csv | ⚠️ |
 | `h10_cpi_control.png` | `h10_replot.py` | h10_v3_replaced.py · h10_macro_control.py | H10_macro_control_corr_v3.csv | |
 | `h10_v3_robustness.png` | `generate_v3_charts.py` | — | H10_v3_alt_correlations.csv · H10_v3_socialwelfare_loo.csv | ⚠️ |
