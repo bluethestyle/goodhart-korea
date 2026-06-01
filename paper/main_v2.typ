@@ -677,7 +677,7 @@
       [H5], [1차 차분 상관 ($r = -0.86$; Bonferroni 미달)], [Permutation, FWL CPI 통제 — 부호만 견고, 인과 미확증·메커니즘 부재로 기각],
       [H6], [Continuous Wavelet Transform (Morlet)], [STL 자기 비판 + NeuralProphet 중재 (§6.9)],
     ),
-    caption: [가설 × 분석 도구 매트릭스 — 12개 1차 도구의 가설별 분담 (주파수분석(FFT)·계절분해(STL)·신경망예측(NeuralProphet)·차원축소(UMAP)·밀도군집(HDBSCAN)·위상그래프(Mapper)·지속적 호몰로지(PH)·고정효과 회귀(FE)·공동군집(Co-clustering)·회귀불연속(RDD)·매개분석·소비자물가 외생통제(CPI)); 추가로 순열검정(Permutation)·시차분석(Lag/Lead)·변동계수(CV)가 견고성 검증 도구로 사용된다 (부록 C.1\~C.13에 13개 서브섹션으로 정리).],
+    caption: [가설 × 분석 도구 매트릭스 — 12개 1차 도구의 가설별 분담. 순열검정(Permutation)·시차분석(Lag/Lead)·변동계수(CV)는 견고성 검증에 보조로 쓰인다. 각 도구의 정의·약점은 §5와 부록 C(C.1\~C.13)를 참조.],
   )
 
 == H1 검증 — 분야는 무효(trivial), 사업원형이 진짜 분석 단위
