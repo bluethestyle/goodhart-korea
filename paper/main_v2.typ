@@ -554,13 +554,13 @@
 
 === UMAP (Uniform Manifold Approximation and Projection)
 
-  직관: 12차원에서 가까운 점들은 2차원에서도 가깝게, 멀리 있는 점들은 멀리 보이도록 국소 이웃 구조를 보존하면서 차원을 압축하는 비선형 알고리즘@mcinnes2018. 고차원·저차원의 fuzzy simplicial set 표현 사이의 cross-entropy를 SGD로 최소화한다. 손실함수 정의·하이퍼파라미터·PCA·t-SNE·Autoencoder와의 비교는 부록 C.4.
+  직관: 12차원에서 가까운 점들은 2차원에서도 가깝게, 멀리 있는 점들은 멀리 보이도록 국소 이웃 구조를 보존하면서 차원을 압축하는 비선형 알고리즘이다@mcinnes2018 — 비슷한 집행 패턴을 가진 사업끼리 2차원 지도에서 가까이 모인다.#footnote[기술적으로는 고차원·저차원의 fuzzy simplicial set 표현 사이의 교차 엔트로피(cross-entropy)를 확률적 경사하강(SGD)으로 최소화한다. 손실함수 정의·하이퍼파라미터·PCA·t-SNE·Autoencoder와의 비교는 부록 C.4.]
 
   주제 적합성: 사업 활동의 12피처(예산 구성·집행 패턴·진폭)는 강한 비선형 상관을 갖는다 — 예: 출연금 비중과 게임화 진폭 사이 sigmoid 관계. 또한 1,557개 활동이라는 작은 데이터에서 자율 임베딩 학습은 과적합되며, 재현 가능한 결정론적 임베딩이 정책 보고서에 인용 가능해야 한다. UMAP은 (a) 비선형 보존, (b) 작은 N에서의 안정성, (c) `random_state` 기반 재현 가능성 — 세 요건을 동시에 만족하는 도구로, 이 조합을 충족하는 다른 표준 방법은 드물다.
 
 === HDBSCAN (Hierarchical Density-Based Spatial Clustering)
 
-  직관: K-means처럼 군집 수를 미리 정하지 않고 밀도가 높은 영역을 군집으로 식별한다@campello2013. 밀도가 낮은 점은 노이즈로 분류한다. mutual reachability distance를 가중치로 하는 최소 신장 트리에서 임계값 $epsilon$을 변화시켜 condensed cluster tree를 만들고 안정성 점수가 높은 군집을 선택한다. 거리 정의·트리 구성·K-means·DBSCAN·GMM과의 비교는 부록 C.5.
+  직관: K-means처럼 군집 수를 미리 정하지 않고, 점들이 빽빽이 모인 영역을 군집으로, 듬성한 점은 노이즈로 분류한다@campello2013. 즉 데이터 스스로 "몇 개의 덩어리가 있는가"를 정하게 둔다.#footnote[상호 도달 거리(mutual reachability distance)를 가중치로 한 최소 신장 트리에서 임계값 $epsilon$을 변화시켜 응축 군집 트리(condensed cluster tree)를 만들고, 안정성 점수가 높은 군집을 선택한다. 거리 정의·트리 구성·K-means·DBSCAN·GMM과의 비교는 부록 C.5.]
 
   주제 적합성: 한국 사업 활동은 (a) 사업 형태별 밀도 차이가 큼(정상사업 1,175 vs 자산취득형 99), (b) 군집 수 사전 가정이 연구 가설을 오염시킴(분야가 trivial한지가 결과 가설), (c) outlier 활동(극단 게임화 사업)의 노이즈 처리가 정책 점검 대상 식별에 필수. HDBSCAN은 이 세 요건을 모두 만족한다(상세 §6.2 참조).
 
@@ -576,7 +576,7 @@
 
 === Persistent Homology (PH, ripser)
 
-  직관: 점들의 위상 구조를 모든 스케일에서 동시에 측정한다. 작은 $epsilon$에서 잠시 나타났다 사라지는 구조는 노이즈, 오래 살아남는 구조는 진짜 위상 특성이다@edelsbrunner2008 (지속 다이어그램의 bottleneck 안정성 정리는 @cohenSteiner2007). 본 연구는 차원 0(연결성분 $beta_0$)과 차원 1(loop $beta_1$)을 분석하며, 부트스트랩 50회에서 강건한 $beta_0 = 30$, $beta_1 = 15$, max persistence 95% CI는 위상 구조의 표본 안정성을 입증한다. 계산은 Python ripser 라이브러리#cite(<tralie2018>)를 사용했다. Vietoris-Rips complex·filtration·persistence diagram 정의·Mapper/silhouette 비교는 부록 C.7.
+  직관: 점들이 이루는 "덩어리(연결성분)"와 "구멍(루프)" 구조를 모든 거리 척도에서 동시에 추적한다. 짧게 나타났다 사라지는 구조는 노이즈, 오래 살아남는 구조는 진짜 위상 특성이다@edelsbrunner2008.#footnote[지속 다이어그램의 bottleneck 안정성 정리는 @cohenSteiner2007. Vietoris–Rips 복합체·filtration·persistence diagram 정의·Mapper/silhouette 비교는 부록 C.7.] 본 연구는 차원 0(연결성분 $beta_0$)과 차원 1(루프 $beta_1$)을 분석하며, 부트스트랩 50회에서 강건한 $beta_0 = 30$, $beta_1 = 15$, 최대 지속성(max persistence) 95% CI가 위상 구조의 표본 안정성을 입증한다. 계산은 Python ripser 라이브러리#cite(<tralie2018>)를 사용했다.
 
   주제 적합성: 본 연구가 발견한 4개 사업원형이 (a) UMAP 매개변수 변화에 견고한가, (b) 표본 변동에 견고한가를 입증해야 한다. PH는 (a)·(b) 모두에 대해 비모수·스케일 불변 검증을 제공하는 거의 유일한 도구다.
 
