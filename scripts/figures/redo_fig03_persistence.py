@@ -80,15 +80,16 @@ h1 = ph[(ph['dim'] == 1) & ph['death'].apply(is_finite)]
 # ── 3A: Persistence Diagram
 fig, ax = plt.subplots(figsize=(9.84, 5))
 ax.scatter(h0['birth'], h0['death'], s=18, c='#5475a8',
-           label=f'H0 (n={len(h0)})', alpha=0.7)
+           label=f'H0 연결성분 (n={len(h0)})', alpha=0.7)
 ax.scatter(h1['birth'], h1['death'], s=22, c='#a85454',
-           label=f'H1 (n={len(h1)})', alpha=0.75)
+           label=f'H1 루프 (n={len(h1)})', alpha=0.75)
 m = max(h0['death'].max() if len(h0) else 0,
         h1['death'].max() if len(h1) else 0, 8.0)
 ax.plot([0, m], [0, m], '--', color='#888', alpha=0.5)
-ax.set_xlabel('Birth')
-ax.set_ylabel('Death')
+ax.set_xlabel('Birth (생성 반경)')
+ax.set_ylabel('Death (소멸 반경)')
 ax.legend(loc='lower right')
+ax.set_title('Persistence Diagram — 대각선에서 멀수록 견고한 위상 구조', fontsize=12)
 ax.grid(alpha=0.3)
 ax.text(0.02, 0.98, 'Vietoris-Rips\nN=300, max thresh=8.0',
         transform=ax.transAxes, va='top', fontsize=10,
@@ -106,15 +107,16 @@ for i in range(n_top):
              float(h1_sorted.iloc[i]['death'])],
             [i, i], lw=2.3, color='#a85454', alpha=0.85)
 ax.set_yticks([0, n_top // 2, n_top - 1])
-ax.set_xlabel('filtration scale')
-ax.set_ylabel('loop rank')
+ax.set_xlabel('필트레이션 척도 (거리 임계값)')
+ax.set_ylabel('루프 순위 (지속성 내림차순)')
 ax.text(0.02, 0.96,
-        f'top {n_top} loops · '
-        f'max persist = {float(h1_sorted.iloc[0]["persistence"]):.3f}',
+        f'상위 {n_top}개 루프 · '
+        f'최대 지속성 = {float(h1_sorted.iloc[0]["persistence"]):.3f}',
         transform=ax.transAxes, va='top', fontsize=10,
         bbox=dict(boxstyle='round,pad=0.4', fc='white',
                   ec='#bbb', alpha=0.9))
 ax.grid(alpha=0.3, axis='x')
+ax.set_title('H1 바코드 — 상위 30개 루프의 생애 구간 (길수록 견고한 순환 구조)', fontsize=12)
 plt.tight_layout()
 save_resize(fig, 'h9_barcode.png')
 

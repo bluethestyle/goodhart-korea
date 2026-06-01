@@ -86,13 +86,11 @@ ax.axvline(0, color='black', lw=1.0, zorder=3)
 ax.set_xlabel('1차 차분 상관 (게임화 ↔ outcome)')
 ax.legend(loc='lower right', fontsize=13)
 ax.grid(alpha=0.3, axis='x')
-ax.text(0.02, 0.97,
-        f'분홍 행 + 빨간 분야명 = 부호 반전\n'
-        f'(FFT·STL이 서로 다른 부호)  '
+ax.text(0.0, 1.02,
+        f'분홍 행 + 빨간 분야명 = 부호 반전 (FFT·STL 부호 상이) · '
         f'{int(df["sign_change"].sum())}/{len(df)}분야',
-        transform=ax.transAxes, va='top', fontsize=13,
-        bbox=dict(boxstyle='round,pad=0.4', fc='white',
-                  ec='#bbb', alpha=0.92))
+        transform=ax.transAxes, va='bottom', ha='left', fontsize=11,
+        color='#555')
 plt.tight_layout()
 save_resize(fig, 'h24_stl_bars.png')
 

@@ -113,15 +113,16 @@ sc = nx.draw_networkx_nodes(
 )
 ax.set_xlim(XLIM); ax.set_ylim(YLIM)
 ax.axis('off')
-fig.colorbar(sc, ax=ax, label='amp_12m_norm', shrink=0.75)
+fig.colorbar(sc, ax=ax, label='12개월 주기 진폭 (정규화)', shrink=0.75)
 ax.text(
     0.02, 0.98,
-    f'{G.number_of_nodes()} nodes · {G.number_of_edges()} edges\n'
-    f'components = {n_comp} · loops = {n_loops}',
+    f'{G.number_of_nodes()} 노드 · {G.number_of_edges()} 엣지\n'
+    f'연결성분 = {n_comp} · 루프 = {n_loops}',
     transform=ax.transAxes, va='top', fontsize=11,
     bbox=dict(boxstyle='round,pad=0.4', fc='white',
               ec='#bbb', alpha=0.9),
 )
+ax.set_title('Mapper 그래프 — 노드 색: 12개월 주기 집행 진폭', fontsize=12)
 plt.tight_layout()
 save_resize(fig, 'h4_mapper_amp.png')
 
@@ -166,6 +167,7 @@ ax.text(
     bbox=dict(boxstyle='round,pad=0.4', fc='white',
               ec='#bbb', alpha=0.9),
 )
+ax.set_title('Mapper 그래프 — 노드 색: HDBSCAN 사업원형', fontsize=12)
 plt.tight_layout()
 save_resize(fig, 'h4_mapper_cluster.png')
 
