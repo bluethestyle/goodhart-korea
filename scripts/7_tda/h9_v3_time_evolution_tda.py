@@ -45,11 +45,10 @@ os.makedirs(FIGS, exist_ok=True)
 # ──────────────────────────────────────────────────────────────
 # Korean font
 # ──────────────────────────────────────────────────────────────
-for fname in ['Arial Unicode MS', 'Malgun Gothic', 'NanumGothic']:
-    if any(fname.lower() in fn.name.lower() for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = [fname, 'Arial Unicode MS', 'DejaVu Sans']
-        break
-mpl.rcParams['axes.unicode_minus'] = False
+import os as _ps_os, sys as _ps_sys
+_ps_sys.path.insert(0, _ps_os.path.join(_ps_os.path.dirname(_ps_os.path.dirname(_ps_os.path.abspath(__file__))), 'figures'))
+from _paper_style import apply_paper_style
+apply_paper_style()   # 논문 차트 공통 스타일(Pretendard)
 
 RNG  = np.random.default_rng(42)
 YEARS = list(range(2015, 2026))   # 2015-2025
