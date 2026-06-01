@@ -19,18 +19,10 @@ from PIL import Image
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-plt.rcParams.update({
-    'font.size': 15, 'axes.titlesize': 17, 'axes.labelsize': 15,
-    'xtick.labelsize': 13, 'ytick.labelsize': 13,
-    'legend.fontsize': 13,
-    'mathtext.default': 'regular',
-    'axes.unicode_minus': False,
-})
-for fname in ['Malgun Gothic', 'Arial Unicode MS', 'NanumGothic']:
-    if any(fname.lower() in fn.name.lower()
-           for fn in mpl.font_manager.fontManager.ttflist):
-        mpl.rcParams['font.family'] = [fname, 'Times New Roman', 'DejaVu Sans']
-        break
+import sys as _ps_sys
+_ps_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'figures'))
+from _paper_style import apply_paper_style
+apply_paper_style(base=13)   # 논문 차트 공통 스타일
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DB = os.path.join(ROOT, 'data', 'warehouse.duckdb')

@@ -40,25 +40,11 @@ os.makedirs(FIG_KR, exist_ok=True)
 # FIG_EN(영문 그림)은 국내 제출용으로 미사용 — 디렉터리 생성/저장 안 함 (헬퍼에서 차단)
 
 # ── Font setup ─────────────────────────────────────────────────────────────────
-FONT_KR = 'DejaVu Sans'
-for fname in ['Malgun Gothic', 'Arial Unicode MS', 'NanumGothic']:
-    if any(fname.lower() in fn.name.lower()
-           for fn in mpl.font_manager.fontManager.ttflist):
-        FONT_KR = fname
-        break
-
-plt.rcParams.update({
-    'font.size': 15,
-    'axes.titlesize': 17,
-    'axes.labelsize': 15,
-    'xtick.labelsize': 13,
-    'ytick.labelsize': 13,
-    'legend.fontsize': 12,
-    'mathtext.default': 'regular',
-    'axes.unicode_minus': False,
-    'figure.facecolor': 'white',
-    'axes.facecolor': 'white',
-})
+import sys as _ps_sys
+_ps_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'figures'))
+from _paper_style import apply_paper_style
+apply_paper_style(base=13)   # 논문 차트 공통 스타일(Pretendard + 통일 rcParams)
+FONT_KR = 'Pretendard'
 
 DPI      = 200
 MAX_W    = 1600   # max width in pixels after resize (raised for A4 PDF readability)
