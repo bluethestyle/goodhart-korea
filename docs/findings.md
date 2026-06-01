@@ -49,7 +49,7 @@
 
 ## H5 — 부처 시그니처 그래프
 
-![H5 ministry graph](../data/figs/h5_11y/H5_ministry_graph.png)
+![H5 ministry graph](../data/figs/h3_embed_11y/H3_ministry_graph.png)
 
 5 co-clusters (CC0 행정 / CC1 사업 / CC2 분기말 / CC3 직접투자 / CC4 출연금)
 
