@@ -97,7 +97,7 @@ def main():
             transform=ax.transAxes, ha='center', fontsize=9.5, color='#666')
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(OUT_PATH, dpi=150, facecolor='white')
+    plt.savefig(OUT_PATH, dpi=150, facecolor='white', bbox_inches='tight')
     plt.close()
 
     from PIL import Image

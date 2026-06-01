@@ -27,11 +27,11 @@ dr2_arch = float(
 
 # 원형별 β (source script 실행 결과 — paper/figures/h8_panel.png 박스에 있던 값)
 beta_labels = [
-    'A0_personnel: β=3.72',
-    'A1_direct_invest: β=−3.74',
-    'A2_sub0: β=0.94',
-    'A2_sub1: β=−7.29',
-    'A3_normal: β=2.99',
+    '인건비형: β=3.72',
+    '자산취득형: β=−3.74',
+    '출연금형①: β=0.94',
+    '출연금형②: β=−7.29',
+    '정상사업: β=2.99',
 ]
 
 fig, ax = plt.subplots(figsize=(7.3, 4.4))
