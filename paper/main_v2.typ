@@ -310,7 +310,7 @@
   여기서
   - $w_t$ = 시점 조정의 평가 가중 (집행률 평가 + 출연기관 경영평가에서 큼)
   - $w_q$ = 측정 가능한 품질의 평가 가중 (KPI 일부 + 감사 기준에 반영되나 작음)
-  - $tilde(e)_q = phi(e_q)$ = $e_q$의 측정 가능 부분. $phi: RR_+ arrow RR_+$, $phi(0) = 0$, $phi'(\cdot) > 0$, $phi'(\cdot) < 1$
+  - $tilde(e)_q = phi(e_q)$ = $e_q$의 측정 가능 부분. $phi: RR_+ arrow RR_+$, $phi(0) = 0$, $0 < phi'(\cdot) < 1$
   - $c(e_t, e_q; theta)$ = 노력 비용 함수, 사업원형 $theta$별 차이. 볼록·증가 가정.
 
   측정성 격차 함수 $phi$의 정식 의미: $phi'(\cdot) < 1$은 agent가 1단위 품질 노력 $e_q$를 투입해도 평가 시스템이 그 절대 비율 미만만 측정함을 의미한다. 이는 #cite(<baker1992>, form: "prose")의 distortion parameter와 정확히 대응한다 — 측정 지표 $M$과 진정한 가치 $V$ 간 한계 생산성 격차 ($(partial M) / (partial e) != (partial V) / (partial e)$). $phi(e_q) = e_q$ ($phi'$ ≡ 1)이면 측정성 격차 0 → first-best 달성. 한국 사업 성과 평가는 $phi'(\cdot) << 1$인 환경에 해당한다(예: 사회 결과 측정 시계열 5\~35년, 다중 인과 요인, 측정 도구 부재). 이것이 본 연구의 핵심 가정이다.
@@ -1844,7 +1844,7 @@ FFT는 시계열 전체의 평균 진폭을 측정하므로 정상성을 가정�
 
 Agent 목적함수
 $ U_A(e_t, e_q) = w_t e_t + w_q tilde(e)_q(e_q) - c(e_t, e_q; theta) $
-에서 $tilde(e)_q$는 $e_q$의 측정 가능 부분으로 $tilde(e)_q = phi(e_q)$, $phi'(\cdot) > 0$, $phi'(\cdot) < 1$ (측정성 격차), $phi''(\cdot) <= 0$ (수확체감). 비용 함수 $c$는 $C^2$급 strictly convex로 가정해 $c_(t t) > 0$, $c_(q q) > 0$, $c_(t q) = c_(q t) >= 0$ (Young 정리에 의해 교차 편미분 대칭).
+에서 $tilde(e)_q$는 $e_q$의 측정 가능 부분으로 $tilde(e)_q = phi(e_q)$, $0 < phi'(\cdot) < 1$ (측정성 격차), $phi''(\cdot) <= 0$ (수확체감). 비용 함수 $c$는 $C^2$급 strictly convex로 가정해 $c_(t t) > 0$, $c_(q q) > 0$, $c_(t q) = c_(q t) >= 0$ (Young 정리에 의해 교차 편미분 대칭).
 
 Interior 1차 조건 ($e_q$에 대한 미분은 $tilde(e)_q = phi(e_q)$에 chain rule):
 $ (partial U_A) / (partial e_t) = w_t - c_t (e_t, e_q) = 0 $
