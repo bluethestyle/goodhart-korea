@@ -180,9 +180,12 @@ try:
                     fontsize=11.5, alpha=0.7, color='#666')
         texts.append(t)
     adjust_text(texts, ax=ax,
-                arrowprops=dict(arrowstyle='-', color='#aaa', lw=0.35),
-                expand_points=(1.4, 1.4),
-                expand_text=(1.3, 1.3))
+                arrowprops=dict(arrowstyle='-', color='#aaa', lw=0.4),
+                expand_points=(2.2, 2.2),
+                expand_text=(2.0, 2.0),
+                force_text=(1.0, 1.2),
+                force_points=(0.8, 1.0),
+                lim=200)
 except ImportError:
     pass
 
