@@ -71,9 +71,9 @@ for i, r in df.iterrows():
         ax.axhspan(i - 0.5, i + 0.5, color='#ffe0e0', alpha=0.55, zorder=0)
 
 ax.barh(y - 0.2, df['corr_fft'], height=0.4,
-        label='FFT amp_12m_norm', color='#5475a8', alpha=0.88, zorder=2)
+        label='FFT 12개월 진폭', color='#5475a8', alpha=0.88, zorder=2)
 ax.barh(y + 0.2, df['corr_stl'], height=0.4,
-        label='STL seasonal_strength', color='#a85454', alpha=0.88, zorder=2)
+        label='STL 계절성 강도', color='#a85454', alpha=0.88, zorder=2)
 
 # 부호 반전 분야 — 분야명을 빨강 굵게
 ax.set_yticks(y); ax.set_yticklabels(df['fld_short'])

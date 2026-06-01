@@ -72,11 +72,12 @@ ax.legend(handles=[sig_patch, ns_patch,
                    plt.Line2D([0], [0], color='darkorange', lw=1.6, ls='--',
                               label=f'전체 β={beta_total:.2f}'),
                    plt.Line2D([0], [0], color='purple', lw=1.4, ls=':',
-                              label=f'L-M 5x')],
+                              label=f'Liebman-Mahoney ×5')],
           loc='lower right', fontsize=9, ncol=1)
 
 ax.grid(alpha=0.3, axis='x')
 ax.set_xlim(min(df['beta'].min() - 0.1, -0.05), xmax + xpad * 6)
+ax.set_title('사업원형별 12월 점프(RDD β) — 자산취득형(C1)이 가장 강함', fontsize=12)
 
 plt.tight_layout()
 
