@@ -108,13 +108,12 @@
   #v(0.35em)
   #text(size: 9pt, fill: rgb("#555"))[
     #grid(
-      columns: 2,
-      column-gutter: 2.4em,
+      columns: (auto, auto, auto, auto),
+      column-gutter: (0.45em, 2.6em, 0.45em),
       row-gutter: 0.5em,
-      [정선규 #h(0.4em) jsk320098\@gmail.com],
-      [심은철 #h(0.4em) simeunchul\@naver.com],
-      [김영찬 #h(0.4em) findurwind\@gmail.com],
-      [김재호 #h(0.4em) goldenline97\@gmail.com],
+      align: left,
+      [정선규], [jsk320098\@gmail.com], [심은철], [simeunchul\@naver.com],
+      [김영찬], [findurwind\@gmail.com], [김재호], [goldenline97\@gmail.com],
     )
   ]
   #v(0.7em)
