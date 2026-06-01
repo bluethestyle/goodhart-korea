@@ -352,7 +352,7 @@
 
   본 절은 §3.3의 정적 모형을 다년 평판 게임으로 확장한다. 단, 본 연구의 주요 검증(H1\~H6)은 §3.3의 정적 균형에서 도출되며, 본 절의 동적 결과는 §6.4 출연금형 phase coherence 분석의 메커니즘적 해석에 한해 활용된다.
 
-  본 모형의 stage game은 단일 평가 라운드에서의 균형을 다룬다. 그러나 한국 출연기관·공공기관은 다년 반복 게임에 노출되며, 이때 집단 평판(collective reputation)이 추가 인센티브로 작용한다 (@holmstrom1999; @dewatripont1999).
+  본 모형의 stage game은 단일 평가 라운드에서의 균형을 다룬다. 그러나 한국 출연기관·공공기관은 다년 반복 게임에 노출되며, 이때 집단 평판(collective reputation)이 추가 인센티브로 작용한다 @holmstrom1999 @dewatripont1999.
 
   동적 게임 setup: 연도 $t = 1, 2, ..., T$에서 활동 $i in cal(I)_("모기관")$ (동일 모기관 산하 출연기관 활동)이 시점 노력 $e_(i,t)$를 선택한다. 모기관의 진정한 평가 기준 $mu^* in RR$은 시점 평가 가중을 결정한다. 구체적으로, 활동 $i$가 인지하는 시점 가중은 $w_t(mu^*)$이며, $mu^*$가 클수록 집행률 평가에 더 높은 가중이 부여된다($w_t' (mu^*) > 0$). $mu^*$는 불확실하므로 agent들은 동료 활동의 평가 결과를 통해 이를 학습한다.
 
@@ -366,11 +366,11 @@
 
   Nash 수렴 (collective synchronization): 모든 활동이 공통 신호 ${s_(j,t-1)}$에 노출되어 $hat(mu)_(i,t)$가 유사한 분포로 수렴하면 (LLN), 모든 $i$의 $tilde(w)_t (hat(mu)_(i,t))$가 동기화 → FOC를 통해 $e_(i,t)^*$도 동기화:
   $ "phase"(e_(i,t)^*) approx "phase"(e_(j,t)^*) quad forall i, j in cal(I)_("모기관") $
-  이는 공공 정보 신호 하 coordination 균형(@morris2002)의 한국 변형으로 해석된다. 단, 원 논문은 공공 신호 정밀도 증가가 과잉 동조를 유발해 사회후생을 오히려 낮출 수 있음을 함께 보였다. 본 연구의 평가 제도 정밀화 처방은 이 ambiguity를 인식한 전제 위에서 설계되어야 한다.
+  이는 #cite(<morris2002>, form: "prose")의 공공 정보 신호 하 coordination 균형을 한국적으로 변형한 것으로 해석된다. 단, 원 논문은 공공 신호 정밀도 증가가 과잉 동조를 유발해 사회후생을 오히려 낮출 수 있음을 함께 보였다. 본 연구의 평가 제도 정밀화 처방은 이 ambiguity를 인식한 전제 위에서 설계되어야 한다.
 
   우리 실증과의 정확한 대응: 출연금형 phase coherence 0.54 (다른 원형 0.08\~0.13의 4\~7배; 부록 D.3)는 이 효과적 가중 동기화의 직접 측정이다 — 활동 $i, j$가 학습된 $hat(mu)$를 통해 동시에 피크에 도달함. 인건비형 phase coherence 0.41(통제)은 구조적 균등 지급에 따른 자연 동기화로 해석된다. 반면 자산취득형(0.08)·정상사업(0.13)의 낮은 수치는 동료 평가 신호 학습이 약한 사업 환경, 즉 모기관-위탁기관 결속이 출연금형보다 약한 환경의 발현으로 해석된다.
 
-  후속 연구의 자연 출발점: 본 동적 mechanism의 정량 검증은 연도별 평가 결과 패널과 agent 행동 lag 분석으로 가능 (@sannikov2008 연속시간 P-A 모형 확장). $w_R$ 정량 측정 (모기관별 출연기관 평가 결과 분산 → 집단 평판 신호 강도)도 후속 자연 실험의 핵심 calibration 대상이다.
+  후속 연구의 자연 출발점: 본 동적 mechanism의 정량 검증은 연도별 평가 결과 패널과 agent 행동 lag 분석으로 가능 (#cite(<sannikov2008>, form: "prose") 연속시간 P-A 모형 확장). $w_R$ 정량 측정 (모기관별 출연기관 평가 결과 분산 → 집단 평판 신호 강도)도 후속 자연 실험의 핵심 calibration 대상이다.
 
 == 사업원형별 균형 예측
 
@@ -579,7 +579,7 @@
 
 === 회귀불연속 설계(RDD)
 
-  직관: 회계연도 12월 1일은 행정적으로 연속적인 시간에 인위적으로 그어진 선이다. 사업의 본질적 필요와 무관하게 이 선 직전·직후로 집행 패턴이 점프한다면 그 점프는 외생적 회계 cycle에 의한 것으로 해석할 수 있다(@imbens2008; @lee2010). 본 연구는 활동 단위 11월 vs 12월 일평균 비율을 사용해 비율형 점프 배수로 보고한다(미국 Liebman-Mahoney 4.9배 형식과 비교 가능). 식별 가정·국지 선형 추정량 식·DID/IV/month-FE와의 비교는 부록 C.10.
+  직관: 회계연도 12월 1일은 행정적으로 연속적인 시간에 인위적으로 그어진 선이다. 사업의 본질적 필요와 무관하게 이 선 직전·직후로 집행 패턴이 점프한다면 그 점프는 외생적 회계 cycle에 의한 것으로 해석할 수 있다 @imbens2008 @lee2010. 본 연구는 활동 단위 11월 vs 12월 일평균 비율을 사용해 비율형 점프 배수로 보고한다(미국 Liebman-Mahoney 4.9배 형식과 비교 가능). 식별 가정·국지 선형 추정량 식·DID/IV/month-FE와의 비교는 부록 C.10.
 
   주제 적합성: 한국 회계연도 cutoff는 (a) 1948년 이래 불변, (b) 모든 부처에 동시 적용, (c) 개별 활동이 조작 불가능 — RDD의 세 핵심 가정을 만족하는 강한 식별 환경이다. 다만 월 단위 집계 자료와 McCrary 밀도 검정 미실시로 완전한 자연실험은 아니며, 인과 해석은 §8.2 식별 한계와 함께 읽어야 한다. #cite(<liebman2017>, form: "prose")가 미국 회계연도(9/30 종료)에서 cutoff 며칠 차이로 4.9배 점프와 품질 하락을 입증한 설계 논리는 한국 회계연도(12/31 종료)에도 적용 가능하다. 실제 분석에서는 전체 1.91배, 자산취득형(C1 군집 풀링 n=99) 3.42배의 점프를 확인한다. 같은 활동의 단 며칠 차이를 비교하므로 분야·기관·사업 특성이 자동 통제되는 준실험이다.
 
@@ -1250,7 +1250,7 @@
 
   시민 일상영향과의 매듭짓기: 서론 §1.2에서 제기한 시민 영향 4경로(복지 수혜·농가 실수령·환경 결과·공공서비스 품질)는 본 분석 후에도 동일 결론을 유지한다 — 견고한 것은 측정 격차의 직접 귀결(공공서비스 품질)이고, 결과 측 3경로(복지 $r=-0.86$이나 기각, 농가 Sobel 유의이나 미확증, 환경 탐색적)는 탐색적·미확증으로 남는다(상세 수치는 §1.2·§6.5\~§6.7).
 
-  광역 framing: 한국 재정 집행의 굿하트 게임이 고정 패턴이 아닌 진행 중인 동적 현상이라는 본 발견은, 평가 제도 자체가 측정 대상 행동의 분포를 변화시킨다는 Performative Prediction(@hardt2016strategic; @perdomo2020performative)의 한국 인접 사례로 해석될 수 있다. 다만, 원 framework의 분포 이동(distribution shift)이 stable equilibrium으로 수렴하는 것과 본 분석의 +554\% 동적 강화는 직접적 예측 관계에 있지 않으며, §6.8에서 학습 적응과 COVID 충격의 합성 메커니즘으로 분리·재해석된다. 후속 연구는 국제 비교(미국·일본·EU)와 자연 실험을 통해 어떤 제도 조건에서 이 동적 강화가 억제되는가를 밝힐 수 있을 것이다.
+  광역 framing: 한국 재정 집행의 굿하트 게임이 고정 패턴이 아닌 진행 중인 동적 현상이라는 본 발견은, 평가 제도 자체가 측정 대상 행동의 분포를 변화시킨다는 Performative Prediction의 한국 인접 사례로 해석될 수 있다 @hardt2016strategic @perdomo2020performative. 다만, 원 framework의 분포 이동(distribution shift)이 stable equilibrium으로 수렴하는 것과 본 분석의 +554\% 동적 강화는 직접적 예측 관계에 있지 않으며, §6.8에서 학습 적응과 COVID 충격의 합성 메커니즘으로 분리·재해석된다. 후속 연구는 국제 비교(미국·일본·EU)와 자연 실험을 통해 어떤 제도 조건에서 이 동적 강화가 억제되는가를 밝힐 수 있을 것이다.
 
 
 
@@ -1392,8 +1392,8 @@ P-A 모형 기호 (§3, 부록 F)
 - Holmstrom-Milgrom Impossibility: 측정성 격차가 큰 환경에서 어떠한 인센티브 가중치도 1차 최적이 될 수 없다는 이론적 결과. 본 연구의 정책 권고가 완전 해결을 약속하지 않는 이론적 근거.
 - Fortuitous Alignment: Agent의 균형 행동($e_t^*$)이 Principal의 사회 결과($Y$)와 우연히 정렬되는 경우. 본 연구의 사회복지 자동분배 상관(H5, §6.7서 메커니즘 부재로 기각)의 모형 frame. 분야 함수 $alpha(theta_("field")) = (partial Y) / (partial e_t)$의 우연한 양수성으로 정식화.
 - Baker Distortion @baker1992: 측정 지표 $M$과 진정한 가치 $V$ 간 한계 생산성 격차 ($(partial M) / (partial e) != (partial V) / (partial e)$). 본 모형의 측정성 격차 함수 $phi'(\cdot) < 1$는 Baker의 distortion 차원에 직접 대응. (Baker는 distortion에 더해 measurement noise도 함께 분석했으나, 본 모형은 회계 시계열의 잡음이 작은 환경에 적용되어 distortion 차원이 지배적이다.)
-- Career Concerns (@holmstrom1999; @dewatripont1999): 평가가 단일 stage가 아닌 다년 평판 신호로 작동하는 PA 동적 균형. 출연기관의 모기관 결속 평판이 집단 동기화(phase coherence 0.54)를 유발.
-- Performative Prediction (@hardt2016strategic; @perdomo2020performative): 지표가 학습 대상이 되는 순간 분포가 변화한다는 ML-economics 교차 프레임. 본 연구의 H6 시간 강화(+554\%)는 행정 시스템에서의 인접 사례 — 단, 원 framework은 distribution shift의 stable equilibrium 수렴을 다루며, 한국 +554\%는 그 직접 예측이라기보다 학습 적응 + COVID 충격 합성으로 §6.8에서 재해석된다.
+- Career Concerns @holmstrom1999 @dewatripont1999: 평가가 단일 stage가 아닌 다년 평판 신호로 작동하는 PA 동적 균형. 출연기관의 모기관 결속 평판이 집단 동기화(phase coherence 0.54)를 유발.
+- Performative Prediction @hardt2016strategic @perdomo2020performative: 지표가 학습 대상이 되는 순간 분포가 변화한다는 ML-economics 교차 프레임. 본 연구의 H6 시간 강화(+554\%)는 행정 시스템에서의 인접 사례 — 단, 원 framework은 distribution shift의 stable equilibrium 수렴을 다루며, 한국 +554\%는 그 직접 예측이라기보다 학습 적응 + COVID 충격 합성으로 §6.8에서 재해석된다.
 - Strategic Classification #cite(<hardt2016strategic>): 분류기가 평가 도구가 되는 순간 입력 분포가 전략적 적응된다는 ML 이론. Performative Prediction의 정적 버전.
 - 연성 예산 제약 (Soft Budget Constraint): 시장 규율 대신 모기관·정부의 사후 보전을 기대해 예산 제약이 약화되는 현상@kornai1980.
 - 매개분석 (Mediation): $X arrow M arrow Y$ 경로의 간접 효과를 직접 효과 $X arrow Y$로부터 분리하는 회귀 기법. 본 연구는 Baron-Kenny 회귀 절차 + Sobel 검정 + Bootstrap CI 사용.
@@ -1432,7 +1432,7 @@ P-A 모형 기호 (§3, 부록 F)
 
 == C.1 FFT — DFT 정의·`amp_12m_norm` 비율식·약점
 
-이산 푸리에 변환(DFT): 길이 $N$의 신호 $x_n$에 대해 (@cooley1965 의 FFT 알고리즘으로 $O(N log N)$ 계산)
+이산 푸리에 변환(DFT): 길이 $N$의 신호 $x_n$에 대해 (#cite(<cooley1965>, form: "prose")의 FFT 알고리즘으로 $O(N log N)$ 계산)
 $ hat(x)_k = sum_(n=0)^(N-1) x_n e^(-i 2 pi k n / N), quad k=0,1,...,N-1 $
 $|hat(x)_k|$=주파수 $f_k = k\/N$ 성분의 진폭, $arg(hat(x)_k)$=위상.
 
@@ -1456,7 +1456,7 @@ STL의 약점: (a) LOESS 대역폭(span) 선택 민감 — 좁으면 점프를 �
 
 == C.3 NeuralProphet — 6항 모형·AR-Net·Prophet 차이·하이퍼파라미터
 
-Full 6항 모형 (@triebe2021, eq. 1):
+Full 6항 모형 (#cite(<triebe2021>, form: "prose"), eq. 1):
 $ y_t = T(t) + S(t) + E(t) + A(t) + sum_(j=1)^p F_j (t) + L(t) + epsilon_t $
 
 - $T(t)$=piecewise-linear 추세, $C$개 자동 변화점:
@@ -1500,7 +1500,7 @@ $ "loss" = sum_(i j) [a_(i j) log (a_(i j)) / (b_(i j)) + (1 - a_(i j)) log (1 -
 하이퍼파라미터: 본 연구에서 사용한 UMAP 파라미터는 다음과 같다 — `n_neighbors=30` (국소 구조 보존 이웃 수; 클수록 전역 구조 강조), `min_dist=0.05` (저차원 최소 점간 거리; 작을수록 군집 밀도 강화), `metric='euclidean'` (고차원 거리 측도), `n_components=2` (2차원 임베딩), `random_state=42` (재현 가능 고정 시드). Python: `umap.UMAP(n_neighbors=30, min_dist=0.05, metric='euclidean', n_components=2, random_state=42)`.
 
 vs PCA: 선형 투영이라 비선형 매니폴드(U자, 환상 구조) 망가뜨림.
-vs t-SNE: KL divergence 사용 — 전역 거리 부정확 압축. UMAP은 fuzzy set 이론으로 전역 구조도 잘 보존 (@mcinnes2018, §3).
+vs t-SNE: KL divergence 사용 — 전역 거리 부정확 압축. UMAP은 fuzzy set 이론으로 전역 구조도 잘 보존 (#cite(<mcinnes2018>, form: "prose"), §3).
 vs Autoencoder: 학습 데이터 양·아키텍처 의존; UMAP은 결정론적(`random_state=42`)이고 작은 데이터에 안정.
 
 == C.5 HDBSCAN — mutual reachability·MST·대안
