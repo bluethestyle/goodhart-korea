@@ -388,7 +388,7 @@
       [출연금형], [큼], [작음], [중간 (분산 가능)], [큼, 연 사이클 분산],
       [정상사업], [중간], [중간], [중간], [중간],
     ),
-    caption: [사업원형별 모형 균형 예측 — 비용 함수와 평가 가중의 차이가 4개 패턴을 도출],
+    caption: [사업원형별 전략적 균형 예측 — 비용 부담 구조와 평가 가중치의 차이가 4개 집행 패턴을 도출],
   )
 
 == 실증 검증 가설
@@ -460,7 +460,7 @@
       [통일외교], [ODA 원조규모], [24년], [OECD DAC (e-나라지표 1687)],
       [공공질서], [범죄 발생], [29년], [경찰청 (e-나라지표 1606)],
     ),
-    caption: [14분야 결과변수 매핑],
+    caption: [14개 분야별 결과변수(성과지표) 매핑],
   )
 
   국방과 예비비는 측정 불가능 분야로 명시 후 분석에서 제외했다.
@@ -621,7 +621,7 @@
       [확장 B], [$w_t/w_q$ calibration — 메커니즘 재해석], [§6.11],
       [확장 C], [거시 outcome 보완 — ALIO 부분 수집], [§6.12],
     ),
-    caption: [P-A 모형의 6 가설과 결과 절의 검증 매핑],
+    caption: [주인-대리인(P-A) 모형의 6 가설과 결과 절의 검증 매핑],
   )
 
   본 연구는 11개 분석 도구를 가설별로 분담시킨다. 각 가설은 1차 검증 도구로 핵심 결과를 도출하고, 보조·견고성 도구로 robust 여부를 점검하는 트라이앵귤레이션 구조다.
@@ -639,7 +639,7 @@
       [H5], [1차 차분 상관 ($r = -0.86$; Bonferroni 미달)], [Permutation, FWL CPI 통제 — 부호만 견고, 인과 미확증·메커니즘 부재로 기각],
       [H6], [Continuous Wavelet Transform (Morlet)], [STL 자기 비판 + NeuralProphet 중재 (§6.9)],
     ),
-    caption: [가설 × 분석 도구 매트릭스 — 12개 1차 도구의 가설별 분담 (FFT·STL·NeuralProphet·UMAP·HDBSCAN·Mapper·PH·FE 회귀·Co-clustering·RDD·매개분석·CPI 외생통제); 추가로 Permutation·Lag/Lead·CV가 견고성 검증 도구로 사용된다 (부록 C.1\~C.13에 13개 서브섹션으로 정리).],
+    caption: [가설 × 분석 도구 매트릭스 — 12개 1차 도구의 가설별 분담 (주파수분석(FFT)·계절분해(STL)·신경망예측(NeuralProphet)·차원축소(UMAP)·밀도군집(HDBSCAN)·위상그래프(Mapper)·지속적 호몰로지(PH)·고정효과 회귀(FE)·공동군집(Co-clustering)·회귀불연속(RDD)·매개분석·소비자물가 외생통제(CPI)); 추가로 순열검정(Permutation)·시차분석(Lag/Lead)·변동계수(CV)가 견고성 검증 도구로 사용된다 (부록 C.1\~C.13에 13개 서브섹션으로 정리).],
   )
 
 == H1 검증 — 분야 trivial, 사업원형이 진짜 분석 단위
@@ -679,33 +679,33 @@
 
 #figure(
   image("figures/h3_umap.png", width: 100%),
-  caption: [\[H1 검증\] 활동 임베딩 UMAP — 4개 사업원형 (1,557 활동 × 12 피처)],
+  caption: [\[H1 검증\] 활동 임베딩 UMAP — 4개 사업원형 (1,557 활동 × 12개 특성변수를 2차원으로 압축)],
 ) <fig-umap>
 
 #figure(
   image("figures/h4_mapper_amp.png", width: 70%),
-  caption: [\[H1.b 검증\] Mapper graph — 평균 amp_12m_norm 색상. \ 32 nodes / 38 edges / 10 components / 7 loops. 노드 크기는 활동 수에 비례.],
+  caption: [\[H1.b 검증\] Mapper graph — 노드 색상은 평균 12개월 집행 진폭(amp_12m_norm). \ 32 노드 / 38 엣지 / 10 연결성분 / 7 루프. 노드 크기는 활동 수에 비례.],
 ) <fig-mapper-amp>
 
 #figure(
   image("figures/h4_mapper_cluster.png", width: 70%),
-  caption: [\[H1.b 검증\] Mapper graph — 동일 그래프, HDBSCAN 사업원형(4 archetype) 색상.\ 위상적으로 분리된 4 archetype 검증.],
+  caption: [\[H1.b 검증\] Mapper graph — 동일 그래프, 밀도 군집(HDBSCAN)으로 도출한 사업원형(archetype) 색상.\ 위상적으로 분리된 4개 사업원형 검증.],
 ) <fig-mapper-cluster>
 
 #figure(
   image("figures/h9_pd.png", width: 80%),
-  caption: [\[H1.b 검증\] Persistence Diagram — Vietoris-Rips, N=300, max thresh=8.0.\ H0(파랑)·H1(빨강) birth-death 쌍.],
+  caption: [\[H1.b 검증\] 지속성 다이어그램(Persistence Diagram) — Vietoris–Rips 복합체, N=300, 최대 임계 8.0.\ H0(파랑, 연결성분)·H1(빨강, 루프)의 생성–소멸(birth–death) 쌍.],
 ) <fig-ph-pd>
 
 #figure(
   image("figures/h9_barcode.png", width: 78%),
-  caption: [\[H1.b 검증\] H1 Barcode — 가장 오래 지속되는 30개 loop의 birth-death 막대.\ max persistence = 0.671.],
+  caption: [\[H1.b 검증\] H1 바코드(1차 호몰로지) — 가장 오래 지속되는 30개 루프(loop)의 생성–소멸 막대.\ 최대 지속성(max persistence) = 0.671.],
 ) <fig-ph-barcode>
 
 
 #figure(
   image("figures/h9_bootstrap.png", width: 78%),
-  caption: [\[H1.b 검증\] Bootstrap PH 50회 (n=200) — H1 max persistence 95% CI [0.48, 1.19].\ null(feature-shuffled) 분포 대비 Wasserstein-2 검증(관측 mean 0.885 vs null 1.524, $p < 0.0001$)으로 전체 diagram 강건성 입증.],
+  caption: [\[H1.b 검증\] 지속적 호몰로지(PH) 부트스트랩 50회 (n=200) — H1 최대 지속성 95% CI [0.48, 1.19].\ 피처 무작위 치환(null, feature-shuffled) 분포 대비 Wasserstein–2 검증(관측 평균 0.885 vs null 1.524, $p < 0.0001$)으로 전체 다이어그램 강건성 입증.],
 ) <fig-ph-bootstrap>
 
 #rect(
@@ -749,7 +749,7 @@
       [S4 heavy spike], [4.10× \[3.88, 4.32\]], [12월 첫 7일 = 50% 가정],
       [Liebman 미국 benchmark], [4.9×], [주별 자료 직접 관측],
     ),
-    caption: [\[H2 granularity 강건성\] 가상 주별 시나리오 — 가장 적극적 가정(S4)에서도 한국 4.10×로 미국 4.9× 미달],
+    caption: [\[H2 자료 세분화(granularity) 강건성\] 가상 주별 시나리오 — 가장 적극적 가정(S4)에서도 한국 4.10×로 미국 4.9× 미달],
   )
 
   가장 적극적인 front-load 가정(S4, 12월 첫 7일 = 50\%) 하에서도 한국 추정 비율은 4.10×로 미국 4.9×에 미달한다. 양국 차이는 단순 granularity 산물이 아니며 — 제도 구조적 차이(조달 유형, 회계 분권화 정도)가 본질적 요인이다.
@@ -771,7 +771,7 @@
 
 #figure(
   image("figures/h22_rdd_yearly.png", width: 80%),
-  caption: [\[H2 검증\] 연도별 12월 점프 (활동 중앙값 log 일집행액 12월 − 11월).\ 전체 RDD β=0.65 (1.91배, 주황 점선), #cite(<liebman2017>, form: "prose") 미국 ×4.9 참조선(보라 점선; β≈1.59) 대비.],
+  caption: [\[H2 검증\] 연도별 12월 점프 (활동 중앙값 로그 일집행액, 12월 − 11월).\ 전체 RDD 추정계수 β=0.65 (집행액 1.91배, 주황 점선), #cite(<liebman2017>, form: "prose") 미국 ×4.9 참조선(보라 점선; β≈1.59) 대비.],
 ) <fig-rdd-yearly>
 
 #figure(
@@ -781,7 +781,7 @@
 
 #figure(
   image("figures/eda/fig_slide22_cutoff_bars.png", width: 100%),
-  caption: [\[H2 확장\] archetype × 분기말 cutoff RDD 분해 — C1 자산취득형은 4개 cutoff 모두 유의(12월 ×3.42, 6월 ×2.50, 9월 ×1.80, 3월 ×1.53), C2 출연금형은 4개 모두 ns. cutoff 응답성이 archetype별로 달라 H2(점프)·H3(사이클) 도구 분기의 경험적 근거가 된다.],
+  caption: [\[H2 확장\] 사업원형 × 분기말 마감(cutoff) RDD 분해 — C1 자산취득형은 4개 마감 모두 유의(12월 ×3.42, 6월 ×2.50, 9월 ×1.80, 3월 ×1.53), C2 출연금형은 4개 모두 통계 미달(ns). 마감 반응성이 사업원형별로 달라 H2(점프)·H3(사이클) 도구 선택의 경험적 근거가 된다.],
 ) <fig-rdd-cutoff-archetype>
 
 == H3 검증 — 출연금형 사이클 우세 (PSD·Phase·Coherence·Wavelet)
@@ -848,14 +848,14 @@
       [*C2 출연금형*], [*×1.27*], [*연 cycle 지속*], [0.05],
       [C3 정상사업], [×1.36], [12월 누적 재현], [0.06],
     ),
-    caption: [\[H3 forecast 확장\] AR-Net($n\_"lags" = 12$)로 산출한 2026년 12월 peak 예측 — 4 archetype 모두 cycle 패턴 유지. MAE 0.05\~0.07로 forecast horizon 12개월 내 안정.],
+    caption: [\[H3 forecast 확장\] AR-Net($n\_"lags" = 12$, 자기회귀 신경망)으로 산출한 2026년 12월 peak 예측 — 4 사업원형 모두 cycle 패턴 유지. 평균절대오차(MAE) 0.05\~0.07로 12개월 예측구간(forecast horizon) 내 안정.],
   ) <tbl-arnet-forecast>
 
   해석: cycle은 과거 회고가 아니라 진행형 패턴이다. Spec B는 (a) Spec A의 archetype 순서를 유지(C2 > C3 > C1 > C0), (b) 2026 미래로 외삽해도 cycle이 사라지지 않음을 시사. 단, AR-Net 예측은 현행 평가 제도의 stationary 가정에 의존하므로, 본 권고 1–3이 실현되면 forecast는 반사실적(counterfactual)으로 재산출되어야 한다. 본 결과는 H3 가설의 시간 외삽 robustness에 해당하며, 부록 D.5에 추가 robustness check를 정리한다.
 
   #figure(
     image("figures/h29_np_forecast.png", width: 85%),
-    caption: [\[H3 forecast\] archetype별 12개월 ahead AR-Net 예측 — C2 출연금형 cycle이 2026년에도 재현됨을 시각화. shaded 영역은 95% prediction interval.],
+    caption: [\[H3 forecast\] 사업원형별 12개월 후행(ahead) AR-Net 예측 — C2 출연금형 cycle이 2026년에도 재현됨을 시각화. 음영 영역은 95% 예측구간(prediction interval).],
   ) <fig-np-forecast>
 
   #block(breakable: false)[
@@ -865,7 +865,7 @@
 
   #figure(
     image("figures/h30_triangulation.png", width: 78%),
-    caption: [\[§6.5\] 15분야 × 3도구(FFT·STL·NP) outcome 상관 heatmap — 음(파랑)=시점집중↔outcome 악화. FFT·NP가 음으로 일관해도 STL 부호가 갈리는 측도 의존 분야(예: 보건·농림수산)가 분리된다. 상보적 트라이앵귤레이션의 가시화.],
+    caption: [\[§6.5\] 15분야 × 3도구(FFT 주파수분해·STL 계절분해·NP 신경망예측) outcome 상관 heatmap — 음(파랑)=시점집중↔outcome 악화. FFT·NP가 음으로 일관해도 STL 부호가 갈리는 측도 의존 분야(예: 보건·농림수산)가 분리된다. 상보적 트라이앵귤레이션의 가시화.],
   ) <fig-triangulation>
   ]
 
@@ -917,25 +917,25 @@
 
 #figure(
   image("figures/h6_robustness.png", width: 100%),
-  caption: [\[H5 검증\] 견고성 검증 — (a) FE 회귀 β + 95% CI (N=128, 분야 FE 추가에도 β 유의 안 함).\ (b) 14분야 Permutation forest (점=관측, 띠=null 95% CI).\ 사회복지 obs=−0.762, p=0.035로 14분야 중 부호상 유일 유의(단 Bonferroni 미달; §6.7서 메커니즘 부재로 기각).],
+  caption: [\[H5 검증\] 견고성 검증 — (a) 고정효과(FE) 회귀 β + 95% CI (N=128, 분야 고정효과 추가에도 β 유의하지 않음).\ (b) 14분야 순열검정(Permutation) forest (점=관측, 띠=무작위 기준선(null) 95% CI).\ 사회복지 관측=−0.762, p=0.035로 14분야 중 부호상 유일 유의(단 Bonferroni 다중비교 미달; §6.7서 메커니즘 부재로 기각).],
 ) <fig-h6>
 #pagebreak()
 #v(-2em)
 
 #figure(
   image("figures/h6_lag_amp.png", width: 100%),
-  caption: [견고성 검증 (계속) — (c) Lag/Lead 차분 상관 heatmap (k=−2..+2).\ (d) 분야별 amp_12m 시간 변동계수(amp_cv) — 사회복지(빨강 강조)는 변동성이 크지 않으나\ outcome과 강한 상관, 즉 자연 주기보다 KPI 압력 가설을 지지.],
+  caption: [견고성 검증 (계속) — (c) 시차(Lag)/선행(Lead) 차분 상관 heatmap (k=−2..+2).\ (d) 분야별 12개월 집행 진폭(amp_12m)의 시간 변동계수(amp_cv) — 사회복지(빨강 강조)는 변동성이 크지 않으나\ outcome과 강한 상관, 즉 자연 주기보다 KPI 압력 가설을 지지.],
 ) <fig-h6-lag>
 #v(-0em)
 
 #figure(
   image("figures/h10_cpi_control.png", width: 85%),
-  caption: [\[H5 보조\] CPI 외생 통제 — 전 분야 부호 유지,\ 약 70% 유의성 유지. 사회복지 r=−0.76 → −0.86 강화로 자연 cycle 가설 기각.],
+  caption: [\[H5 보조\] 소비자물가(CPI) 외생 통제 — 전 분야 부호 유지,\ 약 70% 유의성 유지. 사회복지 r=−0.76 → −0.86 강화로 자연 계절주기(cycle) 가설 기각.],
 ) <fig-h10>
 
 #figure(
   image("figures/h8_panel.png", width: 100%),
-  caption: [\[H1 검증\] 분야 라벨 trivial 검정 — 분야 FE 단독 ΔR²=0.000,\ 사업원형×Δamp 추가 ΔR²=+0.025 (R²: 0.014 → 0.038)],
+  caption: [\[H1 검증\] 분야 라벨 무효(trivial) 검정 — 분야 고정효과(FE) 단독 설명력 증분 ΔR²=0.000,\ 사업원형×진폭변화(Δamp) 추가 시 ΔR²=+0.025 (R²: 0.014 → 0.038)],
 ) <fig-h8>
 
 === H5 강건성 검증
@@ -952,7 +952,7 @@
       [Spearman $rho$], [$-0.833$], [음], [순위 기반 — 외값 robust],
       [Kendall $tau$], [$-0.714$], [음], [순위 일치도 — 비모수 robust],
     ),
-    caption: [\[H5 강건성\] 사회복지 집행률 × wealth_gini 1차 차분 — 3개 측도 모두 음 부호 일관],
+    caption: [\[H5 강건성\] 사회복지 집행률 × 순자산 지니계수(wealth_gini) 1차 차분 — 3개 측도 모두 음 부호 일관],
   )
 
   Leave-One-Out 안정성: 8개 연도에서 각각 1년씩 제거하며 Pearson을 재계산. 8/8 iterations에서 부호 보존, 최악의 경우(2025 제거 시) $r = -0.539$로 약화되나 부호는 음 유지. 5년 rolling window 4개 모두 음 상관, post-2020 split ($n = 6$) $r = -0.708$. 단일 leverage point가 결과를 주도하지 않음.
@@ -963,7 +963,7 @@
 
 #figure(
   image("figures/h10_v3_robustness.png", width: 100%),
-  caption: [\[H5 강건성\] Pearson / Spearman / Kendall 3-측도 비교 + Leave-One-Out 안정성.\ 모든 측도에서 음 부호 유지, LOO 최악 $r = -0.539$ (2025 제거). 95% Bootstrap CI $[-0.988, -0.153]$.],
+  caption: [\[H5 강건성\] Pearson / Spearman / Kendall 3-측도 비교 + 1년씩 제외(Leave-One-Out) 안정성.\ 모든 측도에서 음 부호 유지, LOO 최악 $r = -0.539$ (2025 제거). 95% 부트스트랩 CI $[-0.988, -0.153]$.],
 ) <fig-h10-v3-robust>
 
 == H6 검증 — 시간 동적 강화 (Wavelet)
@@ -983,7 +983,7 @@
       [출연금형], [0.201], [1.316], [*$+553.5\%$*],
       [정상사업], [0.057], [0.237], [*$+314.3\%$*],
     ),
-    caption: [원형별 12m wavelet power 시간 진화 — 출연금형 6.5배 강화. 출연금형 변화율 정밀값 +553.5%, 본문 인용 시 반올림 +554%.],
+    caption: [원형별 12개월 주기 wavelet power(웨이블릿 파워) 시간 진화 — 출연금형 6.5배 강화. 출연금형 변화율 정밀값 +553.5%, 본문 인용 시 반올림 +554%.],
   )
 
   모형 검증 (H6) — $w_t / w_q$ 비율의 시간 증가: P-A 모형의 비교정역학에서 $(partial e_t^*) / (partial w_t) > 0$이므로, 평가 가중 비율 $w_t / w_q$가 시간에 따라 증가하면 균형 시점 조정 노력 $e_t^*$도 증가해야 한다. 한국에서 $w_t / w_q$ 증가의 plausible 동인:
@@ -1001,7 +1001,7 @@
 
 #figure(
   image("figures/h28_evolution.png", width: 80%),
-  caption: [\[H6 검증\] 12개월 cycle 진폭의 연도별 진화 — 출연금형 +554% 강화, 인건비형 변화 없음(통제). 정책 변화점 (2017 국가재정법 시행 후 10년, 2020 COVID 확장재정) annotate.],
+  caption: [\[H6 검증\] 12개월 주기 진폭의 연도별 진화 — 출연금형 +554% 강화, 인건비형 변화 없음(통제). 정책 변화점 (2017 국가재정법 시행 후 10년, 2020 COVID 확장재정) 표시.],
 ) <fig-h28-evol-body>
 
 === 시기 분할 검증 — COVID 충격 vs Performative Prediction
@@ -1018,7 +1018,7 @@
       [COVID (2019–2021)], [1.049], [+0.246], [급격 증폭],
       [Post-COVID (2022–2025)], [1.375], [−0.215], [plateau, 완만 하강],
     ),
-    caption: [\[H6 시기 분할\] 출연금형 12개월 wavelet power 3구간 분해 — 전환율: Pre→COVID +295.8%, COVID→Post +31.1%],
+    caption: [\[H6 시기 분할\] 출연금형 12개월 wavelet power(주기 강도) 3구간 분해 — 구간 전환 증가율: 코로나 이전→코로나기 +295.8%, 코로나기→이후 +31.1%],
   )
 
   해석 — qualifier 추가: +554\% 결과는 (a) 2015\~2018 기간의 완만한 추세적 강화 (slope +0.068/yr)가 (b) 2019\~2021 COVID 확장재정 충격으로 급격히 증폭된 결과이다. 2022\~2025 post-COVID 구간에서는 plateau로 안정화되었으나 (slope −0.215/yr) 사전 baseline으로 회귀하지 않았다. Performative Prediction 해석은 전체 11년에 걸친 monotonic 학습 적응이 아니라 COVID 이전의 완만한 강화 + COVID 충격 후 elevated plateau로 qualifier가 필요하다. 헤드라인 +554\%는 실제이며 elevation도 지속적이지만, 증가량의 대부분은 COVID기 확장재정이 만들어낸 체제 전환(Pre→COVID +295.8\%)에서 기인한다.
@@ -1040,7 +1040,7 @@
 
 #figure(
   image("figures/h9_v3_time_evo.png", width: 100%),
-  caption: [\[TDA 시간 진화\] 연도별 Wasserstein-2 거리 시계열 (2015 baseline 대비) vs 출연금형 wavelet power.\ 두 시계열의 약한 상관($r = 0.242$, $p = 0.473$)이 TDA(공간 위상)와 wavelet(시간 위상)의 직교성을 확인.],
+  caption: [\[TDA 시간 진화\] 연도별 위상구조 변화량(Wasserstein–2 거리, 2015 기준) 시계열 vs 출연금형 wavelet power.\ 두 시계열의 약한 상관($r = 0.242$, $p = 0.473$)은 공간 위상(TDA)과 시간 위상(wavelet)이 서로 독립적인 신호를 측정함을 확인.],
 ) <fig-h9-v3-time-evo>
 
 == 부분 structural calibration — $w_t / w_q$ 비율 외부 추정
@@ -1057,7 +1057,7 @@
       [경영평가편람 위탁(주요사업, 2023)], [56.4], [43.6], [1.29],
       [NST 출연기관 연구사업], [30], [70], [0.43],
     ),
-    caption: [\[Calibration\] 공식 평가편람에서 추출한 implied $w_t / w_q$ 비율 — archetype별 큰 격차 확인],
+    caption: [\[Calibration\] 공식 평가편람에서 추출한 집행 가중치 대 품질 가중치 비율($w_t / w_q$) — 사업원형(archetype)별 큰 격차 확인],
   )
 
   Cross-archetype 예측 검증: 모형 예측은 "$w_t / w_q$ 큰 archetype에서 게임화 강도(amp_12m) 큼." 위탁(1.29) > 재정사업(0.75) > 출연 연구(0.43) 순서가 archetype별 amp_12m 순서와 방향 일치 (자산취득형·일반사업 > 정상사업 > 출연 R&D 일부 > 인건비형).
@@ -1072,7 +1072,7 @@
 
 #figure(
   image("figures/v3_calibration.png", width: 85%),
-  caption: [\[Calibration\] 공식 평가편람 추출 implied $w_t / w_q$ 비율과 archetype별 실측 amp_12m 비교.\ 위탁(1.29) > 재정사업(0.75) > 출연 연구(0.43) 순서가 amp_12m 순서와 방향 일치. 재정사업 비율은 2005년 이래 stable 0.75 — H6 +554%의 weight 채널 기여를 기각.],
+  caption: [\[Calibration\] 공식 평가편람 추출 집행 가중치 대 품질 가중치 비율($w_t / w_q$)과 사업원형별 실측 12개월 진폭(amp_12m) 비교.\ 위탁(1.29) > 재정사업(0.75) > 출연 연구(0.43) 순서가 amp_12m 순서와 방향 일치. 재정사업 비율은 2005년 이래 0.75로 안정 — H6 +554% 강화에 대한 가중치 채널 기여를 기각.],
 ) <fig-v3-calibration>
 
 == 거시 outcome 보완 — ALIO 공공기관 경영평가
@@ -1089,7 +1089,7 @@
 
 #figure(
   image("figures/v3_alio_grades.png", width: 90%),
-  caption: [\[ALIO 경영평가 등급 분포\] 2022–2024년 수집된 105개 공기업·준정부기관의 등급(S/A/B/C/D/E) 분포.\ 주관 부처 기준 97% 매칭. 본격 분석은 데이터 접근 확보 후 추가 분석 예정.],
+  caption: [\[ALIO 경영평가 등급 분포\] 2022–2024년 수집된 105개 공기업·준정부기관의 등급(S/A/B/C/D/E) 분포.\ 주관 부처 기준으로 집행 데이터와 97% 연결. 본격 분석은 데이터 접근 확보 후 추가 분석 예정.],
 ) <fig-v3-alio>
 
 == 방법론 Robustness — STL 자기 비판 + NeuralProphet·Wavelet 중재
@@ -1108,12 +1108,12 @@
 
 #figure(
   image("figures/h24_stl_bars.png", width: 100%),
-  caption: [분야별 1차 차분 상관 — FFT amp_12m_norm vs STL seasonal_strength 비교.\ 분홍 행 + 빨간 분야명 = 부호 반전 5/15분야. 사회복지는 FFT −0.76 → STL +0.07 로 신호 소멸.],
+  caption: [분야별 1차 차분 상관 — FFT 12개월 집행 진폭(amp_12m_norm) vs STL 계절강도(seasonal_strength) 비교.\ 분홍 행 + 빨간 분야명 = 부호 반전 5/15분야. 사회복지는 FFT −0.76 → STL +0.07 로 신호 소멸.],
 ) <fig-stl-bars>
 
 #figure(
   image("figures/h24_stl_scatter.png", width: 100%),
-  caption: [FFT vs STL 상관 산점도 — 분홍 영역(2·4 사분면)이 부호 반전.\ 사회복지(검정 큰 점)는 좌상단 부호반전 영역 안. y=x 참조선.],
+  caption: [FFT 집행 진폭 vs STL 계절강도 상관 산점도 — 분홍 영역(2·4 사분면)이 두 지표 부호 반전.\ 사회복지(검정 큰 점)는 좌상단 부호반전 영역 안. 점선은 y=x 등치선.],
 ) <fig-stl-scatter>
 
 #pagebreak()
@@ -1173,7 +1173,7 @@
       [$w_q$ ↑], [$tilde(e)_q$ ↑ (단, $e_q$는 측정성 격차로 한계)], [사업 성과 측정 인프라 (행정연구원 사업평가센터 강화)·KPI 정의 표준화·결과지표 활용 확대],
       [$c_(t t)$ ↑], [$e_t$ 한계 비용 ↑ → 시점 조정 ↓], [출연기관 정산 시점 분산 (분기/반기)·자동 감사 flagging·실시간 모니터링·예외 정산 사전 신고 의무],
     ),
-    caption: [P-A 모형 레버 → 한국 행정 액션 매핑],
+    caption: [주인-대리인(P-A) 모형 정책 레버 → 한국 행정 실행 과제 연결],
   )
 
   모형 직접 도출 — 권고 1–3 (3개 레버 1:1)
@@ -1286,7 +1286,7 @@
     [TDA 등 고수준 방법론 감수 — UMAP · HDBSCAN · Mapper · Persistent Homology 적정성 감수, Wavelet(CWT-Morlet) 적용 적정성 검토, 부록 C·D 학술 정밀성 감수.],
     [Methodology (advanced — topological/spectral methods), Supervision (advanced methodology review), Writing — review & editing],
   ),
-  caption: [저자별 CRediT 기여 매핑.],
+  caption: [저자별 기여 역할 분류(CRediT) 매핑.],
 )
 
 모든 저자는 본문 초안에 대한 review & editing에 참여했으며, 최종 원고에 대한 학술적 책임을 공유한다.
@@ -1664,12 +1664,12 @@ amp_cv: $"CV" = sigma\/mu$. 주파수 정보를 무시하므로 FFT가 비검출
     [출연금형], [*0.332*], [0.131], [0.142], [0.163], [0.127], [0.105],
     [정상사업], [0.172], [0.169], [0.144], [0.239], [0.141], [0.135],
   ),
-  caption: [원형별 평균 정규화 PSD — 출연금형이 12개월 진폭 dominance 최고 (0.332)],
+  caption: [원형별 평균 정규화 PSD(주파수 파워) — 출연금형이 12개월 주기 파워 비중 최고 (0.332)],
 )
 
 #figure(
   image("figures/h27_psd.png", height: 7cm),
-  caption: [원형별 평균 PSD — 출연금형(녹색)이 12m에서 다른 원형보다 2배 높은 진폭 dominance],
+  caption: [원형별 평균 PSD(주파수 파워) — 출연금형(녹색)이 12개월 주기에서 다른 원형보다 2배 높은 파워 비중],
 ) <fig-psd>
 
 핵심 발견:
@@ -1683,7 +1683,7 @@ $arg(hat(x)(k=1))$로 12개월 dominant 사인파의 위상을 추출, 활동의
 
 #figure(
   image("figures/h27_phase.png", width:90%),
-  caption: [원형별 12개월 cycle phase 분포 — 출연금형 mode 10월 (다른 원형보다 1개월 빠름)],
+  caption: [원형별 12개월 주기 피크 월(phase) 분포 — 출연금형 최빈 피크 월 10월 (다른 원형보다 1개월 빠름)],
 ) <fig-phase>
 
 peak month mode:
@@ -1709,12 +1709,12 @@ peak month mode:
     [*출연금형*], [*0.54*], [0.09], [0.08], [0.10], [0.06], [0.09],
     [정상사업], [0.13], [0.05], [0.04], [0.05], [0.04], [0.05],
   ),
-  caption: [원형 내 활동 간 phase coherence — 출연금형은 k=1에서 0.54로 강한 동기],
+  caption: [원형 내 활동 간 위상 동기화 지수(phase coherence) — 출연금형은 12개월 주기(k=1)에서 0.54로 강한 동시 피크],
 )
 
 #figure(
   image("figures/h27_coherence.png", width:90%),
-  caption: [원형별 phase coherence heatmap — 출연금형의 12m 동기화가 압도적],
+  caption: [원형별 위상 동기화 지수(phase coherence) heatmap — 출연금형의 12개월 동시 피크가 압도적],
 ) <fig-coh>
 
 결정적 발견: 출연금형 활동들은 12개월 cycle에서 phase coherence 0.54로 가장 강하게 동기화되어 있다(@fig-coh). 즉 서로 다른 출연금 활동들이 같은 월에 함께 피크한다는 의미이며, 이는 외생적 회계 cycle이 집단 행위를 유도한다는 본 연구의 핵심 가설을 직접 입증한다. 자산취득형(0.08)·정상사업(0.13)은 동기화가 약함 — 사업별 자체 일정에 따라 분산된 시기에 피크.
@@ -1736,7 +1736,7 @@ FFT는 시계열 전체의 평균 진폭을 측정하므로 정상성을 가정�
 
 #figure(
   image("figures/h28_scaleogram.png", width:100%),
-  caption: [4 사업원형 wavelet scaleogram — 색이 밝을수록 강한 진폭.\ 출연금형의 12m 신호가 후반(2020\~2025)으로 갈수록 점점 진해짐.],
+  caption: [4 사업원형 웨이블릿 시간-주기 진폭 지도(scaleogram) — 색이 밝을수록 강한 진폭.\ 출연금형의 12개월 신호가 후반(2020\~2025)으로 갈수록 점점 진해짐.],
 ) <fig-scaleogram>
 
 #figure(
@@ -1757,7 +1757,7 @@ FFT는 시계열 전체의 평균 진폭을 측정하므로 정상성을 가정�
     [출연금형], [0.2013], [1.3156], [*$+553.5\%$*],
     [정상사업], [0.0573], [0.2374], [*$+314.3\%$*],
   ),
-  caption: [원형별 12m wavelet power 시간 진화 — 출연금형의 6.5배 강화. 출연금형 변화율 정밀값 +553.5%, 본문 인용 시 반올림 +554%.],
+  caption: [원형별 12개월 주기 wavelet power(웨이블릿 파워) 시간 진화 — 출연금형의 6.5배 강화. 출연금형 변화율 정밀값 +553.5%, 본문 인용 시 반올림 +554%.],
 )
 
 3구간 분할 — Pre-COVID / COVID / Plateau 시기 분해 (`scripts/h28_v2_period_split.py`):
@@ -1772,7 +1772,7 @@ FFT는 시계열 전체의 평균 진폭을 측정하므로 정상성을 가정�
     [COVID 충격], [2019\~2021], [1.049], [급증 (확장재정)],
     [Plateau], [2022\~2025], [1.375], [유지 (baseline 미회귀)],
   ),
-  caption: [\[H6 시기 분할\] +554%는 3단계 합성 — Pre-COVID 점진 강화 + COVID 체제 충격 + elevated plateau 유지. 단순 monotonic 학습 적응이 아니라는 정량 단서이며, §6.8의 Performative Prediction 해석 한정에 직접 대응.],
+  caption: [\[H6 시기 분할\] +554%는 3단계 합성 — 코로나 이전 점진 강화 + 코로나 체제 충격 + 높은 수준 유지(elevated plateau). 단순 단조증가(monotonic) 학습 적응이 아니라는 정량 단서이며, §6.8의 Performative Prediction 해석 한정에 직접 대응.],
 ) <tbl-period-split>
 
 해석: 한국 재정 게임화는 고정 패턴이 아니라 진행 중인 동적 현상이며, 출연금형에서 가장 빠르게 강화되고 있다. FFT amp_12m_norm은 11년 평균값을 보고하므로 이 증폭 현상을 놓쳤다. 가능한 동인:
@@ -1804,12 +1804,12 @@ FFT/STL/NP/Wavelet 4-도구 종합 상보성:
 
 #figure(
   image("figures/h22_rdd_appendix.png", height: 7cm),
-  caption: [사업원형별 12월 점프 forest plot — 자산취득형 3.42x (C1 군집 풀링, n=99 활동) 가장 강함, 출연금형 1.10x는 통계 미달(회색)이나 부록 D의 사이클 강도에서 우세. 분야별 forest plot은 본문 @fig-rdd-field 참조.],
+  caption: [사업원형별 12월 점프 효과크기 비교(forest plot) — 자산취득형 3.42x (C1 군집 풀링, n=99 활동) 가장 강함, 출연금형 1.10x는 통계 미달(회색)이나 부록 D의 사이클 강도에서 우세. 분야별 비교는 본문 @fig-rdd-field 참조.],
 )
 
 #figure(
   image("figures/h22_rdd_archetype_forest.png", width: 100%),
-  caption: [4 archetype 12월 점프 forest plot — Liebman-Mahoney 2017 미국 약 4.9× 참조선 대비. C1 자산취득형이 한국에서 가장 강한 점프(3.42×)이나 미국 평균값에는 미달.],
+  caption: [4 사업원형 12월 점프 효과크기 비교(forest plot) — Liebman-Mahoney 2017 미국 약 4.9× 참조선 대비. C1 자산취득형이 한국에서 가장 강한 점프(3.42×)이나 미국 평균값에는 미달.],
 ) <fig-rdd-archetype-forest>
 
 == E.1 archetype × 4 cutoff RDD 행렬 (Multi-cutoff 정량)
@@ -1828,7 +1828,7 @@ FFT/STL/NP/Wavelet 4-도구 종합 상보성:
     [C2 출연금형], [×0.90 (ns)], [×1.06 (ns)], [×1.07 (ns)], [×1.10 (ns)], [173],
     [C3 정상사업 (비교군)], [×1.27], [×1.44], [×1.22], [×2.24], [601],
   ),
-  caption: [\[부록 E.1\] archetype × 4 cutoff RDD 점프 배율 ($e^beta$). 표기 없는 셀은 $p < 0.001$ 유의. ns = 통계 미달 ($p > 0.10$). C1은 4 cutoff 모두 유의, C2는 4개 모두 ns (RDD가 못 잡는 연 사이클은 부록 D에서 별도 도구로 식별).],
+  caption: [\[부록 E.1\] 사업원형 × 4개 분기말 마감(cutoff) RDD 점프 배율 ($e^beta$, 지수변환 추정치). 표기 없는 셀은 $p < 0.001$ 유의. ns = 통계 미달 ($p > 0.10$). C1은 4개 마감 모두 유의, C2는 4개 모두 ns (RDD가 못 잡는 연 사이클은 부록 D에서 별도 도구로 식별).],
 ) <tbl-cutoff-archetype>
 
 해석: (a) C1 자산취득형은 모든 cutoff에서 유의한 점프 — 공정률 마감이 분기마다 누적되는 구조. (b) C2 출연금형은 4 cutoff 모두 ns — RDD가 잡지 못하는 연 단위 사이클이 wavelet에서 +554% 강화로 드러남 (부록 D.4). (c) 12월이 모든 archetype에서 가장 강한 cutoff인 이유는 분기 마감 + 회계연도 마감 + 차년도 이월 차단의 3중 deadline이 12월에 중첩되기 때문. 본 표는 §6.3 본문의 multi-cutoff 단락에 대한 정량 backbone이다.
@@ -1849,7 +1849,7 @@ FFT/STL/NP/Wavelet 4-도구 종합 상보성:
 
 #figure(
   image("figures/h22_rdd_field_forest.png", width: 100%),
-  caption: [14분야 12월 점프 forest plot — 국방·국토·교통이 분야별로 가장 강하나 분야 ΔR²=0.000(§6.1)으로 trivial. archetype 분해(@fig-rdd-archetype-forest)가 진짜 설명 단위.],
+  caption: [14분야 12월 점프 효과크기 비교(forest plot) — 국방·국토·교통이 분야별로 가장 강하나 분야 구분의 추가 설명력(ΔR²)=0.000(§6.1)으로 무효(trivial). 사업원형 분해(@fig-rdd-archetype-forest)가 진짜 설명 단위.],
 ) <fig-rdd-field-forest>
 
 #v(2em)
@@ -1972,5 +1972,5 @@ $c(e_t, e_q; theta)$를 원형 $theta$별로 specialize:
       [`build_app_wav_slides.py`], [부록 WAV 자산], [Wavelet/PSD/Coherence 부록 슬라이드 차트],
     )
   },
-  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드 (스크립트는 `scripts/`의 테마별 하위 폴더에 분류 — 루트 `REPRODUCIBILITY.md`). 본문 figure가 슬라이드로 재가공된 케이스는 `build_slide*` 스크립트로 1280×800 포맷 변환된다.],
+  caption: [핵심 분석 스크립트와 가설·결과 절의 매핑 — 재현 가이드. 스크립트는 `scripts/`의 테마별 하위 폴더에 분류되며, 전체 색인은 루트 `REPRODUCIBILITY.md` 참조. 본문 figure를 슬라이드로 재가공한 경우 `build_slide*` 스크립트가 1280×800 포맷으로 변환한다.],
 )
