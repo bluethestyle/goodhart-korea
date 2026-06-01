@@ -48,7 +48,7 @@ fig, axes = plt.subplots(2, 1, figsize=(8.5, 8.5),
 # ── (a) 산포도 raw vs CPI-residual + 분야 라벨 (adjustText)
 ax1 = axes[0]
 ax1.plot([-1, 1], [-1, 1], '--', color='#888', alpha=0.6,
-         label='identity (변화 없음)')
+         label='대각선 (변화 없음)')
 ax1.scatter(df['corr_raw'], df['corr_resid_CPI'], s=80, alpha=0.78,
             edgecolor='white', linewidth=1.2, color='#5475a8')
 texts = []
@@ -74,8 +74,8 @@ except ImportError:
 ax1.axhline(0, color='gray', lw=0.6, ls=':')
 ax1.axvline(0, color='gray', lw=0.6, ls=':')
 n_sign = (df['sign_change'] == True).sum()
-ax1.set_xlabel('raw 상관 (CPI 통제 전)')
-ax1.set_ylabel('CPI-residual 상관')
+ax1.set_xlabel('원 상관 (CPI 통제 전)')
+ax1.set_ylabel('CPI 통제 후 상관')
 ax1.set_xlim(-1.05, 1.05); ax1.set_ylim(-1.05, 1.05)
 ax1.legend(loc='lower right')
 ax1.grid(alpha=0.3)
@@ -86,16 +86,16 @@ ax2 = axes[1]
 df_sorted = df.sort_values('corr_raw').reset_index(drop=True)
 y = np.arange(len(df_sorted))
 ax2.barh(y - 0.2, df_sorted['corr_raw'], height=0.4,
-         label='raw 상관', color='#5475a8', alpha=0.85)
+         label='원 상관 (CPI 통제 전)', color='#5475a8', alpha=0.85)
 ax2.barh(y + 0.2, df_sorted['corr_resid_CPI'], height=0.4,
-         label='CPI-residual 상관', color='#a85454', alpha=0.85)
+         label='CPI 통제 후 상관', color='#a85454', alpha=0.85)
 ax2.set_yticks(y)
 ax2.set_yticklabels(df_sorted['fld'], fontsize=11)
 ax2.axvline(0, color='gray', lw=0.6)
 ax2.set_xlabel('상관계수')
 ax2.legend(loc='lower right')
 ax2.grid(axis='x', alpha=0.3)
-ax2.set_title('(b) 분야별 raw vs CPI-residual')
+ax2.set_title('(b) 분야별 통제 전 vs 통제 후')
 
 plt.tight_layout()
 

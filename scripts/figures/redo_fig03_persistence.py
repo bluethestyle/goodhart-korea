@@ -91,7 +91,7 @@ ax.set_ylabel('Death (소멸 반경)')
 ax.legend(loc='lower right')
 ax.set_title('Persistence Diagram — 대각선에서 멀수록 견고한 위상 구조', fontsize=12)
 ax.grid(alpha=0.3)
-ax.text(0.02, 0.98, 'Vietoris-Rips\nN=300, max thresh=8.0',
+ax.text(0.02, 0.98, 'Vietoris-Rips 복합체\nN=300, 최대 임계 8.0',
         transform=ax.transAxes, va='top', fontsize=10,
         bbox=dict(boxstyle='round,pad=0.4', fc='white',
                   ec='#bbb', alpha=0.9))
@@ -127,8 +127,8 @@ ax.axvline(h1m, color='black', lw=2, label=f'median = {h1m:.2f}')
 ax.axvspan(h1lo, h1hi, alpha=0.15, color='black',
            label=f'95% CI = [{h1lo:.2f}, {h1hi:.2f}]')
 ax.axvline(0.65, color='steelblue', lw=1.4, linestyle='--',
-           label='5y 참조 (median 0.65)')
-ax.set_xlabel('H1 max persistence (bootstrap, n=200, 50회)')
+           label='5년 참조 (median 0.65)')
+ax.set_xlabel('H1 최대 지속성 (부트스트랩, n=200, 50회)')
 ax.set_ylabel('빈도')
 ax.legend(loc='upper right')
 ax.grid(alpha=0.3, axis='y')

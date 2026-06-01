@@ -51,7 +51,7 @@ for arch in ['C0_personnel', 'C1_direct_invest', 'C2_chooyeon', 'C3_normal']:
             color=color, label=label, alpha=0.92)
 
 ax.set_xlabel('연도')
-ax.set_ylabel('12m cycle wavelet power')
+ax.set_ylabel('12개월 주기 진폭 (wavelet power)')
 ax.grid(alpha=0.3)
 
 # 정점(출연금형 1.55) 위쪽 여유 확보 — 변화율 박스가 자리잡을 공간

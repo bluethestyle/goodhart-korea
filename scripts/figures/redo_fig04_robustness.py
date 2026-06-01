@@ -93,8 +93,8 @@ for i, p in enumerate(fe['p']):
 ax.axhline(0, color='gray', lw=0.6)
 ax.set_xticks(xs)
 ax.set_xticklabels(labels_short, fontsize=9, rotation=12, ha='right')
-ax.set_ylabel('β (Δoutcome ~ Δamp_z)')
-ax.set_title('(a) FE 회귀 β  (N=128)')
+ax.set_ylabel('β (Δ결과변수 ~ Δ진폭, 표준화)')
+ax.set_title('(a) 고정효과(FE) 회귀 β  (N=128)')
 ax.grid(alpha=0.3, axis='y')
 
 # ── (b) 14분야 Permutation forest plot
@@ -120,8 +120,8 @@ ax.scatter(perm_sorted['obs_corr_diff'], y_pos, s=42,
 ax.axvline(0, color='gray', lw=0.6, ls=':')
 ax.set_yticks(y_pos)
 ax.set_yticklabels(perm_sorted['fld'], fontsize=8)
-ax.set_xlabel('차분 상관 (점=obs · 띠=null 95% CI)')
-ax.set_title('(b) Permutation forest — 14분야 (p<.05 빨강)')
+ax.set_xlabel('차분 상관 (점=관측 · 띠=무작위 기준선 95% CI)')
+ax.set_title('(b) 순열검정 forest — 14분야 (p<.05 빨강)')
 ax.grid(alpha=0.3, axis='x')
 
 plt.tight_layout()
@@ -137,10 +137,10 @@ fig, axes = plt.subplots(1, 2, figsize=(7.56, 4.2))
 ax = axes[0]
 pv = lag.pivot_table(index='fld', columns='lag', values='corr_diff')
 sns.heatmap(pv, annot=True, fmt='.2f', cmap='RdBu_r', center=0, ax=ax,
-            cbar_kws={'label': 'corr_diff'},
+            cbar_kws={'label': '차분 상관'},
             annot_kws={'size': 8.5}, linewidths=0.3, linecolor='white')
-ax.set_xlabel('lag (year)'); ax.set_ylabel('')
-ax.set_title('(c) Lag/Lead 차분 상관 heatmap')
+ax.set_xlabel('시차 (년)'); ax.set_ylabel('')
+ax.set_title('(c) 시차/선행 차분 상관 heatmap')
 ax.tick_params(axis='y', labelsize=9.5)
 ax.tick_params(axis='x', labelsize=10)
 
@@ -154,8 +154,8 @@ ax.barh(range(len(nat_sorted)), nat_sorted['amp_cv'],
         color=colors_bar, alpha=0.85, edgecolor='black', linewidth=0.4)
 ax.set_yticks(range(len(nat_sorted)))
 ax.set_yticklabels(nat_sorted['fld'], fontsize=10)
-ax.set_xlabel('amp_12m 시간 CV')
-ax.set_title('(d) 분야별 amp_cv (게임화 변동 vs 자연 주기)')
+ax.set_xlabel('12개월 진폭 시간 변동계수')
+ax.set_title('(d) 분야별 진폭 변동계수 (게임화 변동 vs 자연 주기)')
 ax.grid(alpha=0.3, axis='x')
 
 plt.tight_layout()

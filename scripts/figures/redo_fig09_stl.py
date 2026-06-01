@@ -83,7 +83,7 @@ for i, r in df.iterrows():
         tick_label.set_color('#a85454')
         tick_label.set_fontweight('bold')
 ax.axvline(0, color='black', lw=1.0, zorder=3)
-ax.set_xlabel('1차 차분 상관 (게임화 ↔ outcome)')
+ax.set_xlabel('1차 차분 상관 (게임화 ↔ 결과변수)')
 ax.legend(loc='lower right', fontsize=13)
 ax.grid(alpha=0.3, axis='x')
 ax.text(0.0, 1.02,
@@ -141,8 +141,8 @@ for _, row in sw.iterrows():
     ax.scatter([row['corr_fft']], [row['corr_stl']], s=160,
                color='#a85454', edgecolor='black', linewidth=1.4, zorder=5)
 
-ax.set_xlabel('FFT 상관 (amp_12m_norm)')
-ax.set_ylabel('STL 상관 (seasonal_strength)')
+ax.set_xlabel('FFT 상관 (12개월 진폭)')
+ax.set_ylabel('STL 상관 (계절강도)')
 ax.legend(loc='lower left')
 ax.grid(alpha=0.3)
 ax.set_xlim(-1.05, 1.05); ax.set_ylim(-1.05, 1.05)

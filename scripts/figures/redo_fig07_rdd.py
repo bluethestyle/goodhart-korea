@@ -93,7 +93,7 @@ avg_m = agg_all.groupby('month')['mean_daily'].mean()
 ax.plot(avg_m.index, avg_m.values / 1e9,
         'k-', lw=2.6, zorder=5, label='11년 평균')
 ax.axvline(11.5, color='crimson', lw=1.8, ls='--', alpha=0.85,
-           label='12월 cutoff')
+           label='12월 마감')
 ax.axvspan(11, 12.5, alpha=0.08, color='crimson')
 ax.set_xlabel('월')
 ax.set_ylabel('활동 평균 일집행액 (십억원)')
@@ -120,9 +120,9 @@ ax.axhline(0, color='black', lw=0.8)
 ax.axhline(beta_total, color='darkorange', lw=1.8, ls='--',
            label=f'전체 β = {beta_total:.2f}  ({mult_total:.2f}x)')
 ax.axhline(np.log(LM_MULT), color='purple', lw=1.5, ls=':',
-           label=f'L-M 4.9x 참조 (β≈{np.log(LM_MULT):.2f})')
+           label=f'Liebman-Mahoney 4.9x 참조 (β≈{np.log(LM_MULT):.2f})')
 ax.set_xlabel('연도')
-ax.set_ylabel('log 점프\n(12월 − 11월, 활동 중앙값)')
+ax.set_ylabel('로그 점프\n(12월 − 11월, 활동 중앙값)')
 ax.set_xticks(yr_list)
 ax.set_xticklabels([str(y)[2:] for y in yr_list])
 ax.legend(loc='upper right')

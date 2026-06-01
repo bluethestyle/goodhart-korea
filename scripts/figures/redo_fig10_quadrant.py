@@ -232,9 +232,9 @@ ax.text(0.005, y0_lim + 0.02, 'Q3 안전 (음 상관)',
 
 ax.set_xlim(0, x1)
 ax.set_ylim(y0_lim, y1_lim)
-ax.set_xlabel('굿하트 노출 점수 (H5 exposure_score)', fontsize=13)
-ax.set_ylabel('부처 가중 outcome 차분 상관 (w_corr_diff)', fontsize=13)
-ax.set_title(f'부처 단위 정책 사분면 (n={len(merged)} 부처)  ·  도구 단위 layer',
+ax.set_xlabel('굿하트 노출 점수 (집행 시점 집중도)', fontsize=13)
+ax.set_ylabel('부처 가중 결과변수 차분 상관', fontsize=13)
+ax.set_title(f'부처 단위 정책 사분면 (n={len(merged)} 부처)  ·  부처 단위 분석',
              fontsize=15, fontweight='bold', pad=12)
 ax.tick_params(labelsize=11)
 ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.10),

@@ -72,7 +72,7 @@ ax.axvline(0, color='black', lw=0.8)
 ax.axvline(beta_total, color='darkorange', lw=1.6, ls='--',
            label=f'한국 전체 β={beta_total:.2f} ({mult_total:.2f}x)')
 ax.axvline(np.log(LM_MULT), color='purple', lw=1.4, ls=':',
-           label=f'L-M 5x (β≈{np.log(LM_MULT):.2f})')
+           label=f'Liebman-Mahoney 5x (β≈{np.log(LM_MULT):.2f})')
 
 # mult 라벨 (막대 끝)
 xmax = max(float((df['beta'] + 1.96 * df['se']).max()), np.log(LM_MULT))
@@ -83,7 +83,7 @@ for i, row in df.iterrows():
             va='center', ha='left', fontsize=8.5,
             color='#333' if row['pval'] < 0.05 else '#888')
 
-ax.set_xlabel('β (log 일집행액 12월 점프, 95% CI)')
+ax.set_xlabel('β (로그 일집행액 12월 점프, 95% CI)')
 
 # 범례 — p값 색 + 참조선
 sig_patch = mpatches.Patch(color='#a85454', label='p<0.05', alpha=0.82)
@@ -92,7 +92,7 @@ ax.legend(handles=[sig_patch, ns_patch,
                    plt.Line2D([0], [0], color='darkorange', lw=1.6, ls='--',
                               label=f'전체 β={beta_total:.2f}'),
                    plt.Line2D([0], [0], color='purple', lw=1.4, ls=':',
-                              label=f'L-M 5x')],
+                              label=f'Liebman-Mahoney 5x')],
           loc='lower right', fontsize=9, ncol=1)
 
 ax.grid(alpha=0.3, axis='x')
