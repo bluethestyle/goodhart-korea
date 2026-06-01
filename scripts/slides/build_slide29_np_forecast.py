@@ -265,10 +265,10 @@ def main():
     # legend 대신 footer 한 줄 — gridspec 밖에서 안 겹침
     fig.text(0.5, 0.025,
              '검정 실측 (2015–2025)   ·   색깔 line 예측 (2026, AR-Net 포함)   ·   음영 90% CI',
-             ha='center', va='bottom', fontsize=10, color='#555')
+             ha='center', va='bottom', fontsize=12, color='#555')
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(OUT_PATH, dpi=100, facecolor='white')
+    plt.savefig(OUT_PATH, dpi=140, facecolor='white')
     plt.close()
 
     # 결과 보고

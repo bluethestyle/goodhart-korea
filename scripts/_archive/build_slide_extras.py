@@ -106,7 +106,7 @@ fig.text(0.5, -0.01,
          f'※ log_daily ~ T + C(year), bw=1 (cutoff 양쪽 두 달), '
          f'cluster SE by ACTV_CD · '
          f'H3 cluster 매칭 활동만 (전체 1,605 활동 중 약 935)',
-         ha='center', fontsize=8.5, color='#666', style='italic')
+         ha='center', fontsize=10.5, color='#666', style='italic')
 
 plt.tight_layout(rect=[0, 0.02, 1, 0.94])
 out22 = out_dir / 'fig_slide22_cutoff_bars.png'
