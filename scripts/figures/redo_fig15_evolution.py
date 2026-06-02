@@ -3,8 +3,10 @@
 source: scripts/h28_wavelet.py
 A4 본문 폭 6.3 inch 1:1, figsize=(6.3, 3.8), dpi=200
 
-paper 사양: legend 차트 안 (좌상단), 변화율 annotation 박스 (우상단).
-column 폭 제한 때문에 외부 legend 사용 불가 — 내부 배치 + ymax 헤드룸 1.40.
+paper 사양: legend 차트 안 (좌상단). 변화율 수치는 본문 표 5 + 캡션에 있어
+중복이므로 차트 내 annotation 박스는 제거 (박스가 출연금형 정점 2022~2024를
+가리던 문제 해소). column 폭 제한 때문에 외부 legend 불가 — 좌상단 내부 배치.
+ymax 헤드룸 1.18 (정점이 화면을 거의 채우되 legend 자리만 확보).
 
 슬라이드용 변종은 redo_slidefig_h28_evolution.py 참조.
 """
@@ -54,22 +56,12 @@ ax.set_xlabel('연도')
 ax.set_ylabel('12개월 주기 진폭 (wavelet power)')
 ax.grid(alpha=0.3)
 
-# 정점(출연금형 1.55) 위쪽 여유 확보 — 변화율 박스가 자리잡을 공간
+# 정점(출연금형 2023년 1.59) 위 작은 여백만 — legend 자리 확보. 박스 제거로 큰 헤드룸 불필요.
 ymax_data = ev['power_12m'].max()
-ax.set_ylim(-0.05, ymax_data * 1.40)
+ax.set_ylim(-0.05, ymax_data * 1.18)
 
+# legend는 좌상단(좌측 구간 곡선이 모두 낮아 가림 없음)
 ax.legend(loc='upper left', frameon=True, framealpha=0.95)
-
-# 변화율 박스 — 우상단, 정점 위 빈 공간
-ax.text(0.98, 0.97,
-        '2015~2017 → 2023~2025\n'
-        '출연금형  +554%\n'
-        '정상사업  +314%\n'
-        '자산취득형 +174%\n'
-        '인건비형  −1.4% (통제)',
-        transform=ax.transAxes, ha='right', va='top', fontsize=13,
-        bbox=dict(boxstyle='round,pad=0.45', fc='#fff8e1',
-                  ec='#daa520', alpha=0.95))
 
 plt.tight_layout()
 
