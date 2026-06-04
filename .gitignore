@@ -10,6 +10,7 @@ lightning_logs/
 # Paper preview renders
 paper/preview/
 paper/figures/_preview/
+paper/_tmp_render/
 
 # Local Read 다운샘플 (1280px 이하 미리보기 — CLAUDE.md 가드레일)
 paper/figures/**/_v/
