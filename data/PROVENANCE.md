@@ -123,3 +123,12 @@ matplotlib 차트 대부분은 CSV/warehouse를 읽어 계산값을 그리므로
 > ⚠️ **figma 직접 수정 대기**: ②의 옛 하드코딩 값은 `build_app_wav_slides.py`의 App-WAV 부록 SVG 표·figma 슬라이드에도 남아 있다(스크립트가 CSV 미연결). before→after는 [`../슬라이드_수정사항.md`](../슬라이드_수정사항.md) 참조. 새 `triangulation_archetype.png`를 figma 플레이스홀더에 교체 투입하면 ②는 해소.
 
 > **근본 해결 방향**: 하드코딩 빌더를 *CSV에서 값을 읽도록* 리팩터. 그 전까지는 위 ⚠️ 값을 §2 정본 레퍼런스와 1:1 대조할 것.
+
+---
+
+## H2 RDD placebo (마감 vs 비마감 월전이) — 2026-06 추가
+
+- **원천 스크립트**: `scripts/h22_placebo_months.py` → 산출 `data/results/H22_placebo_months.csv`, 요약 `data/results/H22_placebo_summary.txt`
+- **입력**: `warehouse.duckdb::monthly_exec` (2015~2025, 전체 활동 ACTV_CD, EP_AMT 월별 집행액). 활동×연도 월 daily-avg(=EP_AMT/월일수)의 m/m-1 로그비, exp(평균)=배수.
+- **논문 인용값(conference_v1.typ §Ⅴ.2)**: 12/11=1.94(표 4의 전체 1.91과 정합), 마감월 평균 1.47, **비마감월 7개 중 6개 <1.0·중앙값 0.82**, 유일 예외 1→2월=1.62(1월 저집행 기저효과).
+- **용도**: 12월 점프가 계절성이 아니라 회계연도·분기 마감 제도효과임을 placebo로 입증.
