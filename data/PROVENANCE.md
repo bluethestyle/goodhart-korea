@@ -132,3 +132,19 @@ matplotlib 차트 대부분은 CSV/warehouse를 읽어 계산값을 그리므로
 - **입력**: `warehouse.duckdb::monthly_exec` (2015~2025, 전체 활동 ACTV_CD, EP_AMT 월별 집행액). 활동×연도 월 daily-avg(=EP_AMT/월일수)의 m/m-1 로그비, exp(평균)=배수.
 - **논문 인용값(conference_v1.typ §Ⅴ.2)**: 12/11=1.94(표 4의 전체 1.91과 정합), 마감월 평균 1.47, **비마감월 7개 중 6개 <1.0·중앙값 0.82**, 유일 예외 1→2월=1.62(1월 저집행 기저효과).
 - **용도**: 12월 점프가 계절성이 아니라 회계연도·분기 마감 제도효과임을 placebo로 입증.
+
+---
+
+## 식별 견고성 검증 (C4·C7·C6) — 2026-06-04 추가
+
+논리 감사(커밋 90ab5fa)가 §8.2에 인정한 세 식별 결함을 데이터로 직접 검정. 결과는 §6 "식별 견고성 검증" 절 + §8.2 해당 3항 갱신. **정직성 원칙: 결함 "해소"가 아니라 "심각도 정량화" — 셋 다 부분 완화 + 잔존.** 적대적 검증 4-에이전트(workflow)가 전 수치 재현 확인 + 과대해석 교정.
+
+- **C4 군집 순환성** — `scripts/2_archetype/robust_c4_recluster.py` → `robust_c4_recluster_ari.csv`·`_gaming_by_cluster.csv`, 로그 `_robust_c4_log.txt`. 입력 `H3_activity_embedding_11y.csv`(12피처+cluster). ARI: 편성목4-only 0.895 / 비게임화6 0.369 / 게임화6 0.018 / UMAP+HDBSCAN6 0.344 / 전체12 0.263. 그림 `figures/robust_c4_recluster.png`.
+- **C7 층 직교성** — `scripts/2_archetype/robust_c7_orthogonality.py` → `robust_c7_field_archetype_pct.csv`·`_ep_pct.csv`·`_association_stats.csv`, 로그 `_robust_c7_log.txt`. χ²=251.6 p<1e-29; 보정 Cramér V 활동수 0.21·EP가중 0.51·비C3 0.38; NMI 0.042. 그림 `figures/robust_c7_field_archetype.png`.
+- **C6 사회복지 시점 외생성** — `scripts/2_archetype/robust_c6_socialwelfare.py` → `robust_c6_field_dec_share.csv`·`_monthly_profile.csv`·`_dec_nov_ratio.csv`, 로그 `_robust_c6_log.txt`. 입력 `warehouse.duckdb::monthly_exec`. 사회복지 12월 비중 중앙 7.8%(균등 이하), 12월/11월 일평균 배율 1.29배(14분야 최저), 월 표준편차 1.9%p. 그림 `figures/robust_c6_socialwelfare.png`.
+
+### ★ §6.1 EDA 분야 12월 비중 수치 정정 (재현 불가 값 교체)
+- **종전(오류)**: "통일·외교 100.0% vs 사회복지 13.4%, 7.5배 격차, IQR 평균 83%p·중앙 91%p".
+- **정정(재현값, fig3 정의 = 활동×연도·연집행 1억 초과·12월/연집행·cap 1.0·분야 median)**: 국방 17.0%(최고)·통일외교 13.4%·사회복지 7.8%(균등 8.3% 이하)·교육 0.9%(최저); 분야 내 IQR 평균 ≈15%p.
+- **오류 원인**: 종전 100%는 단일 활동(2016 민간협력차관)의 *최댓값*이며, 13.4%는 사실 통일·외교의 중앙값(사회복지와 뒤바뀜). IQR 83~91%p는 EP_AMT 음수(0.46%)·미필터·cap 조합의 0/100 양극화 artifact로, 7가지 대안 정의 어디서도 재현 불가.
+- **하드코딩 정정**: `scripts/_archive/build_wireframes.py` L382-383 (통일·외교 100%→국방 17.0%, 사회복지 13.4%→7.8%). ⚠️ `paper/conference_v1.typ`에도 동일 옛 수치 잔존 — 별도 정정 필요(이번 작업 범위 외, main_v2.typ만 정정).
