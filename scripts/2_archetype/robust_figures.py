@@ -78,7 +78,7 @@ ax.set_xticks(range(4))
 ax.set_xticklabels(labels, fontsize=7.5)
 ax.set_ylim(0, 1.0)
 ax.set_ylabel('ARI (원본 4원형 대비)')
-ax.set_title('재군집 일치도 — 게임화 피처 없이도 원형 재현', fontsize=10.5, fontweight='bold')
+ax.set_title('재군집 ARI — 입력 피처별 원형 재현도', fontsize=10.5, fontweight='bold')
 ax.spines[['top', 'right']].set_visible(False)
 
 # 우: amp_12m 원본 vs 편성목-only 재군집
@@ -91,7 +91,7 @@ ax.bar(x + 0.2, [recl[i] for i in order], 0.38, label=f'편성목-only 재군집
 ax.set_xticks(x)
 ax.set_xticklabels([ARCH_KR[i] for i in order], fontsize=8.5)
 ax.set_ylabel('12개월 진폭 amp_12m_norm (평균)')
-ax.set_title('게임화 순위 보존 — 편성목만으로도 동일 순서', fontsize=10.5, fontweight='bold')
+ax.set_title('원형별 12개월 진폭 — 편성목-only 재군집서도 순위 유지', fontsize=9.8, fontweight='bold')
 ax.legend(fontsize=8, loc='upper left')
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout()
@@ -130,9 +130,10 @@ for ax, tab, ttl in [(axes[0], ct, '활동 수 가중'), (axes[1], ctep, 'EP(집
         tls[idx].set_fontweight('bold')
 axes[0].legend(ncol=4, fontsize=7.5, loc='upper center', bbox_to_anchor=(1.05, 1.12),
                frameon=False)
-fig.suptitle(f"분야 × 사업원형 — 약한 연관 (Cramér's V={stats['cramers_v_corrected']:.2f}, "
-             f"NMI={stats['nmi']:.3f}) · 16/16 분야 C3(정상) 다수 · 사회복지(빨강) 게임화원형 과소노출",
-             fontsize=9.5, y=1.0)
+fig.suptitle(f"분야 × 사업원형 — 중간 연관 (활동수 Vc={stats['cramers_v_corrected']:.2f}·"
+             f"EP가중 Vc={stats['cramers_v_ep_corrected']:.2f}, p<1e-29) · "
+             f"완전 직교 아님 · 사회복지(빨강) 게임화원형 과소노출",
+             fontsize=9.3, y=1.0)
 fig.tight_layout(rect=[0, 0, 1, 0.96])
 savep(fig, 'robust_c7_field_archetype.png')
 
@@ -174,7 +175,7 @@ ax.text(1, 100 / 12 + 0.4, '균등 8.3%', fontsize=8, color=ACC)
 ax.set_xticks(months)
 ax.set_xlabel('집행 월')
 ax.set_ylabel('월별 집행 비중 (%)')
-ax.set_title('사회복지 월별 평탄 (12월 11.3%, 점프 미미)', fontsize=10.5, fontweight='bold')
+ax.set_title('사회복지 월별 — 12월 소폭(11.3%), 국방 대비 평탄', fontsize=10.0, fontweight='bold')
 ax.legend(fontsize=8.5, loc='upper center')
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout()

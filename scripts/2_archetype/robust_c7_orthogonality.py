@@ -92,6 +92,19 @@ ctep_pct = ctep.div(ctep.sum(axis=1), axis=0).mul(100).round(1)
 print(ctep_pct.to_string())
 overall_ep = (df.groupby('arch')['ep'].sum() / df['ep'].sum() * 100).reindex(list(ARCH_KR.values())).round(1)
 print(f'\n  전체 EP 평균 원형 믹스(%): {dict(overall_ep)}')
+# EP 가중 Cramér's V (집행액을 빈도처럼 χ²) — 소수 초대형 계정 영향 주의
+ctep_round = ctep.round().astype('int64')
+chi2e, pe, dofe, Ve, Vce = cramers_v(ctep_round[ctep_round.sum(axis=1) > 0])
+print(f'  EP 가중 Cramér\'s V = {Ve:.3f} (보정 {Vce:.3f})  '
+      f'[주의: 경찰 인건비 등 소수 초대형 계정 지배 → 예산 집중도 반영]')
+# 비C3(소수 원형) 하위집합 연관 — 기저율 억제 제거
+sub = df[df['arch'] != 'C3정상']
+ctsub = pd.crosstab(sub['FLD_NM'], sub['arch'])
+ctsub = ctsub[ctsub.sum(axis=1) >= 5]
+chi2s, ps, dofs, Vs, Vcs = cramers_v(ctsub)
+nmisub = normalized_mutual_info_score(sub['FLD_NM'], sub['arch'])
+print(f'  비C3(소수원형 {len(sub)}개) 하위집합: Cramér\'s V 보정 = {Vcs:.3f}, NMI = {nmisub:.3f}  '
+      f'(C3 기저율 75.5% 억제 제거 시 연관 강화)')
 
 # ── 분야별 우세 원형 & 집중도 ────────────────────────────────
 print('\n' + '-' * 74)
@@ -138,6 +151,10 @@ ctep_pct.to_csv(os.path.join(RES, 'robust_c7_field_archetype_ep_pct.csv'), encod
 pd.DataFrame([{'metric': 'chi2', 'value': chi2}, {'metric': 'dof', 'value': dof},
               {'metric': 'p', 'value': p}, {'metric': 'cramers_v', 'value': V},
               {'metric': 'cramers_v_corrected', 'value': Vc},
-              {'metric': 'nmi', 'value': nmi}]).to_csv(
+              {'metric': 'nmi', 'value': nmi},
+              {'metric': 'cramers_v_ep', 'value': Ve},
+              {'metric': 'cramers_v_ep_corrected', 'value': Vce},
+              {'metric': 'cramers_v_nonC3_corrected', 'value': Vcs},
+              {'metric': 'nmi_nonC3', 'value': nmisub}]).to_csv(
     os.path.join(RES, 'robust_c7_association_stats.csv'), index=False, encoding='utf-8-sig')
 print(f'\n  저장: robust_c7_field_archetype_pct.csv / _ep_pct.csv / _association_stats.csv')
