@@ -99,6 +99,7 @@ CSV 경로는 별도 표기 없으면 `data/results/` 기준. `HC=⚠️`는 빌
 | 군집 n: C0 129 / C1 99 / C2 154 / C3 1175 | 일치 | `H3_activity_embedding_11y.csv` |
 | 분위 12월 Q1 15.4%(×2.58) / Q4 10.9%(×1.86) | 일치 | warehouse |
 | ΔR² 분야 0.000 / 원형×Δamp +0.025 | 일치 | `H8_field_archetype_decomp_v3.csv` |
+| 재군집 ARI 편성목4-only / 게임화6-only (순환성 점검; conference_v1 초록·기여문·Ⅴ.1·결론 + main_v2 초록·기여2·§6 견고성1·결론 인용) | 0.895 / 0.018 | `robust_c4_recluster_ari.csv` (§"식별 견고성 검증 C4" 참조) |
 | 미국 RDD 배수(Liebman-Mahoney 2017) | ×4.9 (β≈1.59) | 원천 보고값 (≠ ×5.0) |
 | FIS 22-03 주요 불용 29.3% · 2,389개 | 일치 | 원천 PDF |
 
@@ -157,3 +158,16 @@ matplotlib 차트 대부분은 CSV/warehouse를 읽어 계산값을 그리므로
 - **정정**: 옛 "통일·외교 100.0% vs 사회복지 13.4%, IQR 평균 83%p·중앙 91%p"는 재현 불가(100%=단일활동 최댓값, 13.4%=통일·외교 값 오배정, 83~91%p=EP_AMT 음수·cap artifact).
   **실제: 국방 16.9%(최고)·통일외교 14.0%·사회복지 7.8%, 분야 내부 IQR 평균 14.6%p.**
 - **반영**: main_v2.typ §6.1(타 세션) + conference_v1.typ Ⅴ.1(IQR≈15%p) + H5 사회복지 7.8% 근거. 슬라이드/figma는 별도 점검 필요.
+
+---
+
+## C2 출연금형 내부 세분 — PH 시사 → 시점 sub-clustering 부분 확인 (2026-06-04 추가)
+
+- **계기**: H9 PH 루프가 C2 내부 이질성 시사 → 정체를 데이터로 추적(요청 작업). "PH 검증"을 "부분 발견"으로 승급 시도.
+- **스크립트**: `scripts/2_archetype/h3b_c2_subcluster.py`(분석) · `h3b_c2_figure.py`(교차검증+그림).
+- **입력**: `H3_activity_embedding_11y.csv`(cluster==2, n=154) + `warehouse.duckdb::monthly_exec`(2015~2025 월별, PURE_ACCT 제외·≥6월·≥6년; h3_v2_11y.py와 동일 키/필터).
+- **산출**: `data/results/H3b_c2_subcluster.csv`·`H3b_c2_subcluster_profile.csv` · 그림 `paper/figures/h3b_c2_subarchetype.png`(1245×515px).
+- **정본값** (main_v2 §6.1 보강·결론 기여3 + conference_v1 Ⅴ.1 인용):
+  - C2 평균 월별 프로파일(%): 1월11.3·2월15.6·3월14.4·4월12.4·…·11월3.4·12월4.7 → **연초(2–3월) 집중·12월 최저**.
+  - 내부 2분: 연초 일괄형 n=50(1분기 54%)·분산형 n=104(1분기 35%). silhouette 0.197·부트스트랩 ARI 0.621·피처기반 교차 ARI 0.635·q1_share BC 0.560(skew 1.30) → **약한 2분/gradient**(이산 원형 아님).
+- **★ 데이터 오류 정정**: C2 z-score 해석칸 "12월 몰림" → **"연초 집중·12월 최저"**. 정정 위치 = `conference_v1.typ` 표 zscore(부록 A) + `main_v2.typ` H1보강 z-list(L715). 근거: C2 12월 비중 4.7% 최저 + 본문 RDD C2 12월 점프 1.10배(ns)와 정합(종전 "12월 몰림"은 위탁기관 정산(12월)과 정부 집행기록(연초 일괄)의 혼동). ⚠️ 정책 flagging·이론 예시의 일반 "12월 몰림"은 현상 일반론이라 정상(불변).
