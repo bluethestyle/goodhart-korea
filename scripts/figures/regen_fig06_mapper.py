@@ -36,6 +36,7 @@ KFONT = mpl.rcParams.get('font.family', 'Malgun Gothic')
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 H3_CSV = os.path.join(ROOT, 'data', 'results', 'H3_activity_embedding_11y.csv')
 OUT = os.path.join(ROOT, 'paper', 'figures', 'h4_mapper_cluster.png')
+OUT_AMP = os.path.join(ROOT, 'paper', 'figures', 'h4_mapper_amp.png')  # main_v2 동일그래프 진폭 색칠 패널
 HWP = os.path.join(ROOT, 'paper', '_hwp_이식', 'figures', 'fig06_mapper.png')
 
 CLU_LABEL = {0: '인건비형 (n=129)', 1: '자산취득형 (n=99)',
@@ -55,13 +56,14 @@ graph = mapper.map(
 )
 
 G = nx.Graph()
-dom = {}; size = {}; members = {}
+dom = {}; size = {}; members = {}; amp = {}
 for nid, mem in graph['nodes'].items():
     sub = df.iloc[mem]
     G.add_node(nid)
     dom[nid] = int(sub['cluster'].value_counts().index[0])
     size[nid] = len(mem)
     members[nid] = list(mem)
+    amp[nid] = float(sub['amp_12m_norm'].mean())
 for nid, nbs in graph['links'].items():
     for nb in nbs:
         G.add_edge(nid, nb)
@@ -97,6 +99,28 @@ sizes_arr = np.array([size[n] for n in G.nodes()])
 xs = np.array([pos[n][0] for n in G.nodes()])
 ys = np.array([pos[n][1] for n in G.nodes()])
 xpad = 0.08 * (xs.max() - xs.min()); ypad = 0.08 * (ys.max() - ys.min())
+
+# ── 패널 A (main_v2 전용): 동일 그래프, 노드 색 = 평균 12개월 진폭
+figa, axa = plt.subplots(figsize=(8.4, 5.0))
+amp_colors = np.array([amp[n] for n in G.nodes()])
+nx.draw_networkx_edges(G, pos, alpha=0.28, width=0.6, ax=axa)
+sca = nx.draw_networkx_nodes(G, pos, node_size=40 + 9 * sizes_arr,
+                             node_color=amp_colors, cmap='RdBu_r',
+                             vmin=0, vmax=float(df['amp_12m_norm'].quantile(0.9)),
+                             alpha=0.88, ax=axa)
+axa.set_xlim(xs.min() - xpad, xs.max() + xpad)
+axa.set_ylim(ys.min() - ypad, ys.max() + ypad)
+axa.axis('off')
+figa.colorbar(sca, ax=axa, label='12개월 주기 진폭 (정규화)', shrink=0.75)
+axa.text(0.02, 0.98,
+         f'노드 {G.number_of_nodes()} · 엣지 {G.number_of_edges()} · 연결성분 {n_comp} · 커버 {cov_pct:.0f}%',
+         transform=axa.transAxes, va='top', fontsize=10.5,
+         bbox=dict(boxstyle='round,pad=0.4', fc='white', ec='#bbb', alpha=0.9))
+axa.set_title('Mapper 그래프 — 노드 색: 12개월 주기 집행 진폭', fontsize=12)
+plt.tight_layout()
+figa.savefig(OUT_AMP, dpi=200, bbox_inches='tight')
+plt.close(figa)
+print(f'저장: {OUT_AMP}  {Image.open(OUT_AMP).size[0]}x{Image.open(OUT_AMP).size[1]}')
 
 fig, ax = plt.subplots(figsize=(8.4, 5.0))
 palette = plt.get_cmap('tab10')
