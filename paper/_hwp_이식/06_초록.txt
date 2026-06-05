@@ -1,0 +1,37 @@
+※ 표지(첫 장)와 영문초록(맨 끝 장)에 들어갈 내용.
+※ 조판: 제목=중앙·큰 글씨(메인+콜론 부제 2계층), [국문초록]/[Abstract]=회색 바, 주제어/Keywords 5개.
+
+
+══════════ 표지 (첫 장) ══════════
+
+[논문 제목]   ※ 콜론 부제(줄표 아님). 견본처럼 메인 크게·중앙, 부제는 한 줄 아래.
+한국 정부 재정 집행의 굿하트 효과:
+주인-대리인(Principal-Agent) 게임 균형과 사업원형별 집행 측 인과 식별
+
+[제목 각주 *]   ※ 제목 끝에 각주(*)로 달기. 익명 심사용.
+익명 심사용 원고. 저자명·소속·직위·이메일, 논문투고일, 연구비 지원, 코드·데이터 공개 저장소 정보는 NABO 편집부 양식에 따라 최종 게재 시 기재한다.
+
+[저자]
+저자명 (최종논문 제출 시에만 기입)
+
+
+[국문초록]   ※ 회색 바 제목. 본문 400자 이내.
+
+본 논문은 한국 중앙정부 재정 집행의 연말 쏠림을 주인-대리인 모형으로 분석해, 측정 가능한 집행률과 측정하기 어려운 사업 품질 사이의 격차에서 비롯하는 굿하트 효과로 해석한다. 이 측정성 격차 아래 합리적 대리인일수록 노력을 집행 시점 조정으로 돌린다. 2015–2025년 월별 집행 패널 1,557개 활동에서 집행 패턴을 가르는 단위는 분야가 아니라 편성목 구성에 가까운 사업원형이었다. 자산취득형은 12월 집행 점프(3.42배)가 전체(1.91배)보다 크고, 출연금형은 연간 사이클이 표본 후반까지 강화된다. 견고한 발견은 산출 측에 몰리고 결과 측 연관은 확증되지 않아, 집행률 중심 평가를 보완할 활동 단위 성과 데이터 인프라가 핵심 과제로 남는다.
+
+□ 주제어: 굿하트 법칙, 주인-대리인 모형, 다업무 계약, 회귀불연속, 사업원형
+
+
+══════════ 영문초록 (맨 끝 장, 참고문헌 뒤) ══════════
+
+[English Title]
+The Goodhart Effect in Korean Government Budget Execution: A Principal-Agent Game Equilibrium and Execution-Side Causal Identification by Archetype
+
+[Author]
+Author name (to be filled in only at final submission)
+
+[Abstract]
+
+This study derives the micro-mechanism of Goodhart effects in Korean central-government budget execution through a principal-agent equilibrium model and tests six hypotheses on an eleven-year (2015–2025) monthly execution panel of 1,557 activities and outcome indicators for 14 policy fields. A measurability gap—execution rates are perfectly measured while program quality is not—biases a rational agent's resources toward timing-adjustment effort, which we formalize through a multitasking-contract framework. Activity-level embedding derives four program archetypes (personnel, asset-acquisition, grant, and normal)—which largely recover the government's existing budget-line composition—and topological analysis verifies their sampling stability; field fixed effects add no explanatory power to gaming (ΔR²=0.000) whereas archetype interactions do (ΔR²=+0.025), establishing the archetype—not the field—as the unit of variance. In a fiscal-year-end regression discontinuity, asset-acquisition programs exhibit a strong December jump (3.42×) relative to the overall mean (1.91×), and continuous wavelet analysis shows that grant-type gaming intensified in a ratchet-like, non-reversing pattern over the sample period. The robust findings lie on the output side; associations with field outcomes remain unconfirmed, indicating that execution rates lack the program-level micro-data needed to validate policy outcomes. The policy prescription is not newly invented: the contribution is to pinpoint, with data, the model's three comparative-static levers and their empirical targets.
+
+□ Keywords: Goodhart's Law, Principal-Agent Model, Multitasking Contracts, Regression Discontinuity, Program Archetype

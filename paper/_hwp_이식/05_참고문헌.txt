@@ -1,0 +1,57 @@
+※ NABO 「예산정책연구」 참고문헌 — 한글(가나다) → 영문(알파벳) 순
+※ 조판: 각 항목 둘째 줄부터 들여쓰기(내어쓰기/hanging indent, 약 2글자).
+※ 한글: 논문 「」, 저서 『』. 영문: 논문 "큰따옴표", 학술지·저서·학술대회명 이탤릭.
+※ _밑줄_로 감싼 부분 = 한글에서 '기울임(이탤릭)' 적용 후 밑줄기호(_)는 삭제할 것.
+
+
+강윤호·정여희·김보영, 「지방자치단체 예산불용액의 결정요인 분석: 예산운용에 대한 정치경제학적 접근」, 한국사회와 행정연구, 제35권 제3호, 2024, pp.199–226.
+
+김용수·노희천, 「불용액이 차기 예산편성에 미치는 영향: 지방자치단체의 특성 요인을 중심으로」, 정부회계연구, 제19권 제1호, 2021, pp.37–68.
+
+심혜정, "Empirical Evidence of the Discretionary Behaviors of the Tax Administration: A Korean Perspective," 예산정책연구, 제13권 제3호, 2024, pp.1–23.
+
+양인용·배기수, 「중앙정부의 불용액과 이월액에 대한 효율적 관리방안」, 경영교육연구, 제34권 제1호, 2019, pp.341–363.
+
+양지숙·오현주, 「지방재정관리제도가 지방자치단체 예산집행에 미치는 영향: 불용액 및 이월액을 중심으로」, 한국공공관리학보, 제34권 제3호, 2020, pp.25–48.
+
+정종필·권진택, 「코로나19 시기 개인분 주민세 감면의 보통교부세 파급효과 분석」, 예산정책연구, 제13권 제3호, 2024, pp.111–139.
+
+한국재정정보원, 「재정지출 효율화를 위한 불용유형 분석 및 집행관리방안」, 분석보고서 22-03, 2022.
+
+한태희·김영록, 「재정집행 책무성에 대한 자체재원과 이전재원의 영향 비교」, 예산정책연구, 제13권 제1호, 2024, pp.133–165.
+
+Baker, G. P., "Incentive Contracts and Performance Measurement," _Journal of Political Economy_, Vol. 100, No. 3, 1992, pp.598–614.
+
+Baron, R. M. and D. A. Kenny, "The Moderator-Mediator Variable Distinction in Social Psychological Research: Conceptual, Strategic, and Statistical Considerations," _Journal of Personality and Social Psychology_, Vol. 51, No. 6, 1986, pp.1173–1182.
+
+Bevan, G. and C. Hood, "What's Measured Is What Matters: Targets and Gaming in the English Public Health Care System," _Public Administration_, Vol. 84, No. 3, 2006, pp.517–538.
+
+Campbell, D. T., "Assessing the Impact of Planned Social Change," _Evaluation and Program Planning_, Vol. 2, No. 1, 1979, pp.67–90.
+
+Campello, R. J. G. B., D. Moulavi, and J. Sander, "Density-Based Clustering Based on Hierarchical Density Estimates," in _Advances in Knowledge Discovery and Data Mining (PAKDD 2013)_, 2013, pp.160–172.
+
+Edelsbrunner, H. and J. Harer, "Persistent Homology — A Survey," in _Surveys on Discrete and Computational Geometry: Twenty Years Later_, Contemporary Mathematics Vol. 453, American Mathematical Society, 2008, pp.257–282.
+
+Goodhart, C. A. E., "Problems of Monetary Management: The U.K. Experience," Papers in Monetary Economics, Reserve Bank of Australia, 1975.
+
+Hardt, M., N. Megiddo, C. Papadimitriou, and M. Wootters, "Strategic Classification," in _Proceedings of the 2016 ACM Conference on Innovations in Theoretical Computer Science_, 2016, pp.111–122.
+
+Holmström, B., "Managerial Incentive Problems: A Dynamic Perspective," _Review of Economic Studies_, Vol. 66, No. 1, 1999, pp.169–182.
+
+Holmström, B. and P. Milgrom, "Multitask Principal-Agent Analyses: Incentive Contracts, Asset Ownership, and Job Design," _Journal of Law, Economics, and Organization_, Vol. 7, 1991, pp.24–52.
+
+Imbens, G. W. and T. Lemieux, "Regression Discontinuity Designs: A Guide to Practice," _Journal of Econometrics_, Vol. 142, No. 2, 2008, pp.615–635.
+
+Kornai, J., _Economics of Shortage_, North-Holland, 1980.
+
+Lee, D. S. and T. Lemieux, "Regression Discontinuity Designs in Economics," _Journal of Economic Literature_, Vol. 48, No. 2, 2010, pp.281–355.
+
+Liebman, J. B. and N. Mahoney, "Do Expiring Budgets Lead to Wasteful Year-End Spending? Evidence from Federal Procurement," _American Economic Review_, Vol. 107, No. 11, 2017, pp.3510–3549.
+
+McInnes, L., J. Healy, and J. Melville, "UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction," arXiv:1802.03426, 2018.
+
+Morris, S. and H. S. Shin, "Social Value of Public Information," _American Economic Review_, Vol. 92, No. 5, 2002, pp.1521–1534.
+
+Perdomo, J., T. Zrnic, C. Mendler-Dünner, and M. Hardt, "Performative Prediction," in _Proceedings of the 37th International Conference on Machine Learning_, 2020, pp.7599–7609.
+
+Singh, G., F. Mémoli, and G. Carlsson, "Topological Methods for the Analysis of High Dimensional Data Sets and 3D Object Recognition," in _Eurographics Symposium on Point-Based Graphics_, The Eurographics Association, 2007, pp.91–100.
