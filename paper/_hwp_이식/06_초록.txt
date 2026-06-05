@@ -6,7 +6,7 @@
 
 [논문 제목]   ※ 콜론 부제(줄표 아님). 견본처럼 메인 크게·중앙, 부제는 한 줄 아래.
 한국 정부 재정 집행의 굿하트 효과:
-주인-대리인(Principal-Agent) 게임 균형과 사업원형별 집행 측 인과 식별
+주인-대리인(Principal-Agent) 게임 균형과 사업원형별 집행 측 실증 분석
 
 [제목 각주 *]   ※ 제목 끝에 각주(*)로 달기. 익명 심사용.
 익명 심사용 원고. 저자명·소속·직위·이메일, 논문투고일, 연구비 지원, 코드·데이터 공개 저장소 정보는 NABO 편집부 양식에 따라 최종 게재 시 기재한다.
@@ -25,7 +25,7 @@
 ══════════ 영문초록 (맨 끝 장, 참고문헌 뒤) ══════════
 
 [English Title]
-The Goodhart Effect in Korean Government Budget Execution: A Principal-Agent Game Equilibrium and Execution-Side Causal Identification by Archetype
+The Goodhart Effect in Korean Government Budget Execution: A Principal-Agent Game Equilibrium and Execution-Side Empirical Analysis by Archetype
 
 [Author]
 Author name (to be filled in only at final submission)
