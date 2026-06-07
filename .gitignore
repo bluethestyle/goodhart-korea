@@ -105,3 +105,11 @@ paper/*ppt/
 
 # Root PDFs (external documents)
 /*.pdf
+
+# Root ZIP (external/binary references)
+/*.zip
+
+# 루트 로컬 연구 스크래치 (세션 인계문·경쟁 출품 샘플·NABO 제목 목록 — 로컬만, git 비추적)
+/_NEXT_SESSION.md
+/_compete_samples/
+/_nabo_all_titles.txt
