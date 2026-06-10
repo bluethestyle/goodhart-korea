@@ -358,22 +358,7 @@
 
 == H6: 시간 동적 강화
 
-  FFT 진폭은 11년 평균을 재므로 시간 변화를 보지 못한다. 출연금형 게임화가 비가역적으로 강해진다는 ratchet 발견의 1차 증거는 구간 평균의 레벨 시프트다. 12개월 주기강도 평균은 코로나 이전(2015–2018) 0.265에서 코로나기(2019–2021) 1.049로 뛴 뒤, 코로나 이후(2022–2025)에도 회수되지 않고 가장 높은 1.375(코로나 이전의 약 5배)로 고착됐다. 이는 끝점 추정이 아니라 구간 평균이라 표본 변동에 견고하다. 연속 웨이블릿 변환으로 본 12개월 주기 진폭의 시간 진화(@tbl-h6-evol, @fig-h28-evol; 양끝 3년 창 비교)도 같은 방향을 보강한다. 출연금형 +553.5%(반올림 +554%), 정상사업 +314.3%, 자산취득형 +174.1%, 인건비형 $-1.4%$로, 원형 간 순서가 레벨 시프트와 정합한다. 인건비형은 매월 균등 지급이라 시점 조정 자체가 불가능한 통제군이며, 변화 없음이 도구가 잡음이 아니라 진짜 동적 신호만 포착함을 보강한다.
-
-  #figure(
-    table(
-      columns: (auto, auto, auto, auto),
-      align: (left, center, center, center),
-      table.hline(y: 1, stroke: 1.0pt + black),
-      [*원형*], [*초기 3년 (2015–2017)*], [*최근 3년 (2023–2025)*], [*변화율*],
-      [인건비형], [0.007], [0.007], [$-1.4%$ (통제)],
-      [자산취득형], [0.055], [0.151], [$+174.1%$],
-      [출연금형], [0.201], [1.316], [*$+553.5%$*],
-      [정상사업], [0.057], [0.237], [$+314.3%$],
-    ),
-    caption: [원형별 12개월 주기 웨이블릿 파워의 시간 진화],
-  ) <tbl-h6-evol>
-  #tnote[자료: 저자 산출(연속 웨이블릿 변환, 열린재정정보 월별 집행 테이블).]
+  FFT 진폭은 11년 평균을 재므로 시간 변화를 보지 못한다. 출연금형 게임화가 비가역적으로 강해진다는 ratchet 발견의 1차 증거는 구간 평균의 레벨 시프트다. 12개월 주기강도 평균은 코로나 이전(2015–2018) 0.265에서 코로나기(2019–2021) 1.049로 뛴 뒤, 코로나 이후(2022–2025)에도 회수되지 않고 가장 높은 1.375(코로나 이전의 약 5배)로 고착됐다. 이는 끝점 추정이 아니라 구간 평균이라 표본 변동에 견고하다. 연속 웨이블릿 변환으로 본 12개월 주기 진폭의 시간 진화(@fig-h28-evol; 양끝 3년 창 비교)도 같은 방향을 보강한다. 출연금형 +553.5%(반올림 +554%; 절대 수준 0.201→1.316), 정상사업 +314.3%, 자산취득형 +174.1%, 인건비형 $-1.4%$로, 원형 간 순서가 레벨 시프트와 정합한다. 인건비형은 매월 균등 지급이라 시점 조정 자체가 불가능한 통제군이며, 변화 없음이 도구가 잡음이 아니라 진짜 동적 신호만 포착함을 보강한다.
 
   이 비가역성(ratchet)은 단조적 학습 적응이 아니라 코로나 확장재정이 촉발했으나, 일시적 충격은 아니다. 앞서 본 레벨 시프트가 그 증거다. 코로나가 끌어올린 게임화 강도는 회수되지 않고(구간 전환 +295.8%; 최근 구간 연 $-0.215$의 완만한 하강은 있으나 코로나 이전 수준으로 미회귀) 새 기준선이 되어, 평가 제도가 행동 분포를 바꾼다는 수행적 예측과 정합한다. 외부 평가편람에서 역산한 가중 비율 $w_t\/w_q$는 재정사업 자율평가 기준 2005년 이래 0.75로 안정적이어서#footnote[명목 가중비 $w_t\/w_q = 0.75 < 1$은 시점 평가가 명목상 오히려 작음을 뜻하나, 균형을 좌우하는 것은 명목비가 아니라 측정 누설을 반영한 실효비 $w_t\/(w_q phi')$(Ⅱ.2)다. 품질 측정 누설이 크면($phi' << 1$) 실효비가 1을 크게 웃돌아, 명목상 시점에 불리해도 균형에서 시점 노력이 지배한다. 본 절의 요점은 이 명목비가 불변이라는 사실이다.], 이 강화는 가중치 경로가 아니라 비용 경로($c_(t t)$ 감소; 2018년 부처 자체평가 전환으로 중앙 감독 약화)와 외생 충격으로 재해석된다. 또한 비교 양 끝 구간(2015–17·2023–25)은 시계열 경계에 걸쳐 12개월 밴드의 웨이블릿 추정이 영향원뿔#footnote[연속 웨이블릿은 시계열 양 끝에서 분석 창이 자료 밖으로 넘쳐 추정이 왜곡되는 '영향원뿔(cone of influence)' 구간이 생긴다. 본 분석은 이 구간을 제외하거나 가중을 낮춰 경계 효과를 통제한다.]의 영향을 가장 크게 받는 곳이다. 따라서 +554%라는 *크기*는 지시적 값으로 읽고, 견고한 것은 강화의 *방향과 비가역성*으로 한정한다(11개 연주기라는 짧은 표본도 같은 이유로 크기 해석을 제약한다). 원형 간 순서는 어느 시기로 잘라도 보존되어 H6의 비용 함수 이질성 예측과 일치한다.
 
@@ -551,7 +536,7 @@ $ (partial e_t^*) / (partial w_t) = (c_(q q) - w_q phi'') / D > 0, quad (partial
 #[
   #set par(first-line-indent: (amount: 1em, all: true), leading: 0.7em, justify: true, spacing: 0.7em)
   #set text(size: 10.5pt)
-  This study derives the micro-mechanism of Goodhart effects in Korean central-government budget execution through a principal-agent equilibrium model and tests six hypotheses on an eleven-year (2015–2025) monthly execution panel of 1,557 activities and outcome indicators for 14 policy fields. A measurability gap—execution rates are perfectly measured while program quality is not—biases a rational agent’s resources toward timing-adjustment effort, which we formalize through a multitasking-contract framework. Activity-level embedding derives four program archetypes (personnel, asset-acquisition, grant, and normal)—which largely recover the government's existing budget-line composition—and topological analysis verifies their sampling stability; field fixed effects add no explanatory power to gaming (ΔR²=0.000) whereas archetype interactions do (ΔR²=+0.025), establishing the archetype—not the field—as the unit of variance. In a fiscal-year-end regression discontinuity, asset-acquisition programs exhibit a strong December jump (3.42×) relative to the overall mean (1.91×), and continuous wavelet analysis shows that grant-type gaming intensified in a ratchet-like, non-reversing pattern over the sample period. The robust findings lie on the output side; associations with field outcomes remain unconfirmed, indicating that execution rates lack the program-level micro-data needed to validate policy outcomes. The policy prescription is not newly invented: the contribution is to pinpoint, with data, the model’s three comparative-static levers and their empirical targets.
+  This paper analyzes the year-end concentration of Korean central-government budget execution through a principal-agent model, interpreting it as a Goodhart effect arising from the gap between perfectly measured execution rates and hard-to-measure program quality. Under this measurability gap, a rational agent shifts effort toward execution-timing adjustment. In a 2015–2025 monthly execution panel of 1,557 activities, the unit that divides execution patterns is not the policy field but program archetypes that largely recover the government's existing budget-line composition. Asset-acquisition programs show a December execution jump (3.42×) above the overall mean (1.91×), and grant-type annual cycles intensify into the late sample period. Robust findings concentrate on the output side of execution while outcome-side associations remain unconfirmed, leaving activity-level outcome data infrastructure—complementing execution-rate-centered evaluation—as the key remaining task.
 
   #v(6pt)
   #set par(first-line-indent: 0pt)
