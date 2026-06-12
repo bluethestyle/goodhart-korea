@@ -113,3 +113,6 @@ paper/*ppt/
 /_NEXT_SESSION.md
 /_compete_samples/
 /_nabo_all_titles.txt
+
+# HWP 이식 검증용 렌더 크롭 (PDF 페이지·수식 확대 PNG — 재생성 가능 스크래치)
+paper/_hwp_이식/_v/
